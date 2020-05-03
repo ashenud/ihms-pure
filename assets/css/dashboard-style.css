@@ -1,0 +1,377 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #e8edf5;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* top navbar */
+.navbar-nav {
+    float: right;
+    text-align: right;
+}
+
+.navbar {
+    background: #f3758a;
+}
+
+.navbar-brand {
+    font-size: 11px;
+    margin-left: -12px;
+}
+.nav-item {
+    display: flex;
+    float: right;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.nav-item .nav-link i {
+    margin-right: 2px;
+}
+
+.to-fit i {
+    color: #f3758a;
+}
+
+.dropdown-menu {
+    background: #f3758a;
+    padding-left: 3px;
+}
+
+.dropdown-item {
+    font-size: 11px;
+    padding-left: 5px;
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color:rgb(255,255,255,0.2);
+    border-radius: 10px;
+    color: #fff;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: 11px;
+}
+
+.nav-item:hover {
+    background-color:rgb(255,255,255,0.2);
+    border-radius: 10px;
+    color: #fff;
+}
+
+.navbar-toggler-icon {
+    height: 32px;
+    color: #fff;
+}
+/* end of top navbar */
+
+
+
+/* sidebar */
+
+.sidebar-menu {
+    position: fixed;
+    top: 57px;
+    left: 0;
+    background: #69c5f6;
+    width: 250px;
+    height: 100%;
+    transition: all 0.3s linear;
+    z-index: 2;
+}
+
+.inner-sidebar-menu {
+    position: relative;
+    padding-top: 60px;
+}
+
+.user-area {
+    margin-top: -60px;
+    padding: 10px 15px;
+    display: flex;
+}
+
+.user-area a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 10px;
+    margin-top: 35px;
+    margin-left: 3px;
+}
+
+.inner-sidebar-menu ul {
+    margin-top: 40px;
+}
+
+.inner-sidebar-menu ul li a {
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 9px 20px;
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+    margin: 10px;
+    outline: none;
+}
+
+.inner-sidebar-menu ul li a span {
+    display: inline-block;
+}
+
+.inner-sidebar-menu ul li a .icon {
+    margin-right: 8px;
+    font-size: 22px
+}
+
+.inner-sidebar-menu ul li a .icon .badge {
+    position: relative;
+    background-color: #fe1212;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    padding: 4px 5px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 12px;
+    top: -16px;
+    right: 16px;
+    margin-right: -30px;
+}
+
+.inner-sidebar-menu ul li a:hover {
+    background-color:rgb(255,255,255,0.2);
+    border-radius: 30px;
+    color: #fff;
+}
+
+.inner-sidebar-menu ul li a.active {
+    background: #fff;
+    border-radius: 30px;
+    color: #f3758a;
+}
+
+.inner-sidebar-menu ul li a.drop {
+    color: white;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 5px 10px;
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.inner-sidebar-menu ul li a.drop .icon {
+    margin-right: 5px;
+    font-size: 13px
+}
+
+.inner-sidebar-menu ul li a.drop-active {
+    background: #fff;
+    border-radius: 30px;
+    color: #f3758a;
+    font-size: 10px;
+    padding: 5px 10px;
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.inner-sidebar-menu ul li a .icon-active {
+    margin-right: 5px;
+    font-size: 13px;
+}
+
+
+.collapse-manage{
+    margin: 0 20px;
+    background: #89cff0;
+    border-radius: 4px;
+    padding: 1px 0;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.collapsing {
+    transition: none;
+    display: none;
+}
+
+.hamburger {
+    position: absolute;
+    top: 5px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    background: #e8edf5;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.inner-hamburger, .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.hamburger {
+    position: absolute;
+    top: 5px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    background: #e8edf5;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.inner-hamburger, .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.inner-hamburger {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    background: #f3758a;
+}
+
+.arrow {
+    color: #fff;
+    font-size: 25px;
+}
+
+.mob-hamburger {
+    position: absolute;
+    top: 5px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    background: #e8edf5;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mob-inner-hamburger, .mob-arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.mob-inner-hamburger {
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    background: #f3758a;
+}
+
+.mob-arrow {
+    color: #fff;
+    font-size: 25px;
+}
+
+/* end of sidebar */
+
+
+/* content */
+
+.content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    margin-top: 58px;
+    padding-top: 20px;
+    transition: all 0.3s linear;
+}
+
+/* end of content */
+
+
+/* collapes area and mobile media sizes */
+
+.wrapper.active .sidebar-menu {
+    width: 80px;
+}
+
+.wrapper.active .hamburger .fa-long-arrow-alt-right {
+    display: block !important;
+}
+
+.wrapper.active .hamburger .fa-long-arrow-alt-left {
+    display: none;
+}
+
+.wrapper.active .sidebar-menu .list, .wrapper.active .user-area a {
+    display: none;
+}
+
+.wrapper.active .content {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+}
+
+
+@media screen and (max-width:768px) {
+    .sidebar-menu {
+        max-width: 80px;
+    }
+    .to-fit {
+        display: none;
+    }
+    .sidebar-menu .list, .user-area a {
+        display: none;
+    }
+    .hamburger {
+        display: none;
+    }
+    .mob-hamburger {
+        display: block !important;
+    }
+    .wrapper .content {
+        width: calc(100% - 80px);
+        margin-left: 80px;
+    }
+    
+    .wrapper.mob-active .sidebar-menu {
+        max-width: 250px;
+    }
+
+    .wrapper.mob-active .mob-hamburger .fa-long-arrow-alt-right {
+        display: none;
+    }
+
+    .wrapper.mob-active .mob-hamburger .fa-long-arrow-alt-left {
+        display: block !important;
+    }
+
+    .wrapper.mob-active .sidebar-menu .list , .wrapper.mob-active .user-area a {
+        display: inline !important;
+        
+    }
+
+    .wrapper.mob-active .content {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+    }
+}
+
+/* end of collapes area and mobile media sizes */
+
+
