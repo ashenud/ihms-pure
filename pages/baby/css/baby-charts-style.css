@@ -4,7 +4,6 @@ body {
 }
 
 .chart-area {
-    font-family: 'abhaya', serif;
     position: relative;
     margin: auto;
     margin-bottom: 50px;
@@ -12,42 +11,68 @@ body {
     width: 50vw;
 }
 
-.data-range .card {
+.chart-area .word p {
+    font-family: 'abhaya', serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #000;
+    margin-top: 30px;
+}
+
+.chart-area canvas {
+    background-color: #fff;
+    padding-top: 15px;
+    margin-bottom: 50px;
+}
+
+.data-range .data-area {
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 66px;
+}
+
+.data-range .data-area .card {
     margin-top: 10px;
     margin-bottom: 15px;
     border: 1px solid #000;
     border-radius: 15px;
 }
 
-.data-range .card p {
-    font-size: 12px;
+.data-range .data-area .card h6 {
+    font-family: 'abhaya', serif;
+    font-weight: 300;
 }
 
-.data-range .card p span {
+.data-range .data-area .card p {
+    font-family: 'abhaya', serif;
+    font-size: 14px;
+}
+
+.data-range .data-area .card p span {
     margin-right: 5px;
     border: 1px solid #000;
 }
 
-.data-range .card p i {
+.data-range .data-area .card p i {
     color: rgba(7,163,48, 1);
 }
 
-.data-range .card p .color-1 {
+.data-range .data-area .card p .color-1 {
     background-color: rgba(201,242,189, 1);
 }
 
-.data-range .card p .color-2 {
+.data-range .data-area .card p .color-2 {
     background-color: rgba(232,121,70, 1);
 }
 
-.data-range .card p .color-3 {
+.data-range .data-area .card p .color-3 {
     background-color: rgba(235,75,10, 1);
 }
 
-.data-range .card p .color-4 {
+.data-range .data-area .card p .color-4 {
     background-color: rgba(230,168,140, 1);
 }
 
-.data-range .card p .color-5 {
+.data-range .data-area .card p .color-5 {
     background-color: rgba(237,173,234, 1);
 }

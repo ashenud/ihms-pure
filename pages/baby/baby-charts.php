@@ -52,6 +52,7 @@
     <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
     <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../../assets/css/english-fonts.css">
 
     <!--css files-->
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
@@ -277,7 +278,7 @@
                                           
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-xl-9">
                             <div class="chart-area">
                                
                                 <?php
@@ -289,15 +290,15 @@
 
                                     if($gender=='M') {
                                 ?>
-                                <div class="word"><p>පිරිමි</p></div>
-                                <canvas id="lineChartM" class="line-chart" style="background-color: #fff;"></canvas>
+                                <div class="word"><p>දරුවාගේ වැඩීමේ ප්‍රස්ථාරය (පිරිමි)</p></div>
+                                <canvas id="lineChartM" class="line-chart"></canvas>
                                     
                                 <?php
                                     }
                                     else {
                                 ?>
-                                <div class="word"><p>ගැහැණු</p></div>
-                                <canvas id="lineChartF" class="line-chart" style="background-color: #fff;"></canvas>
+                                <div class="word"><p>දරුවාගේ වැඩීමේ ප්‍රස්ථාරය (ගැහැණු)</p></div>
+                                <canvas id="lineChartF" class="line-chart"></canvas>
                                 
                                 <?php
                                     }
@@ -305,26 +306,35 @@
                                 
                             </div>
                         </div>
-                        <div class="col-md-3 data-range">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title">උස සටහන</h6>
-                                    <p><span class="badge color-1">     </span>නියමිත උස</p>
-                                    <p><span class="badge color-1"><i>- - -</i></span>මධ්‍යස්ථය</p>
-                                    <p><span class="badge color-2">     </span>මිටි බවට අවදානම</p> 
-                                    <p><span class="badge color-3">     </span>මිටි බව</p>                        
+                        
+                        <div class="col-xl-3 data-range">
+                            <div class="container-fluid data-area">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-6 data-range">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">උස සටහන</h5>
+                                            <p><span class="badge color-1">     </span>නියමිත උස</p>
+                                            <p><span class="badge color-1"><i>- - -</i></span>මධ්‍යස්ථය</p>
+                                            <p><span class="badge color-2">     </span>මිටි බවට අවදානම</p> 
+                                            <p><span class="badge color-3">     </span>මිටි බව</p>                        
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h6 class="card-title">බර සටහන</h6>
-                                    <p><span class="badge color-5">     </span>අධිබර</p>  
-                                    <p><span class="badge color-1"><i>- - -</i></span>මධ්‍යස්ථය</p>  
-                                    <p><span class="badge color-1">     </span>නියමිත බර</p>  
-                                    <p><span class="badge color-4">     </span>මද බර අඩු</p>
-                                    <p><span class="badge color-2">     </span>මධ්‍යස්ථ බර අඩු</p> 
-                                    <p><span class="badge color-3">     </span>උග්‍ර බර අඩු</p>                        
-                                                          
+                                    <div class="col-xl-12 col-md-6 data-range">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">බර සටහන</h5>
+                                            <p><span class="badge color-5">     </span>අධිබර</p>  
+                                            <p><span class="badge color-1"><i>- - -</i></span>මධ්‍යස්ථය</p>  
+                                            <p><span class="badge color-1">     </span>නියමිත බර</p>  
+                                            <p><span class="badge color-4">     </span>මද බර අඩු</p>
+                                            <p><span class="badge color-2">     </span>මධ්‍යස්ථ බර අඩු</p> 
+                                            <p><span class="badge color-3">     </span>උග්‍ර බර අඩු</p>                        
+
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -345,8 +355,6 @@
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
     <!--end core js files-->
 
     
@@ -387,16 +395,16 @@
 
     <!-- male chart -->
     <script>
-            const CHART = document.getElementById("lineChartM");
-            console.log(CHART);
-            let lineChart = new Chart(CHART, {
-                type: ['line'],
 
+            Chart.defaults.global.defaultFontFamily = 'Helvetica';
+            Chart.defaults.global.defaultFontFamily = 'abhaya';
+            var maleChart = {
+                type: ['line'],
                 data: {        
                         labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60',],
                         datasets: [ 
                                     {
-                                        label: ['# of Votes'],
+                                        label: [''],
                                         yAxisID: 'A',
                                         data: [1.6, 1.5, 1.7, 2.1, 2.7, 3.3, 3.9, 4.4, 4.8, 5.2, 5.5, 5.8, 6, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.85, 6.95, 7, 7.1, 7.2, 7.4, 7.55, 7.7, 7.8, 7.9, 7.95, 8, 8, 8, 8.05, 8.1, 8.15, 8.2, 8.3, 8.35, 8.4, 8.5, 8.55, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.2],
                                         fill: false,
@@ -525,10 +533,11 @@
                                         yAxisID: 'A',
                                         data: [<?php echo $weight; ?>],
                                         fill: false,
-                                        borderColor: ['rgba(0,0,0, 1)'],
+                                        backgroundColor: 'rgba(0, 16, 85, 1)',
+                                        borderColor: 'rgba(0, 16, 85, 1)',
                                         lineTension: 0,
                                         borderWidth: 2,
-                                        pointRadius: 4
+                                        pointRadius: 3,
                                         
                                     },
 
@@ -537,10 +546,11 @@
                                         yAxisID: 'B',
                                         data: [<?php echo $height; ?>],
                                         fill: false,
-                                        borderColor: ['rgba(0,0,0, 1)'],
+                                        backgroundColor: 'rgba(0, 16, 85, 1)',
+                                        borderColor: 'rgba(0, 16, 85, 1)',
                                         lineTension: 0,
                                         borderWidth: 2,
-                                        pointRadius: 4
+                                        pointRadius: 3,
                                     }
                                   ]
                        },
@@ -556,14 +566,22 @@
                                 type: 'linear',
                                 position: 'left',
                                 ticks: {
-                                    fontSize: 9,
+                                    fontSize: 10,
                                     beginAtZero: true,
-                                    stepSize: 1
+                                    stepSize: 1,
+                                    fontFamily: 'Helvetica',
+                                    fontColor: '#000',
                                 },
                                 gridLines: {
                                     lineWidth: 1,
                                     color: 'rgba(0, 0, 0, 0.2)',
                                     z: 1
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "බර (කි. ග්‍රෑ.)",
+                                    fontColor: '#000',
+                                    fontSize: 14,
                                 }
                             },
                             
@@ -572,11 +590,19 @@
                                 type: 'linear',
                                 position: 'right',
                                 ticks: {
-                                    fontSize: 9,
+                                    fontSize: 10,
                                     beginAtZero: true,
                                     min: 20,
                                     max: 120,
-                                    stepSize: 2
+                                    stepSize: 2,
+                                    fontFamily: 'Helvetica',
+                                    fontColor: '#000'
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "උස (සෙ.මි.)",
+                                    fontColor: '#000',
+                                    fontSize: 14,
                                 }
                             }
                                
@@ -585,18 +611,32 @@
                             {
                                 ticks: {
                                     fontSize: 6,
-                                    stepSize: 1
+                                    stepSize: 1,
+                                    fontFamily: 'Helvetica',
+                                    fontColor: '#000',
+                                    maxRotation: 0,
                                 },
                                 gridLines: {
                                     lineWidth: 1,
                                     color: 'rgba(0, 0, 0, 0.2)',
                                     z: 1
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "වයස (මාස)",
+                                    fontColor: '#000',
+                                    fontSize: 14,
                                 }
                             }]
-                    },  
+                    },
+                    tooltips: false,
                     responsive: true      
                 }
-            });    
+            }
+            
+            var ctxMaleChart = document.getElementById('lineChartM').getContext('2d');
+            new Chart(ctxMaleChart, maleChart);
+            
     </script>
     <!-- end of male chart -->
 
@@ -606,16 +646,16 @@
     ?>
     <!-- female chart -->
     <script>
-            const CHART = document.getElementById("lineChartF");
-            console.log(CHART);
-            let lineChart = new Chart(CHART, {
+            
+            Chart.defaults.global.defaultFontFamily = 'Helvetica';
+            Chart.defaults.global.defaultFontFamily = 'abhaya';
+            var femaleChart = {
                 type: ['line'],
-
                 data: {        
                         labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60',],
                         datasets: [ 
                                     {
-                                        label: ['# of Votes'],
+                                        label: [''],
                                         yAxisID: 'A',
                                         data: [1.2, 1.6, 2, 2.4, 2.8, 3.3, 3.7, 4, 4.4, 4.6, 5, 5.2, 5.4, 5.5, 5.6, 5.7, 5.9, 6, 6.1, 6.2, 6.4, 6.5, 6.7, 6.8, 7, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.8, 7.9, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.4, 8.5, 8.6, 8.7, 8.8, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.3, 9.4, 9.4, 9.5, 9.6, 9.6, 9.7, 9.7, 9.8, 9.8],
                                         fill: false,
@@ -665,7 +705,7 @@
                                     },
                             
                                     {
-                                        label: ['# of Votes'],
+                                        label: [''],
                                         yAxisID: 'A',
                                         data: [3.4, 4.2, 5, 6, 6.6, 7.2, 7.8, 8.4, 8.7, 9.2, 9.5, 9.8, 10.1, 10.4, 10.6, 10.8, 11, 11.2, 11.4, 11.6, 11.8, 12, 12.2, 12.4, 12.5, 12.6, 12.8, 12.9, 13, 13.2, 13.4, 13.6, 13.8, 14, 14.2, 14.4, 14.6, 14.8, 15, 15.1, 15.2, 15.4, 15.6, 15.8, 16, 16.1, 16.3, 16.5, 16.6, 16.8, 17, 17.2, 17.3, 17.4, 17.6, 17.8, 18, 18.1, 18.3, 18.4, 18.6],
                                         fill: false,
@@ -744,10 +784,11 @@
                                         yAxisID: 'A',
                                         data: [<?php echo $weight; ?>],
                                         fill: false,
-                                        borderColor: ['rgba(0,0,0, 1)'],
+                                        backgroundColor: 'rgba(0, 16, 85, 1)',
+                                        borderColor: 'rgba(0, 16, 85, 1)',
                                         lineTension: 0,
                                         borderWidth: 2,
-                                        pointRadius: 4
+                                        pointRadius: 3,
                                         
                                     },
 
@@ -756,10 +797,11 @@
                                         yAxisID: 'B',
                                         data: [<?php echo $height; ?>],
                                         fill: false,
-                                        borderColor: ['rgba(0,0,0, 1)'],
+                                        backgroundColor: 'rgba(0, 16, 85, 1)',
+                                        borderColor: 'rgba(0, 16, 85, 1)',
                                         lineTension: 0,
                                         borderWidth: 2,
-                                        pointRadius: 4
+                                        pointRadius: 3,
                                     }
                                   ]
                        },
@@ -775,14 +817,22 @@
                                 type: 'linear',
                                 position: 'left',
                                 ticks: {
-                                    fontSize: 9,
+                                    fontSize: 10,
                                     beginAtZero: true,
-                                    stepSize: 1
+                                    stepSize: 1,
+                                    fontFamily: 'Helvetica',
+                                    fontColor: '#000',
                                 },
                                 gridLines: {
                                     lineWidth: 1,
                                     color: 'rgba(0, 0, 0, 0.2)',
                                     z: 1
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "බර (කි. ග්‍රෑ.)",
+                                    fontColor: '#000',
+                                    fontSize: 14,
                                 }
                             },
                             
@@ -791,11 +841,19 @@
                                 type: 'linear',
                                 position: 'right',
                                 ticks: {
-                                    fontSize: 9,
+                                    fontSize: 10,
                                     beginAtZero: true,
                                     min: 20,
                                     max: 120,
-                                    stepSize: 2
+                                    stepSize: 2,
+                                    fontFamily: 'Helvetica',
+                                    fontColor: '#000',
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "උස (සෙ.මි.)",
+                                    fontColor: '#000',
+                                    fontSize: 14,
                                 }
                             }
                                
@@ -804,18 +862,31 @@
                             {
                                 ticks: {
                                     fontSize: 6,
-                                    stepSize: 1
+                                    stepSize: 1,
+                                    fontFamily: 'Helvetica',
+                                    fontColor: '#000',
+                                    maxRotation: 0,
                                 },
                                 gridLines: {
                                     lineWidth: 1,
                                     color: 'rgba(0, 0, 0, 0.2)',
                                     z: 1
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "වයස (මාස)",
+                                    fontColor: '#000',
+                                    fontSize: 14,
                                 }
                             }]
-                    },  
+                    },
+                    tooltips: false,
                     responsive: true      
                 }
-            });    
+            }
+            
+            var ctxFemaleChart = document.getElementById('lineChartF').getContext('2d');
+            new Chart(ctxFemaleChart, femaleChart);
     </script>
     <!-- end of female chart -->
 

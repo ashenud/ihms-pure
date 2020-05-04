@@ -2,3 +2,7 @@
   font-family: Poppins;
   src: url(../fonts/english-fonts/Poppins-Regular.ttf);
 }
+@font-face {
+  font-family: Helvetica;
+  src: url(../fonts/english-fonts/Helvetica-Neue.otf);
+}
