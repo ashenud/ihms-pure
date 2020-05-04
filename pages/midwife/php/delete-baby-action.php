@@ -9,7 +9,7 @@ $rowArr=mysqli_fetch_assoc($runNew);
 $sqlNew2="SELECT COUNT(mother_nic) AS numBabies FROM baby_register WHERE mother_nic='".$rowArr['mother_nic']."'";
 $runNew2=mysqli_query($conn,$sqlNew2);
 $rowArr2=mysqli_fetch_assoc($runNew2);
- echo $rowArr2['numBabies'];
+ 
             if($rowArr2['numBabies'] > 1){
 
                 $sql1="DELETE FROM vac_other WHERE baby_id='".$delete_baby."'";
@@ -24,7 +24,7 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
                 $sql10="DELETE FROM vac_3years WHERE baby_id='".$delete_baby."'";
                 $sql11="DELETE FROM vac_2months WHERE baby_id='".$delete_baby."'";
                 $sql12="DELETE FROM vaccine_date WHERE baby_id='".$delete_baby."'";
-                $sql13="DELETE FROM thriposha WHERE baby_id='".$delete_baby."'";
+                $sql13="DELETE FROM thriposha_distribution WHERE baby_id='".$delete_baby."'";
                 $sql14="DELETE FROM growth WHERE baby_id='".$delete_baby."'";
                 $sql15="DELETE FROM birth_details WHERE baby_id='".$delete_baby."'";
                 $sql16="DELETE FROM baby_register WHERE baby_id='".$delete_baby."'";
@@ -60,7 +60,7 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
                 $sql10="DELETE FROM vac_3years WHERE baby_id='".$delete_baby."'";
                 $sql11="DELETE FROM vac_2months WHERE baby_id='".$delete_baby."'";
                 $sql12="DELETE FROM vaccine_date WHERE baby_id='".$delete_baby."'";
-                $sql13="DELETE FROM thriposha WHERE baby_id='".$delete_baby."'";
+                $sql13="DELETE FROM thriposha_distribution WHERE baby_id='".$delete_baby."'";
                 $sql14="DELETE FROM growth WHERE baby_id='".$delete_baby."'";
                 $sql15="DELETE FROM birth_details WHERE baby_id='".$delete_baby."'";
                 
