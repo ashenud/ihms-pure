@@ -21,58 +21,62 @@ body {
 
 .chart-area canvas {
     background-color: #fff;
+    border-radius: 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     padding-top: 15px;
     margin-bottom: 50px;
 }
 
-.data-range .data-area {
-    padding-right: 0;
-    padding-left: 0;
+.data-area {
+    padding-right: 5px;
+    padding-left: 5px;
     margin-top: 66px;
 }
 
-.data-range .data-area .card {
+.data-area .data-range .card {
     margin-top: 10px;
+    min-height: 310px;
     margin-bottom: 15px;
-    border: 1px solid #000;
-    border-radius: 15px;
+    border-radius: 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.data-range .data-area .card h6 {
+.data-area .data-range .card h5 {
     font-family: 'abhaya', serif;
     font-weight: 300;
 }
 
-.data-range .data-area .card p {
+.data-area .data-range .card p {
     font-family: 'abhaya', serif;
     font-size: 14px;
 }
 
-.data-range .data-area .card p span {
+.data-area .data-range .card p span {
     margin-right: 5px;
     border: 1px solid #000;
+    border-radius: 0;
 }
 
-.data-range .data-area .card p i {
+.data-area .data-range .card p i {
     color: rgba(7,163,48, 1);
 }
 
-.data-range .data-area .card p .color-1 {
+.data-area .data-range .card p .color-1 {
     background-color: rgba(201,242,189, 1);
 }
 
-.data-range .data-area .card p .color-2 {
+.data-area .data-range .card p .color-2 {
     background-color: rgba(232,121,70, 1);
 }
 
-.data-range .data-area .card p .color-3 {
+.data-area .data-range .card p .color-3 {
     background-color: rgba(235,75,10, 1);
 }
 
-.data-range .data-area .card p .color-4 {
+.data-area .data-range .card p .color-4 {
     background-color: rgba(230,168,140, 1);
 }
 
-.data-range .data-area .card p .color-5 {
+.data-area .data-range .card p .color-5 {
     background-color: rgba(237,173,234, 1);
 }

@@ -307,10 +307,10 @@
                             </div>
                         </div>
                         
-                        <div class="col-xl-3 data-range">
+                        <div class="col-xl-3">
                             <div class="container-fluid data-area">
                                 <div class="row">
-                                    <div class="col-xl-12 col-md-6 data-range">
+                                    <div class="col-xl-12 col-sm-6 data-range">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">උස සටහන</h5>
@@ -321,7 +321,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="col-xl-12 col-md-6 data-range">
+                                    <div class="col-xl-12 col-sm-6 data-range">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">බර සටහන</h5>
@@ -330,8 +330,7 @@
                                             <p><span class="badge color-1">     </span>නියමිත බර</p>  
                                             <p><span class="badge color-4">     </span>මද බර අඩු</p>
                                             <p><span class="badge color-2">     </span>මධ්‍යස්ථ බර අඩු</p> 
-                                            <p><span class="badge color-3">     </span>උග්‍ර බර අඩු</p>                        
-
+                                            <p><span class="badge color-3">     </span>උග්‍ර බර අඩු</p>
                                         </div>
                                     </div>
                                 </div>
