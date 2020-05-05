@@ -7,8 +7,36 @@ body {
     position: relative;
     margin: auto;
     margin-bottom: 50px;
-    height: 200vh;
-    width: 50vw;
+    height: 250vh;
+    width: 55vw;
+}
+
+@media screen and (max-width: 1200px) {
+    .chart-area {
+        height: 230vh;
+        width: 68vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .chart-area {
+        height: 120vh;
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chart-area {
+        height: 160vh;
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .chart-area {
+        height: 85vh;
+        width: 58vw;
+    }
 }
 
 .chart-area .word p {
@@ -30,7 +58,7 @@ body {
 .data-area {
     padding-right: 5px;
     padding-left: 5px;
-    margin-top: 66px;
+    margin-top: 64px;
 }
 
 .data-area .data-range .card {
