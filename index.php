@@ -288,7 +288,7 @@
             </div>
             
             <div class="container hero-section">
-                <div class="jumbotron  animated fadeInUp">
+                <div class="jumbotron  wow fadeInUp">
                     <h1>ළමා සෞඛ්‍ය කළමනාකරණ පද්ධතිය</h1>
                     <p class="lead">ඔබගේ දරුවා නීරෝගීව තබා ගැනීමට උපකාරී වීම අපගේ ඒකායන අභිමතාර්ථයයි.</p>
                     <hr class="my-2">
@@ -329,20 +329,20 @@
         <!-- about -->
         <div class="container about" id="about">
             <div class="row mt-5 row-about">
-                <div class="col-md-3 text-center">
+                <div class="col-md-3 text-center wow fadeInLeft">
                     <img src="./assets/img/index/about.png" class="about-pic">
                 </div>
-                <div class="about-system col-md-9 colum-about">
+                <div class="about-system col-md-9 colum-about wow fadeInRight">
                     <h1 class="text-uppercase mb-3">about the system</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores temporibus, recusandae nesciunt et laborum, dolorum? Tempora iste repudiandae dolore libero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci iusto numquam architecto. Pariatur aut, voluptatum voluptas veniam, architecto, nobis hic libero harum provident mollitia beatae cupiditate rem rerum ipsum ex. Repudiandae tenetur aut nihil obcaecati nobis magni accusamus </p>
                 </div> <!--about system-->
             </div>
             <div class="row mt-5">
-                <div class="about-objective col-md-7">
+                <div class="about-objective col-md-7 wow fadeInLeft">
                     <h3 class="text-uppercase mb-3">General Objective</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores temporibus, recusandae nesciunt et laborum, dolorum? Tempora iste repudiandae dolore libero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci iusto numquam architecto. Pariatur aut, voluptatum voluptas veniam, architecto, nobis hic libero harum provident mollitia beatae cupiditate rem rerum ipsum ex. Repudiandae tenetur aut nihil obcaecati nobis magni accusamus </p>
                 </div>
-                <div class="col-md-5 text-center">
+                <div class="col-md-5 text-center wow fadeInRight">
                     <img src="./assets/img/index/objective.png" class="object-pic">
                 </div> <!--about system-->
             </div>
@@ -359,7 +359,7 @@
             <div class="service-cards">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card text-center">
+                        <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
@@ -373,7 +373,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center">
+                        <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
                                     <i class="fas fa-baby-carriage" aria-hidden="true"></i>
@@ -387,7 +387,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center">
+                        <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
                                     <i class="fas fa-user-nurse" aria-hidden="true"></i>
@@ -401,7 +401,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center">
+                        <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
                                     <i class="fas fa-notes-medical" aria-hidden="true"></i>
@@ -430,8 +430,8 @@
             
             <div class="facilities mb-5">
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="c1 col-md-5 mt-4 text-center">
+                    <div class="col-md-1  wow fadeInLeft"></div>
+                    <div class="c1 col-md-5 mt-4 text-center  wow fadeInLeft">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -440,7 +440,7 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="c2 col-md-5 mt-4">
+                    <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -449,11 +449,11 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1 wow fadeInRight"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="c1 col-md-5 mt-4 text-center">
+                    <div class="col-md-1 wow fadeInLeft"></div>
+                    <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -462,7 +462,7 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="c2 col-md-5 mt-4">
+                    <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -471,11 +471,11 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1 wow fadeInRight"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="c1 col-md-5 mt-4 text-center">
+                    <div class="col-md-1 wow fadeInLeft"></div>
+                    <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -484,7 +484,7 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="c2 col-md-5 mt-4">
+                    <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -493,11 +493,11 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1 wow fadeInRight"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="c1 col-md-5 mt-4 text-center">
+                    <div class="col-md-1 wow fadeInLeft"></div>
+                    <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -506,7 +506,7 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="c2 col-md-5 mt-4">
+                    <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -515,11 +515,11 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1 wow fadeInRight"></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="c1 col-md-5 mt-4 text-center">
+                    <div class="col-md-1 wow fadeInLeft"></div>
+                    <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -528,7 +528,7 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="c2 col-md-5 mt-4">
+                    <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
                                 <i class="fas fa-baby" aria-hidden="true"></i>
                         </span>
@@ -537,7 +537,7 @@
                             <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
                         </div>
                     </div>
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1 wow fadeInRight"></div>
                 </div>
              </div>
             
@@ -620,6 +620,7 @@
     <script type="text/javascript" src="./assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="./assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="./assets/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./assets/js/wow.min.js"></script>
 
     <script type="text/javascript" src="./assets/js/now-ui-kit.js?v=1.3.0"></script>
     <!--end ofcore js files-->
@@ -643,6 +644,18 @@
                 input.attr("type", "password");
             }
         });
+    </script>
+    
+    <!-- activate wow -->
+    <script>
+      if ($(window).width() <= 1200){ 
+          $(".wow").addClass('zoomIn').removeClass('rotateInDownLeft');
+          $(".wow").addClass('zoomIn').removeClass('rotateInDownRight');
+          $(".wow").addClass('zoomIn').removeClass('fadeInLeft');
+          $(".wow").addClass('zoomIn').removeClass('fadeInRight');
+      }
+
+      new WOW().init();
     </script>
     
 </body>
