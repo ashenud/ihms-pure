@@ -61,8 +61,15 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
+                        <img src="./img/midwife.png" class="rounded-circle">
+                        <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
+                            $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                            $result1= mysqli_query($conn,$query1);
+                            $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -72,7 +79,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -80,7 +87,7 @@
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Manage</span>
+                                <span class="list">කළමනාකරණය</span>
                             </a>
                         </li>
                         <div class="collapse collapse-manage" id="manage">
@@ -89,7 +96,7 @@
                                     <span class="icon">
                                         <i class="fas fa-user-plus" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">add babies</span>
+                                    <span class="list">ළමුන් ඇතුලත් කිරීම</span>
                                 </a>
                             </li>
                             <li>
@@ -97,7 +104,7 @@
                                     <span class="icon-active">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">view babies</span>
+                                    <span class="list">ළමුන් බලන්න</span>
                                 </a>
                             </li>
                         </div>
@@ -106,7 +113,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">charts</span>
+                                <span class="list">වර්ධන සටහන</span>
                             </a>
                         </li>
                         <li>
@@ -134,15 +141,15 @@
                                     ?>
                                     
                                 </span>
-                                <span class="list">Inbox</span>
+                                <span class="list">එන පණිවිඩ</span>
                             </a>
                         </li>
                         <li>
                             <a href="mid-location.php" class="text-uppercase">
                                 <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Locations</span>
+                                <span class="list">ස්ථාන</span>
                             </a>
                         </li>
                     </ul>

@@ -49,8 +49,15 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/baby.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['baby_id']); ?> </a>
+                        <img src="./img/baby.png" class="rounded-circle">
+                        <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
+                            $query1 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
+                            $result1= mysqli_query($conn,$query1);
+                            $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['baby_first_name']." ".$row['baby_last_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -60,7 +67,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -68,7 +75,7 @@
                                 <span class="icon">
                                     <i class="fas fa-syringe" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Vaccinations</span>
+                                <span class="list">එන්නත් කිරීම</span>
                             </a>
 
                         </li>
@@ -77,15 +84,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
+                                <span class="list">වර්ධන සටහන</span>
                             </a>
                         </li>
                         <li>
@@ -93,7 +92,7 @@
                                 <span class="icon">
                                     <i class="fas fa-inbox" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Inbox</span>
+                                <span class="list">එන පණිවිඩ</span>
                             </a>
                         </li>
                         <li>
@@ -101,7 +100,7 @@
                                 <span class="icon">
                                     <i class="fas fa-envelope" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Send Messages</span>
+                                <span class="list">පණිවිඩ යවන්න</span>
                             </a>
                         </li>
                         <li>
@@ -109,7 +108,7 @@
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Select Baby</span>
+                                <span class="list">දරුවා තෝරන්න</span>
                             </a>
                         </li>
                     </ul>

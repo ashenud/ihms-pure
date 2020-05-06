@@ -118,7 +118,7 @@ body, html {
 }
 
 .login-form-title {
-  font-family: sans-serif;
+  font-family: 'yaldevicolombo';
   font-size: 30px;
   color: #fff;
   line-height: 1.2;
@@ -136,7 +136,7 @@ body, html {
 }
 
 .input {
-  font-family: sans-serif;
+  font-family: 'abhaya';
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
@@ -269,7 +269,7 @@ color: #fff;
 }
 
 .login-form-btn {
-  font-family: sans-serif;
+  font-family: 'abhaya';
   font-size: 16px;
   color: #555555;
   line-height: 1.2;
@@ -280,6 +280,7 @@ color: #fff;
   min-width: 120px;
   height: 50px;
   border-radius: 25px;
+box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 6px -2px rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
   background: #fff;
   position: relative;
   z-index: 1;
@@ -303,6 +304,7 @@ button {
 }
 
 .froget-password a {
+    font-family: 'abhaya';
     text-decoration: none;
     color: #fff;
     cursor: pointer;
@@ -314,7 +316,7 @@ button {
 }
 
 .reg {
-  font-family: sans-serif;
+  font-family: 'abhaya';
   font-size: 13px;
   color: #fff;
   line-height: 1.5;

@@ -54,7 +54,14 @@
 
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/mother.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['mother_id']); ?> </a>
+                        <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
+                            $query1 = "SELECT * FROM mother WHERE mother_nic='".$_SESSION['mother_id']."'";
+                            $result1= mysqli_query($conn,$query1);
+                            $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['mother_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -66,7 +73,7 @@
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Doctor</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['sister_id'])){
@@ -74,7 +81,7 @@
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Sister</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['midwife_id'])){
@@ -82,7 +89,7 @@
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Midwife</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['admin_id'])){
@@ -90,7 +97,7 @@
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Admin Doctor</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
 
@@ -101,7 +108,7 @@
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Select Baby</span>
+                                <span class="list">දරුවා තෝරන්න</span>
                             </a>
                         </li>
                     </ul>

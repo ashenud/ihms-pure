@@ -155,16 +155,16 @@
 
                         <img class="login-form-logo" src="./assets/img/icon-login.png" alt="">
                         <span class="login-form-title">
-                            LOG IN
+                            පිවිසීම
                         </span>
 
                         <div class="wrap-input">
-                            <input class="input" type="text" name="user_id" placeholder="User ID" required>
+                            <input class="input" type="text" name="user_id" placeholder="පරිශීලක නම" required>
                             <span class="focus-input" data-placeholder="&#xf207;"></span>
                         </div>
 
                         <div class="wrap-input">
-                            <input class="input" type="password" id="pwd" name="password" placeholder="Password" required>
+                            <input class="input" type="password" id="pwd" name="password" placeholder="මුරපදය" required>
                             <span class="focus-input" data-placeholder="&#xf191;"></span>
                             <span toggle="#pwd" class="far fa-fw fa-eye password-icon"></span>
                         </div>
@@ -180,17 +180,17 @@
 
                         <div class="container-login-form-btn">
                             <button type="submit" name="submit" class="login-form-btn text-uppercase">
-                                Login
+                                පිවිසෙන්න
                             </button>
                         </div>
                         
                         <div class="froget-password text-center mt-1">
-                            <a href="./froget-password/froget-password.php"> Froget Password </a>
+                            <a href="./froget-password/froget-password.php"> මුරපදය අමතකද? </a>
                         </div>
 
                         <div class="text-center">
                             <p class="reg">
-                                Visit Nearest MOH office to Register!
+                                ලියාපදිංචි වීමට ඔබ ප්‍රදේශයට අයත් සෞඛ්‍ය වෛද්‍ය නිලධාරී කාර්යාලය කාර්යාලයට පිවිසෙන්න!
                             </p>
                         </div>
                     </form>

@@ -1,7 +1,7 @@
 <div class="top-navbar">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand text-uppercase font-weight-bold" href="#">Infant Health Management System</a>
+            <a class="navbar-brand text-uppercase font-weight-bold" href="#">සුරකිමු දරුවන්</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>

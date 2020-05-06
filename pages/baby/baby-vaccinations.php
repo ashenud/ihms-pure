@@ -57,47 +57,71 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/baby.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['baby_id']); ?> </a>
+                        <img src="./img/baby.png" class="rounded-circle">
+                        <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
+                            $query1 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
+                            $result1= mysqli_query($conn,$query1);
+                            $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['baby_first_name']." ".$row['baby_last_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                         <li>
                             <?php
-                                if(isset($_SESSION['doctor_id'])){
-                                    echo '<a href="../doctor/doc-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Doctor</span>';
-                                    echo '</a>';
+                                if(isset($_SESSION['doctor_id'])) {
+                            ?>
+                                    <a href="../doctor/doc-dashboard.php" class="text-uppercase">
+                                    <span class="icon">
+                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">තොරතුරු පුවරුව</span>
+                                    </a>
+                            <?php
                                 }
-                                if(isset($_SESSION['sister_id'])){
-                                    echo '<a href="../sister/sis-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Sister</span>';
-                                    echo '</a>';
+                                else if(isset($_SESSION['sister_id'])) {
+                            ?>
+                                    <a href="../sister/sis-dashboard.php" class="text-uppercase">
+                                    <span class="icon">
+                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">තොරතුරු පුවරුව</span>
+                                    </a>
+                            <?php
                                 }
-                                if(isset($_SESSION['midwife_id'])){
-                                    echo '<a href="../midwife/mid-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Midwife</span>';
-                                    echo '</a>';
+                                else if(isset($_SESSION['midwife_id'])) {
+                            ?>
+                                    <a href="../midwife/mid-dashboard.php" class="text-uppercase">
+                                    <span class="icon">
+                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">තොරතුරු පුවරුව</span>
+                                    </a>
+                            <?php
                                 }
-                                if(isset($_SESSION['admin_id'])){
-                                    echo '<a href="../admin-doctor/admin-doc-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Admin Doctor</span>';
-                                    echo '</a>';
+                                else if(isset($_SESSION['admin_id'])) {
+                            ?>
+                                    <a href="../admin-doctor/admin-doc-dashboard.php" class="text-uppercase">
+                                    <span class="icon">
+                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">තොරතුරු පුවරුව</span>
+                                    </a>
+                            <?php
                                 }
-
+                                else {
+                            ?>
+                                    <a href="./baby-dashboard.php" class="text-uppercase">
+                                    <span class="icon">
+                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">තොරතුරු පුවරුව</span>
+                                    </a>
+                            <?php
+                                }
                             ?>
                         </li>
                         <li>
@@ -105,7 +129,7 @@
                                 <span class="icon">
                                     <i class="fas fa-syringe" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Vaccinations</span>
+                                <span class="list">එන්නත් කිරීම</span>
                             </a>
 
                         </li>
@@ -114,7 +138,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">charts</span>
+                                <span class="list">වර්ධන සටහන</span>
                             </a>
                         </li>
                         <li>
@@ -124,7 +148,7 @@
                                         echo '<span class="icon">';
                                         echo '<i class="fas fa-table" aria-hidden="true"></i>';
                                         echo '</span>';
-                                        echo '<span class="list">Edit Data</span>';
+                                        echo '<span class="list">දත්ත සංස්කරණය</span>';
                                         echo '</a>';
                                     }
                                     elseif(isset($_SESSION['midwife_id'])){
@@ -132,7 +156,7 @@
                                         echo '<span class="icon">';
                                         echo '<i class="fas fa-table" aria-hidden="true"></i>';
                                         echo '</span>';
-                                        echo '<span class="list">Edit Data</span>';
+                                        echo '<span class="list">දත්ත සංස්කරණය</span>';
                                         echo '</a>';
                                     }
                                     elseif(isset($_SESSION['admin_id'])){
@@ -140,7 +164,7 @@
                                         echo '<span class="icon">';
                                         echo '<i class="fas fa-table" aria-hidden="true"></i>';
                                         echo '</span>';
-                                        echo '<span class="list">Edit Data</span>';
+                                        echo '<span class="list">දත්ත සංස්කරණය</span>';
                                         echo '</a>';
                                     }
                                 ?>
@@ -148,52 +172,54 @@
                         </li>
                         <li>
                         <?php
-                                    if(isset($_SESSION['doctor_id'])){
-                                    }
-                                    elseif(isset($_SESSION['sister_id'])){
-                                    }
-                                    elseif(isset($_SESSION['midwife_id'])){
-                                    }
-                                    elseif(isset($_SESSION['admin_id'])){
-                                    }
-                                    else{
-                                        echo '<a href="baby-inbox.php" class="text-uppercase">';
-                                        echo '<span class="icon">';
-                                        echo '<i class="fas fa-inbox" aria-hidden="true"></i>';
-                                        echo '</span>';
-                                        echo '<span class="list">Inbox</span>';
-                                        echo '</a>';
-                                    }
-
-                                ?>
+                            if(isset($_SESSION['doctor_id'])){
+                            }
+                            elseif(isset($_SESSION['sister_id'])){
+                            }
+                            elseif(isset($_SESSION['midwife_id'])){
+                            }
+                            elseif(isset($_SESSION['admin_id'])){
+                            }
+                            else{
+                        ?>
+                                <a href="baby-inbox.php" class="text-uppercase">
+                                <span class="icon">
+                                <i class="fas fa-inbox" aria-hidden="true"></i>
+                                </span>
+                                <span class="list">එන පණිවිඩ</span>
+                                </a>
+                        <?php
+                            }
+                        ?>
                         </li>
                         <li>
                         <?php
-                                    if(isset($_SESSION['doctor_id'])){
-                                    }
-                                    elseif(isset($_SESSION['sister_id'])){
-                                    }
-                                    elseif(isset($_SESSION['midwife_id'])){
-                                    }
-                                    elseif(isset($_SESSION['admin_id'])){
-                                    }
-                                    else{
-                                        echo '<a href="baby-send-messages.php" class="text-uppercase">';
-                                        echo '<span class="icon">';
-                                        echo '<i class="fas fa-inbox" aria-hidden="true"></i>';
-                                        echo '</span>';
-                                        echo '<span class="list">Send Messages</span>';
-                                        echo '</a>';
-                                    }
-
-                            ?>
+                            if(isset($_SESSION['doctor_id'])){
+                            }
+                            elseif(isset($_SESSION['sister_id'])){
+                            }
+                            elseif(isset($_SESSION['midwife_id'])){
+                            }
+                            elseif(isset($_SESSION['admin_id'])){
+                            }
+                            else{
+                        ?>
+                                <a href="baby-send-messages.php" class="text-uppercase">
+                                <span class="icon">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </span>
+                                <span class="list">පණිවිඩ යවන්න</span>
+                                </a>
+                        <?php
+                            }
+                        ?>
                         </li>
                         <li>
                             <a href="baby-select.php" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Select Baby</span>
+                                <span class="list">දරුවා තෝරන්න</span>
                             </a>
                         </li>
                     </ul>
