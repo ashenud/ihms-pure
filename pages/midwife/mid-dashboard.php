@@ -437,7 +437,7 @@
                                                 $sqlDel="DELETE FROM vaccine_date WHERE giving_date < DATE_SUB(curdate(), INTERVAL 7 DAY)";
                                                 mysqli_query($conn,$sqlDel);
 
-                                                $sql5="SELECT * FROM vaccine_date WHERE midwife_id='".$mid."' AND (giving_date >='".$currentDate."') order by giving_date DESC ";
+                                                $sql5="SELECT * FROM vaccine_date WHERE midwife_id='".$mid."' AND (giving_date >='".$currentDate."') order by giving_date ASC ";
                                                 $data=mysqli_query($conn,$sql5);
                                             
                                                 while ($result=mysqli_fetch_assoc($data)) {
