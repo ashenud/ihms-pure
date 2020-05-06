@@ -14,13 +14,10 @@
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="./assets/img/favicon.png">
 
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre&display=swap">
-        
+    <!--fonts and icons-->        
     <link rel="stylesheet" href="./assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="./assets/css/unicode-fonts.css">
+    <link rel="stylesheet" href="./assets/css/english-fonts.css">
     <link rel="stylesheet" href="./assets/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" href="./assets/css/material-icons.css">
 
@@ -53,27 +50,27 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about" onclick="scrollToDownload()">
+                        <a class="nav-link js-scroll-trigger" href="#about">
                             <i class="now-ui-icons travel_info"></i>
-                            <p>About Us</p>
+                            <p>අප ගැන</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#our-services" onclick="scrollToDownload()">
+                        <a class="nav-link js-scroll-trigger" href="#our-services">
                             <i class="now-ui-icons ui-1_settings-gear-63"></i>
-                            <p>Our services</p>
+                            <p>අපගේ සේවාවන්</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#our-facilities" onclick="scrollToDownload()">
+                        <a class="nav-link js-scroll-trigger" href="#our-facilities">
                             <i class="now-ui-icons objects_diamond"></i>
-                            <p>Our facilities</p>
+                            <p>අප සපයන පහසුකම්</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contact" onclick="scrollToDownload()">
+                        <a class="nav-link js-scroll-trigger" href="#contact">
                             <i class="now-ui-icons business_badge"></i>
-                            <p>contact us</p>
+                            <p>අපව සම්බන්ද කරගන්න</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -82,7 +79,7 @@
                         ?>  
                         
                         <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/baby/baby-select.php';">
-					        <i class="now-ui-icons users_circle-08 lgn-icn"></i> Dashboard
+					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                        
                         <?php
@@ -91,7 +88,7 @@
                         ?>  
                         
                         <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/midwife/mid-dashboard.php';">
-					        <i class="now-ui-icons users_circle-08 lgn-icn"></i> Dashboard
+					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                        
                         <?php
@@ -100,7 +97,7 @@
                         ?>
                         
                         <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/sister/sis-dashboard.php';">
-					        <i class="now-ui-icons users_circle-08 lgn-icn"></i> Dashboard
+					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                       
                         <?php
@@ -109,7 +106,7 @@
                         ?>
                         
                         <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/doctor/doc-dashboard.php';">
-					        <i class="now-ui-icons users_circle-08 lgn-icn"></i> Dashboard
+					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                       
                         <?php
@@ -118,7 +115,7 @@
                         ?>
                             
                         <button type="button" class="nav-link btn btn-neutral btn-round" data-toggle="modal" data-target="#userlogin">
-					        <i class="now-ui-icons users_circle-08 lgn-icn"></i> Log In
+					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>පිවිසෙන්න</p>
 				        </button>  
                             
                         <?php
@@ -126,35 +123,16 @@
                         ?>
                        
                         
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                            <p class="d-lg-none d-xl-none">Twitter</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="" target="_blank">
-                            <i class="fab fa-facebook-square"></i>
-                            <p class="d-lg-none d-xl-none">Facebook</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                            <p class="d-lg-none d-xl-none">Instagram</p>
-                        </a>
-                    </li>
-                    
+                    </li>                    
                     <?php 
                     foreach ($_SESSION as $key=>$val);
                     if(isset($val)) {
                     ?>
                     
                     <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" title="Sign Out" data-placement="bottom" href="./php/logout.php">
-                            <i class="material-icons">settings_power</i>
-                            <p class="d-lg-none d-xl-none">Sign Out</p>
+                        <a class="nav-link" rel="tooltip" title="නික්මෙන්න" data-placement="bottom" href="./php/logout.php">
+                            <i class="material-icons sign-out-icon">settings_power</i>
+                            <p class="d-lg-none d-xl-none">නික්මෙන්න</p>
                         </a>
                     </li>
                     
