@@ -439,12 +439,12 @@
 
                                                 $mid=$_SESSION["midwife_id"];
                                                 $currentDate= date("Y-m-d");
-                                                $expireDate = date("d") -14;
+                                                $expireDate = date('Y-m-d', strtotime("+5 days"));
 
                                                 $sqlDel="DELETE FROM vaccine_date WHERE giving_date < DATE_SUB(curdate(), INTERVAL 7 DAY)";
                                                 mysqli_query($conn,$sqlDel);
 
-                                                $sql5="SELECT * FROM vaccine_date WHERE midwife_id='".$mid."' AND (giving_date >='".$currentDate."') order by giving_date DESC ";
+                                                $sql5="SELECT * FROM vaccine_date WHERE midwife_id='".$mid."' AND (giving_date >='".$currentDate."') AND (giving_date <='".$expireDate."') order by giving_date ASC ";
                                                 $data=mysqli_query($conn,$sql5);
                                             
                                                 while ($result=mysqli_fetch_assoc($data)) {
