@@ -201,17 +201,6 @@
                                                         </div>
                                                 <?php 
                                                     }
-                                                    else if(!empty($row1['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine1" value="1" disabled>
-                                                                <label for="vaccine1">BCG-1</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
                                                     else {
                                                 ?>
                                                         <div class="vaccine">
@@ -219,9 +208,6 @@
                                                                 <input type="checkbox" id="vaccine1" value="1" disabled>
                                                                 <label for="vaccine1">BCG-1</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='1'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
                                                         </div>
                                                 <?php
                                                     }
@@ -230,7 +216,7 @@
 
                                                 <!-- BCG-2(if no scar) -->
                                                 <?php
-                                                if(empty($row1['approved_doctor_id'])) {    
+                                                if(empty($row1['status'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
@@ -301,7 +287,7 @@
 
                                                 <!--DPT_1-->
                                                 <?php
-                                                if(empty($row2['approved_doctor_id'])) {    
+                                                if(empty($row1['status'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>

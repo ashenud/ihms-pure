@@ -289,6 +289,17 @@
 
                                                 <!-- BCG-2(if no scar) -->
                                                 <?php
+                                                if(empty($row1['status'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine2" value="2" disabled>
+                                                            <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
                                                     $query2="SELECT * FROM vac_birth WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=2";
                                                     $result2=mysqli_query($conn,$query2);
                                                     $row2=mysqli_fetch_assoc($result2);
@@ -302,7 +313,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" checked="checked" disabled>
-                                                                <label for="vaccine1">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
                                                             <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
@@ -313,7 +324,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" disabled>
-                                                                <label for="vaccine1">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
                                                             <button class="btn" id='mark-vac-btn' data-toggle='modal' href='#vac-mark' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='2'>
                                                                 <span class="badge badge-danger">එන්නත ලබාදීම සලකුණු කරන්න</span>
@@ -326,7 +337,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" disabled>
-                                                                <label for="vaccine1">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
                                                             <span class="badge badge-secondary">අනුමැතිය ලැබෙනතුරු සිටින්න</span>
                                                         </div>
@@ -337,7 +348,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" disabled>
-                                                                <label for="vaccine1">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
                                                             <button class="btn" id='set-date-btn' data-toggle='modal' href='#set-date' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='2'>
                                                                 <span class="badge badge-off">මාස 6 වන විටත් කැලලක් නැත්නම්</span>
@@ -345,6 +356,7 @@
                                                         </div>
                                                 <?php
                                                     }
+                                                }
                                                 ?>
                                                 <!--end BCG-2(if no scar)-->
                                             </div>
@@ -371,7 +383,7 @@
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                            <label for="vaccine1">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                            <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -390,7 +402,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" checked="checked" disabled>
-                                                                <label for="vaccine1">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
                                                             <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
@@ -401,7 +413,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                                <label for="vaccine1">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
                                                             <button class="btn" id='mark-vac-btn' data-toggle='modal' href='#vac-mark' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='3'>
                                                                 <span class="badge badge-danger">එන්නත ලබාදීම සලකුණු කරන්න</span>
@@ -414,7 +426,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                                <label for="vaccine1">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
                                                             <span class="badge badge-secondary">අනුමැතිය ලැබෙනතුරු සිටින්න</span>
                                                         </div>
@@ -425,7 +437,7 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                                <label for="vaccine1">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
                                                             <button class="btn" id='set-date-btn' data-toggle='modal' href='#set-date' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='3'>
                                                                 <span class="badge badge-warning">එන්නත් කිරීමට දිනයක් ලබාදෙන්න</span>
@@ -444,7 +456,7 @@
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                            <label for="vaccine4">OPV-1</label>
+                                                            <label for="vaccine4">පෝලියෝ 1<br>(OPV 1)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -463,9 +475,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" checked="checked" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -474,10 +486,10 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
                                                             <button class="btn" id='mark-vac-btn' data-toggle='modal' href='#vac-mark' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='4'>
-                                                                <span class="badge badge-danger">mark vac</span>
+                                                                <span class="badge badge-danger">එන්නත ලබාදීම සලකුණු කරන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
@@ -487,9 +499,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">wait for approval</span>
+                                                            <span class="badge badge-secondary">අනුමැතිය ලැබෙනතුරු සිටින්න</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -498,10 +510,10 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
                                                             <button class="btn" id='set-date-btn' data-toggle='modal' href='#set-date' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='4'>
-                                                                <span class="badge badge-warning">select a date</span>
+                                                                <span class="badge badge-warning">එන්නත් කිරීමට දිනයක් ලබාදෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php

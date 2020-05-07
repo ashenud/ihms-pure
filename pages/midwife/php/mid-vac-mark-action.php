@@ -15,10 +15,11 @@ if(isset($_POST['mark_vac'])) {
     
     if($vaccine==1) {
         
+        $vac_name='BCG-1';
         $vac_id=1;
         $new_status=1;
         
-        $query1="UPDATE vac_birth SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="INSERT INTO vac_birth(baby_id,vac_name,vac_id,date_given,batch_no,midwife_id,status) VALUES('$baby_id','$vac_name','$vac_id','$date_given','$batch_no','$midwife_id','$new_status')";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
