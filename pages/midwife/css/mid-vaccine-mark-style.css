@@ -335,7 +335,7 @@ input[type="checkbox"] + label {
   position: relative;
   padding-left: 35px;
   margin-bottom: 20px;
-  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  font-family: 'abhaya';;
   color: black;
   cursor: pointer;
   -webkit-user-select: none;
@@ -377,6 +377,7 @@ input[type="checkbox"]:checked + label:before {
 
 .timeline .title h3 {
     text-transform: uppercase;
+    font-family: 'yaldevicolombo';
     font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 25px;
@@ -400,20 +401,21 @@ input[type="checkbox"]:checked + label:before {
 }
 
 .badge {
-    position: absolute;
+    font-family: 'abhaya';
     min-width: 140px;
-    left: 50%;
+    font-weight: 100;
     color: #000;
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
-    padding-top: 4px ;
-    text-transform: uppercase;
+    padding-top: 2px;
 }
 
 .color-given {
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
     background: linear-gradient(60deg, #66bb6a, #43a047);
     pointer-events: none;
+    position: absolute;
+    left: 50%;
 }
 
 .badge-secondary {
@@ -424,14 +426,19 @@ input[type="checkbox"]:checked + label:before {
 .badge-danger {
     background: linear-gradient(60deg,#ef5350,#d32f2f);
     box-shadow: 0 5px 20px 0 rgba(0,0,0,.2),0 13px 24px -11px rgba(244,67,54,.6);
-    position: absolute;
     left: 0;
 }
 
 .badge-warning {
     background:  linear-gradient(60deg,#f5700c,#ff9800);
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
-    position: absolute;
+    left: 0;
+}
+
+.badge-off {
+    background:  linear-gradient(60deg,#000,#4f4f4f);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
+    color: #fff;
     left: 0;
 }
 
