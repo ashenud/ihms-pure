@@ -267,7 +267,7 @@
                                                                 <input type="checkbox" id="vaccine1" value="1" checked="checked" disabled>
                                                                 <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
                                                             </span>
-                                                            <span class="badge color-given">ලබා දී ඇත</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }

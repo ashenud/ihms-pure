@@ -29,6 +29,73 @@
 
     <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
     <link rel="stylesheet" href="./css/doc-vac-permission-style.css">
+    
+    <?php
+                                
+        mysqli_select_db($conn, 'cs2019g6');
+
+        $sql0 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
+        $run0 = mysqli_query($conn, $sql0);
+        $data0 = mysqli_fetch_assoc($run0);
+        $gender0 = $data0["baby_gender"];
+
+            if($gender0=='M') {
+    ?>
+    
+        <style>
+            .main-timeline:before {
+                background: #c2255c;
+            }
+            .main-timeline .timeline {
+                border-top: 7px solid #c2255c;
+                border-right: 7px solid #c2255c;
+            }
+            .main-timeline .icon {
+                background: #bac8ff;
+            }
+            .main-timeline .timeline-content {
+                background: #bac8ff;
+            }
+            .main-timeline .timeline-content:before,
+            .main-timeline .timeline-content:after {
+                background: #bac8ff;
+            }
+            .main-timeline .timeline:nth-child(2n) {
+                border-left: 7px solid #c2255c;
+            }
+        </style>
+        
+    <?php
+        }
+        else {
+    ?>
+        <style>
+            .main-timeline:before {
+                background: #084772;
+            }
+            .main-timeline .timeline {
+                border-top: 7px solid #084772;
+                border-right: 7px solid #084772;
+            }
+            .main-timeline .icon {
+                background: #f8bbd0;
+            }
+            .main-timeline .timeline-content {
+                background: #f8bbd0;
+            }
+            .main-timeline .timeline-content:before,
+            .main-timeline .timeline-content:after {
+                background: #f8bbd0;
+            }
+            .main-timeline .timeline:nth-child(2n) {
+                border-left: 7px solid #084772;
+            }
+        </style>
+    <?php
+        }
+    ?>
+        
+    
 
     <title>Infant Health Management System</title>
     
@@ -168,6 +235,19 @@
                         <div class="row">
                            
                             <div class="col-md-12">
+                              
+                                <?php
+                                
+                                mysqli_select_db($conn, 'cs2019g6');
+                                    
+                                $query0 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
+                                $result0 = mysqli_query($conn, $query0);
+                                $row0 = mysqli_fetch_assoc($result0);
+                                $gender = $row0["baby_gender"];
+
+
+                                    if($gender=='M') {
+                                ?>
                                
                                 <div class="main-timeline">
 
@@ -175,38 +255,55 @@
                                     <div class="timeline">
                 
                                          <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
+                                         <div class="timeline-content color-male">
 
                                             <!--at birth vaccination-->
                                             <div class="title">
-                                                <h3>At Birth</h3>
+                                                <h3>උපතේදී</h3>
                                             </div>
 
                                             <div class="description">
 
                                                 <!--BCG-1-->
                                                 <?php
-                                                mysqli_select_db($conn, 'cs2019g6');
+                                                $sql1="SELECT * FROM child_health_note WHERE baby_id='".$_SESSION['baby_id']."' AND baby_age_group_id=1";
+                                                $run1=mysqli_query($conn,$sql1);
+                                                $data1=mysqli_fetch_assoc($run1);
+                                                
                                                 $query1="SELECT * FROM vac_birth WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=1";
                                                 $result1=mysqli_query($conn,$query1);
                                                 $row1=mysqli_fetch_assoc($result1);
-                                                    if(!empty($row1['status'])) {
+                                                
+                                                    if(empty($data1['baby_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine1" value="1" disabled>
+                                                                <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='1'>
+                                                                <span class="badge badge-danger">පළමු මස සටහන තබන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row1['status'])) {
                                                 ?>
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine1" value="1" checked="checked" disabled>
-                                                                <label for="vaccine1">BCG-1</label>
+                                                                <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
-                                                <?php 
+                                                <?php
                                                     }
                                                     else {
                                                 ?>
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine1" value="1" disabled>
-                                                                <label for="vaccine1">BCG-1</label>
+                                                                <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
                                                             </span>
                                                         </div>
                                                 <?php
@@ -221,7 +318,7 @@
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine2" value="2" disabled>
-                                                            <label for="vaccine2">BCG-2(if no scar)</label>
+                                                            <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -235,9 +332,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" checked="checked" disabled>
-                                                                <label for="vaccine2">BCG-2(if no scar)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -246,9 +343,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" disabled>
-                                                                <label for="vaccine2">BCG-2(if no scar)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -257,10 +354,10 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine2" value="2" disabled>
-                                                                <label for="vaccine2">BCG-2(if no scar)</label>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='2'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-off">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
@@ -276,23 +373,23 @@
                                     <div class="timeline">
                 
                                          <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
+                                         <div class="timeline-content color-male">
 
                                             <!--2 months vaccination--->
                                             <div class="title">
-                                                <h3>2 Months</h3>
+                                                <h3>2 වන මාසය සම්පූර්ණ වූ විට</h3>
                                             </div>
 
                                             <div class="description">
 
-                                                <!--DPT_1-->
+                                                <!-- Pentavalent 1-->
                                                 <?php
                                                 if(empty($row1['status'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                            <label for="vaccine3">DPT_1</label>
+                                                            <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -306,9 +403,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" checked="checked" disabled>
-                                                                <label for="vaccine3">DPT_1</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -317,9 +414,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                                <label for="vaccine3">DPT_1</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -328,17 +425,17 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine3" value="3" disabled>
-                                                                <label for="vaccine3">DPT_1</label>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='3'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='3'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end DPT_1 -->
+                                                <!-- Pentavalent 1 -->
 
                                                 <!-- OPV-1 -->
                                                 <?php
@@ -347,7 +444,7 @@
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                            <label for="vaccine4">OPV-1</label>
+                                                            <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -361,9 +458,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" checked="checked" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -372,9 +469,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -383,10 +480,10 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine4" value="4" disabled>
-                                                                <label for="vaccine4">OPV-1</label>
+                                                                <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='4'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
@@ -395,14 +492,14 @@
                                                 ?>
                                                 <!-- end OPV-1 -->
                                                 
-                                                <!-- Hepatitis B-1 -->
+                                                <!-- fIPV-1 -->
                                                 <?php
                                                 if(empty($row4['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine5" value="5" disabled>
-                                                            <label for="vaccine5">Hepatitis B-1</label>
+                                                            <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -416,9 +513,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine5" value="5" checked="checked" disabled>
-                                                                <label for="vaccine5">Hepatitis B-1</label>
+                                                                <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -427,9 +524,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine5" value="5" disabled>
-                                                                <label for="vaccine5">Hepatitis B-1</label>
+                                                                <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -438,17 +535,17 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine5" value="5" disabled>
-                                                                <label for="vaccine5">Hepatitis B-1</label>
+                                                                <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='5'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end Hepatitis B-1-->
+                                                <!--end fIPV-1-->
                                             </div>
                                         </div>
                                     </div>
@@ -457,23 +554,23 @@
                                     <div class="timeline">
                 
                                          <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
+                                         <div class="timeline-content color-male">
 
                                             <!--4 month vaccination-->
                                             <div class="title">
-                                                <h3>4 Months</h3>
+                                                <h3>4 වන මාසය සම්පූර්ණ වූ විට</h3>
                                             </div>
 
                                             <div class="description">
 
-                                                <!--DPT_2-->
+                                                <!-- Pentavalent-2 -->
                                                 <?php
                                                 if(empty($row5['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine6" value="6" disabled>
-                                                            <label for="vaccine6">DPT_2</label>
+                                                            <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -487,9 +584,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine6" value="6" checked="checked" disabled>
-                                                                <label for="vaccine6">DPT_2</label>
+                                                                <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -498,9 +595,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine6" value="6" disabled>
-                                                                <label for="vaccine6">DPT_2</label>
+                                                                <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -509,17 +606,17 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine6" value="6" disabled>
-                                                                <label for="vaccine6">DPT_2</label>
+                                                                <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='6'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='6'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end DPT_2 -->
+                                                <!--end Pentavalent-2 -->
 
                                                 <!-- OPV-2 -->
                                                 <?php
@@ -528,7 +625,7 @@
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine7" value="7" disabled>
-                                                            <label for="vaccine7">OPV-2</label>
+                                                            <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -542,9 +639,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine7" value="7" checked="checked" disabled>
-                                                                <label for="vaccine7">OPV-2</label>
+                                                                <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -553,9 +650,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine7" value="7" disabled>
-                                                                <label for="vaccine7">OPV-2</label>
+                                                                <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -564,10 +661,10 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine7" value="7" disabled>
-                                                                <label for="vaccine7">OPV-2</label>
+                                                                <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='7'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
@@ -576,14 +673,14 @@
                                                 ?>
                                                 <!-- end OPV-2 -->
                                                 
-                                                <!-- Hepatitis B-2 -->
+                                                <!-- fIPV-2 -->
                                                 <?php
                                                 if(empty($row7['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine8" value="8" disabled>
-                                                            <label for="vaccine8">Hepatitis B-2</label>
+                                                            <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -597,9 +694,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine8" value="8" checked="checked" disabled>
-                                                                <label for="vaccine8">Hepatitis B-2</label>
+                                                                <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -608,9 +705,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine8" value="8" disabled>
-                                                                <label for="vaccine8">Hepatitis B-2</label>
+                                                                <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -619,17 +716,17 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine8" value="8" disabled>
-                                                                <label for="vaccine8">Hepatitis B-2</label>
+                                                                <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='8'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end Hepatitis B-2-->
+                                                <!--end fIPV-2 -->
                                             </div>
                                         </div>
                                     </div>
@@ -638,23 +735,23 @@
                                     <div class="timeline">
                 
                                          <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
+                                         <div class="timeline-content color-male">
 
                                             <!--6 month vaccination-->
                                             <div class="title">
-                                                <h3>6 Months</h3>
+                                                <h3>6 වන මාසය සම්පූර්ණ වූ විට</h3>
                                             </div>
 
                                             <div class="description">
 
-                                                <!--DPT_3-->
+                                                <!--Pentavalent-2-->
                                                 <?php
                                                 if(empty($row8['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine9" value="9" disabled>
-                                                            <label for="vaccine9">DPT_3</label>
+                                                            <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -668,9 +765,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine9" value="9" checked="checked" disabled>
-                                                                <label for="vaccine9">DPT_3</label>
+                                                                <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -679,9 +776,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine9" value="9" disabled>
-                                                                <label for="vaccine9">DPT_3</label>
+                                                                <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -690,17 +787,17 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine9" value="9" disabled>
-                                                                <label for="vaccine9">DPT_3</label>
+                                                                <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='9'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='9'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end DPT_3 -->
+                                                <!--end Pentavalent-3 -->
 
                                                 <!-- OPV-3 -->
                                                 <?php
@@ -709,7 +806,7 @@
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine10" value="10" disabled>
-                                                            <label for="vaccine10">OPV-3</label>
+                                                            <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -723,9 +820,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine10" value="10" checked="checked" disabled>
-                                                                <label for="vaccine10">OPV-3</label>
+                                                                <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -734,9 +831,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine10" value="10" disabled>
-                                                                <label for="vaccine10">OPV-3</label>
+                                                                <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -745,10 +842,10 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine10" value="10" disabled>
-                                                                <label for="vaccine10">OPV-3</label>
+                                                                <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='10'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
@@ -756,61 +853,6 @@
                                                 }
                                                 ?>
                                                 <!-- end OPV-3 -->
-                                                
-                                                <!-- Hepatitis B-3 -->
-                                                <?php
-                                                if(empty($row10['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine11" value="11" disabled>
-                                                            <label for="vaccine11">Hepatitis B-3</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query11="SELECT * FROM vac_6months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=11";
-                                                    $result11=mysqli_query($conn,$query11);
-                                                    $row11=mysqli_fetch_assoc($result11);
-                                                    if(!empty($row11['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine11" value="11" checked="checked" disabled>
-                                                                <label for="vaccine11">Hepatitis B-3</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row11['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine11" value="11" disabled>
-                                                                <label for="vaccine11">Hepatitis B-3</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine11" value="11" disabled>
-                                                                <label for="vaccine11">Hepatitis B-3</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='11'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end Hepatitis B-3-->
                                             </div>
                                         </div>
                                     </div>
@@ -819,29 +861,100 @@
                                     <div class="timeline">
                 
                                          <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
+                                         <div class="timeline-content color-male">
 
                                             <!--9 month vaccination-->
                                             <div class="title">
-                                                <h3>9 Months</h3>
+                                                <h3>9 වන මාසය සම්පූර්ණ වූ විට</h3>
                                             </div>
 
                                             <div class="description">
+                                                
+                                                <!-- MMR-1 -->
+                                                <?php
+                                                if(empty($row10['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine11" value="11" disabled>
+                                                            <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query11="SELECT * FROM vac_9months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=11";
+                                                    $result11=mysqli_query($conn,$query11);
+                                                    $row11=mysqli_fetch_assoc($result11);
+                                                    if(!empty($row11['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine11" value="11" checked="checked" disabled>
+                                                                <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row11['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine11" value="11" disabled>
+                                                                <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine11" value="11" disabled>
+                                                                <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='11'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end MMR-1-->    
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                <!--Measles-->
+                                    <!-- 12 month timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-male">
+
+                                            <!--12 month vaccination-->
+                                            <div class="title">
+                                                <h3>12 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- Live JE -->
                                                 <?php
                                                 if(empty($row11['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine12" value="12" disabled>
-                                                            <label for="vaccine12">Measles</label>
+                                                            <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
                                                 }
                                                 else {
-                                                    $query12="SELECT * FROM vac_9months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=12";
+                                                    $query12="SELECT * FROM vac_12months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=12";
                                                     $result12=mysqli_query($conn,$query12);
                                                     $row12=mysqli_fetch_assoc($result12);
                                                     if(!empty($row12['status'])) {
@@ -849,9 +962,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine12" value="12" checked="checked" disabled>
-                                                                <label for="vaccine12">Measles</label>
+                                                                <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -860,9 +973,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine12" value="12" disabled>
-                                                                <label for="vaccine12">Measles</label>
+                                                                <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -871,32 +984,48 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine12" value="12" disabled>
-                                                                <label for="vaccine12">Measles</label>
+                                                                <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='12'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='12'>
+                                                                <span class="badge badge-off">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end Measles -->
+                                                <!--end Live JE -->                                                
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                                <!-- Vitamin-A -->
+                                    <!-- 18 months timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-male">
+
+                                            <!-- 18 months vaccination-->
+                                            <div class="title">
+                                                <h3>18 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- DPT -->
                                                 <?php
-                                                if(empty($row12['approved_doctor_id'])) {    
+                                                if(empty($row11['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine13" value="13" disabled>
-                                                            <label for="vaccine13">Vitamin-A</label>
+                                                            <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
                                                 }
                                                 else {
-                                                    $query13="SELECT * FROM vac_9months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=13";
+                                                    $query13="SELECT * FROM vac_18months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=13";
                                                     $result13=mysqli_query($conn,$query13);
                                                     $row13=mysqli_fetch_assoc($result13);
                                                     if(!empty($row13['status'])) {
@@ -904,9 +1033,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine13" value="13" checked="checked" disabled>
-                                                                <label for="vaccine13">Vitamin-A</label>
+                                                                <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -915,9 +1044,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine13" value="13" disabled>
-                                                                <label for="vaccine13">Vitamin-A</label>
+                                                                <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -926,43 +1055,26 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine13" value="13" disabled>
-                                                                <label for="vaccine13">Vitamin-A</label>
+                                                                <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='13'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='13'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!-- Vitamin-A -->
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <!-- DPT -->
 
-                                    <!-- 18 month timeline--->
-                                    <div class="timeline">
-                
-                                         <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
-
-                                            <!--18 month vaccination-->
-                                            <div class="title">
-                                                <h3>18 Months</h3>
-                                            </div>
-
-                                            <div class="description">
-
-                                                <!--DPT_4-->
+                                                <!--OPV-4-->
                                                 <?php
                                                 if(empty($row13['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine14" value="14" disabled>
-                                                            <label for="vaccine14">DPT_4</label>
+                                                            <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
@@ -976,9 +1088,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine14" value="14" checked="checked" disabled>
-                                                                <label for="vaccine14">DPT_4</label>
+                                                                <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -987,9 +1099,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine14" value="14" disabled>
-                                                                <label for="vaccine14">DPT_4</label>
+                                                                <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -998,32 +1110,48 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine14" value="14" disabled>
-                                                                <label for="vaccine14">DPT_4</label>
+                                                                <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='14'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end DPT_4 -->
+                                                <!--end OPV-4 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 3 year timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-male">
 
-                                                <!-- OPV-4 -->
+                                            <!-- 3 year vaccination-->
+                                            <div class="title">
+                                                <h3>3 වන අවුරුද්ද සම්පුර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+
+                                                <!-- MMR-2 -->
                                                 <?php
                                                 if(empty($row14['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine15" value="15" disabled>
-                                                            <label for="vaccine15">OPV-4</label>
+                                                            <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
                                                 }
                                                 else {
-                                                    $query15="SELECT * FROM vac_18months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=15";
+                                                    $query15="SELECT * FROM vac_3years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=15";
                                                     $result15=mysqli_query($conn,$query15);
                                                     $row15=mysqli_fetch_assoc($result15);
                                                     if(!empty($row15['status'])) {
@@ -1031,9 +1159,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine15" value="15" checked="checked" disabled>
-                                                                <label for="vaccine15">OPV-4</label>
+                                                                <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -1042,9 +1170,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine15" value="15" disabled>
-                                                                <label for="vaccine15">OPV-4</label>
+                                                                <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -1053,32 +1181,48 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine15" value="15" disabled>
-                                                                <label for="vaccine15">OPV-4</label>
+                                                                <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='15'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='15'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!-- end OPV-4 -->
+                                                <!-- end MMR-2 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 5 years timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-male">
 
-                                                <!-- Vitamin-A -->
+                                            <!-- 5 years vaccination-->
+                                            <div class="title">
+                                                <h3>5 වන අවුරුද්ද සම්පුර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- D.T -->
                                                 <?php
                                                 if(empty($row15['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine16" value="16" disabled>
-                                                            <label for="vaccine16">Vitamin-A</label>
+                                                            <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
                                                 }
                                                 else {
-                                                    $query16="SELECT * FROM vac_18months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=16";
+                                                    $query16="SELECT * FROM vac_5years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=16";
                                                     $result16=mysqli_query($conn,$query16);
                                                     $row16=mysqli_fetch_assoc($result16);
                                                     if(!empty($row16['status'])) {
@@ -1086,9 +1230,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine16" value="16" checked="checked" disabled>
-                                                                <label for="vaccine16">Vitamin-A</label>
+                                                                <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -1097,9 +1241,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine16" value="16" disabled>
-                                                                <label for="vaccine16">Vitamin-A</label>
+                                                                <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -1108,49 +1252,32 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine16" value="16" disabled>
-                                                                <label for="vaccine16">Vitamin-A</label>
+                                                                <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='16'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='16'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!-- Vitamin-A -->
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
+                                                <!-- D.T -->
 
-                                    <!-- 3 year timeline--->
-                                    <div class="timeline">
-                
-                                         <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
-
-                                            <!-- 3 year vaccination-->
-                                            <div class="title">
-                                                <h3>3 year</h3>
-                                            </div>
-
-                                            <div class="description">
-
-                                                <!--Measles & Rubella-->
+                                                <!-- OPV-5 -->
                                                 <?php
                                                 if(empty($row16['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
                                                             <input type="checkbox" id="vaccine17" value="17" disabled>
-                                                            <label for="vaccine17">Measles & Rubella</label>
+                                                            <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
                                                 }
                                                 else {
-                                                    $query17="SELECT * FROM vac_3years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=17";
+                                                    $query17="SELECT * FROM vac_5years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=17";
                                                     $result17=mysqli_query($conn,$query17);
                                                     $row17=mysqli_fetch_assoc($result17);
                                                     if(!empty($row17['status'])) {
@@ -1158,9 +1285,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine17" value="17" checked="checked" disabled>
-                                                                <label for="vaccine17">Measles & Rubella</label>
+                                                                <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -1169,9 +1296,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine17" value="17" disabled>
-                                                                <label for="vaccine17">Measles & Rubella</label>
+                                                                <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -1180,159 +1307,48 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine17" value="17" disabled>
-                                                                <label for="vaccine17">Measles & Rubella</label>
+                                                                <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
                                                             </span>
                                                             <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='17'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!--end Measles & Rubella -->
+                                                <!--end OPV-5 -->                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 11 years timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-male">
 
-                                                <!-- Vitamin-A -->
+                                            <!-- 11 years vaccination-->
+                                            <div class="title">
+                                                <h3>11 වන අවුරුද්ද සම්පුර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- aTd -->
                                                 <?php
                                                 if(empty($row17['approved_doctor_id'])) {    
                                                 ?>
                                                     <div class="vaccine">
                                                         <span>
-                                                            <input type="checkbox" id="vaccine18" value="18" disabled>
-                                                            <label for="vaccine18">Vitamin-A</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query18="SELECT * FROM vac_3years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=18";
-                                                    $result18=mysqli_query($conn,$query18);
-                                                    $row18=mysqli_fetch_assoc($result18);
-                                                    if(!empty($row18['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine18" value="18" checked="checked" disabled>
-                                                                <label for="vaccine18">Vitamin-A</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row18['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine18" value="18" disabled>
-                                                                <label for="vaccine18">Vitamin-A</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine18" value="18" disabled>
-                                                                <label for="vaccine18">Vitamin-A</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='18'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!-- Vitamin-A -->
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- 5 year timeline--->
-                                    <div class="timeline">
-                
-                                         <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
-
-                                            <!-- 5 year vaccination-->
-                                            <div class="title">
-                                                <h3>5 year</h3>
-                                            </div>
-
-                                            <div class="description">
-
-                                                <!-- D.T -->
-                                                <?php
-                                                if(empty($row18['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine19" value="19" disabled>
-                                                            <label for="vaccine19">D.T</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query19="SELECT * FROM vac_5years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=19";
-                                                    $result19=mysqli_query($conn,$query19);
-                                                    $row19=mysqli_fetch_assoc($result19);
-                                                    if(!empty($row19['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine19" value="19" checked="checked" disabled>
-                                                                <label for="vaccine19">D.T</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row19['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine19" value="19" disabled>
-                                                                <label for="vaccine19">D.T</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine19" value="19" disabled>
-                                                                <label for="vaccine19">D.T</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='19'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end D.T -->
-
-                                                <!-- OPV-5 -->
-                                                <?php
-                                                if(empty($row19['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
                                                             <input type="checkbox" id="vaccine20" value="20" disabled>
-                                                            <label for="vaccine20">OPV-5</label>
+                                                            <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
                                                         </span>
                                                     </div> 
                                                 <?php
                                                 }
                                                 else {
-                                                    $query20="SELECT * FROM vac_5years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=20";
+                                                    $query20="SELECT * FROM vac_11years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=20";
                                                     $result20=mysqli_query($conn,$query20);
                                                     $row20=mysqli_fetch_assoc($result20);
                                                     if(!empty($row20['status'])) {
@@ -1340,9 +1356,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine20" value="20" checked="checked" disabled>
-                                                                <label for="vaccine20">OPV-5</label>
+                                                                <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
                                                             </span>
-                                                            <span class="badge color-given">vac given</span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
                                                         </div>
                                                 <?php 
                                                     }
@@ -1351,9 +1367,9 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine20" value="20" disabled>
-                                                                <label for="vaccine20">OPV-5</label>
+                                                                <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
                                                             </span>
-                                                            <span class="badge badge-secondary">Approved</span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
                                                         </div>
                                                 <?php
                                                     }
@@ -1362,387 +1378,22 @@
                                                         <div class="vaccine">
                                                             <span>
                                                                 <input type="checkbox" id="vaccine20" value="20" disabled>
-                                                                <label for="vaccine20">OPV-5</label>
+                                                                <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
                                                             </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='20'>
-                                                                <span class="badge badge-danger">give approvel</span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='20'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                                                             </button>
                                                         </div>
                                                 <?php
                                                     }
                                                 }
                                                 ?>
-                                                <!-- end OPV-5 -->
-                                                
+                                                <!-- end aTd -->
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <!-- 10-14 years timeline--->
-                                    <div class="timeline">
-                
-                                         <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
-
-                                            <!-- 10-14 years vaccination-->
-                                            <div class="title">
-                                                <h3>10-14 years</h3>
-                                            </div>
-
-                                            <div class="description">
-
-                                                <!-- Rubella -->
-                                                <?php
-                                                if(empty($row20['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine21" value="21" disabled>
-                                                            <label for="vaccine21">Rubella</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query21="SELECT * FROM vac_10_14years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=21";
-                                                    $result21=mysqli_query($conn,$query21);
-                                                    $row21=mysqli_fetch_assoc($result21);
-                                                    if(!empty($row21['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine21" value="21" checked="checked" disabled>
-                                                                <label for="vaccine21">Rubella</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row21['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine21" value="21" disabled>
-                                                                <label for="vaccine21">Rubella</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine21" value="21" disabled>
-                                                                <label for="vaccine21">Rubella</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='21'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end Rubella -->
-
-                                                <!-- atd -->
-                                                <?php
-                                                if(empty($row21['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine22" value="22" disabled>
-                                                            <label for="vaccine22">ATD</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query22="SELECT * FROM vac_10_14years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=22";
-                                                    $result22=mysqli_query($conn,$query22);
-                                                    $row22=mysqli_fetch_assoc($result22);
-                                                    if(!empty($row22['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine22" value="22" checked="checked" disabled>
-                                                                <label for="vaccine22">ATD</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row22['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine22" value="22" disabled>
-                                                                <label for="vaccine22">ATD</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine22" value="22" disabled>
-                                                                <label for="vaccine22">ATD</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='22'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!-- end atd -->
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Japanese Encephalitis --->
-                                    <div class="timeline">
-                
-                                         <span class="icon fas fa-syringe"></span>
-                                         <div class="timeline-content">
-
-                                            <!-- Japanese Encephalitis vaccination-->
-                                            <div class="title">
-                                                <h3>Japanese Encephalitis</h3>
-                                            </div>
-
-                                            <div class="description">
-
-                                                <!-- JE-1 -->
-                                                <?php
-                                                if(empty($row22['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine23" value="23" disabled>
-                                                            <label for="vaccine23">JE-1</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query23="SELECT * FROM vac_japanese_encephalities WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=23";
-                                                    $result23=mysqli_query($conn,$query23);
-                                                    $row23=mysqli_fetch_assoc($result23);
-                                                    if(!empty($row23['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine23" value="23" checked="checked" disabled>
-                                                                <label for="vaccine23">JE-1</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row23['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine23" value="23" disabled>
-                                                                <label for="vaccine23">JE-1</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine23" value="23" disabled>
-                                                                <label for="vaccine23">JE-1</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='23'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end JE-1 -->
-
-                                                <!-- JE-2 -->
-                                                <?php
-                                                if(empty($row23['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine24" value="24" disabled>
-                                                            <label for="vaccine24">JE-2</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query24="SELECT * FROM vac_japanese_encephalities WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=24";
-                                                    $result24=mysqli_query($conn,$query24);
-                                                    $row24=mysqli_fetch_assoc($result24);
-                                                    if(!empty($row24['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine24" value="24" checked="checked" disabled>
-                                                                <label for="vaccine24">JE-2</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row24['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine24" value="24" disabled>
-                                                                <label for="vaccine24">JE-2</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine24" value="24" disabled>
-                                                                <label for="vaccine24">JE-2</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='24'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end JE-2 -->
-
-                                                <!-- JE-3 -->
-                                                <?php
-                                                if(empty($row24['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine25" value="25" disabled>
-                                                            <label for="vaccine25">JE-3</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query25="SELECT * FROM vac_japanese_encephalities WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=25";
-                                                    $result25=mysqli_query($conn,$query25);
-                                                    $row25=mysqli_fetch_assoc($result25);
-                                                    if(!empty($row25['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine25" value="25" checked="checked" disabled>
-                                                                <label for="vaccine25">JE-3</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row25['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine25" value="25" disabled>
-                                                                <label for="vaccine25">JE-3</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine25" value="25" disabled>
-                                                                <label for="vaccine25">JE-3</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='25'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end JE-3 -->
-
-                                                <!-- JE-4 -->
-                                                <?php
-                                                if(empty($row25['approved_doctor_id'])) {    
-                                                ?>
-                                                    <div class="vaccine">
-                                                        <span>
-                                                            <input type="checkbox" id="vaccine26" value="26" disabled>
-                                                            <label for="vaccine26">JE-4</label>
-                                                        </span>
-                                                    </div> 
-                                                <?php
-                                                }
-                                                else {
-                                                    $query26="SELECT * FROM vac_japanese_encephalities WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=26";
-                                                    $result26=mysqli_query($conn,$query26);
-                                                    $row26=mysqli_fetch_assoc($result26);
-                                                    if(!empty($row26['status'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine26" value="26" checked="checked" disabled>
-                                                                <label for="vaccine26">JE-4</label>
-                                                            </span>
-                                                            <span class="badge color-given">vac given</span>
-                                                        </div>
-                                                <?php 
-                                                    }
-                                                    else if(!empty($row26['approved_doctor_id'])) {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine26" value="26" disabled>
-                                                                <label for="vaccine26">JE-4</label>
-                                                            </span>
-                                                            <span class="badge badge-secondary">Approved</span>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                    else {
-                                                ?>
-                                                        <div class="vaccine">
-                                                            <span>
-                                                                <input type="checkbox" id="vaccine26" value="26" disabled>
-                                                                <label for="vaccine26">JE-4</label>
-                                                            </span>
-                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='26'>
-                                                                <span class="badge badge-danger">give approvel</span>
-                                                            </button>
-                                                        </div>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-                                                <!--end JE-4 -->
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Modal HTML -->
+                                    <!-- give approval model -->
                                     <div id="vac-confirm" class="modal fade">
                                         <div class="modal-dialog modal-confirm">
                                             <div class="modal-content">
@@ -1750,21 +1401,1607 @@
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Click approve to approve the vaccinations or click close to cancel</p>
+                                                    <p>එන්නත අනුමත කිරීමට 'අනුමත කරන්න' හෝ අවලංගු කිරීමට 'ඉවත් වන්න' ක්ලික් කරන්න</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal">ඉවත් වන්න</button>
                                                     <form action="./php/vac-permission-action.php" method="POST" onsubmit="return validation()">
                                                         <input type="hidden" id="baby_id" name="baby_id">
                                                         <input type="hidden" id="vaccine" name="vaccine">
-                                                        <button name="submit_vac" type="submit" class="btn btn-danger">Approve</button>
+                                                        <button name="submit_vac" type="submit" class="btn btn-danger">අනුමත කරන්න</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <!-- give approval model-with-data -->
+                                    <div id="vac-confirm-with-data" class="modal fade">
+                                        <div class="modal-dialog modal-confirm">
+                                            <div class="modal-content">
+                                                <form action="./php/vac-permission-action.php" method="POST">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="batch">
+                                                            <table>
+                                                                <tr>
+                                                                    <td><label>සායනයට පැමිණි දිනය:</label></td>
+                                                                    <td><input class="form-control" type="date" id="date_came" name="date_came" required></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>ඇසේ ප්‍රමාණය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye1" id="eye1">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>ඇසේ වපරය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye2" id="eye2">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>කණිනිකාව සුදු වීම:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye3" id="eye3">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>කුණිතය සුදු වීම:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye4" id="eye4">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>ඇසේ චලනය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye5" id="eye5">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td><label>ඇසීම:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="hearing" id="hearing">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td><label>බර තත්වය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="weight" id="weight">
+                                                                            <option value="N">නියමිත බර(N)</option>
+                                                                            <option value="OW">අධි බර(OW)</option>
+                                                                            <option value="O">වර්ධනය අඩාල(O)</option>
+                                                                            <option value="X">අඩු බර(X)</option>
+                                                                            <option value="XX">උග්‍ර අඩු බර(XX)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>උස තත්වය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="height" id="height">
+                                                                            <option value="NH">නියමිත උස(NH)</option>
+                                                                            <option value="S">මධ්‍යස්ථ මිටි බව(S)</option>
+                                                                            <option value="SS">උග්‍ර මිටි බව(SS)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td><label>සංවර්ධනය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="development" id="development">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>හෘදය රෝග:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="heart" id="heart">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>උකුල් සන්ධිය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="hip" id="hip">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>වෙනත්:</label></td>
+                                                                    <td>
+                                                                        <textarea class="form-control form-control-md" name="other" id="other"> </textarea>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-info" data-dismiss="modal">ඉවත් වන්න</button>
+                                                        <input type="hidden" id="baby_id-with-data" name="baby_id">
+                                                        <input type="hidden" id="vaccine-with-data" name="vaccine">
+                                                        <button name="submit-vac-with-data" type="submit" class="btn btn-danger">අනුමත කරන්න</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                </div><!--end main-timeline-->
+                                </div><!--end main-timeline male -->
+                                
+                                <?php
+                                    }
+                                    else {
+                                ?>
+                                
+                                <div class="main-timeline">
+
+                                    <!--at birth timeline-->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!--at birth vaccination-->
+                                            <div class="title">
+                                                <h3>උපතේදී</h3>
+                                            </div>
+
+                                            <div class="description">
+
+                                                <!--BCG-1-->
+                                                <?php
+                                                $sql1="SELECT * FROM child_health_note WHERE baby_id='".$_SESSION['baby_id']."' AND baby_age_group_id=1";
+                                                $run1=mysqli_query($conn,$sql1);
+                                                $data1=mysqli_fetch_assoc($run1);
+                                                
+                                                $query1="SELECT * FROM vac_birth WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=1";
+                                                $result1=mysqli_query($conn,$query1);
+                                                $row1=mysqli_fetch_assoc($result1);
+                                                
+                                                    if(empty($data1['baby_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine1" value="1" disabled>
+                                                                <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='1'>
+                                                                <span class="badge badge-danger">පළමු මස සටහන තබන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row1['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine1" value="1" checked="checked" disabled>
+                                                                <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine1" value="1" disabled>
+                                                                <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
+                                                            </span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                ?>
+                                                <!--end BCG-1-->
+
+                                                <!-- BCG-2(if no scar) -->
+                                                <?php
+                                                if(empty($row1['status'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine2" value="2" disabled>
+                                                            <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query2="SELECT * FROM vac_birth WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=2";
+                                                    $result2=mysqli_query($conn,$query2);
+                                                    $row2=mysqli_fetch_assoc($result2);
+                                                    if(!empty($row2['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine2" value="2" checked="checked" disabled>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row2['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine2" value="2" disabled>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine2" value="2" disabled>
+                                                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='2'>
+                                                                <span class="badge badge-off">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end BCG-2(if no scar)-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2 months timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!--2 months vaccination--->
+                                            <div class="title">
+                                                <h3>2 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+
+                                                <!-- Pentavalent 1-->
+                                                <?php
+                                                if(empty($row1['status'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine3" value="3" disabled>
+                                                            <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query3="SELECT * FROM vac_2months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=3";
+                                                    $result3=mysqli_query($conn,$query3);
+                                                    $row3=mysqli_fetch_assoc($result3);
+                                                    if(!empty($row3['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine3" value="3" checked="checked" disabled>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row3['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine3" value="3" disabled>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine3" value="3" disabled>
+                                                                <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='3'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- Pentavalent 1 -->
+
+                                                <!-- OPV-1 -->
+                                                <?php
+                                                if(empty($row3['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine4" value="4" disabled>
+                                                            <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query4="SELECT * FROM vac_2months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=4";
+                                                    $result4=mysqli_query($conn,$query4);
+                                                    $row4=mysqli_fetch_assoc($result4);
+                                                    if(!empty($row4['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine4" value="4" checked="checked" disabled>
+                                                                <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row4['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine4" value="4" disabled>
+                                                                <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine4" value="4" disabled>
+                                                                <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='4'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- end OPV-1 -->
+                                                
+                                                <!-- fIPV-1 -->
+                                                <?php
+                                                if(empty($row4['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine5" value="5" disabled>
+                                                            <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query5="SELECT * FROM vac_2months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=5";
+                                                    $result5=mysqli_query($conn,$query5);
+                                                    $row5=mysqli_fetch_assoc($result5);
+                                                    if(!empty($row5['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine5" value="5" checked="checked" disabled>
+                                                                <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row5['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine5" value="5" disabled>
+                                                                <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine5" value="5" disabled>
+                                                                <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='5'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end fIPV-1-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 4 month timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!--4 month vaccination-->
+                                            <div class="title">
+                                                <h3>4 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+
+                                                <!-- Pentavalent-2 -->
+                                                <?php
+                                                if(empty($row5['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine6" value="6" disabled>
+                                                            <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query6="SELECT * FROM vac_4months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=6";
+                                                    $result6=mysqli_query($conn,$query6);
+                                                    $row6=mysqli_fetch_assoc($result6);
+                                                    if(!empty($row6['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine6" value="6" checked="checked" disabled>
+                                                                <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row6['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine6" value="6" disabled>
+                                                                <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine6" value="6" disabled>
+                                                                <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='6'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end Pentavalent-2 -->
+
+                                                <!-- OPV-2 -->
+                                                <?php
+                                                if(empty($row6['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine7" value="7" disabled>
+                                                            <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query7="SELECT * FROM vac_4months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=7";
+                                                    $result7=mysqli_query($conn,$query7);
+                                                    $row7=mysqli_fetch_assoc($result7);
+                                                    if(!empty($row7['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine7" value="7" checked="checked" disabled>
+                                                                <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row7['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine7" value="7" disabled>
+                                                                <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine7" value="7" disabled>
+                                                                <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='7'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- end OPV-2 -->
+                                                
+                                                <!-- fIPV-2 -->
+                                                <?php
+                                                if(empty($row7['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine8" value="8" disabled>
+                                                            <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query8="SELECT * FROM vac_4months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=8";
+                                                    $result8=mysqli_query($conn,$query8);
+                                                    $row8=mysqli_fetch_assoc($result8);
+                                                    if(!empty($row8['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine8" value="8" checked="checked" disabled>
+                                                                <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row8['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine8" value="8" disabled>
+                                                                <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine8" value="8" disabled>
+                                                                <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='8'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end fIPV-2 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 6 month timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!--6 month vaccination-->
+                                            <div class="title">
+                                                <h3>6 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+
+                                                <!--Pentavalent-2-->
+                                                <?php
+                                                if(empty($row8['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine9" value="9" disabled>
+                                                            <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query9="SELECT * FROM vac_6months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=9";
+                                                    $result9=mysqli_query($conn,$query9);
+                                                    $row9=mysqli_fetch_assoc($result9);
+                                                    if(!empty($row9['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine9" value="9" checked="checked" disabled>
+                                                                <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row9['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine9" value="9" disabled>
+                                                                <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine9" value="9" disabled>
+                                                                <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='9'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end Pentavalent-3 -->
+
+                                                <!-- OPV-3 -->
+                                                <?php
+                                                if(empty($row9['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine10" value="10" disabled>
+                                                            <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query10="SELECT * FROM vac_6months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=10";
+                                                    $result10=mysqli_query($conn,$query10);
+                                                    $row10=mysqli_fetch_assoc($result10);
+                                                    if(!empty($row10['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine10" value="10" checked="checked" disabled>
+                                                                <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row10['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine10" value="10" disabled>
+                                                                <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine10" value="10" disabled>
+                                                                <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='10'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- end OPV-3 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 9 month timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!--9 month vaccination-->
+                                            <div class="title">
+                                                <h3>9 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- MMR-1 -->
+                                                <?php
+                                                if(empty($row10['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine11" value="11" disabled>
+                                                            <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query11="SELECT * FROM vac_9months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=11";
+                                                    $result11=mysqli_query($conn,$query11);
+                                                    $row11=mysqli_fetch_assoc($result11);
+                                                    if(!empty($row11['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine11" value="11" checked="checked" disabled>
+                                                                <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row11['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine11" value="11" disabled>
+                                                                <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine11" value="11" disabled>
+                                                                <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='11'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end MMR-1-->    
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 12 month timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!--12 month vaccination-->
+                                            <div class="title">
+                                                <h3>12 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- Live JE -->
+                                                <?php
+                                                if(empty($row11['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine12" value="12" disabled>
+                                                            <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query12="SELECT * FROM vac_12months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=12";
+                                                    $result12=mysqli_query($conn,$query12);
+                                                    $row12=mysqli_fetch_assoc($result12);
+                                                    if(!empty($row12['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine12" value="12" checked="checked" disabled>
+                                                                <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row12['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine12" value="12" disabled>
+                                                                <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine12" value="12" disabled>
+                                                                <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='12'>
+                                                                <span class="badge badge-off">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end Live JE -->                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 18 months timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!-- 18 months vaccination-->
+                                            <div class="title">
+                                                <h3>18 වන මාසය සම්පූර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- DPT -->
+                                                <?php
+                                                if(empty($row11['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine13" value="13" disabled>
+                                                            <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query13="SELECT * FROM vac_18months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=13";
+                                                    $result13=mysqli_query($conn,$query13);
+                                                    $row13=mysqli_fetch_assoc($result13);
+                                                    if(!empty($row13['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine13" value="13" checked="checked" disabled>
+                                                                <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row13['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine13" value="13" disabled>
+                                                                <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine13" value="13" disabled>
+                                                                <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='13'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- DPT -->
+
+                                                <!--OPV-4-->
+                                                <?php
+                                                if(empty($row13['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine14" value="14" disabled>
+                                                            <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query14="SELECT * FROM vac_18months WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=14";
+                                                    $result14=mysqli_query($conn,$query14);
+                                                    $row14=mysqli_fetch_assoc($result14);
+                                                    if(!empty($row14['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine14" value="14" checked="checked" disabled>
+                                                                <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row14['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine14" value="14" disabled>
+                                                                <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine14" value="14" disabled>
+                                                                <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='14'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end OPV-4 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 3 year timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!-- 3 year vaccination-->
+                                            <div class="title">
+                                                <h3>3 වන අවුරුද්ද සම්පුර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+
+                                                <!-- MMR-2 -->
+                                                <?php
+                                                if(empty($row14['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine15" value="15" disabled>
+                                                            <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query15="SELECT * FROM vac_3years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=15";
+                                                    $result15=mysqli_query($conn,$query15);
+                                                    $row15=mysqli_fetch_assoc($result15);
+                                                    if(!empty($row15['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine15" value="15" checked="checked" disabled>
+                                                                <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row15['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine15" value="15" disabled>
+                                                                <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine15" value="15" disabled>
+                                                                <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='15'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- end MMR-2 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 5 years timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!-- 5 years vaccination-->
+                                            <div class="title">
+                                                <h3>5 වන අවුරුද්ද සම්පුර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- D.T -->
+                                                <?php
+                                                if(empty($row15['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine16" value="16" disabled>
+                                                            <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query16="SELECT * FROM vac_5years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=16";
+                                                    $result16=mysqli_query($conn,$query16);
+                                                    $row16=mysqli_fetch_assoc($result16);
+                                                    if(!empty($row16['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine16" value="16" checked="checked" disabled>
+                                                                <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row16['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine16" value="16" disabled>
+                                                                <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine16" value="16" disabled>
+                                                                <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='16'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- D.T -->
+
+                                                <!-- OPV-5 -->
+                                                <?php
+                                                if(empty($row16['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine17" value="17" disabled>
+                                                            <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query17="SELECT * FROM vac_5years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=17";
+                                                    $result17=mysqli_query($conn,$query17);
+                                                    $row17=mysqli_fetch_assoc($result17);
+                                                    if(!empty($row17['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine17" value="17" checked="checked" disabled>
+                                                                <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row17['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine17" value="17" disabled>
+                                                                <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine17" value="17" disabled>
+                                                                <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='17'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end OPV-5 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 10 years timeline --->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!-- 10 years vaccination-->
+                                            <div class="title">
+                                                <h3>10 වන අවුරුද්ද සම්පුර්ණ වූ විට(ගැහැණු)</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- HPV-1 -->
+                                                <?php
+                                                if(empty($row17['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine18" value="18" disabled>
+                                                            <label for="vaccine18">එච්. පී. වී. එන්නත 1<br>(HPV Vaccine 1)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query18="SELECT * FROM vac_10years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=18";
+                                                    $result18=mysqli_query($conn,$query18);
+                                                    $row18=mysqli_fetch_assoc($result18);
+                                                    if(!empty($row18['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine18" value="18" checked="checked" disabled>
+                                                                <label for="vaccine18">එච්. පී. වී. එන්නත 1<br>(HPV Vaccine 1)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row18['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine18" value="18" disabled>
+                                                                <label for="vaccine18">එච්. පී. වී. එන්නත 1<br>(HPV Vaccine 1)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine18" value="18" disabled>
+                                                                <label for="vaccine18">එච්. පී. වී. එන්නත 1<br>(HPV Vaccine 1)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='18'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- end HPV-1 -->
+                                                
+
+                                                <!-- HPV-2 -->
+                                                <?php
+                                                if(empty($row18['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine19" value="19" disabled>
+                                                            <label for="vaccine19">එච්. පී. වී. එන්නත 2<br>(HPV Vaccine 2)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query19="SELECT * FROM vac_10years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=19";
+                                                    $result19=mysqli_query($conn,$query19);
+                                                    $row19=mysqli_fetch_assoc($result19);
+                                                    if(!empty($row19['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine19" value="19" checked="checked" disabled>
+                                                                <label for="vaccine19">එච්. පී. වී. එන්නත 2<br>(HPV Vaccine 2)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row19['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine19" value="19" disabled>
+                                                                <label for="vaccine19">එච්. පී. වී. එන්නත 2<br>(HPV Vaccine 2)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine19" value="19" disabled>
+                                                                <label for="vaccine19">එච්. පී. වී. එන්නත 2<br>(HPV Vaccine 2)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='19'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!--end HPV-2 -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 11 years timeline--->
+                                    <div class="timeline">
+                
+                                         <span class="icon fas fa-syringe"></span>
+                                         <div class="timeline-content color-female">
+
+                                            <!-- 11 years vaccination-->
+                                            <div class="title">
+                                                <h3>11 වන අවුරුද්ද සම්පුර්ණ වූ විට</h3>
+                                            </div>
+
+                                            <div class="description">
+                                                
+                                                <!-- aTd -->
+                                                <?php
+                                                if(empty($row19['approved_doctor_id'])) {    
+                                                ?>
+                                                    <div class="vaccine">
+                                                        <span>
+                                                            <input type="checkbox" id="vaccine20" value="20" disabled>
+                                                            <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
+                                                        </span>
+                                                    </div> 
+                                                <?php
+                                                }
+                                                else {
+                                                    $query20="SELECT * FROM vac_11years WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=20";
+                                                    $result20=mysqli_query($conn,$query20);
+                                                    $row20=mysqli_fetch_assoc($result20);
+                                                    if(!empty($row20['status'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine20" value="20" checked="checked" disabled>
+                                                                <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
+                                                            </span>
+                                                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                                                        </div>
+                                                <?php 
+                                                    }
+                                                    else if(!empty($row20['approved_doctor_id'])) {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine20" value="20" disabled>
+                                                                <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
+                                                            </span>
+                                                            <span class="badge badge-secondary">එන්නත් කිරීම අනුමත කර ඇත</span>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                    else {
+                                                ?>
+                                                        <div class="vaccine">
+                                                            <span>
+                                                                <input type="checkbox" id="vaccine20" value="20" disabled>
+                                                                <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
+                                                            </span>
+                                                            <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='20'>
+                                                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
+                                                <!-- end aTd -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- give approval model -->
+                                    <div id="vac-confirm" class="modal fade">
+                                        <div class="modal-dialog modal-confirm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>එන්නත අනුමත කිරීමට 'අනුමත කරන්න' හෝ අවලංගු කිරීමට 'ඉවත් වන්න' ක්ලික් කරන්න</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal">ඉවත් වන්න</button>
+                                                    <form action="./php/vac-permission-action.php" method="POST" onsubmit="return validation()">
+                                                        <input type="hidden" id="baby_id" name="baby_id">
+                                                        <input type="hidden" id="vaccine" name="vaccine">
+                                                        <button name="submit_vac" type="submit" class="btn btn-danger">අනුමත කරන්න</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- give approval model-with-data -->
+                                    <div id="vac-confirm-with-data" class="modal fade">
+                                        <div class="modal-dialog modal-confirm">
+                                            <div class="modal-content">
+                                                <form action="./php/vac-permission-action.php" method="POST">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="batch">
+                                                            <table>
+                                                                <tr>
+                                                                    <td><label>සායනයට පැමිණි දිනය:</label></td>
+                                                                    <td><input class="form-control" type="date" id="date_came" name="date_came" required></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>ඇසේ ප්‍රමාණය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye1" id="eye1">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>ඇසේ වපරය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye2" id="eye2">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>කණිනිකාව සුදු වීම:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye3" id="eye3">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>කුණිතය සුදු වීම:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye4" id="eye4">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>ඇසේ චලනය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="eye5" id="eye5">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td><label>ඇසීම:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="hearing" id="hearing">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td><label>බර තත්වය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="weight" id="weight">
+                                                                            <option value="N">නියමිත බර(N)</option>
+                                                                            <option value="OW">අධි බර(OW)</option>
+                                                                            <option value="O">වර්ධනය අඩාල(O)</option>
+                                                                            <option value="X">අඩු බර(X)</option>
+                                                                            <option value="XX">උග්‍ර අඩු බර(XX)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>උස තත්වය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="height" id="height">
+                                                                            <option value="NH">නියමිත උස(NH)</option>
+                                                                            <option value="S">මධ්‍යස්ථ මිටි බව(S)</option>
+                                                                            <option value="SS">උග්‍ර මිටි බව(SS)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                                <tr>
+                                                                    <td><label>සංවර්ධනය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="development" id="development">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>හෘදය රෝග:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="heart" id="heart">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>උකුල් සන්ධිය:</label></td>
+                                                                    <td>
+                                                                        <select class="form-control form-control-md" name="hip" id="hip">
+                                                                            <option value="O">අබාධ නොමැත(O)</option>
+                                                                            <option value="X">අබාධ ඇත(X)</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><label>වෙනත්:</label></td>
+                                                                    <td>
+                                                                        <textarea class="form-control form-control-md" name="other" id="other"> </textarea>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-info" data-dismiss="modal">ඉවත් වන්න</button>
+                                                        <input type="hidden" id="baby_id-with-data" name="baby_id">
+                                                        <input type="hidden" id="vaccine-with-data" name="vaccine">
+                                                        <button name="submit-vac-with-data" type="submit" class="btn btn-danger">අනුමත කරන්න</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div><!--end main-timeline female -->
+                                
+                                <?php
+                                    }
+                                ?>
                                 
                             </div><!--end col-md-12-->
                             
@@ -1821,6 +3058,16 @@
             
             $("#baby_id").val(getBaby);
             $("#vaccine").val(getVac);
+        });
+    </script>
+    
+    <script>
+        $(document).on("click", "#vac-approvel-with-data", function () {
+            var getBaby = $(this).data('baby');
+            var getVac= $(this).data('vac');
+            
+            $("#baby_id-with-data").val(getBaby);
+            $("#vaccine-with-data").val(getVac);
         });
     </script>
     <!-- end of send data to modal scripts -->
