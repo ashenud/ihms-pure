@@ -261,20 +261,12 @@
 
 
                                     if($gender=='M') {
-                                ?>
-                               
-                                <!-- main-timeline male -->
-                                <?php include('inc/vaccination-boy.php'); ?>
-                                
-                                <?php
+                                        //main-timeline male
+                                        include('inc/vaccination-boy.php');
                                     }
                                     else {
-                                ?>
-                                
-                                <!-- main-timeline female -->
-                                <?php include('inc/vaccination-girl.php'); ?>
-                                
-                                <?php
+                                        //main-timeline female
+                                        include('inc/vaccination-girl.php');
                                     }
                                 ?>
                                 

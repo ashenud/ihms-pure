@@ -38,7 +38,7 @@ if(isset($_POST['date-set'])) {
     }
     elseif($vaccine==3) {
         
-        $vac_name='DPT-1';
+        $vac_name='Pentavalent-1';
         $vac_id=3;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -63,7 +63,7 @@ if(isset($_POST['date-set'])) {
     }
     elseif($vaccine==5) {
         
-        $vac_name='Hepatitis B-1';
+        $vac_name='fIPV-1';
         $vac_id=5;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -77,7 +77,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==6) {
         
-        $vac_name='DPT-2';
+        $vac_name='Pentavalent-1';
         $vac_id=6;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -105,7 +105,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==8) {
         
-        $vac_name='Hepatitis B-2';
+        $vac_name='fIPV-2';
         $vac_id=8;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -119,7 +119,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==9) {
         
-        $vac_name='DPT-3';
+        $vac_name='Pentavalent-3';
         $vac_id=9;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -147,7 +147,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==11) {
         
-        $vac_name='Hepatitis B-3';
+        $vac_name='MMR-1';
         $vac_id=11;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -161,7 +161,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==12) {
         
-        $vac_name='Measles';
+        $vac_name='Live JE';
         $vac_id=12;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -175,7 +175,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==13) {
         
-        $vac_name='Vitamin-A';
+        $vac_name='DPT';
         $vac_id=13;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -189,7 +189,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==14) {
         
-        $vac_name='DPT-4';
+        $vac_name='OVP-4';
         $vac_id=14;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -203,7 +203,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==15) {
         
-        $vac_name='OVP-4';
+        $vac_name='MMR-2';
         $vac_id=15;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -217,7 +217,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==16) {
         
-        $vac_name='Vitamin-A';
+        $vac_name='D.T';
         $vac_id=16;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -231,7 +231,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==17) {
         
-        $vac_name='Measles & Rubella';
+        $vac_name='OPV-5';
         $vac_id=17;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -245,7 +245,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==18) {
         
-        $vac_name='Vitamin-A';
+        $vac_name='HPV-1';
         $vac_id=18;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -259,7 +259,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==19) {
         
-        $vac_name='D.T';
+        $vac_name='HPV-2';
         $vac_id=19;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -273,7 +273,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==20) {
         
-        $vac_name='OVP-5';
+        $vac_name='aTd';
         $vac_id=20;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";

@@ -21,11 +21,13 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
 
                     $delete_baby=$take_baby_id['baby_id'];
 
+                    $sql00="DELETE FROM child_health_note WHERE baby_id='".$delete_baby."'";
+                    $sql0="DELETE FROM vac_12months WHERE baby_id='".$delete_baby."'";
                     $sql1="DELETE FROM vac_other WHERE baby_id='".$delete_baby."'";
-                    $sql2="DELETE FROM vac_japanese_encephalities WHERE baby_id='".$delete_baby."'";
+                    $sql2="DELETE FROM vac_11years WHERE baby_id='".$delete_baby."'";
                     $sql3="DELETE FROM vac_birth WHERE baby_id='".$delete_baby."'";
                     $sql4="DELETE FROM vac_18months WHERE baby_id='".$delete_baby."'";
-                    $sql5="DELETE FROM vac_10_14years WHERE baby_id='".$delete_baby."'";
+                    $sql5="DELETE FROM vac_10years WHERE baby_id='".$delete_baby."'";
                     $sql6="DELETE FROM vac_9months WHERE baby_id='".$delete_baby."'";
                     $sql7="DELETE FROM vac_6months WHERE baby_id='".$delete_baby."'";
                     $sql8="DELETE FROM vac_5years WHERE baby_id='".$delete_baby."'";
@@ -38,6 +40,8 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
                     $sql15="DELETE FROM birth_details WHERE baby_id='".$delete_baby."'";
                     $sql16="DELETE FROM baby_register WHERE baby_id='".$delete_baby."'";
 
+                    mysqli_query($conn,$sql00);
+                    mysqli_query($conn,$sql0);
                     mysqli_query($conn,$sql1);
                     mysqli_query($conn,$sql2);
                     mysqli_query($conn,$sql3);

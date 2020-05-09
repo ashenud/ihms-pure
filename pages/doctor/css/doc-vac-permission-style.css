@@ -32,6 +32,7 @@
 
 .alert-section .alert button {
     margin-right: 2px;
+    outline: none;
 }
 /* end of alert section */
 
@@ -275,7 +276,7 @@ input[type="checkbox"]:checked + label:before {
 
 .badge {
     font-family: 'abhaya';
-    min-width: 158px;
+    min-width: 160px;
     font-weight: 100;
     color: #000;
     font-size: 12px;

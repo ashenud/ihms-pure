@@ -183,6 +183,10 @@ body {
     margin-left: 5px;
 }
 
+.inner-sidebar-menu .collapse-manage li a .list {
+    font-size: 12px;
+}
+
 .inner-sidebar-menu ul li a span {
     display: inline-block;
 }
