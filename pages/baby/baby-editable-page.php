@@ -22,6 +22,7 @@
     <!--fonts and icons-->
     <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
+    <link rel="stylesheet" href="../../assets/css/english-fonts.css">
     <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
 
     <!--css files-->
@@ -29,8 +30,7 @@
     <link rel="stylesheet" href="../../assets/css/animate.css">
 
     <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-select-style.css">
+    <link rel="stylesheet" href="./css/baby-editable-style.css">
 
     
     <title>Infant Health Management System</title>
@@ -252,6 +252,198 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                    <!--------------------------------------------------------------------------------------->
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                <div class="
+                                <?php if($gen=="M"){
+                                        echo "card color-1";}
+                                        else{ echo "card color-2";
+                                        }
+                                    ?> ">
+                                    <div class="card-body">
+                                        <lable style="color: rgb(0, 0, 0);font-size: 25px;">එන්නත් කිරීමේ විස්තර</lable>
+                            
+                                        <div class="row">
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="edit-vac">
+                                                    <h5>එන්නත් කිරීමේ දිනය වෙනස් කිරීම</h5>
+                                                    <form method="POST" action="./php/baby-editable-action.php">
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>එන්නත තෝරන්න</label>
+                                                                <select class="form-control" name="vacName" id="vacName" required>
+                                                                    <option value="">------</option>
+                                                                    <option value="2">BCG-2</option>
+                                                                    <option value="3">Pentavalent-1</option>
+                                                                    <option value="4">OPV-1</option>
+                                                                    <option value="5">fIPV-1</option>
+                                                                    <option value="6">Pentavalent-2</option>
+                                                                    <option value="7">OPV-2</option>
+                                                                    <option value="8">fIPV-2</option>
+                                                                    <option value="9">Pentavalent-3</option>
+                                                                    <option value="10">OPV-3</option>
+                                                                    <option value="11">MMR-1</option>
+                                                                    <option value="12">Live JE</option>
+                                                                    <option value="13">DPT</option>
+                                                                    <option value="14">OPV-4</option>
+                                                                    <option value="15">MMR-2</option>
+                                                                    <option value="16">D.T</option>
+                                                                    <option value="17">OPV-5</option>
+                                                                <?php 
+                                                                if($gen=="M") {
+                                                                ?>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                else {
+                                                                ?>
+                                                                    <option value="18">HPV-1</option>
+                                                                    <option value="19">HPV-2</option>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>නව දිනයක් තෝරන්න</label>
+                                                                <input type="date" class="form-control" name="vacDate" required>
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="submit" name="UpdateVacDate" class="btn btn-outline-dark btn-md" value="වෙනස් කරන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="edit-vac">
+                                                    <h5>එන්නත් කිරීමෙන් පසු අතුරු අබාධ ඇත්නම්</h5>
+                                                    <form method="POST" action="./php/baby-editable-action.php">
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>එන්නත තෝරන්න</label>
+                                                                <select class="form-control" name="vaccine" id="vaccine" required>
+                                                                    <option value="">------</option>
+                                                                    <option value="1">BCG-1</option>
+                                                                    <option value="2">BCG-2</option>
+                                                                    <option value="3">Pentavalent-1</option>
+                                                                    <option value="4">OPV-1</option>
+                                                                    <option value="5">fIPV-1</option>
+                                                                    <option value="6">Pentavalent-2</option>
+                                                                    <option value="7">OPV-2</option>
+                                                                    <option value="8">fIPV-2</option>
+                                                                    <option value="9">Pentavalent-3</option>
+                                                                    <option value="10">OPV-3</option>
+                                                                    <option value="11">MMR-1</option>
+                                                                    <option value="12">Live JE</option>
+                                                                    <option value="13">DPT</option>
+                                                                    <option value="14">OPV-4</option>
+                                                                    <option value="15">MMR-2</option>
+                                                                    <option value="16">D.T</option>
+                                                                    <option value="17">OPV-5</option>
+                                                                <?php 
+                                                                if($gen=="M") {
+                                                                ?>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                else {
+                                                                ?>
+                                                                    <option value="18">HPV-1</option>
+                                                                    <option value="19">HPV-2</option>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>සටහනක් තබන්න</label>
+                                                                <textarea class="form-control" name="vacSideEffNote" required></textarea>
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="submit" name="VacSideEff" class="btn btn-outline-dark btn-md" value="සටහන තබන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="other-vac">
+                                                    <h5>වෙනත් එන්නත් ලබා දුන්නේ නම්</h5>
+                                                    <form method="POST" action="./php/baby-editable-action.php">
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>එන්නතේ නම</label>
+                                                                <input type="text" class="form-control" name="vac_name" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>කාණ්ඩ අංකය</label>
+                                                                <input type="text" class="form-control" name="batch_no" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>ලබා දුන් දිනය</label>
+                                                                <input type="date" class="form-control" name="date_given" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                                <input type="submit" name="otherVacc" class="btn btn-outline-dark btn-md" value="සටහන් කරන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="bcg-scar">
+                                                    <h5>බී.සී.ජී. කැළැල ඇත්නම්(පමණක්)</h5>
+                                                    <form method="POST" action="./php/baby-editable-action.php">                                                    
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <input class="form-check-input" type="checkbox" value="1" name="scar" id="scar" required>
+                                                                <label class="form-check-label" for="scar">
+                                                                    කැළැල ඇත
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                                <input type="submit" name="bcgScar" class="btn btn-outline-dark btn-md" value="ලකුණු කරන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
                     <!--------------------------------------------------------------------------------------->
                     <div class="form-row d-flex justify-content-center">
                         <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
@@ -512,6 +704,8 @@
                                 </div>
                             </div>
                         </div>
+
+                    
 
                     <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Form Action @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                      

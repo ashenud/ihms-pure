@@ -77,7 +77,7 @@ if(isset($_POST['date-set'])) {
     
     elseif($vaccine==6) {
         
-        $vac_name='Pentavalent-1';
+        $vac_name='Pentavalent-2';
         $vac_id=6;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
@@ -275,89 +275,6 @@ if(isset($_POST['date-set'])) {
         
         $vac_name='aTd';
         $vac_id=20;
-        
-        $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
-        }
-        
-    }
-    
-    elseif($vaccine==21) {
-        
-        $vac_name='Rubella';
-        $vac_id=21;
-        
-        $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
-        }
-        
-    }
-    
-    elseif($vaccine==22) {
-        
-        $vac_name='ATD';
-        $vac_id=22;
-        
-        $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
-        }
-        
-    }
-    
-    elseif($vaccine==23) {
-        
-        $vac_name='JE-1';
-        $vac_id=23;
-        
-        $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
-        }
-        
-    }
-    
-    elseif($vaccine==24) {
-        
-        $vac_name='JE-2';
-        $vac_id=24;
-        
-        $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
-        }
-    }
-    
-    elseif($vaccine==25) {
-        
-        $vac_name='JE-3';
-        $vac_id=25;
-        
-        $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
-        }
-        
-    }
-    
-    elseif($vaccine==26) {
-        
-        $vac_name='JE-4';
-        $vac_id=26;
         
         $query1="INSERT INTO vaccine_date(midwife_id,baby_id,vac_name,vac_id,giving_date) VALUES('$midwife_id','$baby_id','$vac_name','$vac_id','$giving_date')";
         $result1=mysqli_query($conn,$query1);

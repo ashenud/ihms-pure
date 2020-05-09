@@ -183,8 +183,7 @@
 
                 <div class="container">
                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <div class="col-11">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase">active babies</h5>
@@ -275,12 +274,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-1"></div>
                     </div>
                     <br><br>
                     <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <div class="col-11">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title text-uppercase">inactive babies</h5>
@@ -371,7 +368,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-1"></div>
                     </div>
                 </div>
             

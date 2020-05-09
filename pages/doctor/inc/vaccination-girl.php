@@ -62,7 +62,7 @@
 
                 <!-- BCG-2(if no scar) -->
                 <?php
-                if(empty($row1['status'])) {    
+                if(empty($row1['status']) || empty($data1['baby_id'])) {    
                 ?>
                     <div class="vaccine">
                         <span>
@@ -133,7 +133,7 @@
 
                 <!-- Pentavalent 1-->
                 <?php
-                if(empty($row1['status'])) {    
+                if(empty($row1['status']) || empty($data1['baby_id'])) {    
                 ?>
                     <div class="vaccine">
                         <span>

@@ -1653,10 +1653,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">ඉවත් වන්න</button>
                         <input type="hidden" id="baby_id1" name="baby_id">
                         <input type="hidden" id="vaccin" name="vaccine">
-                        <button name="date-set" type="submit" class="btn btn-danger">set date</button>
+                        <button name="date-set" type="submit" class="btn btn-danger">දිනය ලබාදෙන්න</button>
                     </div>
                 </form>
             </div>
