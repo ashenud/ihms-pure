@@ -450,7 +450,7 @@
                                                 while ($result=mysqli_fetch_assoc($data)) {
                                                     echo  "<tr class='b_text3' style='color:black'>";
                                                     echo  "<td>".$result['baby_id']."</td>";
-                                                    echo  "<td>".$result['vaccine_name']."</td>";
+                                                    echo  "<td>".$result['vac_name']."</td>";
                                                     echo  "<td>".$result['giving_date']."</td>";
                                                     echo  "</tr>";
                                                 }
