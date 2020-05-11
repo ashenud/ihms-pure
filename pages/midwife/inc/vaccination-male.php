@@ -79,16 +79,14 @@
                         </div>
                 <?php 
                     }
-                    else if((!empty($data2['giving_date'])) && (!empty($row2['approved_doctor_id']))) {
+                    else if((!empty($row1['status'])) && (!empty($row1['scar']))) {
                 ?>
                         <div class="vaccine">
                             <span>
                                 <input type="checkbox" id="vaccine2" value="2" disabled>
                                 <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                             </span>
-                            <button class="btn" id='mark-vac-btn' data-toggle='modal' href='#vac-mark' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='2'>
-                                <span class="badge badge-danger">එන්නත ලබාදීම සලකුණු කරන්න</span>
-                            </button>
+                            <span class="badge badge-secondary">බී.සී.ජී. කැළැල ඇත.</span>
                         </div>
                 <?php
                     }
@@ -111,7 +109,7 @@
                                 <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                             </span>
                             <button class="btn" id='set-date-btn' data-toggle='modal' href='#set-date' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='2'>
-                                <span class="badge badge-off">මාස 6 වන විටත් කැලලක් නැත්නම්</span>
+                                <span class="badge badge-off">මාස 6 වන විටත් කැළලක් නැත්නම්</span>
                             </button>
                         </div>
                 <?php

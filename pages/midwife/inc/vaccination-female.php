@@ -79,6 +79,17 @@
                         </div>
                 <?php 
                     }
+                    else if((!empty($row1['status'])) && (!empty($row1['scar']))) {
+                ?>
+                        <div class="vaccine">
+                            <span>
+                                <input type="checkbox" id="vaccine2" value="2" disabled>
+                                <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
+                            </span>
+                            <span class="badge badge-secondary">බී.සී.ජී. කැළැල ඇත.</span>
+                        </div>
+                <?php
+                    }
                     else if((!empty($data2['giving_date'])) && (!empty($row2['approved_doctor_id']))) {
                 ?>
                         <div class="vaccine">
