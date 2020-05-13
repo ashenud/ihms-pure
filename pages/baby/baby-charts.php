@@ -14,9 +14,12 @@
 	include('../../php/basic/connection.php');
     mysqli_select_db($conn, 'cs2019g6');
 
-	$weight = '';
-	$height = '';
-    $month = '';
+	$weightF24 = '';
+	$heightF24 = '';
+    $monthF24 = '';
+	$weightL36 = '';
+	$heightL36 = '';
+    $monthL36 = '';
 
 	//query to get data from the table
 	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}'";
@@ -24,15 +27,27 @@
 
 	//loop through the returned data
 	while ($row1 = mysqli_fetch_array($result1)) {
-
-		$weight = $weight . '"'. $row1['weight'].'",';
-		$height = $height . '"'. $row1['height'] .'",';
-		$month = $month . '"'. $row1['baby_age_in_months'] .'",';
+        
+        if ($row1['baby_age_in_months']<25) {
+            $weightF24 = $weightF24 . '"'. $row1['weight'].'",';
+            $heightF24 = $heightF24 . '"'. $row1['height'] .'",';
+            $monthF24 = $monthF24 . '"'. $row1['baby_age_in_months'] .'",';
+        }
+        else {
+            $weightL36 = $weightL36 . '"'. $row1['weight'].'",';
+            $heightL36 = $heightL36 . '"'. $row1['height'] .'",';
+            $monthL36 = $monthL36 . '"'. $row1['baby_age_in_months'] .'",';
+        }
 	}
 
-	$weight = trim($weight,",");
-	$height = trim($height,",");
-	$month = trim($month,",");
+	$weightF24 = trim($weightF24,",");
+	$heightF24 = trim($heightF24,",");
+	$monthF24 = trim($monthF24,",");
+	$weightL36 = trim($weightL36,",");
+	$heightL36 = trim($heightL36,",");
+	$monthL36 = trim($monthL36,",");
+    $initialChart = "f24m";
+
 ?>
 
 
@@ -62,6 +77,7 @@
     <link rel="stylesheet" href="./css/baby-charts-style.css">
 
     <?php
+        
         $query0 = "SELECT * FROM baby_register WHERE baby_id='{$user}'";
         $result0 = mysqli_query($conn, $query0);
         $row0 = mysqli_fetch_assoc($result0);
@@ -73,6 +89,10 @@
 
     <script>
         var gen = 'male';
+        var weightF24 = [<?php echo $weightF24; ?>];
+        var heightF24 = [<?php echo $heightF24; ?>];
+        var weightL36 = [<?php echo $weightL36; ?>];
+        var heightL36 = [<?php echo $heightL36; ?>];
     </script>
 
     <?php
@@ -82,13 +102,15 @@
     
     <script>
         var gen = 'female';
+        var weightF24 = [<?php echo $weightF24; ?>];
+        var heightF24 = [<?php echo $heightF24; ?>];
+        var weightL36 = [<?php echo $weightL36; ?>];
+        var heightL36 = [<?php echo $heightL36; ?>];
     </script>
     
     <?php
         }
     ?>
-
-
 
     <title>Infant Health Management System</title>
     
@@ -339,24 +361,29 @@
                     <div class="row">
                         <div class="col-xl-9">
                             <div class="chart-area">
-                               
-                                <?php
-                                    if($gender=='M') {
-                                ?>
-                                <div class="word"><p>දරුවාගේ වැඩීමේ ප්‍රස්ථාරය (පිරිමි)</p></div>
-                                <canvas id="lineChartM" class="line-chart"></canvas>
-                                    
-                                <?php
-                                    }
-                                    else {
-                                ?>
-                                <div class="word"><p>දරුවාගේ වැඩීමේ ප්‍රස්ථාරය (ගැහැණු)</p></div>
-                                <canvas id="lineChartF" class="line-chart"></canvas>
-                                
-                                <?php
-                                    }
-                                ?>
-                                
+                                <div class="word clearfix">
+                                   <p>
+                                    <?php
+                                        if($gender=='M') {
+
+                                            echo "දරුවාගේ වැඩීමේ ප්‍රස්ථාරය (පිරිමි)";
+
+                                        } 
+                                        else {
+
+                                            echo "දරුවාගේ වැඩීමේ ප්‍රස්ථාරය (ගැහැණු)";
+
+                                        }
+
+                                    ?>
+                                    </p>
+                                    <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
+                                    <button type="button" class="btn change-btn btn-sm" data-type="l36m">මාස 25 - 60</button>
+                                    <button type="button" class="btn change-btn btn-sm" data-type="f24m">මාස 0 - 24</button>
+                                </div>
+                                <div class="chart-canvas">
+                                    <canvas id="growth-chart-24" class="line-chart"></canvas>
+                                </div>
                             </div>
                         </div>
                         
@@ -402,7 +429,7 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/charts/Chart.js"></script>
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
