@@ -14,6 +14,19 @@
 	include('../../php/basic/connection.php');
     mysqli_select_db($conn, 'cs2019g6');
 
+	$height = '';
+
+
+	//query to get data from the table
+	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}'";
+    $result1 = mysqli_query($conn, $query1);
+
+	//loop through the returned data
+	while ($row1 = mysqli_fetch_array($result1)) {
+        $height = $height . '"'. $row1['height'] .'",';
+	}
+
+	$height = trim($height,",");
 ?>
 
 
@@ -40,7 +53,37 @@
     <link rel="stylesheet" href="../../assets/css/animate.css">
 
     <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-charts-style.css">
+    <link rel="stylesheet" href="./css/baby-chart-all-style.css">
+
+    <?php
+        
+        $query0 = "SELECT * FROM baby_register WHERE baby_id='{$user}'";
+        $result0 = mysqli_query($conn, $query0);
+        $row0 = mysqli_fetch_assoc($result0);
+        $gender = $row0["baby_gender"];
+
+
+        if($gender=='M') {
+    ?>
+
+    <script>
+        var gen = 'male';
+        var height = [<?php echo $height; ?>];
+    </script>
+
+    <?php
+        }
+        else {
+    ?>
+    
+    <script>
+        var gen = 'female';
+        var height = [<?php echo $height; ?>];
+    </script>
+    
+    <?php
+        }
+    ?>
 
     <title>Infant Health Management System</title>
     
@@ -165,7 +208,7 @@
 
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="./baby-charts.php" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
                                 </span>
@@ -289,23 +332,50 @@
                                           
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="items">
-                                <p>ප්‍රස්ථාරය තෝරන්න</p>                               
-                                <div class="list-group-flush">
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-weight.php">දරුවාගේ බර ප්‍රස්ථාරය</a>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-height.php">දරුවාගේ උස ප්‍රස්ථාරය</a>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <a href="">දරුවාගේ උසට සරිලන බර ප්‍රස්ථාරය</a>
+                        <div class="col-xl-9">
+                            <div class="chart-area">
+                                <div class="word clearfix">
+                                   <p>
+                                    <?php
+                                        if($gender=='M') {
+
+                                            echo "දරුවාගේ උස ප්‍රස්ථාරය (පිරිමි)";
+
+                                        } 
+                                        else {
+
+                                            echo "දරුවාගේ උස ප්‍රස්ථාරය (ගැහැණු)";
+
+                                        }
+
+                                    ?>
+                                    </p>
+                                    <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
+                                </div>
+                                <div class="chart-canvas">
+                                    <canvas id="growth-chart-height" class="line-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3">
+                            <div class="container-fluid data-area">
+                                <div class="row">
+                                    <div class="col-xl-12 col-sm-6 data-range">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">උස සටහන</h5>
+                                                <p><span class="badge color-1">     </span>නියමිත උස</p>
+                                                <p><span class="badge color-1"><i>- - -</i></span>මධ්‍යස්ථය</p>
+                                                <p><span class="badge color-2">     </span>මිටි බවට අවදානම</p>
+                                                <p><span class="badge color-3">     </span>මිටි බව</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>                    
                 </div>    
             </div>
             <!-- end of content -->
@@ -323,7 +393,7 @@
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="./js/growth-chart-weight.js"></script>
+    <script type="text/javascript" src="./js/growth-chart-height.js"></script>
     <!--end core js files-->
 
     

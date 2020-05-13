@@ -142,7 +142,7 @@ $(document).ready(function() {
                     }
                 }
 
-                var ctxgrowthChart24months = document.getElementById('growth-chart-24').getContext('2d');
+                var ctxgrowthChart24months = document.getElementById('growth-chart-weight').getContext('2d');
                 new Chart(ctxgrowthChart24months, growthChart24months);
 
             } else {
@@ -275,7 +275,7 @@ $(document).ready(function() {
                     }
                 }
 
-                var ctxgrowthChart24months = document.getElementById('growth-chart-24').getContext('2d');
+                var ctxgrowthChart24months = document.getElementById('growth-chart-weight').getContext('2d');
                 new Chart(ctxgrowthChart24months, growthChart24months);
 
             } else {
