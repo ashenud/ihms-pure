@@ -366,12 +366,12 @@
                                     <?php
                                         if($gender=='M') {
 
-                                            echo "දරුවාගේ බර ප්‍රස්ථාරය (පිරිමි)";
+                                            echo "දරුවාගේ උසට සරිලන බර ප්‍රස්ථාරය (පිරිමි)";
 
                                         } 
                                         else {
 
-                                            echo "දරුවාගේ බර ප්‍රස්ථාරය (ගැහැණු)";
+                                            echo "දරුවාගේ උසට සරිලන බර ප්‍රස්ථාරය (ගැහැණු)";
 
                                         }
 
@@ -387,7 +387,7 @@
                             </div>
                         </div>
                         
-                        <div class="col-xl-3">
+                        <!--<div class="col-xl-3">
                             <div class="container-fluid data-area">
                                 <div class="row">
                                     <div class="col-xl-12 col-sm-6 data-range">
@@ -405,7 +405,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>                    
                 </div>    
             </div>

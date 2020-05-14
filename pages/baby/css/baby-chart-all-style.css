@@ -17,6 +17,7 @@ body {
     margin: auto;
     height: 200vh;
     width: 50vw;
+    padding-bottom: 10px;
 }
 
 .for-bmi-chart {

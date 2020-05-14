@@ -27,7 +27,7 @@ $(document).ready(function() {
 
         var chartData;
 
-        var childDataWeight = {
+        var childDataBmi = {
             type: 'scatter',
             label: ['බර'],
             data: [{
@@ -44,19 +44,7 @@ $(document).ready(function() {
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
             borderWidth: 2,
-            pointRadius: 3,
-        };
-
-        var childDataHeight = {
-            label: ['උස'],
-            yAxisID: 'B',
-            data: heightF24,
-            fill: false,
-            backgroundColor: 'rgba(0, 16, 85, 1)',
-            borderColor: 'rgba(0, 16, 85, 1)',
-            lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
+            pointRadius: 2,
         };
 
         $.ajax({
@@ -75,9 +63,7 @@ $(document).ready(function() {
                 }
 
                 var datasets = chartData.datasets;
-                chartData.datasets.unshift(childDataWeight);
-                //chartData.datasets.push(childDataHeight);
-
+                chartData.datasets.unshift(childDataBmi);
 
                 Chart.defaults.global.defaultFontFamily = 'Helvetica';
                 Chart.defaults.global.defaultFontFamily = 'abhaya';
@@ -97,11 +83,12 @@ $(document).ready(function() {
                                     position: 'left',
                                     ticks: {
                                         fontSize: 10,
+                                        max: 25,
                                         min: 1,
                                         beginAtZero: true,
-                                        stepSize: 0.5,
+                                        stepSize: 1,
                                         callback: function (value, index, values) {
-                                            if (value % 1 === 0) {
+                                            if (value % 2 === 0) {
                                                 return value;
                                             } else {
                                                 return ' ';
@@ -166,29 +153,24 @@ $(document).ready(function() {
 
         var chartData;
 
-        var childDataWeight = {
+        var childDataBmi = {
+            type: 'scatter',
             label: ['බර'],
-            yAxisID: 'A',
-            data: weightL36,
-            fill: false,
+            data: [{
+                x: 45,
+                y: 10
+            }, {
+                x: 55,
+                y: 12
+            }, {
+                x: 75,
+                y: 18
+            }],
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
             borderWidth: 2,
-            pointRadius: 3,
-
-        };
-
-        var childDataHeight = {
-            label: ['උස'],
-            yAxisID: 'B',
-            data: heightL36,
-            fill: false,
-            backgroundColor: 'rgba(0, 16, 85, 1)',
-            borderColor: 'rgba(0, 16, 85, 1)',
-            lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
+            pointRadius: 2,
         };
 
         $.ajax({
@@ -207,8 +189,7 @@ $(document).ready(function() {
                 }
 
                 var datasets = chartData.datasets;
-                chartData.datasets.unshift(childDataWeight);
-                //chartData.datasets.push(childDataHeight);
+                chartData.datasets.unshift(childDataBmi);
 
 
                 Chart.defaults.global.defaultFontFamily = 'Helvetica';
@@ -229,11 +210,12 @@ $(document).ready(function() {
                                     position: 'left',
                                     ticks: {
                                         fontSize: 10,
+                                        max: 31,
+                                        min: 5,
                                         beginAtZero: true,
-                                        min: 8,
-                                        stepSize: 0.5,
+                                        stepSize: 1,
                                         callback: function (value, index, values) {
-                                            if (value % 1 === 0) {
+                                            if (value % 2 === 0) {
                                                 return value;
                                             } else {
                                                 return ' ';
@@ -259,7 +241,6 @@ $(document).ready(function() {
                                 {
                                     ticks: {
                                         fontSize: 10,
-                                        stepSize: 1,
                                         fontFamily: 'Helvetica',
                                         fontColor: '#000',
                                         maxRotation: 0,
@@ -271,7 +252,7 @@ $(document).ready(function() {
                                     },
                                     scaleLabel: {
                                         display: true,
-                                        labelString: "වයස (මාස)",
+                                        labelString: "උස (සෙ.මී.)",
                                         fontColor: '#000',
                                         fontSize: 14,
                                     }
