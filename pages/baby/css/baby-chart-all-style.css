@@ -19,6 +19,10 @@ body {
     width: 50vw;
 }
 
+.for-bmi-chart {
+    height: 72vh;
+}
+
 @media screen and (max-width: 1200px) {
     .chart-canvas {
         height: 230vh;

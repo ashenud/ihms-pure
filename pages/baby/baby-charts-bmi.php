@@ -14,6 +14,40 @@
 	include('../../php/basic/connection.php');
     mysqli_select_db($conn, 'cs2019g6');
 
+	$weightF24 = '';
+	$heightF24 = '';
+    $monthF24 = '';
+	$weightL36 = '';
+	$heightL36 = '';
+    $monthL36 = '';
+
+	//query to get data from the table
+	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}' ORDER BY baby_age_in_months ASC";
+    $result1 = mysqli_query($conn, $query1);
+
+	//loop through the returned data
+	while ($row1 = mysqli_fetch_array($result1)) {
+        
+        if ($row1['baby_age_in_months']<25) {
+            $weightF24 = $weightF24 . '"'. $row1['weight'].'",';
+            $heightF24 = $heightF24 . '"'. $row1['height'] .'",';
+            $monthF24 = $monthF24 . '"'. $row1['baby_age_in_months'] .'",';
+        }
+        else {
+            $weightL36 = $weightL36 . '"'. $row1['weight'].'",';
+            $heightL36 = $heightL36 . '"'. $row1['height'] .'",';
+            $monthL36 = $monthL36 . '"'. $row1['baby_age_in_months'] .'",';
+        }
+	}
+
+	$weightF24 = trim($weightF24,",");
+	$heightF24 = trim($heightF24,",");
+	$monthF24 = trim($monthF24,",");
+	$weightL36 = trim($weightL36,",");
+	$heightL36 = trim($heightL36,",");
+	$monthL36 = trim($monthL36,",");
+    $initialChart = "f24m";
+
 ?>
 
 
@@ -40,7 +74,43 @@
     <link rel="stylesheet" href="../../assets/css/animate.css">
 
     <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-charts-style.css">
+    <link rel="stylesheet" href="./css/baby-chart-all-style.css">
+
+    <?php
+        
+        $query0 = "SELECT * FROM baby_register WHERE baby_id='{$user}'";
+        $result0 = mysqli_query($conn, $query0);
+        $row0 = mysqli_fetch_assoc($result0);
+        $gender = $row0["baby_gender"];
+
+
+        if($gender=='M') {
+    ?>
+
+    <script>
+        var gen = 'male';
+        var weightF24 = [<?php echo $weightF24; ?>];
+        var heightF24 = [<?php echo $heightF24; ?>];
+        var weightL36 = [<?php echo $weightL36; ?>];
+        var heightL36 = [<?php echo $heightL36; ?>];
+    </script>
+
+    <?php
+        }
+        else {
+    ?>
+    
+    <script>
+        var gen = 'female';
+        var weightF24 = [<?php echo $weightF24; ?>];
+        var heightF24 = [<?php echo $heightF24; ?>];
+        var weightL36 = [<?php echo $weightL36; ?>];
+        var heightL36 = [<?php echo $heightL36; ?>];
+    </script>
+    
+    <?php
+        }
+    ?>
 
     <title>Infant Health Management System</title>
     
@@ -165,7 +235,7 @@
 
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="./baby-charts.php" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
                                 </span>
@@ -289,23 +359,54 @@
                                           
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="items">
-                                <p>ප්‍රස්ථාරය තෝරන්න</p>                               
-                                <div class="list-group-flush">
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-weight.php">දරුවාගේ බර ප්‍රස්ථාරය</a>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-height.php">දරුවාගේ උස ප්‍රස්ථාරය</a>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-bmi.php">දරුවාගේ උසට සරිලන බර ප්‍රස්ථාරය</a>
+                        <div class="col-xl-9">
+                            <div class="chart-area">
+                                <div class="word clearfix">
+                                   <p>
+                                    <?php
+                                        if($gender=='M') {
+
+                                            echo "දරුවාගේ බර ප්‍රස්ථාරය (පිරිමි)";
+
+                                        } 
+                                        else {
+
+                                            echo "දරුවාගේ බර ප්‍රස්ථාරය (ගැහැණු)";
+
+                                        }
+
+                                    ?>
+                                    </p>
+                                    <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
+                                    <button type="button" class="btn change-btn btn-sm" data-type="l36m">මාස 25 - 60</button>
+                                    <button type="button" class="btn change-btn btn-sm" data-type="f24m">මාස 0 - 24</button>
+                                </div>
+                                <div class="chart-canvas for-bmi-chart">
+                                    <canvas id="growth-chart-bmi" class="line-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3">
+                            <div class="container-fluid data-area">
+                                <div class="row">
+                                    <div class="col-xl-12 col-sm-6 data-range">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">බර සටහන</h5>
+                                                <p><span class="badge color-5">     </span>අධිබර</p>
+                                                <p><span class="badge color-1"><i></i></span>මධ්‍යස්ථය</p>
+                                                <p><span class="badge color-1">     </span>නියමිත බර</p>
+                                                <p><span class="badge color-4">     </span>අඩු බරට අවදානම</p>
+                                                <p><span class="badge color-2">     </span>අඩු බර</p>
+                                                <p><span class="badge color-3">     </span>උග්‍ර අඩු බර</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> 
+                    </div>                    
                 </div>    
             </div>
             <!-- end of content -->
@@ -323,7 +424,7 @@
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="./js/growth-chart-weight.js"></script>
+    <script type="text/javascript" src="./js/growth-chart-bmi.js"></script>
     <!--end core js files-->
 
     
