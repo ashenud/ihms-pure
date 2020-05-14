@@ -18,7 +18,7 @@
 
 
 	//query to get data from the table
-	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}'";
+	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}' ORDER BY baby_age_in_months ASC";
     $result1 = mysqli_query($conn, $query1);
 
 	//loop through the returned data
@@ -366,8 +366,9 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">උස සටහන</h5>
                                                 <p><span class="badge color-1">     </span>නියමිත උස</p>
-                                                <p><span class="badge color-1"><i>- - -</i></span>මධ්‍යස්ථය</p>
-                                                <p><span class="badge color-2">     </span>මිටි බවට අවදානම</p>
+                                                <p><span class="badge color-1"><i></i></span>මධ්‍යස්ථය</p>
+                                                <p><span class="badge color-4">     </span>මිටි බවට අවදානම</p>
+                                                <p><span class="badge color-2">     </span>මිටි බව</p>
                                                 <p><span class="badge color-3">     </span>මිටි බව</p>
                                             </div>
                                         </div>

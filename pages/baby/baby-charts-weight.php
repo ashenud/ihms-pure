@@ -22,7 +22,7 @@
     $monthL36 = '';
 
 	//query to get data from the table
-	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}'";
+	$query1 = "SELECT * FROM growth WHERE baby_id='{$user}' ORDER BY baby_age_in_months ASC";
     $result1 = mysqli_query($conn, $query1);
 
 	//loop through the returned data

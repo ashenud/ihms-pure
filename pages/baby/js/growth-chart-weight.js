@@ -53,7 +53,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: '/data/growth-chart-f24.json',
+            url: '/data/growth-chart-weight-f24.json',
             method: "GET",
         }).done(function (json, status) {
 
@@ -185,7 +185,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: '/data/growth-chart-l36.json',
+            url: '/data/growth-chart-weight-l36.json',
             method: "GET",
         }).done(function (json, status) {
 

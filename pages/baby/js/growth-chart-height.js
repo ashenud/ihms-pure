@@ -58,8 +58,8 @@ $(document).ready(function() {
                                     ticks: {
                                         fontSize: 10,
                                         beginAtZero: true,
-                                        min: 20,
-                                        max: 120,
+                                        min: 40,
+                                        max: 122,
                                         stepSize: 1,
                                         callback: function (value, index, values) {
                                             if (value % 2 === 0) {
