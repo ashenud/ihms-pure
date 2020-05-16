@@ -26,20 +26,22 @@ $(document).ready(function() {
     function drawGrowthF24mChart() {
 
         var chartData;
-
+        
+        var scatterData = [];
+        
+        var i;
+        for (i = 0; i < weightF24.length; i++) {
+            var scatterItem = {
+                "x": heightF24[i],
+                "y": weightF24[i]
+            };
+            scatterData.push(scatterItem);
+        }
+        
         var childDataBmi = {
             type: 'scatter',
-            label: ['බර'],
-            data: [{
-                x: 10,
-                y: 5
-            }, {
-                x: 15,
-                y: 10
-            }, {
-                x: 15,
-                y: 15
-            }],
+            label: [''],
+            data: scatterData,
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
@@ -112,11 +114,23 @@ $(document).ready(function() {
                             ],
                             xAxes: [ 
                                 {
+                                    type: 'linear',
                                     ticks: {
                                         fontSize: 10,
                                         fontFamily: 'Helvetica',
                                         fontColor: '#000',
+                                        max: 110,
+                                        min: 45,
+                                        beginAtZero: true,
                                         maxRotation: 0,
+                                        stepSize: 5,
+                                        callback: function (value, index, values) {
+                                            if (value % 5 === 0) {
+                                                return value;
+                                            } else {
+                                                return ' ';
+                                            }
+                                        },
                                     },
                                     gridLines: {
                                         lineWidth: 1,
@@ -153,19 +167,21 @@ $(document).ready(function() {
 
         var chartData;
 
+        var scatterData = [];
+        
+        var i;
+        for (i = 0; i < weightL36.length; i++) {
+            var scatterItem = {
+                "x": heightL36[i],
+                "y": weightL36[i]
+            };
+            scatterData.push(scatterItem);
+        }
+        
         var childDataBmi = {
             type: 'scatter',
-            label: ['බර'],
-            data: [{
-                x: 45,
-                y: 10
-            }, {
-                x: 55,
-                y: 12
-            }, {
-                x: 75,
-                y: 18
-            }],
+            label: [''],
+            data: scatterData,
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
@@ -194,7 +210,7 @@ $(document).ready(function() {
 
                 Chart.defaults.global.defaultFontFamily = 'Helvetica';
                 Chart.defaults.global.defaultFontFamily = 'abhaya';
-                var growthChart24months = {
+                var growthChartL36months = {
                     type: ['line'],
                     data: chartData,
                     options: {
@@ -239,11 +255,23 @@ $(document).ready(function() {
                             ],
                             xAxes: [ 
                                 {
+                                    type: 'linear',
                                     ticks: {
                                         fontSize: 10,
                                         fontFamily: 'Helvetica',
                                         fontColor: '#000',
+                                        max: 120,
+                                        min: 65,
+                                        beginAtZero: true,
                                         maxRotation: 0,
+                                        stepSize: 5,
+                                        callback: function (value, index, values) {
+                                            if (value % 5 === 0) {
+                                                return value;
+                                            } else {
+                                                return ' ';
+                                            }
+                                        },
                                     },
                                     gridLines: {
                                         lineWidth: 1,
@@ -263,8 +291,8 @@ $(document).ready(function() {
                     }
                 }
 
-                var ctxgrowthChart24months = document.getElementById('growth-chart-bmi').getContext('2d');
-                new Chart(ctxgrowthChart24months, growthChart24months);
+                var ctxgrowthChartL36months = document.getElementById('growth-chart-bmi').getContext('2d');
+                new Chart(ctxgrowthChartL36months, growthChartL36months);
 
             } else {
                 console.error("data Failed");

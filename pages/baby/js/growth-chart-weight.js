@@ -206,7 +206,7 @@ $(document).ready(function() {
 
                 Chart.defaults.global.defaultFontFamily = 'Helvetica';
                 Chart.defaults.global.defaultFontFamily = 'abhaya';
-                var growthChart24months = {
+                var growthChartL36months = {
                     type: ['line'],
                     data: chartData,
                     options: {
@@ -275,8 +275,8 @@ $(document).ready(function() {
                     }
                 }
 
-                var ctxgrowthChart24months = document.getElementById('growth-chart-weight').getContext('2d');
-                new Chart(ctxgrowthChart24months, growthChart24months);
+                var ctxgrowthChartL36months = document.getElementById('growth-chart-weight').getContext('2d');
+                new Chart(ctxgrowthChartL36months, growthChartL36months);
 
             } else {
                 console.error("data Failed");
