@@ -226,17 +226,17 @@
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Weight</b>(kg)</label>
-                                                    <input type="text" class="form-control" name="bWeight" placeholder="in (kg)">
+                                                    <input type="text" class="form-control" name="bWeight" placeholder="in (kg)" required>
                                             </div>
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Height</b>(cm)</label>
-                                                    <input type="text" class="form-control" name="bHeight" placeholder="in (cm)">
+                                                    <input type="text" class="form-control" name="bHeight" placeholder="in (cm)" required>
                                             </div>
                                         </div>
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <label><b>Age</b>(months)</label>
-                                                <input type="text" class="form-control" name="bAge" placeholder="in (months)">
+                                                <input type="text" class="form-control" name="bAge" placeholder="in (months)" required>
                                             </div>
                                         </div>
 

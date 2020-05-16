@@ -393,13 +393,10 @@
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/jspdf.min.js"></script>
 
     <script type="text/javascript" src="./js/growth-chart-height.js"></script>
     <!--end core js files-->
-
-    
-    
-    <!-- writed scripts -->
     
     
     <!-- sidebar collapse -->   
@@ -419,6 +416,28 @@
         });
     </script>
     <!-- end of sidebar collapse -->
+    
+    <!-- canvas to pdf -->
+    <script>
+        
+        $(".download").click(function() {
+            
+            var canvas = document.getElementById('growth-chart-height');
+            
+            var imgData = canvas.toDataURL();
+            var doc = new jsPDF('p', 'mm', 'a4');
+            
+            var width = (canvas.width * 36) / 240;
+            var height = (canvas.height * 36) / 240;
+
+            doc.addImage(imgData, 'JPEG', 31, 11, width, height);
+            doc.output('dataurlnewwindow');     //opens the data uri in new window
+            //doc.save('baby-height-chart.pdf'); //Download the rendered PDF.
+        });
+    
+    </script>
+    <!-- end of canvas to pdf -->
+    
 
 </body>
 

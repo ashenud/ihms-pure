@@ -423,14 +423,11 @@
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/jspdf.min.js"></script>
 
     <script type="text/javascript" src="./js/growth-chart-bmi.js"></script>
     <!--end core js files-->
 
-    
-    
-    <!-- writed scripts -->
-    
     
     <!-- sidebar collapse -->   
     <script>
@@ -449,6 +446,31 @@
         });
     </script>
     <!-- end of sidebar collapse -->
+    
+    
+    <!-- canvas to pdf -->
+    <script>
+        
+        $(".download").click(function() {
+            
+            var canvas = document.getElementById('growth-chart-bmi');
+            
+            var imgData = canvas.toDataURL();
+            var doc = new jsPDF({
+                orientation: 'landscape'
+            });
+            
+            var width = (canvas.width * 65) / 240;
+            var height = (canvas.height * 65) / 240;
+
+            doc.addImage(imgData, 'JPEG', 15, 18, width, height);
+            doc.output('dataurlnewwindow');     //opens the data uri in new window
+            //doc.save('baby-bmi-chart.pdf'); //Download the rendered PDF.
+        });
+    
+    </script>
+    <!-- end of canvas to pdf -->
+    
 
 </body>
 

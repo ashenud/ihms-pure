@@ -423,14 +423,11 @@
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../assets/js/jspdf.min.js"></script>
 
     <script type="text/javascript" src="./js/growth-chart-weight.js"></script>
     <!--end core js files-->
 
-    
-    
-    <!-- writed scripts -->
-    
     
     <!-- sidebar collapse -->   
     <script>
@@ -449,6 +446,28 @@
         });
     </script>
     <!-- end of sidebar collapse -->
+    
+    <!-- canvas to pdf -->
+    <script>
+        
+        $(".download").click(function() {
+            
+            var canvas = document.getElementById('growth-chart-weight');
+            
+            var imgData = canvas.toDataURL();
+            var doc = new jsPDF('p', 'mm', 'a4');
+            
+            var width = (canvas.width * 35) / 240;
+            var height = (canvas.height * 35) / 240;
+
+            doc.addImage(imgData, 'JPEG', 34, 15, width, height);
+            doc.output('dataurlnewwindow');     //opens the data uri in new window
+            //doc.save('baby-weight-chart.pdf'); //Download the rendered PDF.
+        });
+    
+    </script>
+    <!-- end of canvas to pdf -->
+    
 
 </body>
 
