@@ -109,7 +109,7 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <div class="menu">
-                                <h4 class="text-uppercase font-weight-bold mb-4">Change Password</h4>
+                                <h4 class="text-uppercase font-weight-bold mb-4">මුරපදය වෙනස් කරන්න</h4>
                             </div>
                         </div>
                         <div class="col-md-2"></div>
@@ -121,24 +121,24 @@
                             <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="old_password">
-                                        Old Password
+                                        පැරණි මුරපදය
                                         <?php include('inc/alert-old-pass.php'); ?>                                    
                                     </label>
-                                    <input type="password" class="form-control" name="old_password" placeholder="Enter old password" required>
+                                    <input type="password" class="form-control" name="old_password" placeholder="පැරණි මුරපදය ඇතුළත් කරන්න" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="new_password">
-                                        New Password
+                                        නව මුරපදය
                                         <?php include('inc/alert-new-pass.php'); ?>
                                     </label>
-                                    <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter new password" required>
+                                    <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="නව මුරපදය ඇතුළත් කරන්න" required>
                                     <span toggle="#new_password" class="far fa-fw fa-eye password-icon"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirm_password">Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="Re-type new password" required>
+                                    <label for="confirm_password">මුරපදය තහවුරු කරන්න</label>
+                                    <input type="password" class="form-control" name="confirm_password" placeholder="නව මුරපදය නැවත ඇතුළත් කරන්න" required>
                                 </div>
-                                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="submit" class="btn btn-primary">ඉදිරිපත් කරන්න</button>
                             </form>
                         </div>
                         <div class="col-md-4 pwd-validate">

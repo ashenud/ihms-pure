@@ -61,8 +61,15 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/sister.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['sister_id']); ?> </a>
+                        <img src="./img/sister.png" class="rounded-circle">
+                        <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
+                            $query00 = "SELECT * FROM sister WHERE sister_id='".$_SESSION['sister_id']."'";
+                            $result00= mysqli_query($conn,$query00);
+                            $row00=mysqli_fetch_assoc($result00);
+                        ?>
+                        <a href="#"> <span><?php echo $row00['sister_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -72,7 +79,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -80,7 +87,7 @@
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Manage</span>
+                                <span class="list">කළමනාකරණය</span>
                             </a>
                         </li>
                         <div class="collapse collapse-manage" id="manage">
@@ -89,7 +96,7 @@
                                     <span class="icon">
                                         <i class="fas fa-user-plus" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">add midwife</span>
+                                    <span class="list">වින්නඹුවන් එක් කරන්න</span>
                                 </a>
                             </li>
                             <li>
@@ -97,7 +104,7 @@
                                     <span class="icon">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">view midwife</span>
+                                    <span class="list">වින්නඹුවන් බලන්න</span>
                                 </a>
                             </li>
                             <li>
@@ -105,33 +112,16 @@
                                     <span class="icon-active">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">view babies</span>
+                                    <span class="list">ළමුන් බලන්න</span>
                                 </a>
                             </li>
                         </div>
-                        <li>
-                            <a href="sis-vaccinations.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-syringe" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Vaccinations</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="sis-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
                         <li>
                             <a href="sis-table.php" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-table" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Tables</span>
+                                <span class="list">දත්ත වගු</span>
                             </a>
                         </li>
                         <li>
@@ -139,7 +129,7 @@
                                 <span class="icon">
                                     <i class="fas fa-inbox" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Inbox</span>
+                                <span class="list">එන පණිවිඩ</span>
                             </a>
                         </li>
                         <li>
@@ -147,7 +137,7 @@
                                 <span class="icon">
                                     <i class="fas fa-envelope" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Send Messages</span>
+                                <span class="list">පණිවිඩ යවන්න</span>
                             </a>
                         </li>
                     </ul>

@@ -31,7 +31,7 @@ body, html {
 .nav-item .nav-link.btn p{
     font-size: 18px;
     position: relative;
-    top: 0;
+    top: -1px;
 }
 
 .nav-item .nav-link .login-icon{
