@@ -62,7 +62,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -70,7 +70,7 @@
                                 <span class="icon">
                                     <i class="fas fa-key" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Change Password</span>
+                                <span class="list">මුරපදය වෙනස් කරන්න</span>
                             </a>
                         </li>
                     </ul>

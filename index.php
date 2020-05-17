@@ -111,6 +111,15 @@
                       
                         <?php
                         }
+                        else if(isset($_SESSION['admin_id'])) {
+                        ?>
+                        
+                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/admin-doctor/admin-doc-dashboard.php';">
+					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
+				        </button>
+                      
+                        <?php
+                        }
                         else {
                         ?>
                             
