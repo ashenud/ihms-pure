@@ -53,8 +53,8 @@
 	                <div class="panel-body">
 	                    <div class="text-center">
 	                        <h3><i class="fa fa-lock fa-4x"></i></h3>
-	                        <h2 class="text-center">Change Password</h2>
-	                        <p>Enter new password here to reset.</p>
+	                        <h2 class="text-center">මුරපදය වෙනස් කරන්න</h2>
+	                        <p>නැවත සැකසීමට මෙහි නව මුරපදය ඇතුළත් කරන්න.</p>
 	                        <div class="panel-body">
                                
                                 <div class="error-alert">
@@ -63,14 +63,14 @@
 	                            <form action="./php/change-password.php" id="change-password" role="form" autocomplete="off" class="form" method="POST">
                                     
                                     <div class="form-group">
-                                        <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter new password" required>
+                                        <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="නව මුරපදය ඇතුළත් කරන්න" required>
                                         <span toggle="#new_password" class="far fa-fw fa-eye password-icon"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="confirm password" required>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="නව මුරපදය නැවත ඇතුළත් කරන්න" required>
                                     </div>	                                
 	                                <div class="form-group">
-	                                    <input name="submit" id="submit" class="btn btn-lg btn-primary btn-block text-uppercase py-1" value="Reset Password" type="submit">
+	                                    <input name="submit" id="submit" class="btn btn-lg btn-primary btn-block text-uppercase py-1" value="මුරපදය නැවත සකසන්න" type="submit">
 	                                </div>
 
 	                                <input type="hidden" class="hide" name="token" id="token" value="">

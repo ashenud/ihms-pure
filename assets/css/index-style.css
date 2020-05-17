@@ -29,19 +29,17 @@ body, html {
 }
 
 .nav-item .nav-link.btn p{
-    font-size: 15px;
+    font-size: 18px;
     position: relative;
-    top: -2px;
-    font-weight: bold;
+    top: 0;
 }
 
 .nav-item .nav-link .login-icon{
     font-size: 18px;
     position: relative;
-    top: 4px;
+    top: 3px;
     margin-left: -7px;
     margin-right: 3px;
-    font-weight: bold;
 }
 
 .nav-item .nav-link .sign-out-icon{

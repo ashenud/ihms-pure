@@ -7,7 +7,7 @@ include('../../php/basic/connection.php');
 
 
 if(!isset($_SESSION['code'])) {
-    exit("Link has expired");
+    exit("සබැඳිය කල් ඉකුත් වී ඇත");
 }
 
 $code=$_SESSION['code'];
@@ -17,7 +17,7 @@ $query1="SELECT reset_email FROM reset_password WHERE reset_code='$code'";
 $result1=mysqli_query($conn, $query1);
 
 if(mysqli_num_rows($result1) == 0) {
-    exit("Link has expired");
+    exit("සබැඳිය කල් ඉකුත් වී ඇත");
 }
 
 if(isset($_POST['submit'])) {

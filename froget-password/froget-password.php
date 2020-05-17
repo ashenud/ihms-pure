@@ -41,8 +41,8 @@
 	                <div class="panel-body">
 	                    <div class="text-center">
 	                        <h3><i class="fa fa-lock fa-4x"></i></h3>
-	                        <h2 class="text-center">Forgot Password?</h2>
-	                        <p>You can reset your password here.</p>
+	                        <h2 class="text-center">මුරපදය අමතක වුණා ද?</h2>
+	                        <p>ඔබගේ මුරපදය මෙහිදී නැවත සැකසිය හැක.</p>
 	                        <div class="panel-body">
                                
                                 <div class="error-alert">
@@ -51,17 +51,17 @@
 	                            <form action="./php/send-code-to-mail.php" id="froget-password" role="form" autocomplete="off" class="form" method="POST">
                                     
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="user_id" placeholder="enter user id">
+                                        <input type="text" class="form-control" name="user_id" placeholder="පරිශීලක නම ඇතුළත් කරන්න">
                                     </div>
 
 	                                <div class="form-group">
 	                                    <div class="input-group">
 	                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-	                                        <input id="email" name="email" placeholder="enter email address" class="form-control" type="email">
+	                                        <input id="email" name="email" placeholder="විද්‍යුත් තැපැල් ලිපිනය ඇතුළත් කරන්න" class="form-control" type="email">
 	                                    </div>
 	                                </div>
 	                                <div class="form-group">
-	                                    <input name="submit" class="btn btn-lg btn-primary btn-block text-uppercase py-1" value="Reset Password" type="submit">
+	                                    <input name="submit" class="btn btn-lg btn-primary btn-block text-uppercase py-1" value="ඉදිරිපත් කරන්න" type="submit">
 	                                </div>
 
 	                                <input type="hidden" class="hide" name="token" id="token" value="">
