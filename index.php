@@ -75,7 +75,7 @@
                     </li>
                     <li class="nav-item">
                         <?php 
-                        if(isset($_SESSION['mother_id'])) {                            
+                        if(isset($_SESSION['admin_id'])) {                            
                         ?>  
                         
                         <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/baby/baby-select.php';">
@@ -111,7 +111,7 @@
                       
                         <?php
                         }
-                        else if(isset($_SESSION['admin_id'])) {
+                        else if(isset($_SESSION['mother_id'])) {
                         ?>
                         
                         <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/admin-doctor/admin-doc-dashboard.php';">

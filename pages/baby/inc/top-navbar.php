@@ -13,7 +13,24 @@
                             <span class="text-uppercase">මුල් පිටුවට</span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown 
+                    <?php if(!isset($_SESSION['mother_id'])) {	
+                        echo "d-none";
+                        }
+                        if(isset($_SESSION['doctor_id'])){
+                            echo "d-none";
+                        }
+                        elseif(isset($_SESSION['sister_id'])){
+                            echo "d-none";
+                        }
+                        elseif(isset($_SESSION['midwife_id'])){
+                            echo "d-none";
+                        }
+                        elseif(isset($_SESSION['admin_id'])){
+                            echo "d-none";
+                        }
+                        else {}
+                    ?>">
                         <a class="nav-link dropdown-toggle text-uppercase" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             ඔබේ ගිණුම
                         </a>
