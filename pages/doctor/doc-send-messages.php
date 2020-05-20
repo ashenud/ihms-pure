@@ -52,8 +52,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/doctor.png" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query00 = "SELECT * FROM doctor WHERE doctor_id='".$_SESSION['doctor_id']."'";
                             $result00= mysqli_query($conn,$query00);
                             $row00=mysqli_fetch_assoc($result00);
@@ -110,8 +108,7 @@
                                 <span class="icon">
                                     <i class="fas fa-inbox" aria-hidden="true"></i>
                                     
-                                    <?php 
-                                        mysqli_select_db($conn, 'cs2019g6');
+                                    <?php
                                         $sql001="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
                                         $run001=mysqli_query($conn,$sql001);
                                         $row001=mysqli_fetch_assoc($run001);
@@ -219,7 +216,6 @@
 
 
                                             <?php
-                                                mysqli_select_db($conn,'cs2019g6');
                                                 $query1="SELECT doctor_moh_division FROM doctor WHERE doctor_id='".$_SESSION['doctor_id']."'";
                                                 $result1=mysqli_query($conn,$query1);
                                                 $row1=mysqli_fetch_assoc($result1);
@@ -315,7 +311,6 @@
 
 
                                             <?php
-                                                mysqli_select_db($conn,'cs2019g6');
                                                 $query3="SELECT doctor_moh_division FROM doctor WHERE doctor_id='".$_SESSION['doctor_id']."'";
                                                 $result3=mysqli_query($conn,$query3);
                                                 $row3=mysqli_fetch_assoc($result3);

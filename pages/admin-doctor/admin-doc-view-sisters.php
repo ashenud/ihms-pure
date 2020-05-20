@@ -175,7 +175,6 @@
                                     <div class="table-for-data" style="margin-top: 30px">
                         
                                         <?php
-                                        mysqli_select_db($conn, 'cs2019g6');
 
                                         $query1 = "SELECT sister_id, sister_name, sister_division FROM sister";
                                         $result1= mysqli_query($conn,$query1);

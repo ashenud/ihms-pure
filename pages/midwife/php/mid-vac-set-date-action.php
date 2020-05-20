@@ -10,8 +10,6 @@ if(isset($_POST['date-set'])) {
     $giving_date=($_POST['giving_date']);
     $midwife_id=$_SESSION['midwife_id'];
     
-    mysqli_select_db($conn, 'cs2019g6');
-    
     if($vaccine==1) {
         
         $vac_name='BCG-1';

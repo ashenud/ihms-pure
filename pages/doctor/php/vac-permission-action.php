@@ -9,7 +9,6 @@ if(isset($_POST['submit_vac'])) {
     $baby_id=($_POST['baby_id']);
     $doctor_id=$_SESSION['doctor_id'];
 
-    mysqli_select_db($conn, 'cs2019g6');
     $query1="SELECT * FROM baby_register WHERE baby_id='".$baby_id."'";
     $result1=mysqli_query($conn,$query1);
     $row1=mysqli_fetch_assoc($result1);
@@ -163,7 +162,6 @@ else if(isset($_POST['submit-vac-with-data'])) {
     $hip=($_POST['hip']);
     $other=($_POST['other']);
     
-    mysqli_select_db($conn, 'cs2019g6');
     $query1="SELECT * FROM baby_register WHERE baby_id='".$baby_id."'";
     $result1=mysqli_query($conn,$query1);
     $row1=mysqli_fetch_assoc($result1);

@@ -55,8 +55,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/mother.png" width="50" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query1 = "SELECT * FROM mother WHERE mother_nic='".$_SESSION['mother_id']."'";
                             $result1= mysqli_query($conn,$query1);
                             $row=mysqli_fetch_assoc($result1);
@@ -144,10 +142,8 @@
                 <div class="container">
                     <div class="row">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');    
-                        
                             $mother_nic=$_SESSION['mother_id'];
-                            $query1="SELECT * FROM baby_register WHERE mother_nic='{$mother_nic}'";
+                            $query1="SELECT * FROM baby_register WHERE mother_nic='{$mother_nic}' AND status='active'";
                             $result1=mysqli_query($conn, $query1);
                         
                             while ($row = mysqli_fetch_assoc($result1)) {
@@ -156,9 +152,6 @@
                                 $name = $row["baby_first_name"];
                                 
                                 if($gender=='M') {
-                                    
-                                
-
                         ?>
                             
                                     <div class="col-md-auto">

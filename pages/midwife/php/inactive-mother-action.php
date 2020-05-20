@@ -7,8 +7,6 @@ if(isset($_POST['submit-mother'])) {
 // get value of id that sent from address bar
 $inactive_mother_id = $_POST['remove-mother'];
 
-// Delete data in mysql from row that has this id
-mysqli_select_db($conn, 'cs2019g6');
 $query1="UPDATE user SET status='inactive' WHERE user_id='$inactive_mother_id'";
 $query2="UPDATE mother SET status='inactive' WHERE mother_nic='$inactive_mother_id'";
 $query3="UPDATE baby_register SET status='inactive' WHERE mother_nic='$inactive_mother_id'";

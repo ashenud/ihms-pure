@@ -8,8 +8,6 @@ $role="sister";
 $role_id="2";
 $pwd=md5($password);
 
-mysqli_select_db($conn, 'cs2019g6');
-
 $sql1="INSERT INTO user(user_id,role,role_id,password,email) 
                         VALUES('$user_id','$role','$role_id','$pwd','$email')";
 

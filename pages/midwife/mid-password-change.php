@@ -53,8 +53,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/midwife.png" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query00 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
                             $result00= mysqli_query($conn,$query00);
                             $row00=mysqli_fetch_assoc($result00);

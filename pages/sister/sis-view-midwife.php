@@ -63,8 +63,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/sister.png" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query00 = "SELECT * FROM sister WHERE sister_id='".$_SESSION['sister_id']."'";
                             $result00= mysqli_query($conn,$query00);
                             $row00=mysqli_fetch_assoc($result00);
@@ -180,8 +178,7 @@
                                     <div class="table-for-data" style="margin-top: 30px">
                         
                                         <?php
-                                        mysqli_select_db($conn, 'cs2019g6');
-
+                                        
                                         $query1 = "SELECT midwife_id, midwife_name, midwife_area FROM midwife";
                                         $result1= mysqli_query($conn,$query1);
                                         

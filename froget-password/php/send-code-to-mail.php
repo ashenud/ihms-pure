@@ -10,7 +10,6 @@ if(isset($_POST['submit'])) {
     $reset_email=mysqli_real_escape_string($conn, $_POST['email']);
     $user_id=mysqli_real_escape_string($conn, $_POST['user_id']);
     
-    mysqli_select_db($conn, 'cs2019g6');
     $query1="SELECT * FROM user WHERE user_id='{$user_id}' AND email='{$reset_email}' LIMIT 1";
 
     $result1=mysqli_query($conn, $query1);

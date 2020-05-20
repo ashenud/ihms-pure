@@ -23,9 +23,6 @@
             $confirm_pwd=mysqli_real_escape_string($conn, $_POST['confirm_password']);
             $hsd_confirm_pwd=md5($confirm_pwd);
         
-            //connect to database
-            mysqli_select_db($conn, 'cs2019g6');
-        
             $query1="SELECT password FROM user WHERE user_id='{$user}'";
             $result1=mysqli_query($conn, $query1);
 

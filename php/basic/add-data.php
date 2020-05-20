@@ -5,7 +5,6 @@
 
 
     //add data to baby
-	mysqli_select_db($conn, 'cs2019g6');
 	$pwd="testbaby1pwd";
     //$hsd_pwd=md5($pwd);
 	$query6="INSERT INTO baby(baby_id,baby_name,date_of_birth,baby_address,baby_messages,baby_password)

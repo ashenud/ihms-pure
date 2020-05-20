@@ -10,8 +10,6 @@ if(isset($_POST['mark_vac'])) {
     $batch_no=($_POST['batch_no']);
     $date_given=($_POST['date_given']);
     $midwife_id=$_SESSION['midwife_id'];
-
-    mysqli_select_db($conn, 'cs2019g6');
     
     if($vaccine==1) {
         

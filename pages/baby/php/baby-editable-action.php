@@ -4,8 +4,6 @@
 
 <?php
 
-    mysqli_select_db($conn, 'cs2019g6');
-
     if(isset($_POST['UpdateVacDate'])) {
         extract($_POST);        
         

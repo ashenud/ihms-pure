@@ -110,8 +110,7 @@
                                 <span class="icon">
                                     <i class="fas fa-inbox" aria-hidden="true"></i>
                                     
-                                    <?php 
-                                        mysqli_select_db($conn, 'cs2019g6');
+                                    <?php
                                         $sql001="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
                                         $run001=mysqli_query($conn,$sql001);
                                         $row001=mysqli_fetch_assoc($run001);

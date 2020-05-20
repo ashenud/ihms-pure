@@ -4,8 +4,7 @@
 <?php
 
 if(isset($_POST['searchBabyUsingMnic'])){
-
-    mysqli_select_db($conn,'cs2019g6');
+    
     extract($_POST);
 
     $query1="SELECT * FROM mother WHERE mother_nic='{$searchUser}' AND status='active' LIMIT 1";

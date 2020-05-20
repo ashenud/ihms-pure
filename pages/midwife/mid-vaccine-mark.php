@@ -32,8 +32,6 @@
     
     
     <?php
-                                
-        mysqli_select_db($conn, 'cs2019g6');
 
         $sql0 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
         $run0 = mysqli_query($conn, $sql0);
@@ -119,8 +117,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/baby.png" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query1 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
                             $result1= mysqli_query($conn,$query1);
                             $row=mysqli_fetch_assoc($result1);
@@ -307,8 +303,6 @@
                                
                                 <?php
                                 
-                                mysqli_select_db($conn, 'cs2019g6');
-                                    
                                 $query0 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
                                 $result0 = mysqli_query($conn, $query0);
                                 $row0 = mysqli_fetch_assoc($result0);

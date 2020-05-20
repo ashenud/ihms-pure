@@ -15,7 +15,6 @@
 
                 <!--BCG-1-->
                 <?php
-                mysqli_select_db($conn, 'cs2019g6');
                 $query1="SELECT * FROM vac_birth WHERE baby_id='".$_SESSION['baby_id']."' AND vac_id=1";
                 $result1=mysqli_query($conn,$query1);
                 $row1=mysqli_fetch_assoc($result1);

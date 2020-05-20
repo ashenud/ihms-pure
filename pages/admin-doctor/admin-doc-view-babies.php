@@ -175,7 +175,6 @@
                                     <div class="table-for-data" style="margin-top: 30px">
                         
                                         <?php
-                                        mysqli_select_db($conn, 'cs2019g6');
 
                                         $query1 = "SELECT mother_id, baby_id, address, YEAR(baby_dob) AS babyY, MONTH(baby_dob) AS babyM, DAY(baby_dob) AS babyD FROM baby_register";
                                         $result1= mysqli_query($conn,$query1);

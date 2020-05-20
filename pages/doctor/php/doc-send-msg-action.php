@@ -3,8 +3,6 @@ include('../../../php/basic/connection.php');
 
 extract($_POST);
 
-mysqli_select_db($conn,'cs2019g6');
-
     if(isset($_POST['submit-to-mid'])){
 
         $new_status="unread";

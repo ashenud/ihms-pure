@@ -53,8 +53,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/midwife.png" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
                             $result1= mysqli_query($conn,$query1);
                             $row=mysqli_fetch_assoc($result1);
@@ -213,8 +211,7 @@
                                         </div>
                                         <p class="mt-3 mb-0 text-sm">
                                             <?php 
-                                    
-                                                mysqli_select_db($conn, 'cs2019g6');
+
                                                 $query1="SELECT * FROM midwife_reminder WHERE midwife_id='".$_SESSION['midwife_id']."'";
                                                 $result1=mysqli_query($conn, $query1);
                                                 $num_rows1=mysqli_num_rows($result1);

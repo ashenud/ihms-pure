@@ -7,8 +7,7 @@
 		$user_id=mysqli_real_escape_string($conn, $_POST['user_id']);
 		$pwd=mysqli_real_escape_string($conn, $_POST['password']);
 		$hsd_pwd=md5($pwd);
-            
-		mysqli_select_db($conn, 'cs2019g6');
+
 		$query1="SELECT * FROM user WHERE user_id='{$user_id}' AND password='{$hsd_pwd}' AND status='active' LIMIT 1";
 		$result1=mysqli_query($conn, $query1);
 

@@ -268,7 +268,6 @@
                                         <label>Baby ID:</label>
                                         <input type="text" name="bId" class="form-control" id="bId" 
                                         value="<?php
-                                            mysqli_select_db($conn,'cs2019g6');
                                             $query1="SELECT MAX(baby_id) FROM baby_register WHERE baby_id LIKE'%".$_SESSION['GnDivision']."'";
                                             $result1=mysqli_query($conn,$query1) ;
                                             $row1 = mysqli_fetch_assoc($result1) ;

@@ -12,7 +12,6 @@ if(!isset($_SESSION['code'])) {
 
 $code=$_SESSION['code'];
 
-mysqli_select_db($conn, 'cs2019g6');
 $query1="SELECT reset_email FROM reset_password WHERE reset_code='$code'";
 $result1=mysqli_query($conn, $query1);
 

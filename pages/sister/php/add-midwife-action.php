@@ -2,17 +2,6 @@
 
    include ('../../../php/basic/connection.php' ); 
 
-   if(!$conn)
-   {
-        echo 'Not connected To Server';
-
-   }
-   if(!mysqli_select_db($conn,'cs2019g6'))
-   {
-        echo 'Database Not Selected';
-
-   }
-
         $role='midwife';
         $role_id=3;
         $Midwife_id=$_POST['id'];

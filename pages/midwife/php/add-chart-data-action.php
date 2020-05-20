@@ -4,9 +4,6 @@
 
 extract($_POST);
 
-
-mysqli_select_db($conn, 'cs2019g6');
-
 $sql1="INSERT INTO growth(baby_id,weight,height,baby_age_in_months) 
                         VALUES('$user_id','$weight','$height','$month')";
 

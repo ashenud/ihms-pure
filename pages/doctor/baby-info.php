@@ -10,8 +10,6 @@
 
     $_SESSION['view_id']=$_POST['view-id'];
     $view_id=$_SESSION['view_id'];
-
-    mysqli_select_db($conn,'cs2019g6');
     
     $query1="SELECT * FROM baby_register WHERE baby_id='$view_id'";
     $result1=mysqli_query($conn,$query1);

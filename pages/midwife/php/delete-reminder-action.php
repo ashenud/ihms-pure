@@ -4,8 +4,6 @@
 
 extract($_POST);
 
-mysqli_select_db($conn, 'cs2019g6');
-
     if (isset($_POST['submit3'])) {
 
         $query1="DELETE FROM midwife_reminder WHERE date_time='$date_time'";
