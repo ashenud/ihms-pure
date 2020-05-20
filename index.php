@@ -35,7 +35,7 @@
 <body class="index-page sidebar-collapse">
     
     <!--navbar-->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="70">
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="#" rel="tooltip" data-placement="bottom">
@@ -309,6 +309,14 @@
 
     </div>
     <!--end wrapper-->
+    
+    <!-- back to top button -->
+    <div class="back-to-top">
+        <a href="#">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+    <!-- end of to top button -->
     
     <!--content-->
     <div class="content">
