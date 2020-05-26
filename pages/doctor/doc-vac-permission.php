@@ -187,6 +187,14 @@
                             </a>
                         </li>
                         <li>
+                            <a href="./doc-baby-editable-page.php" class="text-uppercase">
+                                <span class="icon">
+                                    <i class="fas fa-table" aria-hidden="true"></i>
+                                </span>
+                                <span class="list">දත්ත සංස්කරණය</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="../baby/baby-select.php" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>

@@ -215,12 +215,12 @@
                                                             FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) months,
                                                             
                                                             CEILING((((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) - FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12))* 30) days
-                                                          FROM baby_register) x";
+                                                          FROM baby_register WHERE status='active') x";
                                         $result1= mysqli_query($conn,$query1);
 
                                         ?>
 
-                                        <table class="mdl-data-table table-responsive-md bordered" id="datatable">
+                                        <table class="mdl-data-table table-responsive-xl bordered" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>Mother NIC</th>

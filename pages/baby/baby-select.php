@@ -160,7 +160,7 @@
                                                 <div class="card card-common">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
-                                                            <i class="fas fa-baby" style="color: #1565c0;"></i>
+                                                            <i class="fas fa-baby" style="color: #2a94c3;"></i>
                                                         </div>
                                                     </div>
                                                     <div class="c-footer py-1 text-center">
@@ -183,7 +183,7 @@
                                                 <div class="card card-common">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
-                                                            <i class="fas fa-baby" style="color: #c2185b;"></i>
+                                                            <i class="fas fa-baby" style="color: #bd445d;"></i>
                                                         </div>
                                                     </div>
                                                     <div class="c-footer py-1 text-center">

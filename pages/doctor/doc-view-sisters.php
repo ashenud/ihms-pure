@@ -197,7 +197,7 @@
 
                                         ?>
 
-                                        <table class="mdl-data-table table-responsive-md bordered" id="datatable">
+                                        <table class="mdl-data-table table-responsive-lg bordered" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>Sister ID</th>
