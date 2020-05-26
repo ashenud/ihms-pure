@@ -61,8 +61,6 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/midwife.png" class="rounded-circle">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');
-
                             $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
                             $result1= mysqli_query($conn,$query1);
                             $row=mysqli_fetch_assoc($result1);
@@ -119,8 +117,7 @@
                                 <span class="icon">
                                     <i class="fas fa-inbox" aria-hidden="true"></i>
                                     
-                                    <?php 
-                                        include "php/selectdb.php";
+                                    <?php
                                         $sql001="SELECT COUNT(status) AS unreadSMS FROM midwife_message WHERE status='unread' AND midwife_id='".$_SESSION['midwife_id']."'";
                                         $run001=mysqli_query($conn,$sql001);
                                         $row001=mysqli_fetch_assoc($run001);

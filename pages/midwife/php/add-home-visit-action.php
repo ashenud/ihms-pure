@@ -5,8 +5,6 @@
 extract($_POST);
 
 
-mysqli_select_db($conn, 'cs2019g6');
-
 $sql1="INSERT INTO home_visit(mother_id,midwife_id,day1,day2,day3,day4,lat,lng) 
                         VALUES('$mNic','$midwife_id','$day1','$day2','$day3','$day4','$latInput','$longInput')";
 
