@@ -75,7 +75,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" style="cursor:default">
+                            <a class="text-uppercase" data-toggle="collapse" href="#manage" id="manage-users">
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
@@ -274,6 +274,12 @@
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+        });
+    </script>
+    
+    <script>
+        $('#manage-users').on('click', function () {
+            $('#manage').toggleClass('collapse-manage d-none');
         });
     </script>
     
