@@ -145,7 +145,7 @@
                         <li>
                             <a class="text-uppercase" data-toggle="collapse" href="#location">
                                 <span class="icon">
-                                    <i class="fas fa-map" aria-hidden="true"></i>
+                                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                                 </span>
                                 <span class="list">සිතියම්</span>
                             </a>
