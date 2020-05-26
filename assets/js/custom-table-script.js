@@ -3,7 +3,7 @@ $(document).ready(function () {
         responsive: true,
         "pagingType": "simple_numbers",
         "lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-        "dom": "<'container'<'row'<'col-md-3'l><'col-md-5'><'col-md-4'f>>>" +
+        "dom": "<'container'<'row'<'col-md-4'l><'col-md-2'><'col-md-6'f>>>" +
             "<'container'<'row mt-3 d-flex justify-content-center't>>" +
             "<'container'<'row mt-3'<'col-md-3'i><'col-md-9 d-flex justify-content-end'p>>>",
 

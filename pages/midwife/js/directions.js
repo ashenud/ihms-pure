@@ -12,12 +12,23 @@ var customLabel = {
 //map
 
 function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(7.873, 80.771),
-        zoom: 12
-    });
-    var infoWindow = new google.maps.InfoWindow;
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer();
 
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: new google.maps.LatLng(7.873, 80.771),
+    zoom: 12
+});
+    var infoWindow = new google.maps.InfoWindow;
+    directionsRenderer.setMap(map);
+
+    var onChangeHandler = function() {
+        calculateAndDisplayRoute(directionsService, directionsRenderer);
+      };
+      
+      document.getElementById('start').addEventListener('change', onChangeHandler);
+      document.getElementById('end').addEventListener('change', onChangeHandler);
+  
     // including locations in database to the map
     downloadUrl('./php/location-add-action.php', function (data) {
         var xml = data.responseXML;
@@ -102,6 +113,24 @@ function initMap() {
     });
 }
 
+
+    
+
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+  directionsService.route(
+      {
+        origin: {query: document.getElementById('start').value},
+        destination: {query: document.getElementById('end').value},
+        travelMode: 'WALKING'
+      },
+      function(response, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+}
 
 
 function downloadUrl(url, callback) {

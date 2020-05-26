@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 <?php include('../../php/basic/connection.php'); ?>
 
-<?php if(!isset($_SESSION['doctor_id'])) {	
+<?php if(!isset($_SESSION['midwife_id'])) {	
 	header('location:../../index.php?noPermission=1');
 	}
 ?>
@@ -28,6 +28,18 @@
     <link rel="stylesheet" href="../../assets/css/animate.css">
 
     <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
+    
+    <style>
+        #map {
+            height: 90vh;
+            margin-top: -10px;
+        }
+
+        .collapse-location{
+            display: block !important;
+        }
+        
+    </style>
 
     <title>Infant Health Management System</title>
     
@@ -49,14 +61,21 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['doctor_id']); ?> </a>
+                        <img src="./img/midwife.png" class="rounded-circle">
+                        <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
+                            $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                            $result1= mysqli_query($conn,$query1);
+                            $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                         <li>
-                            <a href="doc-dashboard.php" class="text-uppercase">
+                            <a href="mid-dashboard.php" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
@@ -68,50 +87,43 @@
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Manage</span>
+                                <span class="list">කළමනාකරණය</span>
                             </a>
                         </li>
                         <div class="collapse collapse-manage" id="manage">
                             <li>
-                                <a href="doc-view-sisters.php" class="text-uppercase drop">
-                                    <span class="icon-active">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                <a href="mid-add-babies.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">view sisters</span>
+                                    <span class="list">ළමුන් ඇතුලත් කිරීම</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="doc-view-babies.php" class="text-uppercase drop">
+                                <a href="mid-view-babies.php" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
-                                    <span class="list">view babies</span>
+                                    <span class="list">ළමුන් බලන්න</span>
                                 </a>
                             </li>
                         </div>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="mid-charts.php" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-bar" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">charts</span>
+                                <span class="list">වර්ධන සටහන</span>
                             </a>
                         </li>
                         <li>
-                            <a href="doc-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-inbox.php" class="text-uppercase">
+                            <a href="mid-inbox.php" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-inbox" aria-hidden="true"></i>
                                     
-                                    <?php
-                                        $sql001="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
+                                    <?php 
+                                        include "php/selectdb.php";
+                                        $sql001="SELECT COUNT(status) AS unreadSMS FROM midwife_message WHERE status='unread' AND midwife_id='".$_SESSION['midwife_id']."'";
                                         $run001=mysqli_query($conn,$sql001);
                                         $row001=mysqli_fetch_assoc($run001);
                                         $count=$row001['unreadSMS'];
@@ -129,15 +141,49 @@
                                     ?>
                                     
                                 </span>
-                                <span class="list">Inbox</span>
+                                <span class="list">එන පණිවිඩ</span>
                             </a>
                         </li>
                         <li>
-                            <a href="doc-send-messages.php" class="text-uppercase">
+                            <a class="text-uppercase" data-toggle="collapse" href="#location" id="map-location">
                                 <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Send Messages</span>
+                                <span class="list">සිතියම්</span>
+                            </a>
+                        </li>
+                        <div class="collapse collapse-location" id="location">
+                            <li>
+                                <a href="#" class="text-uppercase drop-active">
+                                    <span class="icon-active">
+                                        <i class="fas fa-map-pin" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">අදට නියමිත ස්ථාන</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mid-give-directions.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-signs" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">දිශාව දැක්වීම</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mid-show-all-locations.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">සියලුම ස්ථාන</span>
+                                </a>
+                            </li>
+                        </div>
+                        <li>
+                            <a href="mid-visiting-record.php" class="text-uppercase">
+                                <span class="icon">
+                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
+                                </span>
+                                <span class="list">නිවාසවලට යෑම්</span>
                             </a>
                         </li>
                     </ul>
@@ -170,6 +216,7 @@
             <div class="content">
                
                 <div class="container">
+                    <div id="map"></div>
                 </div>
 
             </div>
@@ -183,20 +230,16 @@
 
     <!-- optional JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/charts/Chart.js"></script>
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtlwcov50Y0-MKAlkWmzx5sdYJY2HeFh4&callback=initMap"></script>
 
-
+    <script type="text/javascript" src="../../assets/js/script.js"> </script>
+    <script type="text/javascript" src="./js/location-view-script.js"> </script>
     <!--end core js files-->
 
-    
-    
     <!-- writed scripts -->
-    
-    
-    <!-- sidebar collapse -->   
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
@@ -212,14 +255,14 @@
             });
         });
     </script>
-    <!-- end of sidebar collapse -->
     
-    <!-- chart -->
-    
-    <!-- end of chart -->
-    
-    
+     <script>
+        $('#map-location').on('click', function () {
+            $('#location').toggleClass('collapse-location d-none');
+        });
+    </script>
     <!-- end of writed scripts -->
+    
 
 
 
@@ -227,3 +270,5 @@
 
 </html>
 
+
+<?php mysqli_close($conn); ?>

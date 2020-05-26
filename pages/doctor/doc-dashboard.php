@@ -180,89 +180,69 @@
                     <div class="row mt-4 mb-5">
                        
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
-                            <div class="card card-stats">
-                                <div class="card-header header-warning">
-                                    <div class="card-icon one">
-                                        <i class="fas fa-baby"></i>
-                                    </div>
-                                    <p class="card-category">Active Babies</p>
-                                    
-                                    <?php 
-                                    
-                                        $query1="SELECT * FROM baby_register";
-                                        $result1=mysqli_query($conn, $query1);
-                                        $num_rows=mysqli_num_rows($result1);
-                                        
-                                    ?>
-                                                                        
-                                    <h3 class="card-title counter"><?php echo $num_rows; ?></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-baby-carriage"></i>
-                                        <a href="./doc-view-babies.php">View all Babies...</a>
+                            <a class="text-decoration-none" href="./doc-view-babies.php">
+                                <div class="card card-stats">
+                                    <div class="card-header stat-header">
+                                        <div class="card-icon icon-color">
+                                            <i class="fas fa-baby"></i>
+                                        </div>
+                                        <p class="card-category">Active Babies</p>
+
+                                        <?php 
+
+                                            $query1="SELECT * FROM baby_register WHERE status='active'";
+                                            $result1=mysqli_query($conn, $query1);
+                                            $num_rows=mysqli_num_rows($result1);
+
+                                        ?>
+
+                                        <h3 class="card-title counter"><?php echo $num_rows; ?></h3>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <a class="text-decoration-none" href="./doc-inbox.php">
+                                <div class="card card-stats">
+                                    <div class="card-header stat-header">
+                                        <div class="card-icon icon-color">
+                                            <i class="far fa-envelope"></i>
+                                        </div>
+                                        <p class="card-category">inbox</p>
+
+                                        <?php
+                                            $query4="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
+                                            $result4=mysqli_query($conn,$query4);
+                                            $row4=mysqli_fetch_assoc($result4);
+                                        ?>
+
+                                        <h3 class="card-title counter"><?php echo $row4['unreadSMS']; ?></h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
                             <div class="card card-stats">
-                                <div class="card-header">
-                                    <div class="card-icon two">
-                                        <i class="far fa-envelope"></i>
-                                    </div>
-                                    <p class="card-category">received message</p>
-                                    
-                                    <?php
-                                        $query4="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
-                                        $result4=mysqli_query($conn,$query4);
-                                        $row4=mysqli_fetch_assoc($result4);
-                                    ?>
-                                    
-                                    <h3 class="card-title counter"><?php echo $row4['unreadSMS']; ?></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-tasks"></i> 
-                                        <a href="./doc-inbox.php">View all Messages...</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
-                            <div class="card card-stats">
-                                <div class="card-header">
-                                    <div class="card-icon three">
+                                <div class="card-header stat-header">
+                                    <div class="card-icon icon-color">
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
                                     <p class="card-category">work to do</p>
                                     <h3 class="card-title"><span class="counter">5</span></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-briefcase"></i> 
-                                        <a href="./doc-inbox.php">View all Works...</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
                             <div class="card card-stats">
-                                <div class="card-header">
-                                    <div class="card-icon four">
+                                <div class="card-header stat-header">
+                                    <div class="card-icon icon-color">
                                         <i class="fas fa-handshake"></i>
                                     </div>
                                     <p class="card-category">meetings</p>
                                     <h3 class="card-title"><span class="counter">4</span></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-clipboard-list"></i> 
-                                        <a href="./doc-inbox.php">Meeting List...</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -282,9 +262,9 @@
                         </div>
                         
                     </div>
-                    <div class="row mb-5">
+                    <div class="row mb-5 parent">
                       
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5 mb-2">
+                        <div class="col-lg-6 mb-2">
                             <div class="card search-babies">
                                 <form method="POST" action="./php/doc-search-baby-by-mNIC.php">
                                     <div class="card-header">
@@ -302,7 +282,7 @@
                             </div>
                         </div>
                        
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5 mb-2">
+                        <div class="col-lg-6 mb-2">
                             <div class="card card-chart">
                                 <div class="card-header chart-header">
                                     
@@ -311,7 +291,7 @@
                                         $age_count = '';
 
                                         $query1 = "CREATE TEMPORARY TABLE IF NOT EXISTS ages AS (SELECT FLOOR(DATEDIFF(CURDATE(),baby_dob)/30) AS age 
-                                                   FROM baby_register)";
+                                                   FROM baby_register WHERE status='active')";
                                         $result1= mysqli_query($conn,$query1);
                                     
                                             if($result1) {
@@ -346,33 +326,9 @@
                                     
                                     <canvas id="chart-age" class="line-chart"></canvas>
                                 </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Babies</h4>
-                                    <p class="card-category">number of babies to age in monts</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5 mb-2">
-                            <div class="card card-chart">
-                                <div class="card-header chart-header">                                    
-                                    <canvas id="chart-vac" class="line-chart"></canvas>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Babies</h4>
-                                    <p class="card-category">number of babies to age in monts</p>
-                                </div>
-                            </div>
-                        </div> -->
-                        
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5">
-                            <div class="card card-chart">
-                                <div class="card-header chart-header">                                    
-                                    <canvas id="chart-weight" class="line-chart"></canvas>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Babies</h4>
-                                    <p class="card-category">number of babies to age in monts</p>
+                                <div class="card-body chart-body">
+                                    <h3 class="chart-title">Babies</h3>
+                                    <p class="chart-category">number of babies to age in monts</p>
                                 </div>
                             </div>
                         </div>
@@ -382,13 +338,13 @@
                        
                         <div class="col-md-6 mt-5 mb-2">
                                                       
-                            <?php include('inc/low-high-weight-table.php'); ?>
+                            <?php //include('inc/low-high-weight-table.php'); ?>
                             
                         </div>
                         
                         <div class="col-md-6 mt-5">
                                                       
-                            <?php include('inc/low-high-height-table.php'); ?>
+                            <?php //include('inc/low-high-height-table.php'); ?>
                             
                         </div>
                         
@@ -458,8 +414,8 @@
                     datasets: [{
                         label: 'Number of Babies',
                         data: [<?php echo $age_count; ?>],
-                        backgroundColor: '#fff',
-                        borderColor: '#fff',
+                        backgroundColor: '#ffa7ba',
+                        borderColor: '#ffa7ba',
                         borderWidth: 1
                     }]
                 },
@@ -473,123 +429,36 @@
                                 beginAtZero: true,
                                 stepSize: 1,
                                 fontColor: '#fff',
+                                fontSize: 9,
+                                padding: 10,
                             },
                             gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
+                                color: 'rgba(255, 167, 186, 1)',
                                 borderDash: [3, 2],
-                                zeroLineColor: '#fff'
+                                zeroLineColor: '#ffa7ba'
                             }
 
                         }],
                         xAxes: [{
                             barPercentage: 0.6,
                             ticks: {
-                                fontColor: '#fff'
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-                        }]
-                    }
-                }
-            }
-
-        var ChartVac = {
-                type: 'line',
-                data: {
-                    labels: ["Green", "Purple", "Orange"],
-                    datasets: [{
-                        label: 'Colors Two',
-                        data: [8, 3, 7],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
                                 fontColor: '#fff',
+                                fontSize: 9,
                             },
                             gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
+                                color: 'rgba(255, 167, 186, 0.5)',
                                 borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-
-                        }],
-                        xAxes: [{
-                            barPercentage: 0.6,
-                            ticks: {
-                                fontColor: '#fff'
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
+                                zeroLineColor: '#ffa7ba'
                             }
                         }]
                     }
                 }
             }
 
-        var ChartWeight = {
-                type: 'line',
-                data: {
-                    labels: ["Green", "Purple", "Orange"],
-                    datasets: [{
-                        label: 'Colors Two',
-                        data: [8, 3, 7],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
-                                fontColor: '#fff',
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-
-                        }],
-                        xAxes: [{
-                            barPercentage: 0.6,
-                            ticks: {
-                                fontColor: '#fff'
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-                        }]
-                    }
-                }
-            }
+        
 
         var ctxAge = document.getElementById('chart-age').getContext('2d');
         new Chart(ctxAge, ChartAge);
-
-        var ctxVac = document.getElementById('chart-vac').getContext('2d');
-        new Chart(ctxVac, ChartVac);
-        
-        var ctxWeight = document.getElementById('chart-weight').getContext('2d');
-        new Chart(ctxWeight, ChartWeight);
     </script> 
     
     <!-- end of writed scripts -->

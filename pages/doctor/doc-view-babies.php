@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" style="cursor:default">
+                            <a class="text-uppercase" data-toggle="collapse" href="#manage" id="manage-users">
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
@@ -215,12 +215,12 @@
                                                             FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) months,
                                                             
                                                             CEILING((((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) - FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12))* 30) days
-                                                          FROM baby_register) x";
+                                                          FROM baby_register WHERE status='active') x";
                                         $result1= mysqli_query($conn,$query1);
 
                                         ?>
 
-                                        <table class="mdl-data-table table-responsive-md bordered" id="datatable">
+                                        <table class="mdl-data-table table-responsive-xl bordered" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>Mother NIC</th>
@@ -301,6 +301,12 @@
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+        });
+    </script>
+    
+    <script>
+        $('#manage-users').on('click', function () {
+            $('#manage').toggleClass('collapse-manage d-none');
         });
     </script>
     

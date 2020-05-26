@@ -1,12 +1,10 @@
-<?php session_start();
-?>
+<?php session_start(); ?>
 <?php include('../../php/basic/connection.php'); ?>
 
 <?php if(!isset($_SESSION['midwife_id'])) {	
 	header('location:../../index.php?noPermission=1');
 	}
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -30,25 +28,22 @@
     <link rel="stylesheet" href="../../assets/css/animate.css">
 
     <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/mid-inbox-style.css">
-    <link rel="stylesheet" href="./css/mid-add-babies-style.css">
-
+    
     <style>
         #map {
-            height: 35.6vh;
-            margin-top: 10px;
+            height: 90vh;
+            margin-top: -10px;
         }
-        
-        .collapse-manage {
+
+        .collapse-location {
             display: block !important;
         }
-        
+            
     </style>
 
-    <title>Baby Registration</title>
-        
+    <title>Infant Health Management System</title>
+    
 </head>
-
 
 <body>
 
@@ -68,6 +63,8 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/midwife.png" class="rounded-circle">
                         <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
                             $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
                             $result1= mysqli_query($conn,$query1);
                             $row=mysqli_fetch_assoc($result1);
@@ -86,7 +83,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" id="manage-users">
+                            <a class="text-uppercase" data-toggle="collapse" href="#manage">
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
@@ -95,8 +92,8 @@
                         </li>
                         <div class="collapse collapse-manage" id="manage">
                             <li>
-                                <a href="#" class="text-uppercase drop-active">
-                                    <span class="icon-active">
+                                <a href="mid-add-babies.php" class="text-uppercase drop">
+                                    <span class="icon">
                                         <i class="fas fa-user-plus" aria-hidden="true"></i>
                                     </span>
                                     <span class="list">ළමුන් ඇතුලත් කිරීම</span>
@@ -148,7 +145,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#location">
+                            <a class="text-uppercase" data-toggle="collapse" href="#location" id="map-location">
                                 <span class="icon">
                                     <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                                 </span>
@@ -173,8 +170,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="mid-show-all-locations.php" class="text-uppercase drop">
-                                    <span class="icon">
+                                <a href="#" class="text-uppercase drop-active">
+                                    <span class="icon-active">
                                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                     </span>
                                     <span class="list">සියලුම ස්ථාන</span>
@@ -218,38 +215,8 @@
             <!-- content -->
             <div class="content">
                
-                <!-- alert section -->
-                <div class="alert-section">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                <?php include('./inc/alert-continue-registration.php'); ?>
-                                <?php include('./inc/alert-mother-not-found.php'); ?>
-                                <?php include('./inc/alert-registration-success.php'); ?>
-                                <?php include('./inc/alert-ragistration-error.php'); ?>
-                                <?php include('./inc/alert-mNic-exists-error.php'); ?>
-                                <?php include('./inc/alert-tp-exists-error.php'); ?>
-                                <?php include('./inc/alert-email-exists-error.php'); ?>
-                                <?php include('./inc/alert-bId-exists-error.php'); ?>
-                            </div>
-                            <div class="col-md-4"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end of alert section -->
-                
-                <div id="show">
-                   
-                <?php
-                if(isset($_GET['idSuccess'])) {
-                    include('inc/mid-register-form-section.php');
-                }
-                else {
-                    include('inc/mid-mother-select-section.php');
-                }
-                ?>
-
+                <div class="container">
+                    <div id="map"></div>
                 </div>
 
             </div>
@@ -259,16 +226,17 @@
         <!-- end of main body (sidebar and content) -->
 
     </div>
-    
+
+
     <!-- optional JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtlwcov50Y0-MKAlkWmzx5sdYJY2HeFh4&callback=initMap"></script>
-    
-    <script type="text/javascript" src="./js/reg-validation-script.js"></script>
-    <script type="text/javascript" src="./js/register-location-script.js"> </script>
+
+    <script type="text/javascript" src="../../assets/js/script.js"> </script>
+    <script type="text/javascript" src="./js/location-view-script.js"> </script>
     <!--end core js files-->
 
     <!-- writed scripts -->
@@ -288,30 +256,15 @@
         });
     </script>
     
-    <script>
-        $('#manage-users').on('click', function () {
-            $('#manage').toggleClass('collapse-manage d-none');
+     <script>
+        $('#map-location').on('click', function () {
+            $('#location').toggleClass('collapse-location d-none');
         });
     </script>
     <!-- end of writed scripts -->
     
-    <!-- tooltip scripts -->
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <!-- end of tooltip scripts -->
 
-    <!-- Alert Dismiss scripts -->
-    <script>
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideToggle(500, function(){
-            $(this).remove();
-        });
-    }, 3500);
-    </script>
-    <!-- end of Alert Dismiss scripts -->
+
 
 </body>
 

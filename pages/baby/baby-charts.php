@@ -188,6 +188,16 @@
                                     </a>
                             <?php
                                 }
+                                elseif(isset($_SESSION['doctor_id'])) {
+                            ?>
+                                    <a href="../doctor/doc-baby-editable-page.php" class="text-uppercase">
+                                    <span class="icon">
+                                    <i class="fas fa-table" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">දත්ත සංස්කරණය</span>
+                                    </a>
+                            <?php
+                                }
                                 elseif(isset($_SESSION['admin_id'])) {
                             ?>
                                     <a href="baby-editable-page.php" class="text-uppercase">

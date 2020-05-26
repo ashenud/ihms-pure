@@ -80,7 +80,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" style="cursor:default">
+                            <a class="text-uppercase" data-toggle="collapse" href="#manage" id="manage-users">
                                 <span class="icon">
                                     <i class="fas fa-users-cog" aria-hidden="true"></i>
                                 </span>
@@ -197,7 +197,7 @@
 
                                         ?>
 
-                                        <table class="mdl-data-table table-responsive-md bordered" id="datatable">
+                                        <table class="mdl-data-table table-responsive-lg bordered" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>Sister ID</th>
@@ -275,6 +275,12 @@
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+        });
+    </script>
+    
+    <script>
+        $('#manage-users').on('click', function () {
+            $('#manage').toggleClass('collapse-manage d-none');
         });
     </script>
     <!-- end of writed scripts -->

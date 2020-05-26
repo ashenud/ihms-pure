@@ -34,6 +34,11 @@
             height: 90vh;
             margin-top: -10px;
         }
+
+        .collapse-location{
+            display: block !important;
+        }
+        
     </style>
 
     <title>Infant Health Management System</title>
@@ -58,6 +63,8 @@
                     <div class="user-area pb-2 mb-3">
                         <img src="./img/midwife.png" class="rounded-circle">
                         <?php
+                            mysqli_select_db($conn, 'cs2019g6');
+
                             $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
                             $result1= mysqli_query($conn,$query1);
                             $row=mysqli_fetch_assoc($result1);
@@ -138,11 +145,45 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a class="text-uppercase" data-toggle="collapse" href="#location" id="map-location">
                                 <span class="icon">
                                     <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">ස්ථාන</span>
+                                <span class="list">සිතියම්</span>
+                            </a>
+                        </li>
+                        <div class="collapse collapse-location" id="location">
+                            <li>
+                                <a href="mid-visit-today.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-pin" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">අදට නියමිත ස්ථාන</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-uppercase drop-active">
+                                    <span class="icon-active">
+                                        <i class="fas fa-map-signs" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">දිශාව දැක්වීම</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mid-show-all-locations.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">සියලුම ස්ථාන</span>
+                                </a>
+                            </li>
+                        </div>
+                        <li>
+                            <a href="mid-visiting-record.php" class="text-uppercase">
+                                <span class="icon">
+                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
+                                </span>
+                                <span class="list">නිවාසවලට යෑම්</span>
                             </a>
                         </li>
                     </ul>
@@ -173,6 +214,38 @@
             
             <!-- content -->
             <div class="content">
+
+            <div id="floating-panel">
+            <?php include('../../php/basic/connection.php'); 
+
+            $database="cs2019g6";
+            mysqli_select_db($conn,$database);
+            
+             $result1=mysqli_query($conn,"select * from locations");
+             echo "<center>";
+             echo "<select id='start'>";
+             echo "<option>Start </option>";
+                                while($row=mysqli_fetch_array($result1))
+                                        {
+                                            echo"<option> $row[name] | $row[address]</option>";
+                                        }
+             echo "</select>";
+             
+             $result2=mysqli_query($conn,"select * from locations");
+             echo "<select id='end'>";
+             echo "<option>End</option>";
+                                while($row=mysqli_fetch_array($result2))
+                                        {
+                                            echo"<option> $row[name] | $row[address] </option>";
+                                            
+                                        }
+                                       
+             echo "</select>";
+             echo "</center>";
+             mysqli_close($conn);
+            ?>
+                        
+    </div>
                
                 <div class="container">
                     <div id="map"></div>
@@ -195,7 +268,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtlwcov50Y0-MKAlkWmzx5sdYJY2HeFh4&callback=initMap"></script>
 
     <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <script type="text/javascript" src="./js/location-view-script.js"> </script>
+    <script type="text/javascript" src="./js/directions.js"> </script>
     <!--end core js files-->
 
     <!-- writed scripts -->
@@ -214,6 +287,12 @@
             });
         });
     </script>
+    
+     <script>
+        $('#map-location').on('click', function () {
+            $('#location').toggleClass('collapse-location d-none');
+        });
+    </script>
     <!-- end of writed scripts -->
     
 
@@ -224,4 +303,3 @@
 </html>
 
 
-<?php mysqli_close($conn); ?>
