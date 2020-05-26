@@ -433,3 +433,57 @@ input[type="checkbox"]:checked + label:before {
 }
 
 /* end modal */
+
+
+@media screen and (max-width:1300px) {
+    .vaccine {
+        display: block;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .color-given {
+        position: inherit;
+    }
+    .badge-red {
+        position: inherit;
+    }
+    .badge-secondary {
+        position: inherit;
+    }
+    .vaccine .btn {
+        position: inherit;
+    }
+}
+
+@media screen and (max-width:970px) {
+    .main-timeline::before {
+        display: none;
+    }
+    .main-timeline .timeline {
+        border: 0 !important;
+        padding: 20px 15px;
+    }
+    .main-timeline .icon {
+        display: none;
+    }
+    .main-timeline .timeline-content {
+        height: 375px;
+    }
+    .main-timeline .timeline-content::before,
+    .main-timeline .timeline-content::after {
+        display: none;
+    }
+}
+
+@media screen and (max-width:586px) {
+    .main-timeline {
+        padding-top: 0;
+    }
+    .main-timeline .timeline {
+        width: 100%;
+        float: none;
+        padding: 20px 5px;
+        margin: 0 !important;
+        position: static;
+    }
+}
