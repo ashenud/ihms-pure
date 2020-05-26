@@ -132,11 +132,45 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mid-location.php" class="text-uppercase">
+                            <a class="text-uppercase" data-toggle="collapse" href="#location">
                                 <span class="icon">
-                                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+                                    <i class="fas fa-map" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">ස්ථාන</span>
+                                <span class="list">සිතියම්</span>
+                            </a>
+                        </li>
+                        <div class="collapse collapse-location" id="location">
+                            <li>
+                                <a href="mid-visit-today.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-pin" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">අදට නියමිත ස්ථාන</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mid-give-directions.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-signs" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">දිශාව දැක්වීම</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mid-show-all-locations.php" class="text-uppercase drop">
+                                    <span class="icon">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="list">සියලුම ස්ථාන</span>
+                                </a>
+                            </li>
+                        </div>
+                        <li>
+                            <a href="mid-visiting-record.php" class="text-uppercase">
+                                <span class="icon">
+                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
+                                </span>
+                                <span class="list">නිවාසවලට යෑම්</span>
                             </a>
                         </li>
                     </ul>

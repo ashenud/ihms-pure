@@ -35,13 +35,10 @@
             margin-top: -10px;
         }
 
-        .collapse-manage{
+        .collapse-location {
             display: block !important;
         }
-
-        .collapse-manage1{
-            display: block !important;
-        }
+            
     </style>
 
     <title>Infant Health Management System</title>
@@ -148,18 +145,18 @@
                             </a>
                         </li>
                         <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage1" style="cursor:default">
+                            <a class="text-uppercase" data-toggle="collapse" href="#location" id="map-location">
                                 <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
+                                    <i class="fas fa-map" aria-hidden="true"></i>
                                 </span>
                                 <span class="list">සිතියම්</span>
                             </a>
                         </li>
-                        <div class="collapse collapse-manage" id="manage1">
+                        <div class="collapse collapse-location" id="location">
                             <li>
                                 <a href="mid-visit-today.php" class="text-uppercase drop">
                                     <span class="icon">
-                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
+                                        <i class="fas fa-map-pin" aria-hidden="true"></i>
                                     </span>
                                     <span class="list">අදට නියමිත ස්ථාන</span>
                                 </a>
@@ -167,7 +164,7 @@
                             <li>
                                 <a href="mid-give-directions.php" class="text-uppercase drop">
                                     <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                        <i class="fas fa-map-signs" aria-hidden="true"></i>
                                     </span>
                                     <span class="list">දිශාව දැක්වීම</span>
                                 </a>
@@ -175,7 +172,7 @@
                             <li>
                                 <a href="#" class="text-uppercase drop-active">
                                     <span class="icon-active">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                     </span>
                                     <span class="list">සියලුම ස්ථාන</span>
                                 </a>
@@ -184,7 +181,7 @@
                         <li>
                             <a href="mid-visiting-record.php" class="text-uppercase">
                                 <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
+                                    <i class="fas fa-location-arrow" aria-hidden="true"></i>
                                 </span>
                                 <span class="list">නිවාසවලට යෑම්</span>
                             </a>
@@ -256,6 +253,12 @@
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+        });
+    </script>
+    
+     <script>
+        $('#map-location').on('click', function () {
+            $('#location').toggleClass('collapse-location d-none');
         });
     </script>
     <!-- end of writed scripts -->

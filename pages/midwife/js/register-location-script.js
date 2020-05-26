@@ -25,7 +25,7 @@ function initMap() {
                 });
 
                 marker2.addListener('click', function () {
-                    infoWindow.setContent("CURRENT LOCATION");
+                    infoWindow.setContent("ඔබ සිටින්නේ මෙතනයි");
                     infoWindow.open(map, marker2);
 
                 });
