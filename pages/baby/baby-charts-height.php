@@ -347,7 +347,9 @@
 
                                     ?>
                                     </p>
-                                    <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
+                                    <div class="btn-set">
+                                        <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
+                                    </div>
                                 </div>
                                 <div class="chart-canvas">
                                     <canvas id="growth-chart-height" class="line-chart"></canvas>

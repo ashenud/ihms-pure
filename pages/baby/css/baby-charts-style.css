@@ -1,25 +1,62 @@
-.items {
-    background: #fff;
+.card-table {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border-radius: 0;
+    margin-top: 20px;
 }
 
-.items p {
+.card-table .card-header {
+    border-bottom: none;
+    background: #fff;
+}
+
+.card-table .card-header p {
     font-family: 'yaldevicolombo';
     font-size: 1.5rem;
     font-weight: bold;
     padding-top: 10px;
-    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.card-table .card-body {
+    padding-top: 0;
+}
+
+.card-table .card-body .btn{
+    min-width: 100px;
+    background: #2a94c3;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 0;
+    line-height: normal;
+    min-height: 38px;
+    min-width: 275px;
+    text-align: start;
+}
+
+.card-table .card-body .btn:hover {
+    opacity: 0.8;
 }
 
 .items .list-group-flush .list-group-item {
     background: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding-left: 0;
+    border: 0;
 }
 
 .items .list-group-flush .list-group-item a {
     font-family: 'abhaya';
     text-decoration: none;
     font-size: 1.2rem;
+}
+
+
+@media screen and (max-width:966px) {
+    .items .list-group-flush .list-group-item a {
+        font-size: 0.8rem;
+    }
+    .card-table .card-body .btn{ 
+        min-height: 28px;
+        min-width: 190px;
+        align-items: center;
+        display: flex;
+    }
 }

@@ -24,33 +24,6 @@ body {
     height: 72vh;
 }
 
-@media screen and (max-width: 1200px) {
-    .chart-canvas {
-        height: 230vh;
-        width: 68vw;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    .chart-canvas {
-        height: 120vh;
-        width: 60vw;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .chart-canvas {
-        height: 160vh;
-        width: 70vw;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .chart-canvas {
-        height: 85vh;
-        width: 58vw;
-    }
-}
 
 .chart-area .word p {
     font-family: 'abhaya', serif;
@@ -64,10 +37,13 @@ body {
     width: 50%;
 }
 
+.chart-area .word .btn-set {
+    display: block;
+    float: right;  
+}
+
 .chart-area .word .change-btn {
     font-family: 'abhaya', serif;
-    display: block;
-    float: right;
     font-size: 1rem;
     color: #000;
     border-radius: 0;
@@ -79,7 +55,6 @@ body {
 }
 
 .chart-area .word .download {
-    margin-right: 32px;
     background: #424242;
     color: #fff;
 }
@@ -143,4 +118,54 @@ body {
 
 .data-area .data-range .card p .color-5 {
     background-color: rgba(237,173,234, 1);
+}
+
+
+@media screen and (max-width: 1200px) {
+    .chart-canvas {
+        height: 230vh;
+        width: 68vw;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .chart-canvas {
+        height: 120vh;
+        width: 60vw;
+    }
+    .chart-area .word .btn-set {
+        float: left;
+        padding-left: 45px;
+    }
+    .chart-area .word p {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .chart-canvas {
+        height: 160vh;
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .chart-canvas {
+        height: 85vh;
+        width: 58vw;
+    }
+    .chart-area .word p {
+        padding-left: 10px;
+        padding-bottom: 10px;
+        font-size: 0.7rem;
+    }
+    .chart-area .word .btn-set {
+        float: left;
+        padding-left: 5px;
+        padding-bottom: 5px;
+    }
+    .chart-area .word .change-btn {
+        font-size: 0.6rem;
+        min-width: 60px;
+    }
 }

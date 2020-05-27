@@ -293,18 +293,23 @@
                                           
                 <div class="container">
                     <div class="row">
+                        <div class="col-md-1"></div>
                         <div class="col-md-6">
-                            <div class="items">
-                                <p>ප්‍රස්ථාරය තෝරන්න</p>                               
-                                <div class="list-group-flush">
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-weight.php">දරුවාගේ බර ප්‍රස්ථාරය</a>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-height.php">දරුවාගේ උස ප්‍රස්ථාරය</a>
-                                    </div>
-                                    <div class="list-group-item">
-                                        <a href="/pages/baby/baby-charts-bmi.php">දරුවාගේ උසට සරිලන බර ප්‍රස්ථාරය</a>
+                            <div class="card card-table">
+                                <div class="card-header"><p>ප්‍රස්ථාරය තෝරන්න</p></div>
+                                <div class="card-body">
+                                    <div class="items">
+                                        <div class="list-group-flush">
+                                            <div class="list-group-item">
+                                                <a class="btn" href="./baby-charts-weight.php">දරුවාගේ බර ප්‍රස්ථාරය</a>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <a class="btn" href="./baby-charts-height.php">දරුවාගේ උස ප්‍රස්ථාරය</a>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <a class="btn" href="./baby-charts-bmi.php">දරුවාගේ උසට සරිලන බර ප්‍රස්ථාරය</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

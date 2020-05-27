@@ -374,9 +374,11 @@
 
                                     ?>
                                     </p>
-                                    <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
-                                    <button type="button" class="btn change-btn btn-sm" data-type="l36m">මාස 25 - 60</button>
-                                    <button type="button" class="btn change-btn btn-sm" data-type="f24m">මාස 0 - 24</button>
+                                    <div class="btn-set">
+                                        <button type="button" class="btn change-btn btn-sm" data-type="f24m">මාස 0 - 24</button>
+                                        <button type="button" class="btn change-btn btn-sm" data-type="l36m">මාස 25 - 60</button>
+                                        <button type="button" class="btn change-btn btn-sm download">බාගත කරන්න</button>
+                                    </div>
                                 </div>
                                 <div class="chart-canvas for-bmi-chart">
                                     <canvas id="growth-chart-bmi" class="line-chart"></canvas>
