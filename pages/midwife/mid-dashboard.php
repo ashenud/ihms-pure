@@ -207,8 +207,8 @@
                 <div class="alert-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
                                 <?php include('./inc/alert-reminder-success.php'); ?>
                                 <?php include('./inc/alert-reminder-error.php'); ?>
                                 <?php include('./inc/alert-email-send-success.php'); ?>
@@ -216,7 +216,7 @@
                                 <?php include('./inc/alert-reminder-delete-success.php'); ?>
                                 <?php include('./inc/alert-reminder-delete-error.php'); ?>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-lg-4"></div>
                         </div>
                     </div>
                 </div>
@@ -226,7 +226,7 @@
                     
                     <div class="row mt-4 mb-5">
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
                             <a data-toggle="modal" href="#reminderModal" class="text-decoration-none">
                                 <div class="card card-stats">
                                     <!-- Card body -->
@@ -238,7 +238,7 @@
                                                 <span class="h5 text-uppercase font-weight-bold mb-0">Reminder</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon one">
+                                                <div class="card-icon icon-color">
                                                     <i class="far fa-clipboard"></i>
                                                 </div>
                                             </div>
@@ -259,7 +259,7 @@
                             </a>
                         </div>
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
                             <a class="text-decoration-none" href="./mid-view-babies.php">
                                 <div class="card card-stats">
                                     <!-- Card body -->
@@ -271,7 +271,7 @@
                                                 <span class="h5 text-uppercase font-weight-bold mb-0">Babies</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon two">
+                                                <div class="card-icon icon-color">
                                                     <i class="fas fa-baby"></i>
                                                 </div>
                                             </div>
@@ -292,7 +292,7 @@
                             </a>
                         </div>
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
                             <a class="text-decoration-none" href="./mid-thriposha.php">
                                 <div class="card card-stats">
                                     <!-- Card body -->
@@ -304,7 +304,7 @@
                                                 <span class="h5 text-uppercase font-weight-bold mb-0">thriposha</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon three">
+                                                <div class="card-icon icon-color">
                                                     <i class="fas fa-cookie-bite"></i>
                                                 </div>
                                             </div>
@@ -327,7 +327,7 @@
                             </a>
                         </div>
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
                             <a class="text-decoration-none" href="./mid-contact-staff.php">
                                 <div class="card card-stats">
                                     <!-- Card body -->
@@ -339,7 +339,7 @@
                                                 <span class="h5 text-uppercase font-weight-bold mb-0">staff</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon four">
+                                                <div class="card-icon icon-color">
                                                     <i class="fas fa-address-book"></i>
                                                 </div>
                                             </div>
@@ -392,7 +392,7 @@
                     <div class="row mt-4 mb-5">
 
                         <!-- search baby section -->
-                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card search-babies">
                                 <form method="POST" action="php/mid-search-baby-by-mNIC.php">
                                     <div class="card-header">
@@ -411,7 +411,7 @@
                         </div>
 
                         <!-- message section -->
-                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card compose-mail">
                                 <form method="POST" action="php/send-mail-action.php">
                                     <div class="card-header">
@@ -449,15 +449,15 @@
                     <div class="row mt-4 mb-5">
 
                         <!-- vaccination table section -->
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card view-vaccine">
                                 <div class="card-header">
                                     <h6 class="font-weight-bold">Vaccination Date</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="b_table" id="newDiv">
-                                        <table class="table">
-                                            <thead class="thead-dark">
+                                        <table class="table table-responsive-xl">
+                                            <thead class="thead-theme">
                                                 <tr class="b_text5">
                                                     <th>Baby Id</th>
                                                     <th>Vaccine</th>
@@ -494,14 +494,14 @@
                         </div>
 
                         <!-- reminder table section -->
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card view-reminders">
                                 <div class="card-header">
                                     <h6 class="font-weight-bold">Reminders</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-container">
-                                        <table class="table table-reminder">
+                                        <table class="table table-reminder table-responsive-xl">
 
                                         <?php
                                         
