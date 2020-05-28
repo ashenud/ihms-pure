@@ -38,7 +38,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="70">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="#" rel="tooltip" data-placement="bottom">
+                <a class="navbar-brand" href="/" rel="tooltip" data-placement="bottom">
                     <img src="assets/img/icon.png">
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -214,6 +214,24 @@
 
         <!--header with carousel-->
         <div class="header">
+          
+            <!-- alert section -->  
+            <div class="alert-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-2 col-1"></div>
+                        <div class="col-md-6 col-sm-8 col-10">
+                            <?php include('./assets/inc/alert-pass-error.php'); ?>
+                            <?php include('./assets/inc/alert-logout.php'); ?>
+                            <?php include('./assets/inc/alert-pass-changed.php'); ?>
+                            <?php include('./assets/inc/alert-mail-success.php'); ?>
+                            <?php include('./assets/inc/alert-no-permission.php'); ?>
+                        </div>
+                        <div class="col-md-3 col-sm-2 col-1"></div>
+                    </div>
+                </div>  
+            </div>
+            <!-- end of alert section -->
            
             <div class="carousel slide carousel-fade" data-ride="carousel" id="cng">
                 <ol class="carousel-indicators">
@@ -281,28 +299,10 @@
                     <hr class="my-2">
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                     <p class="lead">
-                        <a class="btn btn-info btn-lg" href="#" role="button">Learn more</a>
+                        <a class="btn btn-info btn-lg" href="#!" role="button">Learn more</a>
                     </p>
                 </div>
             </div>
-             
-            <!-- alert section -->  
-            <div class="alert-section">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <?php include('./assets/inc/alert-pass-error.php'); ?>
-                            <?php include('./assets/inc/alert-logout.php'); ?>
-                            <?php include('./assets/inc/alert-pass-changed.php'); ?>
-                            <?php include('./assets/inc/alert-mail-success.php'); ?>
-                            <?php include('./assets/inc/alert-no-permission.php'); ?>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                </div>  
-            </div>
-            <!-- end of alert section -->
                 
         </div>
         <!--end header and carousel-->
@@ -311,7 +311,7 @@
     <!--end wrapper-->
     
     <!-- back to top button -->
-    <div class="back-to-top">
+    <div class="back-to-top" id="back-to-top">
         <a href="#">
             <i class="fa fa-chevron-up"></i>
         </a>
@@ -325,9 +325,9 @@
         <div class="container about" id="about">
             <div class="row mt-5 row-about">
                 <div class="col-md-3 text-center wow fadeInLeft">
-                    <img src="./assets/img/index/about.png" class="about-pic">
+                    <img src="./assets/img/index/about.png" class="about-pic img-fluid" alt="Responsive image">
                 </div>
-                <div class="about-system col-md-9 colum-about wow fadeInRight">
+                <div class="about-system col-md-9 mt-2 colum-about wow fadeInRight">
                     <h1 class="text-uppercase mb-3">about the system</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores temporibus, recusandae nesciunt et laborum, dolorum? Tempora iste repudiandae dolore libero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci iusto numquam architecto. Pariatur aut, voluptatum voluptas veniam, architecto, nobis hic libero harum provident mollitia beatae cupiditate rem rerum ipsum ex. Repudiandae tenetur aut nihil obcaecati nobis magni accusamus </p>
                 </div> <!--about system-->
@@ -338,7 +338,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores temporibus, recusandae nesciunt et laborum, dolorum? Tempora iste repudiandae dolore libero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci iusto numquam architecto. Pariatur aut, voluptatum voluptas veniam, architecto, nobis hic libero harum provident mollitia beatae cupiditate rem rerum ipsum ex. Repudiandae tenetur aut nihil obcaecati nobis magni accusamus </p>
                 </div>
                 <div class="col-md-5 text-center wow fadeInRight">
-                    <img src="./assets/img/index/objective.png" class="object-pic">
+                    <img src="./assets/img/index/objective.png" class="object-pic img-fluid" alt="Responsive image">
                 </div> <!--about system-->
             </div>
         </div>
@@ -353,7 +353,7 @@
             
             <div class="service-cards">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
@@ -362,12 +362,12 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-uppercase">service one</h4>
                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#!" class="btn btn-primary">lern More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
@@ -376,12 +376,12 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-uppercase">service two</h4>
                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#!" class="btn btn-primary">lern More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
@@ -390,12 +390,12 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-uppercase">service three</h4>
                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#!" class="btn btn-primary">lern More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 mb-3">
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
@@ -404,7 +404,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title text-uppercase">service four</h4>
                                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="#!" class="btn btn-primary">lern More</a>
                                 </div>
                             </div>
                         </div>
@@ -651,6 +651,19 @@
       }
 
       new WOW().init();
+    </script>
+    
+    <!-- back to to activate when scrolling-->
+    <script>
+        $(document).scroll(function () {
+            var y = $(this).scrollTop();
+            if (y > 70) {
+                $('.back-to-top').fadeIn();
+            } else {
+                $('.back-to-top').fadeOut();
+            }
+
+        });
     </script>
     
 </body>

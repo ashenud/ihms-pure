@@ -66,25 +66,74 @@ body, html {
 
 
 .back-to-top {
+    transition: background 0.5s;
     position: fixed;
+    z-index: 11;
     right: 15px;
     bottom: 15px;
-    transition: background 0.5s;
-	z-index: 11;
+    border-radius: 50px;
+    display: none;
 }
+
+/*.back-to-top::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: #bc4158;
+    position: fixed;
+    z-index: 11;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50px;
+    animation-name: flash;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.back-to-top::after {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background: #bc4158;
+    position: fixed;
+    z-index: 10;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50px;
+    animation-name: flash2;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes flash2 {  
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}*/
 
 .back-to-top i {
     padding-top: 12px;
-    background: #494949;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-    color: #fff;
+    color: #000;
     width: 44px;
+    background: #bc4158;
     height: 44px;
     text-align: center;
     line-height: 1;
     font-size: 16px;
     border-radius: 50%;
-    
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 12; 
 }
 
 
@@ -104,15 +153,6 @@ body, html {
   overflow: hidden;
   padding: 0 30px 0 30px;
   background: linear-gradient(to bottom, #89cff0, #f3758a);
-}
-
-@media screen and (max-width:420px) {
-    .modal .modal-content {
-        max-width: 300px;
-    }
-    .wrap-login {
-        max-width: 300px;
-    }
 }
 
 .login-form {
@@ -299,7 +339,7 @@ color: #fff;
   min-width: 120px;
   height: 50px;
   border-radius: 25px;
-box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 6px -2px rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 6px -2px rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
   background: #fff;
   position: relative;
   z-index: 1;
@@ -413,21 +453,14 @@ button {
     border: 2px solid #fff;
 }
 
-@media screen and (max-width:628px) {
-    .hero-section {
-        width: 80%;
-        margin-top: 40px;
-    }
-}
-
 
 /* alert section */
 .alert-section {
     font-family: sans-serif;
-    position: relative;
+    position: fixed;
     z-index: 2;
-    margin-top: -650px;
-    margin-bottom: 650px;
+    width: 100%;
+    top: 100px;
 }
 
 .alert-section label {
@@ -444,94 +477,18 @@ button {
     margin-top: 12px;
 }
 
-@media screen and (max-width:1372px) {
-    .alert-section {
-        margin-top: -600px;
-        margin-bottom: 600px;
-    }
-}
-
-@media screen and (max-width:1220px) {
-    .alert-section {
-        margin-top: -550px;
-        margin-bottom: 550px;
-    }
-}
-
-@media screen and (max-width:1110px) {
-    .alert-section {
-        margin-top: -500px;
-        margin-bottom: 500px;
-    }
-}
-
-@media screen and (max-width:991px) {    
-    .alert-section .alert strong {
-        font-size: 9px;
-    }
-}
-
-@media screen and (max-width:767px) {    
-    .alert-section {
-        width: 350px;
-        margin: auto;
-        margin-top: -500px;
-        margin-bottom: 500px;
-    }
-}
-
-@media screen and (max-width:628px) {    
-    .alert-section {
-        width: 350px;
-        margin: auto;
-        margin-top: -600px;
-        margin-bottom: 600px;
-    }
-    .alert-section .alert button {
-        margin: auto !important;
-        margin-top: auto !important;
-    }
-}
-
-@media screen and (max-width:628px) {    
-    .alert-section .alert button {
-        margin-right: -20px;
-        margin-top: 0 !important;
-    }
-}
-
-
-/* end of alert section */
-
 /*end header with carousel*/
 
 
 
-
-
-/*content*/
-
-/*
-.content {
-    background-image: url('./assets/img/content-back.jpg');
-    width: 100%;
-    min-height: 100vh;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    flex-wrap: wrap;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 60px 4px #f3758a inset;
-
+h1 {
+    font-family: 'Vidaloka';
+    font-weight: bold;
 }
-*/
 
+h4,h6 {
+    font-family: 'Playfair';
+}
 
 
 
@@ -543,6 +500,17 @@ button {
 
 .colum-about {
     margin-top: 5px;
+}
+
+.about h3 {
+    font-family: 'Vidaloka';
+    font-weight: bold;
+}
+
+.about p {
+    font-family: 'Playfair';
+    text-align: justify;
+    font-size: 1rem;
 }
 
 .about .about-pic {
@@ -566,22 +534,35 @@ button {
     padding-top: 65px;
 }
 
+.our-services p {
+    font-family: 'Playfair';
+    font-size: 1rem;
+}
+
 .our-services .card {
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 2px -1px rgba(0,0,0,.2), 0 3px 3px 0 rgba(0,0,0,.14), 0 1px 6px 0 rgba(0,0,0,.12);
+    margin: 0;
+    background: #F5F5F6;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -ms-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
 }
 
 .our-services .card:hover {
     background: #e8edf5;
-    border: 1px solid #ccc;
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    -ms-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    -o-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 .service-icon span i {
     font-size: 80px;
     margin-top: 20px;
     margin-bottom: 10px;
-    color: #1a598e;
+    color: #2a94c3;
 }
 
 
@@ -600,10 +581,10 @@ button {
     font-family: sans-serif;
     font-size: 11px;
     text-transform: uppercase;
-    background: #f3758a;
-    border-radius: 50px;
-    padding: 6px 9px;
-    border: 1px solid #fff;
+    background: #f27285;
+    color: #000;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    border-radius: 0;
 }
 /* end of our services */
 
@@ -616,11 +597,16 @@ button {
     padding-top: 65px;
 }
 
+.our-facilities p {
+    font-family: 'Playfair';
+    font-size: 1rem;
+}
+
 .facility-icon i {
     font-size: 45px;
     margin-top: 10px;
     margin-bottom: 10px;
-    color: #1a598e;
+    color: #2a94c3;
 }
 
 .facilities .c1 {
@@ -641,7 +627,7 @@ button {
 }
 
 .facilities .facility-body p {
-    font-size: 13px;
+    font-size: 12px;
 }
 /* end of our facilities */
 
@@ -654,6 +640,12 @@ button {
     background-size: cover;
     background-attachment: fixed;
 }
+
+.contact-us p {
+    font-family: 'Playfair';
+    font-size: 1rem;
+}
+
 .contact .row {
     padding: 30px 0;
     font-size: 22px;
@@ -694,7 +686,7 @@ button {
 /* footer */
 
 .footer {
-    background-image: linear-gradient(#e8edf5, #f3758a);
+    background-image: linear-gradient(#f9dbe1,#ffbac9);
     color: #000;
     padding-bottom: 0;
 }
@@ -703,6 +695,8 @@ button {
     width: 60px;
     padding-top: 5px;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: start;
 }
 
 .footer h4 {
@@ -724,7 +718,132 @@ button {
 .footer hr {
     margin-top: 5px;
     margin-bottom: 5px;
-    background: #efefef;
+    border: 1px solid #2a94c3;
 }
 
 /* end of footer */
+
+
+@media screen and (max-width:992px) {    
+    .alert-section .alert strong {
+        font-size: 9px;
+    }
+    .carousel ol {
+        margin-bottom: 70px;
+    }
+    .hero-section .jumbotron {
+        margin-top: -60px;
+    }
+    .hero-section .jumbotron h1 {
+        font-size: 45px;
+    }
+    .hero-section .jumbotron p {
+        font-size: 15px;
+    }
+    .hero-section .jumbotron p.lead {
+        font-size: 20px;
+    }
+    .hero-section .jumbotron .btn-lg {
+        font-size: 10px;
+        padding: 8px 13px;
+    }
+    .our-services .btn {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width:768px) { 
+    h1 {
+        font-size: 3rem
+    }
+    .hero-section .jumbotron {
+        margin-top: -50px;
+    }   
+    .hero-section .jumbotron h1 {
+        font-size: 35px;
+    }
+    .hero-section .jumbotron p {
+        font-size: 10px;
+    }
+    .hero-section .jumbotron p.lead {
+        font-size: 15px;
+    }
+    .hero-section .jumbotron .btn-lg {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width:580px) { 
+    h1 {
+        font-size: 2.5rem
+    }
+   .alert-section {
+        top: 80px;
+    } 
+   .alert-section .alert button {
+        margin-right: -20px;
+        margin-top: 0 !important;
+    }
+    .alert-section .alert {
+        padding-bottom: 0.6rem;
+        padding-top: 0.6rem;
+    }
+    .carousel-item img {
+        height: 215px;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .navbar {
+        height: 50px;
+    }
+    .navbar-brand img {
+        width: 34px;
+        height: 35px;
+        margin-top: -14px;
+    }
+    .navbar .navbar-toggler {
+        margin-bottom: 10px;
+    }
+    .modal .modal-content {
+        max-width: 300px;
+    }
+    .wrap-login {
+        max-width: 300px;
+    }
+    h1 {
+        font-size: 2rem
+    }
+    .about h3 {
+        font-size: 1.3rem
+    }
+    .alert-section .alert strong {
+        font-size: 6px;
+    }
+    .hero-section .jumbotron {
+        margin-top: -35px;
+    }   
+    .hero-section .jumbotron h1 {
+        font-size: 23px;
+    }
+    .hero-section .jumbotron p {
+        font-size: 10px;
+    }
+    .hero-section .jumbotron p.lead {
+        font-size: 14px;
+    }
+    .hero-section .jumbotron .btn-lg {
+        font-size: 7px;
+        padding: 6px 8px;
+    }
+    .about {
+        padding-top: 1px;
+    }
+    .our-services,
+    .our-facilities,
+    .contact-us {
+        padding-top: 24px;
+    }
+}
+
+
