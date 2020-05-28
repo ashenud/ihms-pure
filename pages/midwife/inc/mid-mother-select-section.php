@@ -1,7 +1,7 @@
 <div class="container-fluid" id=selectContainer>
     <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-12"></div>
-        <div class="col-xl-6 col-lg-4 col-md-12">
+        <div class="col-xl-3 col-lg-2 col-md-1"></div>
+        <div class="col-xl-6 col-lg-8 col-md-10">
             <div class="card select-reg">
                 <div class="card-header text-center">
                     <h4 class="card-title text-uppercase">mother Already Registerd ?</h4>
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-4 col-md-12"></div>
+        <div class="col-xl-3 col-lg-2 col-md-1"></div>
     </div>
 
     <!-- model for search mother -->

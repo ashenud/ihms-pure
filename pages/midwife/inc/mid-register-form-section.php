@@ -40,11 +40,11 @@
 
                     <div class="form-row">
 
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group text-center col-lg-3">
                             <img src="./img/wizard-img1.png" alt="">
                         </div>
 
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-12">
@@ -223,11 +223,11 @@
 
                     <div class="form-row">
 
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group text-center col-lg-3">
                             <img src="./img/wizard-img2.png" alt="">
                         </div>
 
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -435,11 +435,11 @@
 
                     <div class="form-row">
 
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group text-center col-lg-3">
                             <img src="./img/wizard-img3.png" alt="">
                         </div>
 
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
@@ -678,10 +678,10 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group text-center col-lg-3">
                             <img src="./img/wizard-img4.png" alt="">
                         </div>
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-12">
@@ -847,10 +847,10 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group text-center col-lg-3">
                             <img src="./img/wizard-img5.png" alt="">
                         </div>
-                        <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group col-lg-6 mb-2">
                             <div class="container map-area"
                             <?php
                             if(isset($_SESSION['mNic'])){
@@ -860,7 +860,7 @@
                                 <div id="map"></div>
                             </div>
                         </div>
-                        <div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group col-lg-3">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -997,7 +997,7 @@
 
                     <div class="form-row d-flex justify-content-start">
                         <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
-                            <h5 class="card-title">Register Now:</h5>
+                            <h5 class="card-title">Click Submit to Register:</h5>
                         </div>
                     </div>
 

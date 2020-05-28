@@ -32,6 +32,7 @@
 
 .alert-section .alert button {
     margin-right: 2px;
+    outline: 0;
 }
 /* end of alert section */
 
@@ -43,8 +44,8 @@
 .select-reg {
     background: rgba(255,255,255, 0.5);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 0;
     margin-top: 150px;
-    border-radius: 1px;
     border: none;
 }
 
@@ -54,6 +55,10 @@
     justify-content: center;
     border: none;
     background: none;
+}
+
+.select-reg .card-header h4 {
+    font-family: 'Poppins';
 }
 
 .select-reg .card-footer {
@@ -67,12 +72,17 @@
 
 .select-reg .btn {
     min-width: 100px;
-    background: #0099CC;
+    background: #2a94c3;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 0;
     border: none;
     text-transform: uppercase;
     min-height: 40px;
     line-height: normal;
+}
+
+.select-reg .btn:hover {
+    opacity: 0.7;
 }
 
 /* end of sellect registration type section */
@@ -155,15 +165,16 @@
 
 .modal-mgsearch .btn {
     min-width: 100px;
-    background: #0099CC;
+    background: #2a94c3;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border: none;
+    text-transform: uppercase;
     line-height: normal;
 }
 
 .modal-mgsearch .btn:hover,
 .modal-mgsearch .btn:focus {
-    background: #248bd0;
+    opacity: 0.7;
 }
 
 .modal-mgsearch .hint-text a {
@@ -219,14 +230,14 @@ input.invalid {
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-  background-color: #66bb6a;
+  background-color: #2b7596;
 }
 
 
 /* form section */
 .registration-form {
-    background: rgba(255,255,255, 0.5);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 0;
 }
 
 .registration-form .card-header {
@@ -250,7 +261,7 @@ input.invalid {
 }
 
 .registration-form .progress .progress-bar {
-    background-color: #66bb6a;
+    background-color: #2a94c3;
 }
 
 .registration-form .progress .one, .registration-form .progress .two, .registration-form .progress .three , .registration-form .progress .four, .registration-form .progress .five {
@@ -270,7 +281,7 @@ input.invalid {
 	font-size: 40px;
     margin-left: 20px;
     margin-top: 10px;
-    color: #fff;
+    color: #ffa7ba;
 }
 
 .registration-form .progress .two i {
@@ -279,7 +290,7 @@ input.invalid {
 	font-size: 35px;
     margin-left: 16.75px;
     margin-top: 12.5px;
-    color: #fff;
+    color: #ffa7ba;
 }
 
 .registration-form .progress .three i {
@@ -288,7 +299,7 @@ input.invalid {
 	font-size: 29px;
     margin-left: 15.5px;
     margin-top: 15.5px;
-    color: #fff;
+    color: #ffa7ba;
 }
 
 .registration-form .progress .four i {
@@ -297,7 +308,7 @@ input.invalid {
 	font-size: 30px;
     margin-left: 13.125px;
     margin-top: 13px;
-    color: #fff;
+    color: #ffa7ba;
 }
 
 .registration-form .progress .five i {
@@ -306,7 +317,7 @@ input.invalid {
 	font-size: 38px;
     margin-left: 11px;
     margin-top: 11px;
-    color: #fff;
+    color: #ffa7ba;
 }
 
 .registration-form .progress .one {
@@ -330,8 +341,12 @@ input.invalid {
 }
 
 .colored {
-    background-color: #66bb6a;
-    box-shadow: 0 12px 20px -10px rgba(76,175,80,.28),0 4px 20px 0 rgba(0,0,0,.12),0 7px 8px -5px rgba(76,175,80,.2);
+    background: linear-gradient(60deg,#2a94c3,#2a94c3);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .no-color {
@@ -340,9 +355,8 @@ input.invalid {
 
 .registration-form .card-body {
     border: 1px solid rgba(0,0,0,.125);
-    border-radius: 15px;
+    border-radius: 0;
     margin: 10px 40px;
-    background: #fff;
 }
 
 .registration-form .card-body .card-title {
@@ -367,7 +381,7 @@ input.invalid {
 
 .registration-form .form-control {
     width: 100%;
-    font-size: 17px;
+    font-size: 14px;
     font-family: Raleway;
     margin-bottom: 1rem;
 }
@@ -395,27 +409,32 @@ input.invalid {
 .registration-form .card-footer {
     background: none;
     border: none;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .registration-form .card-footer .btn {
-    min-width: 100px;
-    background: #0099CC;
+    background: #2a94c3;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     border-radius: 0;
-    color: #ffffff;
-    padding: 10px 20px;
-    font-size: 17px;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    font-size: 15px;
+    width: 105px;
     font-family: Raleway;
     cursor: pointer;
 }
 
 
 #prevBtn {
-    background-color: #464642;
+    background-color: #4e7788;
 }
 
 #clearBtn {
-    background-color: #8bb21e;
+    background-color: #77909d;
 }
 
 .registration-form .card-footer .btn:hover {
@@ -545,3 +564,67 @@ input.invalid {
 /* end of eroor tooltip of form section */
 
 /* end of form section */
+
+
+@media screen and (max-width:1200px) {
+   
+}
+
+@media screen and (max-width:992px) {
+    .registration-form .progress-area,
+    .registration-form .card-body img {
+        display: none;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .registration-form .card-footer .btn {
+        padding: 8px 4px;
+        font-size: 10px;
+        width: 60px;
+    }
+    .gmnoprint .gm-style-mtc div {
+        font-size: 10px !important;
+        background-color: rgba(255, 255, 255,0.5) !important;
+        padding: 0px 3px !important;
+        height: 20px !important;
+        font-weight: 400 !important;
+    }
+    .gmnoprint + div,
+    .gmnoprint .gm-svpc,
+    .gm-control-active.gm-fullscreen-control,
+    .gmnoprint div button.gm-control-active {
+        background-color: rgba(255, 255, 255,0.5) !important;
+    }
+}
+
+@media screen and (max-width:576px) {
+    .registration-form .card-body {
+        margin: 10px 10px;
+    }
+    .registration-form .card-footer {
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+    .registration-form .card-body {
+    padding-left: 0;
+    padding-right: 0;
+    }
+    .registration-form .card-header h2 {
+        font-size: 25px;
+        font-weight: bold
+    }
+    .registration-form .card-body .card-title {
+        font-size: 18px;
+    }
+    .select-reg .card-header h4 {
+        font-size: 18px;
+    }
+    .select-reg .btn {
+        padding: 8px 4px;
+        font-size: 10px;
+        min-width: 60px;
+        min-height: 20px;
+    }
+}
+

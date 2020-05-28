@@ -222,8 +222,8 @@
                 <div class="alert-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
+                            <div class="col-md-2 col-lg-3"></div>
+                            <div class="col-md-8 col-lg-6">
                                 <?php include('./inc/alert-continue-registration.php'); ?>
                                 <?php include('./inc/alert-mother-not-found.php'); ?>
                                 <?php include('./inc/alert-registration-success.php'); ?>
@@ -233,7 +233,7 @@
                                 <?php include('./inc/alert-email-exists-error.php'); ?>
                                 <?php include('./inc/alert-bId-exists-error.php'); ?>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-2 col-lg-3"></div>
                         </div>
                     </div>
                 </div>
