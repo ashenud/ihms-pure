@@ -115,6 +115,14 @@ div.dataTables_wrapper div.dataTables_filter input:focus {
     }
 }
 
+@media screen and (max-width:576px) {
+    .wrapper.mob-active div.dataTables_wrapper div.dataTables_filter,
+    .wrapper.mob-active div.dataTables_wrapper div.dataTables_paginate,
+    .wrapper.mob-active div.dataTables_wrapper div.dataTables_length {
+        display: none;
+    }
+}
+
 @media screen and (max-width:420px) {
     div.dataTables_wrapper div.dataTables_info {
         display: none;

@@ -46,10 +46,10 @@
 }
 
 .card-category {
-    font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-family: 'abhaya';
+    font-size: 15px;
     text-transform: uppercase;
-    color: #999999;
+    color: #6c757d;
     margin-top: 40px;
     height: 30px;
 }
@@ -94,6 +94,11 @@
     border-radius: 0;
 }
 
+.calendar, .calendar_weekdays, .calendar_content {
+    width: 100%;
+    max-width: none;
+}
+
 /* search babies section */
 .search-babies {
     height: 100%;
@@ -106,7 +111,7 @@
 }
 
 .search-babies .card-header h6 {
-    font-family: 'Poppins';
+    font-family: 'yaldevicolombo';
     font-size: 20px;
     margin-bottom: 0;
 }
@@ -120,6 +125,10 @@
 
 .search-babies .form-control:focus {
     box-shadow: none;
+}
+
+.search-babies .form-control::placeholder {
+    font-family: 'abhaya';
 }
 
 .search-babies .card-footer {
@@ -156,7 +165,7 @@
 }
 
 .card-chart .chart-body h3 {
-    font-family: 'Poppins';
+    font-family: 'yaldevicolombo';
     font-size: 20px;
     margin-bottom: 0;
     font-weight: bolder;
@@ -164,13 +173,27 @@
 }
 
 .card-chart .chart-body p {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'abhaya';
     font-size: 13px;
     text-transform: uppercase;
-    color: #999999;
+    color: #6c757d;
     margin-bottom: 0;
 }
 
+@media screen and (max-width:420px) {
+    .calendar_weekdays div, .calendar_content div {
+        font-size: 11px;
+    }
+    .calendar_weekdays div {
+        font-size: 6px !important;
+    }
+    .calendar_header h2 {
+        font-size: 10px;
+    }
+    .search-babies .form-control::placeholder {
+        font-size: 10px;
+    }
+}
 
 
 

@@ -186,7 +186,7 @@
                         <div class="col-md-10">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-uppercase">view sisters</h5>
+                                    <h5 class="card-title text-uppercase">සියලුම හෙදියන්</h5>
                                     
                                     <div class="table-for-data" style="margin-top: 30px">
                         

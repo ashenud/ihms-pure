@@ -666,6 +666,16 @@
         });
     </script>
     
+    <!-- Alert Dismiss scripts -->
+    <script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideToggle(500, function(){
+            $(this).remove();
+        });
+    }, 3500);
+    </script>
+    <!-- end of Alert Dismiss scripts -->
+    
 </body>
 
 </html>

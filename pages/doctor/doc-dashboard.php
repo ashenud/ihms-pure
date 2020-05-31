@@ -186,7 +186,7 @@
                                         <div class="card-icon icon-color">
                                             <i class="fas fa-baby"></i>
                                         </div>
-                                        <p class="card-category">Active Babies</p>
+                                        <p class="card-category">ක්‍රියාකාරී ළදරුවන්</p>
 
                                         <?php 
 
@@ -209,7 +209,7 @@
                                         <div class="card-icon icon-color">
                                             <i class="far fa-envelope"></i>
                                         </div>
-                                        <p class="card-category">inbox</p>
+                                        <p class="card-category">එන පණිවිඩ</p>
 
                                         <?php
                                             $query4="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
@@ -229,7 +229,7 @@
                                     <div class="card-icon icon-color">
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
-                                    <p class="card-category">work to do</p>
+                                    <p class="card-category">පැවරී ඇති රාජකාරි</p>
                                     <h3 class="card-title"><span class="counter">5</span></h3>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                                     <div class="card-icon icon-color">
                                         <i class="fas fa-handshake"></i>
                                     </div>
-                                    <p class="card-category">meetings</p>
+                                    <p class="card-category">රැස්වීම්</p>
                                     <h3 class="card-title"><span class="counter">4</span></h3>
                                 </div>
                             </div>
@@ -268,11 +268,11 @@
                             <div class="card search-babies">
                                 <form method="POST" action="./php/doc-search-baby-by-mNIC.php">
                                     <div class="card-header">
-                                        <h6 class="font-weight-bold">Search Mother</h6>
+                                        <h6 class="font-weight-bold">ළදරුවන් නිරීක්ෂණය කිරීම</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="search-input">
-                                            <input type="text" name="searchUser" class="form-control" placeholder="enter mother nic for search..." required>
+                                            <input type="text" name="searchUser" class="form-control" placeholder="සෙවීම සඳහා මවගේ හැඳුනුම් අංකය ඇතුළත් කරන්න..." required>
                                         </div>
                                     </div>
                                     <div class="card-footer">
@@ -327,8 +327,8 @@
                                     <canvas id="chart-age" class="line-chart"></canvas>
                                 </div>
                                 <div class="card-body chart-body">
-                                    <h3 class="chart-title">Babies</h3>
-                                    <p class="chart-category">number of babies to age in monts</p>
+                                    <h3 class="chart-title">ළදරුවන්</h3>
+                                    <p class="chart-category">එක් එක් වයස්(මාස) කාණ්ඩයේ සිටින ළදරුවන් සංඛ්‍යාව</p>
                                 </div>
                             </div>
                         </div>
