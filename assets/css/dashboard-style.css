@@ -141,6 +141,7 @@ body {
     margin-top: -50px;
     padding: 10px 15px;
     display: flex;
+    max-height: 68px;
 }
 
 .user-area img {
@@ -353,6 +354,7 @@ body {
     border-radius: 50%;
     height: 40px;
     background: #f3758a;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.13);
 }
 
 .mob-arrow {
@@ -441,6 +443,53 @@ body {
     .wrapper.mob-active .content {
         width: calc(100% - 250px);
         margin-left: 250px;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .user-area {
+        max-height: 55px;
+    }
+    .user-area img {
+        width: 40px;
+        height: 40px;
+    }
+    .user-area a {
+        font-size: 9px;
+        margin-top: 28px;
+    }
+    .inner-sidebar-menu ul li a .icon {
+        margin-right: 1px;
+        font-size: 18px;
+    }
+    .inner-sidebar-menu ul li a .list {
+        font-size: 14px;
+        margin-left: 4px;
+    }
+    .inner-sidebar-menu ul li a {
+        padding: 5px 20px;
+        margin: 5px 10px;
+    }
+    .mob-inner-hamburger {
+        width: 30px;
+        height: 30px;
+    }
+    .mob-hamburger {
+        right: -18px;
+        width: 40px;
+        height: 40px;
+    }
+    .mob-arrow {
+        font-size: 19px;
+    }
+    /*sidebar resizing*/
+    .wrapper.mob-active .sidebar-menu {
+        max-width: 190px;
+    }
+    .wrapper.mob-active .content {
+        width: calc(100% - 190px);
+        margin-left: 190px;
+        padding-top: 1px;
     }
 }
 

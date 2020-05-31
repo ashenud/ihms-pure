@@ -807,9 +807,27 @@ h4,h6 {
     }
     .modal .modal-content {
         max-width: 300px;
+        margin-top: 60px;
     }
     .wrap-login {
         max-width: 300px;
+    }
+    .login-form-logo {
+        width: 100px;
+        height: 100px;
+    }
+    .login-form-title {
+        margin: 0;
+    }
+    .wrap-input {
+        margin-bottom: 15px;
+    }
+    .wrap-login .text-center {
+        margin: 0;
+    }
+    .login-form-btn {
+        min-width: 100px;
+        height: 40px;
     }
     h1 {
         font-size: 2rem
