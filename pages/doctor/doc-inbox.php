@@ -191,11 +191,11 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="b_table">
-                                        <table class="table">
+                                        <table class="table table-responsive-sm">
                                             
                                             <?php
                                                         
-                                            $query1="SELECT * FROM doctor_message WHERE doctor_id='".$_SESSION['doctor_id']."' ORDER BY date DESC LIMIT 10";
+                                            $query1="SELECT * FROM doctor_message WHERE doctor_id='".$_SESSION['doctor_id']."' ORDER BY date DESC, time DESC LIMIT 10";
                                             $result1=mysqli_query($conn,$query1);
                                                         
                                             while($row1=mysqli_fetch_assoc($result1)) {
