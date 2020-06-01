@@ -38,6 +38,15 @@ $(document).ready(function() {
             scatterData.push(scatterItem);
         }
         
+        if ($(window).width() <= 768) {
+            var pRadius = 1;
+            var bWidth = 1;
+        }
+        else {
+            var pRadius = 2;
+            var bWidth = 2;
+        }
+        
         var childDataBmi = {
             type: 'scatter',
             label: [''],
@@ -45,8 +54,8 @@ $(document).ready(function() {
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 2,
+            borderWidth: bWidth,
+            pointRadius: pRadius,
         };
 
         $.ajax({
@@ -178,6 +187,15 @@ $(document).ready(function() {
             scatterData.push(scatterItem);
         }
         
+        if ($(window).width() <= 768) {
+            var pRadius = 1;
+            var bWidth = 1;
+        }
+        else {
+            var pRadius = 2;
+            var bWidth = 2;
+        }
+        
         var childDataBmi = {
             type: 'scatter',
             label: [''],
@@ -185,8 +203,8 @@ $(document).ready(function() {
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 2,
+            borderWidth: bWidth,
+            pointRadius: pRadius,
         };
 
         $.ajax({

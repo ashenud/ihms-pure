@@ -22,11 +22,19 @@ $(document).ready(function() {
         drawGrowthL36mChart();
     }
 
-
     function drawGrowthF24mChart() {
 
         var chartData;
-
+        
+        if ($(window).width() <= 576) {
+            var pRadius = 2;
+            var bWidth = 1;
+        }
+        else {
+            var pRadius = 3;
+            var bWidth = 2;
+        }        
+        
         var childDataWeight = {
             label: ['බර'],
             yAxisID: 'A',
@@ -35,8 +43,8 @@ $(document).ready(function() {
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
+            borderWidth: bWidth,
+            pointRadius: pRadius,
 
         };
 
@@ -158,6 +166,15 @@ $(document).ready(function() {
     function drawGrowthL36mChart(){
 
         var chartData;
+        
+        if ($(window).width() <= 576) {
+            var pRadius = 2;
+            var bWidth = 1;
+        }
+        else {
+            var pRadius = 3;
+            var bWidth = 2;
+        }
 
         var childDataWeight = {
             label: ['බර'],
@@ -167,8 +184,8 @@ $(document).ready(function() {
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
+            borderWidth: bWidth,
+            pointRadius: pRadius,
 
         };
 

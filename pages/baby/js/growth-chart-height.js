@@ -6,7 +6,16 @@ $(document).ready(function() {
         
 
         var chartData;
-
+        
+        if ($(window).width() <= 768) {
+            var pRadius = 1;
+            var bWidth = 1;
+        }
+        else {
+            var pRadius = 2;
+            var bWidth = 2;
+        }
+        
         var childDataHeight = {
             label: ['උස'],
             yAxisID: 'A',
@@ -15,8 +24,8 @@ $(document).ready(function() {
             backgroundColor: 'rgba(0, 16, 85, 1)',
             borderColor: 'rgba(0, 16, 85, 1)',
             lineTension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
+            borderWidth: bWidth,
+            pointRadius: pRadius,
         };
 
         $.ajax({
