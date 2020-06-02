@@ -126,12 +126,18 @@ body {
         height: 230vh;
         width: 68vw;
     }
+    .for-bmi-chart {
+        height: 72vh;
+    }
 }
 
 @media screen and (max-width: 992px) {
     .chart-canvas {
         height: 120vh;
         width: 60vw;
+    }
+    .for-bmi-chart {
+        height: 72vh;
     }
     .chart-area .word .btn-set {
         float: left;
@@ -147,12 +153,20 @@ body {
         height: 160vh;
         width: 70vw;
     }
+    .for-bmi-chart {
+        height: 66vh;
+        width: 62vw;
+    }
 }
 
 @media screen and (max-width: 576px) {
     .chart-canvas {
         height: 85vh;
         width: 58vw;
+    }
+    .for-bmi-chart {
+        height: 62vh;
+        width: 68vw;
     }
     .chart-area .word p {
         padding-left: 10px;
