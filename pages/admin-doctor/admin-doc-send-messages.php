@@ -18,9 +18,6 @@ if(!isset($_SESSION['admin_id'])) {
     <?php 
     //favicons
     include('../../inc/basic/include-dashboard-fav.php');
-    ?>
-
-    <?php
     //css
     include('../../inc/basic/include-dashboard-css.php');
     ?>
