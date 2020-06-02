@@ -1,9 +1,7 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-   
-
 <?php 
 
+    session_start();
+    include('../../php/basic/connection.php');
  
     $_SESSION['view_id']=$_POST['view-id'];
     $view_id=$_SESSION['view_id'];
@@ -44,34 +42,23 @@
 ?>
 
 
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-
+    <!-- required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-        <!-- for datatable -->
-    <link rel="stylesheet" href="../../assets/css/material.min.css">
-    <link rel="stylesheet" href="../../assets/css/custom-table-style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css">
-
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    //table css
+    include('../../inc/basic/include-dashboard-table-css.php');
+    ?>
+    
     <link rel="stylesheet" href="./css/view-data-style.css">
 
     <title>Infant Health Management System</title>
@@ -453,24 +440,14 @@ else {
 <?php   
 } 
 ?>
-   
     
-    
-    
-       
-    
-    <!--core js files-->
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-        <!-- for data table -->
-    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/custom-table-script.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
-
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end ofcore js files-->
+    <!-- optional JavaScript -->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    //table js
+    include('../../inc/basic/include-dashboard-table-js.php');
+    ?>
     
 </body>
 
