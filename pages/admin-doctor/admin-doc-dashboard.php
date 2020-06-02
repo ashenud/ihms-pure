@@ -117,6 +117,12 @@ if(!isset($_SESSION['admin_id'])) {
 
     <!-- writed scripts -->
     <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.a-dash').addClass('active');
+        }); 
+    </script>
+        
+    <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
@@ -124,11 +130,7 @@ if(!isset($_SESSION['admin_id'])) {
             
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
-            });
-            
-            $(function() {
-                $('.inner-sidebar-menu ul li a.a-dash').addClass('active');
-            });          
+            });         
         });
     </script>
     <!-- end of writed scripts -->

@@ -151,11 +151,13 @@ if(!isset($_SESSION['admin_id'])) {
 
     <!-- writed scripts -->
     <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.a-viewb').addClass('drop-active');
+        });
+    </script> 
+    
+    <script>
         $(document).ready(function() {
-            $(function() {
-                $('.inner-sidebar-menu ul li a.a-viewb').addClass('drop-active');
-            });
-            
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });

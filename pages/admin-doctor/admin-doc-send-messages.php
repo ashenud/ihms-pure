@@ -114,11 +114,13 @@ if(!isset($_SESSION['admin_id'])) {
 
     <!-- writed scripts -->
     <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.a-send').addClass('active');
+        });
+    </script>
+    
+    <script>
         $(document).ready(function() {
-            $(function() {
-                $('.inner-sidebar-menu ul li a.a-send').addClass('active');
-            });
-            
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
