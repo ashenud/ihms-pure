@@ -102,44 +102,40 @@ if(!isset($_SESSION['doctor_id'])) {
             <div class="content">
                
                 <div class="container">
-                  
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <div class="menu">
-                                <h4 class="text-uppercase font-weight-bold mb-4">මුරපදය වෙනස් කරන්න</h4>
+                      
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="text-uppercase font-weight-bold mb-4">මුරපදය වෙනස් කරන්න</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="old_password">
+                                                පැරණි මුරපදය
+                                                <?php include('inc/alert-old-pass.php'); ?>                                    
+                                            </label>
+                                            <input type="password" class="form-control" name="old_password" placeholder="පැරණි මුරපදය ඇතුළත් කරන්න" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="new_password">
+                                                නව මුරපදය
+                                                <?php include('inc/alert-new-pass.php'); ?>
+                                            </label>
+                                            <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="නව මුරපදය ඇතුළත් කරන්න" required>
+                                            <span toggle="#new_password" class="far fa-fw fa-eye password-icon"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="confirm_password">මුරපදය තහවුරු කරන්න</label>
+                                            <input type="password" class="form-control" name="confirm_password" placeholder="නව මුරපදය නැවත ඇතුළත් කරන්න" required>
+                                        </div>
+                                        <button type="submit" name="submit" class="btn btn">ඉදිරිපත් කරන්න</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-6">
-                            <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label for="old_password">
-                                        පැරණි මුරපදය
-                                        <?php include('inc/alert-old-pass.php'); ?>                                    
-                                    </label>
-                                    <input type="password" class="form-control" name="old_password" placeholder="පැරණි මුරපදය ඇතුළත් කරන්න" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="new_password">
-                                        නව මුරපදය
-                                        <?php include('inc/alert-new-pass.php'); ?>
-                                    </label>
-                                    <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="නව මුරපදය ඇතුළත් කරන්න" required>
-                                    <span toggle="#new_password" class="far fa-fw fa-eye password-icon"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirm_password">මුරපදය තහවුරු කරන්න</label>
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="නව මුරපදය නැවත ඇතුළත් කරන්න" required>
-                                </div>
-                                <button type="submit" name="submit" class="btn btn-primary">ඉදිරිපත් කරන්න</button>
-                            </form>
-                        </div>
-                        <div class="col-md-4 pwd-validate">
+                        <div class="col-lg-4 pwd-validate">
                             <?php include('inc/pwd-validation-msg.php'); ?>
                         </div>                 
                     </div>
