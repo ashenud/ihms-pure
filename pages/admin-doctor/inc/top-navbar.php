@@ -8,7 +8,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php">
+                        <a class="nav-link" href="/">
                             <i class="fas fa-home"></i>
                             <span class="text-uppercase">මුල් පිටුවට</span>
                         </a>
