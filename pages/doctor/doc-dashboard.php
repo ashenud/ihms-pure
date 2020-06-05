@@ -245,6 +245,7 @@ if(!isset($_SESSION['doctor_id'])) {
     <script type="text/javascript" src="../../assets/js/jquery.waypoints.min.js"></script>
     <script type="text/javascript" src="../../assets/js/jquery.counterup.min.js"></script>
     <script type="text/javascript" src="../../assets/css/calendar/calendar.js"></script>
+    <script type="text/javascript" src="../../assets/js/charts/Chart.min.js"></script>
 
    
     <!-- writed scripts -->
@@ -283,7 +284,8 @@ if(!isset($_SESSION['doctor_id'])) {
                         data: [<?php echo $age_count; ?>],
                         backgroundColor: '#ffa7ba',
                         borderColor: '#ffa7ba',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        barPercentage: 0.8,
                     }]
                 },
                 options: {
@@ -307,7 +309,6 @@ if(!isset($_SESSION['doctor_id'])) {
 
                         }],
                         xAxes: [{
-                            barPercentage: 0.6,
                             ticks: {
                                 fontColor: '#fff',
                                 fontSize: 9,
@@ -322,10 +323,9 @@ if(!isset($_SESSION['doctor_id'])) {
                 }
             }
 
-        
-
         var ctxAge = document.getElementById('chart-age').getContext('2d');
         new Chart(ctxAge, ChartAge);
+        
     </script> 
     
     <!-- end of writed scripts -->
