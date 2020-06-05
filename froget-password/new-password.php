@@ -1,12 +1,9 @@
-<?php session_start(); ?>
-
 <?php 
-    $_SESSION['code']=$_GET["code"];
-?>
-
-<?php if(!isset($_SESSION['code'])) {	
-	header('location:../index.php?noPermission=1');
-	}
+session_start();
+$_SESSION['code']=$_GET["code"];
+if(!isset($_SESSION['code'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -22,11 +19,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 
-    <!--fonts and icons-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre&display=swap">
-    
+    <!--fonts and icons-->    
     <link rel="stylesheet" href="../assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../assets/css/unicode-fonts.css">
 
@@ -46,9 +39,9 @@
 
 	<div class="form-gap"></div>
 	<div class="container">
-	    <div class="row">
-            <div class="col-md-4"></div>
-	        <div class="col-md-4 col-md-offset-4">
+	    <div class="row d-flex justify-content-center">
+            <div class="col-md-3"></div>
+	        <div class="col-md-5 mb-3">
 	            <div class="panel panel-default">
 	                <div class="panel-body">
 	                    <div class="text-center">
@@ -70,7 +63,7 @@
                                         <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="නව මුරපදය නැවත ඇතුළත් කරන්න" required>
                                     </div>	                                
 	                                <div class="form-group">
-	                                    <input name="submit" id="submit" class="btn btn-lg btn-primary btn-block text-uppercase py-1" value="මුරපදය නැවත සකසන්න" type="submit">
+	                                    <input name="submit" id="submit" class="btn btn-lg py-1" value="මුරපදය නැවත සකසන්න" type="submit">
 	                                </div>
 
 	                                <input type="hidden" class="hide" name="token" id="token" value="">

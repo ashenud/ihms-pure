@@ -54,7 +54,7 @@ if(isset($_POST['submit'])) {
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            header('location:../../index.php?mailSuccess=1');
+            header('location:/?mailSuccess=1');
         } 
 
         catch (Exception $e) {

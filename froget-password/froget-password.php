@@ -10,11 +10,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
 
-    <!--fonts and icons-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abhaya+Libre&display=swap">
-    
+    <!--fonts and icons-->    
     <link rel="stylesheet" href="../assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="../assets/css/unicode-fonts.css">
 
@@ -34,9 +30,8 @@
 
 	<div class="form-gap"></div>
 	<div class="container">
-	    <div class="row">
-            <div class="col-md-4"></div>
-	        <div class="col-md-4 col-md-offset-4">
+	    <div class="row d-flex justify-content-center">
+	        <div class="col-md-5">
 	            <div class="panel panel-default">
 	                <div class="panel-body">
 	                    <div class="text-center">
@@ -55,13 +50,10 @@
                                     </div>
 
 	                                <div class="form-group">
-	                                    <div class="input-group">
-	                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-	                                        <input id="email" name="email" placeholder="විද්‍යුත් තැපැල් ලිපිනය ඇතුළත් කරන්න" class="form-control" type="email">
-	                                    </div>
+	                                    <input id="email" name="email" placeholder="විද්‍යුත් තැපැල් ලිපිනය ඇතුළත් කරන්න" class="form-control" type="email">
 	                                </div>
 	                                <div class="form-group">
-	                                    <input name="submit" class="btn btn-lg btn-primary btn-block text-uppercase py-1" value="ඉදිරිපත් කරන්න" type="submit">
+	                                    <input name="submit" class="btn btn-lg py-1" value="ඉදිරිපත් කරන්න" type="submit">
 	                                </div>
 
 	                                <input type="hidden" class="hide" name="token" id="token" value="">
@@ -72,7 +64,6 @@
 	                </div>
 	            </div>
 	        </div>
-	        <div class="col-md-4"></div>
 	    </div>
 	</div>
 

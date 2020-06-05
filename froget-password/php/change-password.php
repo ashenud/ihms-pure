@@ -42,7 +42,7 @@ if(isset($_POST['submit'])) {
         $query3="UPDATE user SET update_date=NOW() WHERE email='{$email}' LIMIT 1";
         $result3=mysqli_query($conn,$query3);
 
-        header('location:../../index.php?passChanged=1');
+        header('location:/?passChanged=1');
         session_destroy();
         
         if($result2) {

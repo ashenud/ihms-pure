@@ -56,6 +56,12 @@
 }
 
 @font-face {
+  font-family: yaldevicolombo;
+  src: url(../fonts/uni-fonts/YaldeviColombo-SemiBold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
   font-family: yaldevijaffna;
   src: url(../fonts/uni-fonts/YaldeviJaffna-Regular.ttf);
 }
