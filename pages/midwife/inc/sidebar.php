@@ -48,7 +48,7 @@
                 </li>
             </div>
             <li>
-                <a href="./mid-charts.php" class="text-uppercase mm-chart">
+                <a href="./mid-reports.php" class="text-uppercase mm-chart">
                     <span class="icon">
                         <i class="fas fa-copy" aria-hidden="true"></i>
                     </span>
