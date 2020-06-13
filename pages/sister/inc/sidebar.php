@@ -43,7 +43,7 @@
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        <span class="list">වින්නඹුවන් බලන්න</span>
+                        <span class="list">වින්නඹුවන්ගේ තොරතුරු බලන්න</span>
                     </a>
                 </li>
                 <li>
@@ -51,16 +51,16 @@
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        <span class="list">ළමුන් බලන්න</span>
+                        <span class="list">ළමුන්ගේ තොරතුරු බලන්න</span>
                     </a>
                 </li>
             </div>
             <li>
-                <a href="./sis-table.php" class="text-uppercase ss-table">
+                <a href="./sis-reports.php" class="text-uppercase ss-table">
                     <span class="icon">
-                        <i class="fas fa-table" aria-hidden="true"></i>
+                        <i class="fas fa-file-medical-alt" aria-hidden="true"></i>
                     </span>
-                    <span class="list">දත්ත වගු</span>
+                    <span class="list">වාර්තා</span>
                 </a>
             </li>
             <li>

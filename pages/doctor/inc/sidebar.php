@@ -35,7 +35,7 @@
                         <span class="icon-active">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        <span class="list">හෙදියන් බලන්න</span>
+                        <span class="list">හෙදියන්ගේ තොරතුරු බලන්න</span>
                     </a>
                 </li>
                 <li>
@@ -43,7 +43,7 @@
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        <span class="list">ළමුන් බලන්න</span>
+                        <span class="list">ළමුන්ගේ තොරතුරු බලන්න</span>
                     </a>
                 </li>
             </div>
