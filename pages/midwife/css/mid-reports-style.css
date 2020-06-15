@@ -48,8 +48,11 @@
     font-size: 15px;
 }
 
-.content .btn.download {
+.content .btn.download b {
     font-family: 'abhaya', serif;
+}
+
+.content .btn.download {
     font-size: 1rem;
     color: #fff;
     border-radius: 0;

@@ -375,6 +375,11 @@ if(!isset($_SESSION['midwife_id'])) {
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+            
+            // Handler for .ready() called to acctive vaccine.
+            $('html, body').animate({
+                scrollTop: $('.color-given').last().offset().top - 160
+            }, 'slow');
         });
     </script>
     

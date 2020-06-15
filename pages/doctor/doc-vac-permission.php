@@ -328,6 +328,11 @@ if(!isset($_SESSION['doctor_id'])) {
                 $(".wrapper").toggleClass("mob-active");
             });
         });
+        
+        // Handler for .ready() called to acctive vaccine.
+        $('html, body').animate({
+            scrollTop: $('.badge-secondary').last().offset().top - 160
+        }, 'slow');
     </script>
     <!-- end of writed scripts -->
     
