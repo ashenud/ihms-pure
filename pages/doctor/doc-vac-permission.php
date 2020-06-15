@@ -354,6 +354,14 @@ if(!isset($_SESSION['doctor_id'])) {
     </script>
     <!-- end of send data to modal scripts -->
     
+    <!-- tooltip scripts -->
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <!-- end of tooltip scripts -->
+    
     <!-- Alert Dismiss scripts -->
     <script>
     window.setTimeout(function() {

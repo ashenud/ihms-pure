@@ -43,7 +43,20 @@
                                 <input type="checkbox" id="vaccine1" value="1" checked="checked" disabled>
                                 <label for="vaccine1">බී.සී.ජී.<br>(B.C.G.)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row1["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row1["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row1["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row1["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php
                     }
@@ -83,7 +96,20 @@
                                 <input type="checkbox" id="vaccine2" value="2" checked="checked" disabled>
                                 <label for="vaccine2">බී.සී.ජී. දෙවන මාත්‍රාව<br>(B.C.G. 2nd dose)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row2["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row2["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row2["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row2["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -165,7 +191,20 @@
                                 <input type="checkbox" id="vaccine3" value="3" checked="checked" disabled>
                                 <label for="vaccine3">පංච සං‍යුජ එන්නත 1<br>(Pentavalent 1)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row3["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row3["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row3["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row3["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -220,7 +259,20 @@
                                 <input type="checkbox" id="vaccine4" value="4" checked="checked" disabled>
                                 <label for="vaccine4">මුඛ පෝලියෝ 1<br>(OPV 1)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row4["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row4["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row4["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row4["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -275,7 +327,20 @@
                                 <input type="checkbox" id="vaccine5" value="5" checked="checked" disabled>
                                 <label for="vaccine5">අජීවී පෝලියෝ 1<br>(fIPV 1)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row5["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row5["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row5["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row5["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -346,7 +411,20 @@
                                 <input type="checkbox" id="vaccine6" value="6" checked="checked" disabled>
                                 <label for="vaccine6">පංච සං‍යුජ එන්නත 2<br>(Pentavalent 2)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row6["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row6["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row6["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row6["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -401,7 +479,20 @@
                                 <input type="checkbox" id="vaccine7" value="7" checked="checked" disabled>
                                 <label for="vaccine7">මුඛ පෝලියෝ 2<br>(OPV 2)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row7["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row7["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row7["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row7["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -456,7 +547,20 @@
                                 <input type="checkbox" id="vaccine8" value="8" checked="checked" disabled>
                                 <label for="vaccine8">අජීවී පෝලියෝ 2<br>(fIPV 2)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row8["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row8["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row8["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row8["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -527,7 +631,20 @@
                                 <input type="checkbox" id="vaccine9" value="9" checked="checked" disabled>
                                 <label for="vaccine9">පංච සං‍යුජ එන්නත 3<br>(Pentavalent 3)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row9["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row9["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row9["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row9["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -582,7 +699,20 @@
                                 <input type="checkbox" id="vaccine10" value="10" checked="checked" disabled>
                                 <label for="vaccine10">මුඛ පෝලියෝ 3<br>(OPV 3)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row10["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row10["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row10["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row10["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -653,7 +783,20 @@
                                 <input type="checkbox" id="vaccine11" value="11" checked="checked" disabled>
                                 <label for="vaccine11">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 1<br>(MMR 1)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row11["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row11["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row11["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row11["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -724,7 +867,20 @@
                                 <input type="checkbox" id="vaccine12" value="12" checked="checked" disabled>
                                 <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row12["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row12["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row12["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row12["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -795,7 +951,20 @@
                                 <input type="checkbox" id="vaccine13" value="13" checked="checked" disabled>
                                 <label for="vaccine13">ත්‍රිත්ව<br>(DPT)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row13["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row13["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row13["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row13["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -850,7 +1019,20 @@
                                 <input type="checkbox" id="vaccine14" value="14" checked="checked" disabled>
                                 <label for="vaccine14">මුඛ පෝලියෝ 4<br>(OPV 4)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row14["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row14["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row14["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row14["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -921,7 +1103,20 @@
                                 <input type="checkbox" id="vaccine15" value="15" checked="checked" disabled>
                                 <label for="vaccine15">සරම්ප, කම්මුල්ගාය,<br>රුබෙල්ලා 2<br>(MMR 2)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row15["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row15["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row15["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row15["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -992,7 +1187,20 @@
                                 <input type="checkbox" id="vaccine16" value="16" checked="checked" disabled>
                                 <label for="vaccine16">ද්විත්ව<br>(D.T)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row16["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row16["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row16["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row16["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -1047,7 +1255,20 @@
                                 <input type="checkbox" id="vaccine17" value="17" checked="checked" disabled>
                                 <label for="vaccine17">මුඛ පෝලියෝ 5<br>(OPV 5)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row17["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row17["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row17["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row17["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -1118,7 +1339,20 @@
                                 <input type="checkbox" id="vaccine18" value="18" checked="checked" disabled>
                                 <label for="vaccine18">එච්. පී. වී. එන්නත 1<br>(HPV Vaccine 1)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row18["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row18["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row18["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row18["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -1174,7 +1408,20 @@
                                 <input type="checkbox" id="vaccine19" value="19" checked="checked" disabled>
                                 <label for="vaccine19">එච්. පී. වී. එන්නත 2<br>(HPV Vaccine 2)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row19["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row19["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row19["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row19["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }
@@ -1245,7 +1492,20 @@
                                 <input type="checkbox" id="vaccine20" value="20" checked="checked" disabled>
                                 <label for="vaccine20">වැඩිහිටි පිටගැස්ම හා<br>ඩිප්තීරියා (aTd)</label>
                             </span>
-                            <span class="badge color-given">එන්නත් කර ඇත</span>
+                            <span class="badge color-given" data-toggle="tooltip" data-placement="top" data-html="true" title='<div class="card">
+                                                    <div class="card-body">
+                                                        <p class="card-text">ලබා දුන් දිනය : <?php echo $row20["date_given"]; ?></p>
+                                                        <p class="card-text">කාණ්ඩ අංකය  : <?php echo $row20["batch_no"]; ?></p>
+                                                        <p class="card-text">අතුරු ආබාධ   : <?php if(!isset($row20["side_effects"])) {
+                                                                                                    echo "නැත";
+                                                                                                 }
+                                                                                                 else {
+                                                                                                    echo $row20["side_effects"];
+                                                                                                 }?>
+                                                        </p>
+                                                    </div>
+                                                </div>'>එන්නත් කර ඇත
+                            </span>
                         </div>
                 <?php 
                     }

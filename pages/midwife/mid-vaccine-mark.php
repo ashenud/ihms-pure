@@ -400,6 +400,14 @@ if(!isset($_SESSION['midwife_id'])) {
     </script>
     <!-- end of send data to modal scripts -->
     
+    <!-- tooltip scripts -->
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <!-- end of tooltip scripts -->
+    
     <!-- Alert Dismiss scripts -->
     <script>
     window.setTimeout(function() {
