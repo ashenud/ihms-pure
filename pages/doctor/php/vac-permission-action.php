@@ -98,6 +98,20 @@ if(isset($_POST['submit_vac'])) {
             header("Location:../doc-vac-permission.php?vacSuccess=1");
         }
         
+    }
+    elseif($vaccine==12) {
+        
+        $vac_name='Live JE';
+        $vac_id=12;
+        $new_status=0;
+        
+        $query2="INSERT INTO vac_12months(baby_id,approved_doctor_id,midwife_id,vac_name,vac_id,status) VALUES('$baby_id','$doctor_id','$midwife_id','$vac_name','$vac_id','$new_status')";
+        $result2=mysqli_query($conn,$query2);
+        
+        if($result2) {
+            header("Location:../doc-vac-permission.php?vacSuccess=1");
+        }
+        
     }   
     elseif($vaccine==14) {
         
@@ -294,16 +308,26 @@ else if(isset($_POST['submit-vac-with-data'])) {
         $vac_id=13;
         $new_status=0;
         
-        $query2="INSERT INTO vac_18months(baby_id,approved_doctor_id,midwife_id,vac_name,vac_id,status) VALUES('$baby_id','$doctor_id','$midwife_id','$vac_name','$vac_id','$new_status')";
-        $result2=mysqli_query($conn,$query2);
+        $query003="SELECT * FROM child_health_note WHERE baby_id='".$_SESSION['baby_id']."' AND baby_age_group_id=6";
+        $result003= mysqli_query($conn,$query003);
+        $num_row003=mysqli_num_rows($result003);
         
-        $query3="INSERT INTO child_health_note(baby_id,midwife_id,baby_age_group,baby_age_group_id,eye_size,squint,retina,cornea,eye_movement,hearing,weight,height,development,heart,hip,other,doctor_id,clinic_date) VALUES('$baby_id','$midwife_id','$age_group','$age_group_id','$eye1','$eye2','$eye3','$eye4','$eye5','$hearing','$weight','$height','$development','$heart','$hip','$other','$doctor_id','$clinic_date')";
-        $result3=mysqli_query($conn,$query3);
-        
-        if($result2) {
-            if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+        if($num_row003==1) {
+            
+            $query2="INSERT INTO vac_18months(baby_id,approved_doctor_id,midwife_id,vac_name,vac_id,status) VALUES('$baby_id','$doctor_id','$midwife_id','$vac_name','$vac_id','$new_status')";
+            $result2=mysqli_query($conn,$query2);
+
+            $query3="INSERT INTO child_health_note(baby_id,midwife_id,baby_age_group,baby_age_group_id,eye_size,squint,retina,cornea,eye_movement,hearing,weight,height,development,heart,hip,other,doctor_id,clinic_date) VALUES('$baby_id','$midwife_id','$age_group','$age_group_id','$eye1','$eye2','$eye3','$eye4','$eye5','$hearing','$weight','$height','$development','$heart','$hip','$other','$doctor_id','$clinic_date')";
+            $result3=mysqli_query($conn,$query3);
+            
+            if($result2) {
+                if($result3) {
+                    header("Location:../doc-vac-permission.php?vacSuccess=1");
+                }
             }
+        }
+        else {
+            header("Location:../doc-vac-permission.php?vacErrorPleaseEnterBeforeData=1");
         }
     }
     elseif($vaccine==15) {
@@ -390,5 +414,45 @@ else if(isset($_POST['submit-vac-with-data'])) {
             }
         }
     }
+}
+
+else if(isset($_POST['submit-helth-data'])) {
+    $group_id=($_POST['group_id']);
+    $baby_id=($_POST['baby_id']);
+    $doctor_id=$_SESSION['doctor_id'];
+    
+    $clinic_date=($_POST['date_came']);
+    $eye1=($_POST['eye1']);
+    $eye2=($_POST['eye2']);
+    $eye3=($_POST['eye3']);
+    $eye4=($_POST['eye4']);
+    $eye5=($_POST['eye5']);
+    $hearing=($_POST['hearing']);
+    $weight=($_POST['weight']);
+    $height=($_POST['height']);
+    $development=($_POST['development']);
+    $heart=($_POST['heart']);
+    $hip=($_POST['hip']);
+    $other=($_POST['other']);
+    
+    $query1="SELECT * FROM baby_register WHERE baby_id='".$baby_id."'";
+    $result1=mysqli_query($conn,$query1);
+    $row1=mysqli_fetch_assoc($result1);
+    
+    $midwife_id=$row1['midwife_id'];
+    
+    if($group_id==6) {
+        
+        $age_group='After 12th Month';
+        $age_group_id=6;
+        
+        $query003="INSERT INTO child_health_note(baby_id,midwife_id,baby_age_group,baby_age_group_id,eye_size,squint,retina,cornea,eye_movement,hearing,weight,height,development,heart,hip,other,doctor_id,clinic_date) VALUES('$baby_id','$midwife_id','$age_group','$age_group_id','$eye1','$eye2','$eye3','$eye4','$eye5','$hearing','$weight','$height','$development','$heart','$hip','$other','$doctor_id','$clinic_date')";
+        $result003=mysqli_query($conn,$query003);
+        
+        if($result003) {
+            header("Location:../doc-baby-data-page.php?vacSuccess=1");
+        }
+    }
+
 }
 ?>

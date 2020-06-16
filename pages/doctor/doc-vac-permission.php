@@ -207,11 +207,11 @@ if(!isset($_SESSION['doctor_id'])) {
                             </li>
                         </div>
                         <li>
-                            <a href="./doc-baby-editable-page.php" class="text-uppercase">
+                            <a href="./doc-baby-data-page.php" class="text-uppercase">
                                 <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
+                                    <i class="fas fa-file-medical-alt" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">දත්ත සංස්කරණය</span>
+                                <span class="list">ළමා සෞඛ්‍ය සටහන</span>
                             </a>
                         </li>
                         <li>

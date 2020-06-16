@@ -902,9 +902,32 @@
                                 <input type="checkbox" id="vaccine12" value="12" disabled>
                                 <label for="vaccine12">ජපන් නිදිකර්පථප්‍රදාහය<br>(Live JE)</label>
                             </span>
+                        
+                        <?php   
+                        $query001="SELECT * FROM child_health_note WHERE baby_id='".$_SESSION['baby_id']."' AND baby_age_group_id=6";
+                        $result001= mysqli_query($conn,$query001);
+                        $num_row=mysqli_num_rows($result001);
+                        
+                        if($num_row==0) {
+                        ?> 
+                            
                             <button class="btn" id='vac-approvel-with-data' data-toggle='modal' href='#vac-confirm-with-data' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='12'>
                                 <span class="badge badge-off">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
                             </button>
+                            
+                        <?php
+                        }
+                        else {
+                        ?>
+                        
+                            <button class="btn" id='vac-approvel' data-toggle='modal' href='#vac-confirm' data-baby='<?php echo $_SESSION['baby_id'];?>' data-vac='12'>
+                                <span class="badge badge-danger">එන්නත් කිරීමට අනුමැතිය දෙන්න</span>
+                            </button>
+                        
+                        <?php   
+                        }
+                        ?>
+                            
                         </div>
                 <?php
                     }
