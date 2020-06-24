@@ -1422,7 +1422,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">ඉවත් වන්න</button>
-                    <form action="./php/vac-permission-action.php" method="POST" onsubmit="return validation()">
+                    <form action="/pages/doctor/php/vac-permission-action.php" method="POST" onsubmit="return validation()">
                         <input type="hidden" id="baby_id" name="baby_id">
                         <input type="hidden" id="vaccine" name="vaccine">
                         <button name="submit_vac" type="submit" class="btn btn-danger">අනුමත කරන්න</button>
@@ -1436,7 +1436,7 @@
     <div id="vac-confirm-with-data" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <form action="./php/vac-permission-action.php" method="POST">
+                <form action="/pages/doctor/php/vac-permission-action.php" method="POST">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>

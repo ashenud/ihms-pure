@@ -116,7 +116,7 @@ if(!isset($_SESSION['midwife_id'])) {
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-6">
-                            <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                            <form action="/pages/midwife/php/password-change.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="old_password">
                                         පැරණි මුරපදය

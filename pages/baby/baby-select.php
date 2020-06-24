@@ -22,7 +22,7 @@ if(!isset($_SESSION['mother_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/baby-select-style.css">
+    <link rel="stylesheet" href="/pages/baby/css/baby-select-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -44,7 +44,7 @@ if(!isset($_SESSION['mother_id'])) {
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/mother.png" width="50" class="rounded-circle">
+                        <img src="/pages/baby/img/mother.png" width="50" class="rounded-circle">
                         <?php
                             $query1 = "SELECT * FROM mother WHERE mother_nic='".$_SESSION['mother_id']."'";
                             $result1= mysqli_query($conn,$query1);
@@ -58,7 +58,7 @@ if(!isset($_SESSION['mother_id'])) {
                         <li>
                             <?php
                                 if(isset($_SESSION['doctor_id'])){
-                                    echo '<a href="../doctor/doc-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/doctor/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
@@ -66,7 +66,7 @@ if(!isset($_SESSION['mother_id'])) {
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['sister_id'])){
-                                    echo '<a href="../sister/sis-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/sister/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
@@ -74,7 +74,7 @@ if(!isset($_SESSION['mother_id'])) {
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['midwife_id'])){
-                                    echo '<a href="../midwife/mid-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/midwife/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
@@ -82,7 +82,7 @@ if(!isset($_SESSION['mother_id'])) {
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['admin_id'])){
-                                    echo '<a href="../admin-doctor/admin-doc-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/admin/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
@@ -93,7 +93,7 @@ if(!isset($_SESSION['mother_id'])) {
                             ?>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/baby/select" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>
@@ -146,7 +146,7 @@ if(!isset($_SESSION['mother_id'])) {
                         ?>
                             
                                     <div class="col-md-auto">
-                                        <form action="./php/baby-select-action.php" method="POST">
+                                        <form action="/pages/baby/php/baby-select-action.php" method="POST">
                                             <button type="submit" class="btn" name="baby_id" value="<?php echo $baby_id;?>">
                                                 <div class="card card-common">
                                                     <div class="card-body">
@@ -169,7 +169,7 @@ if(!isset($_SESSION['mother_id'])) {
                                 else {
                         ?>
                                     <div class="col-md-auto">
-                                        <form action="./php/baby-select-action.php" method="POST">
+                                        <form action="/pages/baby/php/baby-select-action.php" method="POST">
                                             <button type="submit" class="btn" name="baby_id" value="<?php echo $baby_id;?>">
                                                 <div class="card card-common">
                                                     <div class="card-body">

@@ -75,7 +75,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                         <div class="row">
                                             <div class="col-lg-4 img-col">
                                                 <div class="img-area">
-                                                    <img src="img/sister.png" alt="midwife" width="110px" height="115px">
+                                                    <img src="/pages/doctor/img/sister.png" alt="midwife" width="110px" height="115px">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -121,7 +121,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class='modal-body'>
-                                                                        <form method='POST' action='php/doc-send-msg-action.php'>
+                                                                        <form method='POST' action='/pages/doctor/php/doc-send-msg-action.php'>
                                                                             <div class='row d-flex justify-content-around'>
                                                                                 <div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                                                                     <lable>විසින්:</lable>
@@ -166,7 +166,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                         <div class="row">
                                             <div class="col-lg-4 img-col">
                                                 <div class="img-area">
-                                                    <img src="img/midwife.png" alt="midwife" width="110px" height="115px">
+                                                    <img src="/pages/doctor/img/midwife.png" alt="midwife" width="110px" height="115px">
                                                 </div>
                                             </div>
                                             <div class="col-lg-8">
@@ -209,7 +209,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class='modal-body'>
-                                                                        <form method='POST' action='php/doc-send-msg-action.php'>
+                                                                        <form method='POST' action='/pages/doctor/php/doc-send-msg-action.php'>
                                                                             <div class='row d-flex justify-content-around'>
                                                                                 <div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
                                                                                     <lable>විසින්:</lable>

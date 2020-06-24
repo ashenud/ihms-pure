@@ -25,7 +25,7 @@
                                                                               
                                         
                                         
-                                        require '../../../php/PHPMailer/PHPMailerAutoload.php';
+                                        require '/php/PHPMailer/PHPMailerAutoload.php';
                                         //require 'credential.php';
 
                                         $mail = new PHPMailer;
@@ -69,7 +69,7 @@
                                        $mail->send();
 
                                        //echo "<meta http-equiv='Refresh' content='0; url=midHome.php'>";
-                                       echo "<script>window.location.assign('../mid-dashboard.php?success1')</script>";
+                                       echo "<script>window.location.assign('/midwife/dashboard?success=1')</script>";
                                       }
                                                                            
                                        

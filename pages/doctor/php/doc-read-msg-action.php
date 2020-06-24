@@ -12,7 +12,7 @@ if(isset($_POST['read-submit'])) {
     echo mysqli_error($conn);
     
     if($result1) {
-        header("Location:../doc-inbox.php");
+        header("Location:/doctor/inbox");
     }
 }
 
@@ -24,7 +24,7 @@ if(isset($_POST['delete-submit'])) {
     echo mysqli_error($conn);
     
     if($result1) {
-        header("Location:../doc-inbox.php?msgDelete=1");
+        header("Location:/doctor/inbox?msgDelete=1");
     }
 }
 

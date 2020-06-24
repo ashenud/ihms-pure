@@ -123,7 +123,7 @@ if(!isset($_SESSION['doctor_id'])) {
                             <?php
                                 if(isset($_SESSION['doctor_id'])) {
                             ?>
-                                    <a href="./doc-dashboard.php" class="text-uppercase">
+                                    <a href="/doctor/dashboard" class="text-uppercase">
                                     <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                     </span>
@@ -133,7 +133,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                 }
                                 else if(isset($_SESSION['sister_id'])) {
                             ?>
-                                    <a href="../sister/sis-dashboard.php" class="text-uppercase">
+                                    <a href="/sister/dashboard" class="text-uppercase">
                                     <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                     </span>
@@ -143,7 +143,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                 }
                                 else if(isset($_SESSION['midwife_id'])) {
                             ?>
-                                    <a href="../midwife/mid-dashboard.php" class="text-uppercase">
+                                    <a href="/midwife/dashboard" class="text-uppercase">
                                     <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                     </span>
@@ -153,7 +153,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                 }
                                 else if(isset($_SESSION['admin_id'])) {
                             ?>
-                                    <a href="../admin-doctor/admin-doc-dashboard.php" class="text-uppercase">
+                                    <a href="/admin/dashboard" class="text-uppercase">
                                     <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                     </span>
@@ -164,7 +164,7 @@ if(!isset($_SESSION['doctor_id'])) {
                             ?>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/doctor/vac-permission" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-syringe" aria-hidden="true"></i>
                                 </span>
@@ -182,7 +182,7 @@ if(!isset($_SESSION['doctor_id'])) {
                         </li>
                         <div class="collapse collapse-charts" id="charts">
                             <li>
-                                <a href="../baby/baby-charts-weight.php" class="text-uppercase drop">
+                                <a href="/baby/charts-weight" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                                     </span>
@@ -190,7 +190,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                 </a>
                             </li>
                             <li>
-                                <a href="../baby/baby-charts-height.php" class="text-uppercase drop">
+                                <a href="/baby/charts-height" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                                     </span>
@@ -198,7 +198,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                 </a>
                             </li>
                             <li>
-                                <a href="../baby/baby-charts-bmi.php" class="text-uppercase drop">
+                                <a href="/baby/charts-bmi" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                                     </span>
@@ -207,7 +207,7 @@ if(!isset($_SESSION['doctor_id'])) {
                             </li>
                         </div>
                         <li>
-                            <a href="./doc-baby-data-page.php" class="text-uppercase">
+                            <a href="/doctor/baby-data-page" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-file-medical-alt" aria-hidden="true"></i>
                                 </span>
@@ -215,7 +215,7 @@ if(!isset($_SESSION['doctor_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="../baby/baby-select.php" class="text-uppercase">
+                            <a href="/baby/select" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>

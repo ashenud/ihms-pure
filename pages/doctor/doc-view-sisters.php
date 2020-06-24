@@ -92,7 +92,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                                     <td><?php echo $row['sister_name']; ?></td>
                                                     <td><?php echo $row['sister_moh_division']; ?></td>
                                                     <td>
-                                                        <form action="student.php" method="POST">
+                                                        <form action="!#" method="POST">
                                                             <input type="hidden" name="send-msg" value="<?php echo $row['sister_id']; ?>">
                                                             <button type="submit" name="send-btn" class="btn send-btn"><i class="fa fa-comment-dots" aria-hidden="true"></i></button>
                                                         </form>

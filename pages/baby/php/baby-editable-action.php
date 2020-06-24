@@ -12,14 +12,14 @@
         $row1=mysqli_fetch_assoc($result1);
         
         if(empty($row1)) {
-            header("Location:../baby-editable-page.php?setDateFirst=1");
+            header("Location:/baby/editable-page?setDateFirst=1");
         }
         else {
             $query2="UPDATE vaccine_date SET giving_date='{$vacDate}' WHERE vac_id='$vacName' AND baby_id='$baby_id'";
             $result2=mysqli_query($conn,$query2);
 
             if($result2) {
-                header("Location:../baby-editable-page.php?setDateSuccess=1");
+                header("Location:/baby/editable-page?setDateSuccess=1");
             }
         }
 
@@ -35,18 +35,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_birth SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
         }
         elseif($vaccine==2) {
@@ -56,18 +56,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_birth SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }  
         }
         elseif($vaccine==3) {
@@ -77,18 +77,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_2months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==4) {
@@ -98,18 +98,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_2months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==5) {
@@ -119,18 +119,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_2months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==6) {
@@ -140,18 +140,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_4months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==7) {
@@ -161,18 +161,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_4months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==8) {
@@ -182,18 +182,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_4months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }  
         }
         elseif($vaccine==9) {
@@ -203,18 +203,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_6months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==10) {
@@ -224,18 +224,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_6months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==11) {
@@ -245,18 +245,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_9months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==12) {
@@ -266,18 +266,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_12months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==13) {
@@ -287,18 +287,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_18months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==14) {
@@ -308,18 +308,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_18months SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==15) {
@@ -329,18 +329,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_3years SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==16) {
@@ -350,18 +350,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_5years SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==17) {
@@ -371,18 +371,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_5years SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==18) {
@@ -392,18 +392,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_10years SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==19) {
@@ -413,18 +413,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_10years SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         elseif($vaccine==20) {
@@ -434,18 +434,18 @@
             $row0=mysqli_fetch_assoc($result0);
         
             if(empty($row0)) {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }
             else if($row0['status']==1)  {
                 $query1="UPDATE vac_11years SET side_effects='{$vacSideEffNote}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
                 $result1=mysqli_query($conn,$query1);
 
                 if($result1) {
-                    header("Location:../baby-editable-page.php?setSideEffSuccess=1");
+                    header("Location:/baby/editable-page?setSideEffSuccess=1");
                 }
             }
             else {
-                header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+                header("Location:/baby/editable-page?giveVaccineFirst=1");
             }   
         }
         
@@ -460,18 +460,18 @@
         $row0=mysqli_fetch_assoc($result0);
 
         if(empty($row0)) {
-            header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+            header("Location:/baby/editable-page?giveVaccineFirst=1");
         }
         else if($row0['status']==1)  {
             $query1="UPDATE vac_birth SET scar='{$scar}' WHERE baby_id='{$baby_id}' AND vac_id='{$vaccine}'";
             $result1=mysqli_query($conn,$query1);
 
             if($result1) {
-                header("Location:../baby-editable-page.php?setScarSuccess=1");
+                header("Location:/baby/editable-page?setScarSuccess=1");
             }
         }
         else {
-            header("Location:../baby-editable-page.php?giveVaccineFirst=1");
+            header("Location:/baby/editable-page?giveVaccineFirst=1");
         }
     }
 
@@ -485,7 +485,7 @@
         $result0=mysqli_query($conn,$query0);
 
         if($result0) {
-            header("Location:../baby-editable-page.php?otherVaccSuccess=1");
+            header("Location:/baby/editable-page?otherVaccSuccess=1");
         }
     }
 ?>

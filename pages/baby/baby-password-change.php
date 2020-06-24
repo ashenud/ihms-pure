@@ -35,7 +35,7 @@ else{}
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/baby-password-change-style.css">
+    <link rel="stylesheet" href="/pages/baby/css/baby-password-change-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -57,7 +57,7 @@ else{}
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/mother.png" class="rounded-circle">
+                        <img src="/pages/baby/img/mother.png" class="rounded-circle">
                         <?php
                             $query00 = "SELECT * FROM mother WHERE mother_nic='".$_SESSION['mother_id']."'";
                             $result00= mysqli_query($conn,$query00);
@@ -69,7 +69,7 @@ else{}
                     <!--sidebar items-->
                     <ul>
                        <li>
-                            <a href="./baby-dashboard.php" class="text-uppercase">
+                            <a href="/baby/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
@@ -77,7 +77,7 @@ else{}
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/baby/password-change" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-key" aria-hidden="true"></i>
                                 </span>
@@ -129,7 +129,7 @@ else{}
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-6">
-                            <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                            <form action="/pages/baby/php/password-change.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="old_password">
                                         පැරණි මුරපදය
@@ -174,7 +174,7 @@ else{}
     include('../../inc/basic/include-dashboard-js.php');
     ?>
     
-    <script type="text/javascript" src="./js/pwd-validation-script.js"> </script>
+    <script type="text/javascript" src="/pages/baby/js/pwd-validation-script.js"> </script>
 
     <!-- writed scripts -->
     <script>

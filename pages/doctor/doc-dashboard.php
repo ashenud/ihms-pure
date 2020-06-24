@@ -54,7 +54,7 @@ if(!isset($_SESSION['doctor_id'])) {
                     <div class="row mt-4 mb-5">
                        
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
-                            <a class="text-decoration-none" href="./doc-view-babies.php">
+                            <a class="text-decoration-none" href="/doctor/view-babies">
                                 <div class="card card-stats">
                                     <div class="card-header stat-header">
                                         <div class="card-icon icon-color">
@@ -77,7 +77,7 @@ if(!isset($_SESSION['doctor_id'])) {
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
-                            <a class="text-decoration-none" href="./doc-inbox.php">
+                            <a class="text-decoration-none" href="/doctor/inbox">
                                 <div class="card card-stats">
                                     <div class="card-header stat-header">
                                         <div class="card-icon icon-color">
@@ -140,7 +140,7 @@ if(!isset($_SESSION['doctor_id'])) {
                       
                         <div class="col-lg-6 mb-2">
                             <div class="card search-babies">
-                                <form method="POST" action="./php/doc-search-baby-by-mNIC.php">
+                                <form method="POST" action="/pages/doctor/php/doc-search-baby-by-mNIC.php">
                                     <div class="card-header">
                                         <h6 class="font-weight-bold">ළදරුවන් නිරීක්ෂණය කිරීම</h6>
                                     </div>

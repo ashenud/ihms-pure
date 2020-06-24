@@ -125,7 +125,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 <div class="card-body">
                                     <div class="card">
                                         <div class="class-body">
-                                            <form method="POST" action="php/update-thriposha-action.php">
+                                            <form method="POST" action="/pages/midwife/php/update-thriposha-action.php">
                                                 <div class="form-row d-flex justify-content-center">
                                                     <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                         <p style="color:green;">

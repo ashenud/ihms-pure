@@ -26,7 +26,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }   
     }
     elseif($vaccine==4) {
@@ -39,7 +39,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }
@@ -53,7 +53,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }  
@@ -67,7 +67,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }    
@@ -81,7 +81,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }
@@ -95,7 +95,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }
@@ -109,7 +109,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }   
@@ -123,7 +123,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }  
@@ -137,7 +137,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }   
@@ -151,7 +151,7 @@ if(isset($_POST['submit_vac'])) {
         $result2=mysqli_query($conn,$query2);
         
         if($result2) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
         
     }
@@ -191,7 +191,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         $result3=mysqli_query($conn,$query3);
         
         if($result3) {
-            header("Location:../doc-vac-permission.php?vacSuccess=1");
+            header("Location:/doctor/vac-permission?vacSuccess=1");
         }
     }
     elseif($vaccine==3) {
@@ -211,7 +211,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -232,7 +232,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -253,7 +253,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -274,7 +274,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -295,7 +295,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -322,12 +322,12 @@ else if(isset($_POST['submit-vac-with-data'])) {
             
             if($result2) {
                 if($result3) {
-                    header("Location:../doc-vac-permission.php?vacSuccess=1");
+                    header("Location:/doctor/vac-permission?vacSuccess=1");
                 }
             }
         }
         else {
-            header("Location:../doc-vac-permission.php?vacErrorPleaseEnterBeforeData=1");
+            header("Location:/doctor/vac-permission?vacErrorPleaseEnterBeforeData=1");
         }
     }
     elseif($vaccine==15) {
@@ -347,7 +347,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -368,7 +368,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -389,7 +389,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -410,7 +410,7 @@ else if(isset($_POST['submit-vac-with-data'])) {
         
         if($result2) {
             if($result3) {
-                header("Location:../doc-vac-permission.php?vacSuccess=1");
+                header("Location:/doctor/vac-permission?vacSuccess=1");
             }
         }
     }
@@ -450,7 +450,7 @@ else if(isset($_POST['submit-helth-data'])) {
         $result003=mysqli_query($conn,$query003);
         
         if($result003) {
-            header("Location:../doc-baby-data-page.php?vacSuccess=1");
+            header("Location:/doctor/baby-data-page?vacSuccess=1");
         }
     }
 

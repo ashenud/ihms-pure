@@ -41,7 +41,7 @@ function initMap() {
                 text.textContent = address
                 infowincontent.appendChild(text);
                 let icon = {
-                    url: './img/home-map.png',
+                    url: '/pages/midwife/img/home-map.png',
                     scaledSize: {
                         width: 26,
                         height: 43,

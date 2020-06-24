@@ -4,10 +4,12 @@ ReWriteEngine On
 
 RewriteRule ^doctor/dashboard?$ /pages/doctor/doc-dashboard.php [L]
 RewriteRule ^doctor/view-sisters?$ /pages/doctor/doc-view-sisters.php [L]
-RewriteRule ^doctor/view-babies?$ /pages/doctor/doc-table.php [L]
+RewriteRule ^doctor/view-babies?$ /pages/doctor/doc-view-babies.php [L]
 RewriteRule ^doctor/table?$ /pages/doctor/doc-table.php [L]
 RewriteRule ^doctor/inbox?$ /pages/doctor/doc-inbox.php [L]
 RewriteRule ^doctor/send-messages?$ /pages/doctor/doc-send-messages.php [L]
+RewriteRule ^doctor/vac-permission?$ /pages/doctor/doc-vac-permission.php [L]
+RewriteRule ^doctor/baby-data-page?$ /pages/doctor/doc-baby-data-page.php [L]
 RewriteRule ^doctor/password-change?$ /pages/doctor/doc-password-change.php [L]
 
 
@@ -26,3 +28,17 @@ RewriteRule ^midwife/vaccine-mark?$ /pages/midwife/mid-vaccine-mark.php [L]
 RewriteRule ^midwife/contact-staff?$ /pages/midwife/mid-contact-staff.php [L]
 RewriteRule ^midwife/thriposha?$ /pages/midwife/mid-thriposha.php [L]
 RewriteRule ^midwife/password-change?$ /pages/midwife/mid-password-change.php [L]
+
+
+#baby
+
+RewriteRule ^baby/dashboard?$ /pages/baby/baby-dashboard.php [L]
+RewriteRule ^baby/vaccinations?$ /pages/baby/baby-vaccinations.php [L]
+RewriteRule ^baby/charts-weight?$ /pages/baby/baby-charts-weight.php [L]
+RewriteRule ^baby/charts-height?$ /pages/baby/baby-charts-height.php [L]
+RewriteRule ^baby/charts-bmi?$ /pages/baby/baby-charts-bmi.php [L]
+RewriteRule ^baby/editable-page?$ /pages/baby/baby-editable-page.php [L]
+RewriteRule ^baby/inbox?$ /pages/baby/baby-inbox.php [L]
+RewriteRule ^baby/send-messages?$ /pages/baby/baby-send-messages.php [L]
+RewriteRule ^baby/select?$ /pages/baby/baby-select.php [L]
+RewriteRule ^baby/password-change?$ /pages/baby/baby-password-change.php [L]

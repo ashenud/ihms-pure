@@ -1990,7 +1990,7 @@
     <div id="vac-mark" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <form action="./php/mid-vac-mark-action.php" method="POST" onsubmit="return validation()">
+                <form action="/pages/midwife/php/mid-vac-mark-action.php" method="POST" onsubmit="return validation()">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
@@ -2023,7 +2023,7 @@
     <div id="set-date" class="modal fade">
         <div class="modal-dialog modal-confirm">
             <div class="modal-content">
-                <form action="./php/mid-vac-set-date-action.php" method="POST" onsubmit="return validation()">
+                <form action="/pages/midwife/php/mid-vac-set-date-action.php" method="POST" onsubmit="return validation()">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>

@@ -106,5 +106,5 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
             }
 
 mysqli_close($conn);
-header("Location:../mid-view-babies.php");
+header("Location:/midwife/view-babies");
 ?>

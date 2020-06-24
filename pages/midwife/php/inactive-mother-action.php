@@ -24,7 +24,7 @@ $result4=mysqli_query($conn,$query4);
             else {
                 echo "inactive error baby".mysqli_error($conn);
             }
-            header("Location:../mid-view-babies.php");    
+            header("Location:/midwife/view-babies");    
 }
 
 ?>

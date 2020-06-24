@@ -11,7 +11,7 @@ extract($_POST);
             if(mysqli_query($conn,$query2)){
 
             echo "it works";
-            header("Location:../doc-send-messages.php?send2MidSuccess=1");
+            header("Location:/doctor/send-messages?send2MidSuccess=1");
         }
         
     }
@@ -25,7 +25,7 @@ extract($_POST);
             if(mysqli_query($conn,$query2)){
 
             echo "it works";
-            header("Location:../doc-send-messages.php?send2SisSuccess=1");
+            header("Location:/doctor/send-messages?send2SisSuccess=1");
         }
         
     }

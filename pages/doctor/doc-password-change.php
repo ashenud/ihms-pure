@@ -110,7 +110,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                     <h3 class="text-uppercase font-weight-bold mb-4">මුරපදය වෙනස් කරන්න</h3>
                                 </div>
                                 <div class="card-body">
-                                    <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                                    <form action="/pages/doctor/php/password-change.php" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label for="old_password">
                                                 පැරණි මුරපදය

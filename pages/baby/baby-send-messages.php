@@ -5,7 +5,7 @@ if(!isset($_SESSION['mother_id'])) {
 	header('location:/?noPermission=1');
 }
 if(!isset($_SESSION['baby_id'])) {	
-   header('location:./baby-select.php');
+   header('location:/baby/select');
 }
 ?>
 

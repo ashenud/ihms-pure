@@ -13,11 +13,11 @@ if(isset($_POST['searchBabyUsingMnic'])){
         
         $_SESSION['mother_id']=$searchUser;
         $_SESSION['doc_serch_baby_using_nic']="Somthing";
-        header("Location:../../baby/baby-select.php");
+        header("Location:/baby/select");
         
     }
     else {
-        header("Location:../doc-dashboard.php?motherNotFound=1");
+        header("Location:/doctor/dashboard?motherNotFound=1");
     }
 }
 

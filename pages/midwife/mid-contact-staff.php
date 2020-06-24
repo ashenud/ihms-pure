@@ -107,7 +107,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <div class="col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2">
                         <div class="card">
                         <div class="card-body">
-                            <img src="img/doctor.png" alt="doctor" width="110px" height="115px">
+                            <img src="/pages/midwife/img/doctor.png" alt="doctor" width="110px" height="115px">
                             <figcaption  class=" text-center text-warning">Doctor</figcaption>
                         </div>   
                         </div>
@@ -155,7 +155,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                     echo "</button>";
                                                     echo "</div>";
                                                     echo "<div class='modal-body'>";
-                                                    echo "<form method='POST' action='php/mid-send-sms-action.php'>";
+                                                    echo "<form method='POST' action='/pages/midwife/php/mid-send-sms-action.php'>";
                                                     echo "<div class='row d-flex justify-content-around'>";
                                                     echo "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>";
                                                     echo "<lable>From:</lable>";
@@ -203,7 +203,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <div class="col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2">
                         <div class="card">
                         <div class="card-body">
-                            <img src="img/sister.png" alt="sister" width="110px" height="115px">
+                            <img src="/pages/midwife/img/sister.png" alt="sister" width="110px" height="115px">
                             <figcaption  class=" text-center text-success">Sister</figcaption>
                         </div>   
                         </div>
@@ -250,7 +250,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                         echo "</button>";
                                                         echo "</div>";
                                                         echo "<div class='modal-body'>";
-                                                        echo "<form method='POST' action='php/mid-send-sms-action.php'>";
+                                                        echo "<form method='POST' action='/pages/midwife/php/mid-send-sms-action.php'>";
                                                         echo "<div class='row d-flex justify-content-around'>";
                                                         echo "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>";
                                                         echo "<lable>From:</lable>";
@@ -299,7 +299,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <div class="col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2">
                         <div class="card">
                         <div class="card-body">
-                            <img src="img/midwife.png" alt="midwife" width="110px" height="115px">
+                            <img src="/pages/midwife/img/midwife.png" alt="midwife" width="110px" height="115px">
                             <figcaption  class=" text-center text-primary">Midwife</figcaption>
                         </div>   
                         </div>
@@ -352,7 +352,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                         echo "</button>";
                                                         echo "</div>";
                                                         echo "<div class='modal-body'>";
-                                                        echo "<form method='POST' action='php/mid-send-sms-action.php'>";
+                                                        echo "<form method='POST' action='/pages/midwife/php/mid-send-sms-action.php'>";
                                                         echo "<div class='row d-flex justify-content-around'>";
                                                         echo "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>";
                                                         echo "<lable>From:</lable>";

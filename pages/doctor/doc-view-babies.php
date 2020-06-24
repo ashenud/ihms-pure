@@ -118,7 +118,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                                     <td><?php echo $row['baby_first_name']." ".$row['baby_last_name']; ?></td>
                                                     <td><?php echo $row['age']; ?></td>
                                                     <td>
-                                                        <form action="../general/view-data.php" method="POST">
+                                                        <form action="/general/view-data" method="POST">
                                                             <input type="hidden" name="view-id" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                                         </form>

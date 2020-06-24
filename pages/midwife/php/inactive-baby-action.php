@@ -20,6 +20,6 @@ $result2=mysqli_query($conn,$query2);
             echo "Delete ERROR baby_re" .mysqli_error($conn);
         }
    
-      header("Location:../mid-view-babies.php");
+      header("Location:/midwife/view-babies");
 }
 ?>

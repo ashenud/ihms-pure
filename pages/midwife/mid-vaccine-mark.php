@@ -193,7 +193,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         </li>
                         <div class="collapse collapse-charts" id="charts">
                             <li>
-                                <a href="/baby/baby-charts-weight" class="text-uppercase drop">
+                                <a href="/baby/charts-weight" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                                     </span>
@@ -201,7 +201,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 </a>
                             </li>
                             <li>
-                                <a href="/baby/baby-charts-height" class="text-uppercase drop">
+                                <a href="/baby/charts-height" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                                     </span>
@@ -209,7 +209,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 </a>
                             </li>
                             <li>
-                                <a href="/baby/baby-charts-bmi" class="text-uppercase drop">
+                                <a href="/baby/charts-bmi" class="text-uppercase drop">
                                     <span class="icon">
                                         <i class="fas fa-chart-line" aria-hidden="true"></i>
                                     </span>
@@ -241,7 +241,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 }
                                 elseif(isset($_SESSION['midwife_id'])) {
                             ?>
-                                    <a href="/midwife/baby-editable-page" class="text-uppercase">
+                                    <a href="/baby/editable-page" class="text-uppercase">
                                     <span class="icon">
                                     <i class="fas fa-table" aria-hidden="true"></i>
                                     </span>
@@ -262,7 +262,7 @@ if(!isset($_SESSION['midwife_id'])) {
                             ?>
                         </li>
                         <li>
-                            <a href="/baby/baby-select" class="text-uppercase">
+                            <a href="/baby/select" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>

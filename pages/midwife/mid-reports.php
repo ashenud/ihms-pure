@@ -4102,7 +4102,7 @@ if(!isset($_SESSION['midwife_id'])) {
 
                         }
                         
-                        echo        "</td>"; // end of weight catogory
+                        echo        '</td>'; // end of weight catogory
                         echo        "<td>".$row['weight']." | "; // height category will print in below if-else statements
                             
 

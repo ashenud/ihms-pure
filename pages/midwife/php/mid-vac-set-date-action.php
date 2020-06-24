@@ -19,7 +19,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
     }
     elseif($vaccine==2) {
@@ -31,7 +31,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }  
     }
     elseif($vaccine==3) {
@@ -43,7 +43,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }   
     }
     elseif($vaccine==4) {
@@ -55,7 +55,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -68,7 +68,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -82,7 +82,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -96,7 +96,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -110,7 +110,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -124,7 +124,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -138,7 +138,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -152,7 +152,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -166,7 +166,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -180,7 +180,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -194,7 +194,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -208,7 +208,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -222,7 +222,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -236,7 +236,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -250,7 +250,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -264,7 +264,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }
@@ -278,7 +278,7 @@ if(isset($_POST['date-set'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacSetDateSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacSetDateSuccess=1");
         }
         
     }

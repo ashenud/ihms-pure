@@ -18,40 +18,40 @@
             if($user['role_id']==1) {
                 $_SESSION['doctor_id']=$user['user_id'];
             
-                header('location:../pages/doctor/doc-dashboard.php');
+                header('location:/doctor/dashboard');
             }
             
             else if($user['role_id']==2) {
                 $_SESSION['sister_id']=$user['user_id'];
             
-                header('location:../pages/sister/sis-dashboard.php');
+                header('location:/sister/dashboard');
             }
             
             else if($user['role_id']==3) {
                 $_SESSION['midwife_id']=$user['user_id'];
             
-                header('location:../pages/midwife/mid-dashboard.php');
+                header('location:/midwife/dashboard');
             }
             
             else if($user['role_id']==4) {
                 $_SESSION['mother_id']=$_POST['user_id'];
             
-                header('location:../pages/baby/baby-select.php');
+                header('location:/baby/select');
             }
             
             else if($user['role_id']==5) {
                 $_SESSION['admin_id']=$_POST['user_id'];
             
-                header('location:../pages/admin-doctor/admin-doc-dashboard.php');
+                header('location:/admin/dashboard');
             }
             
             else {
-                header('location:../index.php?error=1');
+                header('location:/?error=1');
             } 
             
 		}
         else {
-                header('location:../index.php?error=1');
+                header('location:/?error=1');
             }
 		
     }

@@ -90,7 +90,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                     echo "</button>";
                                                     echo "</div>";
                                                     echo "<div class='modal-body'>";
-                                                    echo "<form method='POST' action='php/mid-msg-read-action.php'>";
+                                                    echo "<form method='POST' action='/pages/midwife/php/mid-msg-read-action.php'>";
                                                     echo "<div class=row>";
                                                     echo "<textarea name='messageArea' id='messageArea' class='form-control' readonly style='color:blue;'></textarea>";
                                                     echo "</div>";
@@ -165,7 +165,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                             echo "</button>";
                                                             echo "</div>";
                                                             echo "<div class='modal-body'>";
-                                                            echo "<form method='POST' action='php/mid-msg-read-action.php'>";
+                                                            echo "<form method='POST' action='/pages/midwife/php/mid-msg-read-action.php'>";
                                                             echo "<div class=row>";
                                                             echo "<textarea name='messageArea' id='messageAreaView' class='form-control' readonly style='color:blue;'></textarea>";
                                                             echo "</div>";

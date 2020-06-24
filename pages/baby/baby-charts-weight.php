@@ -9,7 +9,7 @@
     }
 
     if(!isset($_SESSION['baby_id'])) {	
-       header('location:./baby-select.php');
+       header('location:/baby/select');
     }
 
     $user=$_SESSION['baby_id'];
@@ -66,7 +66,7 @@
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/baby-chart-all-style.css">
+    <link rel="stylesheet" href="/pages/baby/css/baby-chart-all-style.css">
 
     <?php
         
@@ -200,9 +200,9 @@
     include('../../inc/basic/include-dashboard-js.php');
     ?>
    
-    <script type="text/javascript" src="../../assets/js/charts/Chart.js"></script>
-    <script type="text/javascript" src="../../assets/js/jspdf.min.js"></script>
-    <script type="text/javascript" src="./js/growth-chart-weight.js"></script>
+    <script type="text/javascript" src="/assets/js/charts/Chart.js"></script>
+    <script type="text/javascript" src="/assets/js/jspdf.min.js"></script>
+    <script type="text/javascript" src="/pages/baby/js/growth-chart-weight.js"></script>
 
     
     <!-- writed scripts -->

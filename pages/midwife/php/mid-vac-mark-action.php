@@ -21,7 +21,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }
     }
     elseif($vaccine==2) {
@@ -33,7 +33,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }  
     }
     elseif($vaccine==3) {
@@ -45,7 +45,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==4) {
@@ -57,7 +57,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==5) {
@@ -69,7 +69,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==6) {
@@ -81,7 +81,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==7) {
@@ -93,7 +93,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==8) {
@@ -105,7 +105,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==9) {
@@ -117,7 +117,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==10) {
@@ -129,7 +129,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==11) {
@@ -141,7 +141,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==12) {
@@ -153,7 +153,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==13) {
@@ -165,7 +165,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==14) {
@@ -177,7 +177,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==15) {
@@ -189,7 +189,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==16) {
@@ -201,7 +201,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==17) {
@@ -213,7 +213,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==18) {
@@ -225,7 +225,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==19) {
@@ -237,7 +237,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==20) {
@@ -249,7 +249,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
 }

@@ -70,7 +70,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                         ?>
                                     </p>
                                     <div class="registration">
-                                        <form name="my-form" action="./php/add-home-visit-action.php" method="POST" onsubmit="return validation()">
+                                        <form name="my-form" action="/pages/midwife/php/add-home-visit-action.php" method="POST" onsubmit="return validation()">
 
                                             <div class="container mt-4">
 

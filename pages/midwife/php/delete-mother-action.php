@@ -9,7 +9,7 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
 
             if($rowArr2['numBabies'] > 0){
 
-                header("Location:../mid-view-babies.php");
+                header("Location:/midwife/view-babies");
 
             }
             else{
@@ -66,7 +66,7 @@ $rowArr2=mysqli_fetch_assoc($runNew2);
                 mysqli_query($conn,$sql17);
                 mysqli_query($conn,$sql18);
                 mysqli_close($conn);
-                header("Location:../mid-view-babies.php");
+                header("Location:/midwife/view-babies");
 
             }
 

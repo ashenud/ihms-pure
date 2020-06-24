@@ -5,7 +5,7 @@ if(!isset($_SESSION['mother_id'])) {
 	header('location:/?noPermission=1');
 }
 if(!isset($_SESSION['baby_id'])) {	
-   header('location:./baby-select.php');
+   header('location:/baby/select');
 }
 ?>
 
@@ -25,7 +25,7 @@ if(!isset($_SESSION['baby_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/baby-dashboard-style.css">
+    <link rel="stylesheet" href="/pages/baby/css/baby-dashboard-style.css">
 
     <title>Infant Health Management System</title>
     

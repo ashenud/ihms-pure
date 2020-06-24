@@ -9,7 +9,7 @@ if(isset($_POST['searchBabyUsingMnic'])){
 
     $_SESSION['mother_id']=$searchUser;
     $_SESSION['serch_baby_using_nic']="Somthing";
-    header("Location:../../baby/baby-select.php");
+    header("Location:/baby/select");
 }
 
 

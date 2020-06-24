@@ -30,7 +30,7 @@ function initMap() {
       document.getElementById('end').addEventListener('change', onChangeHandler);
   
     // including locations in database to the map
-    downloadUrl('./php/location-add-action.php', function (data) {
+    downloadUrl('/pages/midwife/php/location-add-action.php', function (data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('locations');
         Array.prototype.forEach.call(markers, function (markerElem) {
@@ -52,7 +52,7 @@ function initMap() {
                 text.textContent = address
                 infowincontent.appendChild(text);
                 let icon = {
-                    url: './img/home-map.png',
+                    url: '/pages/midwife/img/home-map.png',
                     scaledSize: {
                         width: 26,
                         height: 43,

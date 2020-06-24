@@ -103,7 +103,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         </div>
                         
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
-                            <a class="text-decoration-none" href="./mid-view-babies.php">
+                            <a class="text-decoration-none" href="/midwife/view-babies">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body">
@@ -136,7 +136,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         </div>
                         
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
-                            <a class="text-decoration-none" href="./mid-thriposha.php">
+                            <a class="text-decoration-none" href="/midwife/thriposha">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body">
@@ -171,7 +171,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         </div>
                         
                         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
-                            <a class="text-decoration-none" href="./mid-contact-staff.php">
+                            <a class="text-decoration-none" href="/midwife/contact-staff">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body">
@@ -200,7 +200,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <div id="reminderModal" class="modal fade">
                             <div class="modal-dialog modal-reminder">
                                 <div class="modal-content card card-image">
-                                    <form action="./php/add-reminder-action.php" method="POST">
+                                    <form action="/pages/midwife/php/add-reminder-action.php" method="POST">
                                         <div class="modal-header">
                                             <h4 class="modal-title text-uppercase">Add Reminder</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -237,7 +237,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <!-- search baby section -->
                         <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card search-babies">
-                                <form method="POST" action="php/mid-search-baby-by-mNIC.php">
+                                <form method="POST" action="/pages/midwife/php/mid-search-baby-by-mNIC.php">
                                     <div class="card-header">
                                         <h6 class="font-weight-bold">Search Mother</h6>
                                     </div>
@@ -256,7 +256,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <!-- message section -->
                         <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card compose-mail">
-                                <form method="POST" action="php/send-mail-action.php">
+                                <form method="POST" action="/pages/midwife/php/send-mail-action.php">
                                     <div class="card-header">
                                         <h6 class="font-weight-bold">Send message to all mothers via email</h6>
                                     </div>
@@ -356,11 +356,11 @@ if(!isset($_SESSION['midwife_id'])) {
                                     
                                         ?>
                                            
-                                            <form method='POST' action="./php/delete-reminder-action.php">
+                                            <form method='POST' action="/pages/midwife/php/delete-reminder-action.php">
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img class="media-photo" src="./img/reminder-icon.webp">
+                                                            <img class="media-photo" src="/pages/midwife/img/reminder-icon.webp">
                                                         </td>
                                                         <td>
                                                             <span class="discription"><?php echo $row2['midwife_reminder']; ?></span>

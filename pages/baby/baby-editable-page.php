@@ -24,7 +24,7 @@
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/baby-editable-style.css">
+    <link rel="stylesheet" href="/pages/baby/css/baby-editable-style.css">
 
     
     <title>Infant Health Management System</title>
@@ -137,7 +137,7 @@
                                             <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="edit-vac">
                                                     <h5>එන්නත් කිරීමේ දිනය වෙනස් කිරීම</h5>
-                                                    <form method="POST" action="./php/baby-editable-action.php">
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">
                                                         <div class="form-row d-flex justify-content-center">
                                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                                 <label>එන්නත තෝරන්න</label>
@@ -195,7 +195,7 @@
                                             <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="edit-vac">
                                                     <h5>එන්නත් කිරීමෙන් පසු අතුරු අබාධ ඇත්නම්</h5>
-                                                    <form method="POST" action="./php/baby-editable-action.php">
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">
                                                         <div class="form-row d-flex justify-content-center">
                                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                                 <label>එන්නත තෝරන්න</label>
@@ -254,7 +254,7 @@
                                             <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="other-vac">
                                                     <h5>වෙනත් එන්නත් ලබා දුන්නේ නම්</h5>
-                                                    <form method="POST" action="./php/baby-editable-action.php">
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">
                                                         <div class="form-row d-flex justify-content-center">
                                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                                 <label>එන්නතේ නම</label>
@@ -286,7 +286,7 @@
                                             <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <div class="bcg-scar">
                                                     <h5>බී.සී.ජී. කැළැල ඇත්නම්(පමණක්)</h5>
-                                                    <form method="POST" action="./php/baby-editable-action.php">                                                    
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">                                                    
                                                         <div class="form-row d-flex justify-content-center">
                                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                                 <input class="form-check-input" type="checkbox" value="1" name="scar" id="scar" required>

@@ -117,17 +117,17 @@ if(!isset($_SESSION['midwife_id'])) {
                                                     <td><?php echo $row['baby_first_name']." ".$row['baby_last_name']; ?></td>
                                                     <td><?php echo $row['age']; ?></td>
                                                     <td>
-                                                        <form action="../general/view-data.php" method="POST" onsubmit="return confirmBox()">
+                                                        <form action="/general/view-data" method="POST" onsubmit="return confirmBox()">
                                                             <input type="hidden" name="view-id" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
                                                     <td class="d-flex justify-content-end remove-btns">
-                                                        <form action="./php/inactive-baby-action.php" method="POST" onsubmit="return confirmBox()">
+                                                        <form action="/pages/midwife/php/inactive-baby-action.php" method="POST" onsubmit="return confirmBox()">
                                                             <input type="hidden" name="remove-baby" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="submit-baby" class="btn remove-btn"><i class="fa fa-trash" aria-hidden="true"></i><span>Inactive BABY</span></button>
                                                         </form>
-                                                        <form action="./php/inactive-mother-action.php" method="POST" onsubmit="return confirmBox()">
+                                                        <form action="/pages/midwife/php/inactive-mother-action.php" method="POST" onsubmit="return confirmBox()">
                                                             <input type="hidden" name="remove-mother" value="<?php echo $row['mother_nic']; ?>">
                                                             <button type="submit" name="submit-mother" class="btn remove-btn ml-2"><i class="fa fa-trash" aria-hidden="true"></i><span>Inactive MOTHER</span></button>
                                                         </form>
@@ -210,17 +210,17 @@ if(!isset($_SESSION['midwife_id'])) {
                                                     <td><?php echo $row2['baby_first_name']." ".$row2['baby_last_name']; ?></td>
                                                     <td><?php echo $row2['age']; ?></td>
                                                     <td>
-                                                        <form action="php/active-baby-action.php" method="POST" onsubmit="return confirmBox()">
+                                                        <form action="/pages/midwife/php/active-baby-action.php" method="POST" onsubmit="return confirmBox()">
                                                             <input type="hidden" name="active_baby_id" value="<?php echo $row2['baby_id']; ?>">
                                                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i><span>active Baby</span></button>
                                                         </form>
                                                     </td>
                                                     <td class="d-flex justify-content-end remove-btns">
-                                                        <form action="./php/delete-baby-action.php" method="POST" onsubmit="return confirmBox()">
+                                                        <form action="/pages/midwife/php/delete-baby-action.php" method="POST" onsubmit="return confirmBox()">
                                                             <input type="hidden" name="delete_baby" value="<?php echo $row2['baby_id']; ?>">
                                                             <button type="submit" name="submit-baby" class="btn remove-btn"><i class="fa fa-trash" aria-hidden="true"></i><span>BABY</span></button>
                                                         </form>
-                                                        <form action="./php/delete-mother-action.php" method="POST" onsubmit="return confirmBox()">
+                                                        <form action="/pages/midwife/php/delete-mother-action.php" method="POST" onsubmit="return confirmBox()">
                                                             <input type="hidden" name="delete_mother" value="<?php echo $row2['mother_nic']; ?>">
                                                             <button type="submit" name="submit-mother" class="btn remove-btn ml-2"><i class="fa fa-trash" aria-hidden="true"></i><span>MOTHER</span></button>
                                                         </form>

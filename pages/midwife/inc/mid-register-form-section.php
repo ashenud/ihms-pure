@@ -224,7 +224,7 @@
                     <div class="form-row">
 
                         <div class="form-group text-center col-lg-3">
-                            <img src="./img/wizard-img2.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img2.png" alt="">
                         </div>
 
                         <div class="form-group col-lg-9">
@@ -436,7 +436,7 @@
                     <div class="form-row">
 
                         <div class="form-group text-center col-lg-3">
-                            <img src="./img/wizard-img3.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img3.png" alt="">
                         </div>
 
                         <div class="form-group col-lg-9">
@@ -679,7 +679,7 @@
 
                     <div class="form-row">
                         <div class="form-group text-center col-lg-3">
-                            <img src="./img/wizard-img4.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img4.png" alt="">
                         </div>
                         <div class="form-group col-lg-9">
                             <div class="container-fluid">
@@ -848,7 +848,7 @@
 
                     <div class="form-row">
                         <div class="form-group text-center col-lg-3">
-                            <img src="./img/wizard-img5.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img5.png" alt="">
                         </div>
                         <div class="form-group col-lg-6 mb-2">
                             <div class="container map-area"
@@ -1003,7 +1003,7 @@
 
                     <div class="form-row">
                         <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img6.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img6.png" alt="">
                         </div>
                         <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <!-- for get tab view -->

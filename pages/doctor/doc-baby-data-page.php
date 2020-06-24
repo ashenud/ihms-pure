@@ -160,7 +160,7 @@ if(!isset($_SESSION['doctor_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="/baby/baby-select" class="text-uppercase">
+                            <a href="/baby/select" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>
@@ -449,7 +449,7 @@ if(!isset($_SESSION['doctor_id'])) {
                     <div id="helth-data" class="modal fade">
                         <div class="modal-dialog modal-confirm">
                             <div class="modal-content">
-                                <form action="./php/vac-permission-action.php" method="POST">
+                                <form action="/pages/doctor/php/vac-permission-action.php" method="POST">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                     </div>
