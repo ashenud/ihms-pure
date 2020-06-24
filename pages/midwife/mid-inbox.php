@@ -22,7 +22,7 @@ if(!isset($_SESSION['midwife_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
 
-    <link rel="stylesheet" href="./css/mid-inbox-style.css">
+    <link rel="stylesheet" href="/pages/midwife/css/mid-inbox-style.css">
 
     <title>Midwife Home</title>
     

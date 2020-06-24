@@ -24,8 +24,8 @@ if(!isset($_SESSION['doctor_id'])) {
     include('../../inc/basic/include-dashboard-table-css.php');
     ?>
     
-    <link rel="stylesheet" href="../../assets/css/calendar/calendar.css">
-    <link rel="stylesheet" href="./css/doc-dashboard-style.css">
+    <link rel="stylesheet" href="/assets/css/calendar/calendar.css">
+    <link rel="stylesheet" href="/pages/doctor/css/doc-dashboard-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -242,10 +242,10 @@ if(!isset($_SESSION['doctor_id'])) {
     include('../../inc/basic/include-dashboard-table-js.php');
     ?>
     
-    <script type="text/javascript" src="../../assets/js/jquery.waypoints.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/jquery.counterup.min.js"></script>
-    <script type="text/javascript" src="../../assets/css/calendar/calendar.js"></script>
-    <script type="text/javascript" src="../../assets/js/charts/Chart.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/assets/css/calendar/calendar.js"></script>
+    <script type="text/javascript" src="/assets/js/charts/Chart.min.js"></script>
 
    
     <!-- writed scripts -->

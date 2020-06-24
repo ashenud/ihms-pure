@@ -22,7 +22,7 @@ if(!isset($_SESSION['midwife_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
 
-    <link rel="stylesheet" href="./css/mid-reports-style.css">
+    <link rel="stylesheet" href="/pages/midwife/css/mid-reports-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -7183,8 +7183,8 @@ if(!isset($_SESSION['midwife_id'])) {
     include('../../inc/basic/include-dashboard-js.php');
     ?>
 
-    <script type="text/javascript" src="../../assets/js/html2canvas.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/jspdf.min.js"></script>
+    <script type="text/javascript" src="/assets/js/html2canvas.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jspdf.min.js"></script>
     
     <!-- writed scripts -->
     <script>

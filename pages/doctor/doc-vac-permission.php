@@ -22,7 +22,7 @@ if(!isset($_SESSION['doctor_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/doc-vac-permission-style.css">
+    <link rel="stylesheet" href="/pages/doctor/css/doc-vac-permission-style.css">
     
     <?php
         $sql0 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
@@ -108,7 +108,7 @@ if(!isset($_SESSION['doctor_id'])) {
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/baby.png" class="rounded-circle">
+                        <img src="/pages/doctor/img/baby.png" class="rounded-circle">
                         <?php
                             $query00 = "SELECT * FROM baby_register WHERE baby_id='".$_SESSION['baby_id']."'";
                             $result00= mysqli_query($conn,$query00);

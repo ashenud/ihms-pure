@@ -2,7 +2,7 @@
     <div class="inner-sidebar-menu">
 
         <div class="user-area pb-2 mb-3">
-            <img src="./img/doctor.png" class="rounded-circle">
+            <img src="/pages/doctor/img/doctor.png" class="rounded-circle">
             <?php
                 $query00 = "SELECT * FROM doctor WHERE doctor_id='".$_SESSION['doctor_id']."'";
                 $result00= mysqli_query($conn,$query00);
@@ -14,7 +14,7 @@
         <!--sidebar items-->
         <ul>
             <li>
-                <a href="./doc-dashboard.php" class="text-uppercase d-dash">
+                <a href="/doctor/dashboard" class="text-uppercase d-dash">
                     <span class="icon">
                         <i class="fas fa-chart-pie" aria-hidden="true"></i>
                     </span>
@@ -31,7 +31,7 @@
             </li>
             <div class="collapse collapse-manage" id="manage">
                 <li>
-                    <a href="doc-view-sisters.php" class="text-uppercase drop d-sis">
+                    <a href="/doctor/view-sisters" class="text-uppercase drop d-sis">
                         <span class="icon-active">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="doc-view-babies.php" class="text-uppercase drop d-baby">
+                    <a href="/doctor/view-babies" class="text-uppercase drop d-baby">
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -48,7 +48,7 @@
                 </li>
             </div>
             <li>
-                <a href="doc-table.php" class="text-uppercase dd-table">
+                <a href="/doctor/table" class="text-uppercase dd-table">
                     <span class="icon">
                         <i class="fas fa-table" aria-hidden="true"></i>
                     </span>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li>
-                <a href="doc-inbox.php" class="text-uppercase d-inbox">
+                <a href="/doctor/inbox" class="text-uppercase d-inbox">
                     <span class="icon">
                         <i class="fas fa-inbox" aria-hidden="true"></i>
 
@@ -83,7 +83,7 @@
                 </a>
             </li>
             <li>
-                <a href="doc-send-messages.php" class="text-uppercase d-send">
+                <a href="/doctor/send-messages" class="text-uppercase d-send">
                     <span class="icon">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                     </span>

@@ -1,5 +1,5 @@
 <div class="container" id="formContainer">
-    <form id="regForm" action="./php/insert-registration-data-action.php" method="POST">
+    <form id="regForm" action="/pages/midwife/php/insert-registration-data-action.php" method="POST">
 
         <!-- One "tab" for each step in the form: -->
         <div class="card registration-form"> 
@@ -41,7 +41,7 @@
                     <div class="form-row">
 
                         <div class="form-group text-center col-lg-3">
-                            <img src="./img/wizard-img1.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img1.png" alt="">
                         </div>
 
                         <div class="form-group col-lg-9">
@@ -1062,7 +1062,7 @@
                 <!-- Button which the steps of the form: -->
                 <div style="overflow:auto;">
                     <div style="float:right;">
-                        <a href="php/session-reset.php?sessionReset=1" class="btn" type="button" id="clearBtn">Clear</a>
+                        <a href="/pages/midwife/php/session-reset.php?sessionReset=1" class="btn" type="button" id="clearBtn">Clear</a>
                         <button class="btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                         <button class="btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>

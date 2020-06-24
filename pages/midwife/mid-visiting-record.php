@@ -22,9 +22,6 @@ if(!isset($_SESSION['midwife_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
 
-    <link rel="stylesheet" href="./css/mid-charts-style.css">
-    
-
     <style>
         #map {
             height: 35.6vh;
@@ -221,7 +218,7 @@ if(!isset($_SESSION['midwife_id'])) {
     ?>
     
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtlwcov50Y0-MKAlkWmzx5sdYJY2HeFh4&callback=initMap"></script> 
-    <script type="text/javascript" src="./js/register-location-script.js"> </script>
+    <script type="text/javascript" src="/pages/midwife/js/register-location-script.js"> </script>
 
     
     <!-- writed scripts -->

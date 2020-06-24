@@ -24,7 +24,7 @@ if(isset($_GET['submitNICNo'])){
     $id=$result1['mother_nic'];        //mother Id
     
     if($id==""){
-        header("Location:../mid-add-babies.php?idError=1");
+        header("Location:/midwife/add-babies?idError=1");
     }
     else{
 
@@ -36,7 +36,7 @@ if(isset($_GET['submitNICNo'])){
         $_SESSION['GnDivision']=$result1['gn_division'];
         
     
-        header("Location:../mid-add-babies.php?idSuccess=1");
+        header("Location:/midwife/add-babies?idSuccess=1");
 
     }
 }
@@ -53,7 +53,7 @@ if(isset($_GET['submitGnD'])){
     unset($_SESSION['longInput']);
     
     $_SESSION['GnDivision']= $GnDNo;
-    header("Location:../mid-add-babies.php?idSuccess=1");
+    header("Location:/midwife/add-babies?idSuccess=1");
 
 
 }

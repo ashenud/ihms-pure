@@ -2,7 +2,7 @@
     <div class="inner-sidebar-menu">
 
         <div class="user-area pb-2 mb-3">
-            <img src="./img/midwife.png" class="rounded-circle">
+            <img src="/pages/midwife/img/midwife.png" class="rounded-circle">
             <?php
                 $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
                 $result1= mysqli_query($conn,$query1);
@@ -14,7 +14,7 @@
         <!--sidebar items-->
         <ul>
             <li>
-                <a href="./mid-dashboard.php" class="text-uppercase mm-dash">
+                <a href="/midwife/dashboard" class="text-uppercase mm-dash">
                     <span class="icon">
                         <i class="fas fa-chart-pie" aria-hidden="true"></i>
                     </span>
@@ -31,7 +31,7 @@
             </li>
             <div class="collapse collapse-manage" id="manage">
                 <li>
-                    <a href="./mid-add-babies.php" class="text-uppercase drop mm-add">
+                    <a href="/midwife/add-babies" class="text-uppercase drop mm-add">
                         <span class="icon">
                             <i class="fas fa-user-plus" aria-hidden="true"></i>
                         </span>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./mid-view-babies.php" class="text-uppercase drop mm-view">
+                    <a href="/midwife/view-babies" class="text-uppercase drop mm-view">
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -48,7 +48,7 @@
                 </li>
             </div>
             <li>
-                <a href="./mid-reports.php" class="text-uppercase mm-chart">
+                <a href="/midwife/reports" class="text-uppercase mm-chart">
                     <span class="icon">
                         <i class="fas fa-copy" aria-hidden="true"></i>
                     </span>
@@ -56,7 +56,7 @@
                 </a>
             </li>
             <li>
-                <a href="./mid-inbox.php" class="text-uppercase mm-inbox">
+                <a href="/midwife/inbox" class="text-uppercase mm-inbox">
                     <span class="icon">
                         <i class="fas fa-inbox" aria-hidden="true"></i>
 
@@ -93,7 +93,7 @@
             </li>
             <div class="collapse collapse-location" id="location">
                 <li>
-                    <a href="./mid-visit-today.php" class="text-uppercase drop mm-visit">
+                    <a href="/midwife/visit-today" class="text-uppercase drop mm-visit">
                         <span class="icon">
                             <i class="fas fa-map-pin" aria-hidden="true"></i>
                         </span>
@@ -101,7 +101,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./mid-give-directions.php" class="text-uppercase drop mm-direc">
+                    <a href="/midwife/give-directions" class="text-uppercase drop mm-direc">
                         <span class="icon">
                             <i class="fas fa-map-signs" aria-hidden="true"></i>
                         </span>
@@ -109,7 +109,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./mid-show-all-locations.php" class="text-uppercase drop mm-all">
+                    <a href="/midwife/show-all-locations" class="text-uppercase drop mm-all">
                         <span class="icon">
                             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </span>
@@ -118,7 +118,7 @@
                 </li>
             </div>
             <li>
-                <a href="./mid-visiting-record.php" class="text-uppercase mm-record">
+                <a href="/midwife/visiting-record" class="text-uppercase mm-record">
                     <span class="icon">
                         <i class="fas fa-location-arrow" aria-hidden="true"></i>
                     </span>

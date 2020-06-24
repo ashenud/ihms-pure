@@ -1,0 +1,28 @@
+ReWriteEngine On
+
+# doctor
+
+RewriteRule ^doctor/dashboard?$ /pages/doctor/doc-dashboard.php [L]
+RewriteRule ^doctor/view-sisters?$ /pages/doctor/doc-view-sisters.php [L]
+RewriteRule ^doctor/view-babies?$ /pages/doctor/doc-table.php [L]
+RewriteRule ^doctor/table?$ /pages/doctor/doc-table.php [L]
+RewriteRule ^doctor/inbox?$ /pages/doctor/doc-inbox.php [L]
+RewriteRule ^doctor/send-messages?$ /pages/doctor/doc-send-messages.php [L]
+RewriteRule ^doctor/password-change?$ /pages/doctor/doc-password-change.php [L]
+
+
+#miwife
+
+RewriteRule ^midwife/dashboard?$ /pages/midwife/mid-dashboard.php [L]
+RewriteRule ^midwife/add-babies?$ /pages/midwife/mid-add-babies.php [L]
+RewriteRule ^midwife/view-babies?$ /pages/midwife/mid-view-babies.php [L]
+RewriteRule ^midwife/reports?$ /pages/midwife/mid-reports.php [L]
+RewriteRule ^midwife/inbox?$ /pages/midwife/mid-inbox.php [L]
+RewriteRule ^midwife/visit-today?$ /pages/midwife/mid-visit-today.php [L]
+RewriteRule ^midwife/give-directions?$ /pages/midwife/mid-give-directions.php [L]
+RewriteRule ^midwife/show-all-locations?$ /pages/midwife/mid-show-all-locations.php [L]
+RewriteRule ^midwife/visiting-record?$ /pages/midwife/mid-visiting-record.php [L]
+RewriteRule ^midwife/vaccine-mark?$ /pages/midwife/mid-vaccine-mark.php [L]
+RewriteRule ^midwife/contact-staff?$ /pages/midwife/mid-contact-staff.php [L]
+RewriteRule ^midwife/thriposha?$ /pages/midwife/mid-thriposha.php [L]
+RewriteRule ^midwife/password-change?$ /pages/midwife/mid-password-change.php [L]

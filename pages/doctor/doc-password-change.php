@@ -22,7 +22,7 @@ if(!isset($_SESSION['doctor_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/doc-password-change-style.css">
+    <link rel="stylesheet" href="/pages/doctor/css/doc-password-change-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -44,7 +44,7 @@ if(!isset($_SESSION['doctor_id'])) {
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" class="rounded-circle">
+                        <img src="/pages/doctor/img/doctor.png" class="rounded-circle">
                         <?php
                             $query00 = "SELECT * FROM doctor WHERE doctor_id='".$_SESSION['doctor_id']."'";
                             $result00= mysqli_query($conn,$query00);
@@ -56,7 +56,7 @@ if(!isset($_SESSION['doctor_id'])) {
                     <!--sidebar items-->
                     <ul>
                        <li>
-                            <a href="./doc-dashboard.php" class="text-uppercase">
+                            <a href="/doctor/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
@@ -64,7 +64,7 @@ if(!isset($_SESSION['doctor_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/doctor/password-change" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-key" aria-hidden="true"></i>
                                 </span>
@@ -157,7 +157,7 @@ if(!isset($_SESSION['doctor_id'])) {
     include('../../inc/basic/include-dashboard-js.php');
     ?>
     
-    <script type="text/javascript" src="./js/pwd-validation-script.js"> </script>
+    <script type="text/javascript" src="/pages/doctor/js/pwd-validation-script.js"> </script>
 
     <!-- writed scripts -->
     <script>

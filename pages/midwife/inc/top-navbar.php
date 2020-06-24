@@ -18,11 +18,11 @@
                             ඔබේ ගිණුම
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item text-uppercase" href="./mid-password-change.php">
+                            <a class="dropdown-item text-uppercase" href="/midwife/password-change">
                                 <i class="fas fa-key"></i>
                                 මුරපදය වෙනස් කරන්න
                             </a>
-                            <a class="dropdown-item text-uppercase" href="../../php/logout.php">
+                            <a class="dropdown-item text-uppercase" href="/php/logout.php">
                                 <i class="fas fa-sign-out-alt"></i>
                                 නික්මෙන්න
                             </a>

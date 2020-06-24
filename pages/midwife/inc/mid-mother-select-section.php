@@ -21,7 +21,7 @@
     <div id="motherId" class="modal fade">
         <div class="modal-dialog modal-mgsearch">
             <div class="modal-content card card-image">
-                <form action="./php/search-mother-and-gd-action.php" method="GET">
+                <form action="/pages/midwife/php/search-mother-and-gd-action.php" method="GET">
                     <div class="modal-header">
                         <h4 class="modal-title text-uppercase">Search Mother</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -47,7 +47,7 @@
     <div id="GramaDivision" class="modal fade">
         <div class="modal-dialog modal-mgsearch">
             <div class="modal-content card card-image">
-                <form action="./php/search-mother-and-gd-action.php" method="GET">
+                <form action="/pages/midwife/php/search-mother-and-gd-action.php" method="GET">
                     <div class="modal-header">
                         <h4 class="modal-title text-uppercase">Grama Niladari Division</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">

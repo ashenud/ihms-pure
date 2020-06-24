@@ -46,14 +46,14 @@ if(!isset($_SESSION['midwife_id'])) {
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
+                        <img src="/pages/midwife/img/midwife.png" width="50" class="rounded-circle">
                         <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                         <li>
-                            <a href="mid-dashboard.php" class="text-uppercase">
+                            <a href="/midwife/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
@@ -61,7 +61,7 @@ if(!isset($_SESSION['midwife_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/midwife/thriposha" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-cookie-bite" aria-hidden="true"></i>
                                 </span>

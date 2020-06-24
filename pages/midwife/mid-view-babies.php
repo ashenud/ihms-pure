@@ -24,7 +24,7 @@ if(!isset($_SESSION['midwife_id'])) {
     include('../../inc/basic/include-dashboard-table-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/mid-view-babies-style.css">
+    <link rel="stylesheet" href="/pages/midwife/css/mid-view-babies-style.css">
      
      <style>
         .collapse-manage {
