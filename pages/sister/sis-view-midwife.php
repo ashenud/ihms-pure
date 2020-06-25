@@ -24,7 +24,7 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-table-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/sis-add-midwife-style.css">
+    <link rel="stylesheet" href="/pages/sister/css/sis-add-midwife-style.css">
     
     <style>
         .collapse-manage {
@@ -93,13 +93,13 @@ if(!isset($_SESSION['sister_id'])) {
                                                     <td><?php echo $row['midwife_name']; ?></td>
                                                     <td><?php echo $row['midwife_area']; ?></td>
                                                     <td>
-                                                        <form action="student.php" method="POST">
+                                                        <form action="#" method="POST">
                                                             <input type="hidden" name="send-msg" value="<?php echo $row['midwife_id']; ?>">
                                                             <button type="submit" name="send-btn" class="btn send-btn"><i class="fa fa-comment-dots" aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        <form action="deleteh.php" method="post">
+                                                        <form action="#" method="post">
                                                             <input type="hidden" name="remove-id" value="<?php echo $row['midwife_id']; ?>">
                                                             <button type="submit" name="remove-btn" class="btn remove-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                         </form>

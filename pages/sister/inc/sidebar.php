@@ -2,7 +2,7 @@
     <div class="inner-sidebar-menu">
 
         <div class="user-area pb-2 mb-3">
-            <img src="./img/sister.png" class="rounded-circle">
+            <img src="/pages/sister/img/sister.png" class="rounded-circle">
             <?php
                 $query00 = "SELECT * FROM sister WHERE sister_id='".$_SESSION['sister_id']."'";
                 $result00= mysqli_query($conn,$query00);
@@ -14,7 +14,7 @@
         <!--sidebar items-->
         <ul>
             <li>
-                <a href="./sis-dashboard.php" class="text-uppercase ss-dash">
+                <a href="/sister/dashboard" class="text-uppercase ss-dash">
                     <span class="icon">
                         <i class="fas fa-chart-pie" aria-hidden="true"></i>
                     </span>
@@ -31,7 +31,7 @@
             </li>
             <div class="collapse collapse-manage" id="manage">
                 <li>
-                    <a href="./sis-add-midwife.php" class="text-uppercase drop ss-add">
+                    <a href="/sister/add-midwife" class="text-uppercase drop ss-add">
                         <span class="icon-active">
                             <i class="fas fa-user-plus" aria-hidden="true"></i>
                         </span>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./sis-view-midwife.php" class="text-uppercase drop ss-viewm">
+                    <a href="/sister/view-midwife" class="text-uppercase drop ss-viewm">
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./sis-view-babies.php" class="text-uppercase drop ss-viewb">
+                    <a href="/sister/view-babies" class="text-uppercase drop ss-viewb">
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -56,7 +56,7 @@
                 </li>
             </div>
             <li>
-                <a href="./sis-reports.php" class="text-uppercase ss-table">
+                <a href="/sister/reports" class="text-uppercase ss-table">
                     <span class="icon">
                         <i class="fas fa-file-medical-alt" aria-hidden="true"></i>
                     </span>
@@ -64,7 +64,7 @@
                 </a>
             </li>
             <li>
-                <a href="./sis-inbox.php" class="text-uppercase ss-inbox">
+                <a href="/sister/inbox" class="text-uppercase ss-inbox">
                     <span class="icon">
                         <i class="fas fa-inbox" aria-hidden="true"></i>
                     </span>
@@ -72,7 +72,7 @@
                 </a>
             </li>
             <li>
-                <a href="./sis-send-messages.php" class="text-uppercase ss-send">
+                <a href="/sister/send-messages" class="text-uppercase ss-send">
                     <span class="icon">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                     </span>

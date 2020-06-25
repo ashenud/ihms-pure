@@ -24,7 +24,7 @@ if(!isset($_SESSION['admin_id'])) {
     include('../../inc/basic/include-dashboard-table-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/admin-doc-view-sisters-style.css">
+    <link rel="stylesheet" href="/pages/admin-doctor/css/admin-doc-view-sisters-style.css">
     
     <style>
         .collapse-manage {

@@ -24,7 +24,7 @@ if(!isset($_SESSION['admin_id'])) {
     include('../../inc/basic/include-dashboard-table-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/admin-doc-view-babies-style.css">
+    <link rel="stylesheet" href="/pages/admin-doctor/css/admin-doc-view-babies-style.css">
     
     <style>
         .collapse-manage {
@@ -66,23 +66,42 @@ if(!isset($_SESSION['admin_id'])) {
                                     <div class="table-for-data" style="margin-top: 30px">
                         
                                         <?php
-
-                                        $query1 = "SELECT mother_nic, baby_id, address, YEAR(baby_dob) AS babyY, MONTH(baby_dob) AS babyM, DAY(baby_dob) AS babyD FROM baby_register";
+                                        
+                                        $query1 = "SELECT 
+                                                       mother_nic, 
+                                                       baby_id,
+                                                       baby_first_name,
+                                                       baby_last_name,
+                                                       baby_dob,
+                                                           CONCAT_WS ( ', ',
+                                                           CASE WHEN years = 0 THEN NULL ELSE CONCAT(years,' years') END, 
+                                                           CASE WHEN months = 0 THEN NULL ELSE CONCAT(months, ' months') END,
+                                                           CASE WHEN days = 0 THEN NULL ELSE CONCAT(days, ' days') END)
+                                                       age
+                                                       
+                                                    FROM (SELECT 
+                                                            mother_nic,
+                                                            baby_id,
+                                                            baby_first_name,
+                                                            baby_last_name,
+                                                            baby_dob,
+                                                            FLOOR(DATEDIFF(CURDATE(),baby_dob)/365) years,
+                                                            
+                                                            FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) months,
+                                                            
+                                                            CEILING((((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) - FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12))* 30) days
+                                                          FROM baby_register) x";
                                         $result1= mysqli_query($conn,$query1);
-
-                                        $systemY= date("Y");
-                                        $systemM= date("m");
-                                        $systemD= date("d");
 
                                         ?>
 
                                         <table class="mdl-data-table table-responsive-md bordered" id="datatable">
                                             <thead>
                                                 <tr>
-                                                    <th>Mother ID</th>
+                                                    <th>Mother NIC</th>
                                                     <th>Baby ID</th>
+                                                    <th>Name</th>
                                                     <th>Age</th>
-                                                    <th>Address</th>
                                                     <th>View</th>
                                                     <th>Remove</th>
                                                 </tr>
@@ -97,21 +116,20 @@ if(!isset($_SESSION['admin_id'])) {
                                                 <tr>
                                                     <td><?php echo $row['mother_nic']; ?></td>
                                                     <td><?php echo $row['baby_id']; ?></td>
-                                                    <td><?php echo $systemY-$row['babyY']; ?>y_<?php echo $systemM-$row['babyM']; ?>m_<?php echo $systemD-$row['babyD']; ?>_d</td>
-                                                    <td><?php echo $row['address']; ?></td>
+                                                    <td><?php echo $row['baby_first_name']." ".$row['baby_last_name']; ?></td>
+                                                    <td><?php echo $row['age']; ?></td>
                                                     <td>
-                                                        <form action="../general/view-data.php" method="POST">
+                                                        <form action="/general/view-data" method="POST">
                                                             <input type="hidden" name="view-id" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        <form action="deleteh.php" method="POST">
+                                                        <form action="#" method="POST">
                                                             <input type="hidden" name="remove-id" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="remove-btn" class="btn remove-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
-
                                                 </tr>
                                         <?php
                                             }

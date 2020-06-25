@@ -17,15 +17,15 @@
     if(mysqli_query($conn,$sql1)) {
         
         if(mysqli_query($conn,$sql2)) {
-            header("Location:../sis-add-midwife.php?success=1");
+            header("Location:/sister/add-midwife?success=1");
         }
         else {
-            header("Location:../sis-add-midwife.php?error=2");
+            header("Location:/sister/add-midwife?error=2");
         }
         
     }
     else {
-        header("Location:../sis-add-midwife.php?error=1");     
+        header("Location:/sister/add-midwife?error=1");     
     }
 
 ?>

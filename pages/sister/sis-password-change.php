@@ -22,7 +22,7 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/sis-password-change-style.css">
+    <link rel="stylesheet" href="/pages/sister/css/sis-password-change-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -44,7 +44,7 @@ if(!isset($_SESSION['sister_id'])) {
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/sister.png" class="rounded-circle">
+                        <img src="/pages/sister/img/sister.png" class="rounded-circle">
                         <?php
                             $query00 = "SELECT * FROM sister WHERE sister_id='".$_SESSION['sister_id']."'";
                             $result00= mysqli_query($conn,$query00);
@@ -56,7 +56,7 @@ if(!isset($_SESSION['sister_id'])) {
                     <!--sidebar items-->
                     <ul>
                        <li>
-                            <a href="./sis-dashboard.php" class="text-uppercase">
+                            <a href="/sister/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
@@ -64,7 +64,7 @@ if(!isset($_SESSION['sister_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/sister/password-change" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-key" aria-hidden="true"></i>
                                 </span>
@@ -116,7 +116,7 @@ if(!isset($_SESSION['sister_id'])) {
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-6">
-                            <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                            <form action="/pages/sister/php/password-change.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="old_password">
                                         පැරණි මුරපදය
@@ -161,7 +161,7 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-js.php');
     ?>
 
-    <script type="text/javascript" src="./js/pwd-validation-script.js"> </script>
+    <script type="text/javascript" src="/pages/sister/js/pwd-validation-script.js"> </script>
    
     <!-- writed scripts -->
     <script>

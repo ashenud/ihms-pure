@@ -1,7 +1,7 @@
 <?php include('../../../php/basic/connection.php'); ?>
 
 <?php if(!isset($_SESSION['admin_id'])) {	
-	header('location:../../index.php?noPermission=1');
+	header('location:/?noPermission=1');
 	}
 ?>
 
@@ -45,16 +45,16 @@
                     $query3="UPDATE user SET update_date=NOW() WHERE user_id='{$user}' LIMIT 1";
                     $result3=mysqli_query($conn,$query3);
 
-                    header('location:../../../index.php?passChanged=1');
+                    header('location:/?passChanged=1');
                     session_destroy();
 
                 }
                 else {
-                    header('location:../admin-doc-password-change.php?errorNewPass=1');
+                    header('location:/admin/password-change?errorNewPass=1');
                 }
             }
             else {
-                header('location:../admin-doc-password-change.php?errorOldPass=1');
+                header('location:/admin/password-change?errorOldPass=1');
             }
 
         }

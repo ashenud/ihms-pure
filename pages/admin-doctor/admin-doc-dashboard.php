@@ -22,7 +22,7 @@ if(!isset($_SESSION['admin_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/admin-doc-dashboard-style.css">
+    <link rel="stylesheet" href="/pages/admin-doctor/css/admin-doc-dashboard-style.css">
 
     <title>Infant Health Management System</title>
     

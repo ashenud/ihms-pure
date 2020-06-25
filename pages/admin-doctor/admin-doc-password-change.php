@@ -22,7 +22,7 @@ if(!isset($_SESSION['admin_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/admin-doc-password-change-style.css">
+    <link rel="stylesheet" href="/pages/admin-doctor/css/admin-doc-password-change-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -44,14 +44,14 @@ if(!isset($_SESSION['admin_id'])) {
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" width="50" class="rounded-circle">
+                        <img src="/pages/admin-doctor/img/doctor.png" width="50" class="rounded-circle">
                         <a href="#" class="text-uppercase"> <?php echo($_SESSION['admin_id']); ?> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                        <li>
-                            <a href="./admin-doc-dashboard.php" class="text-uppercase">
+                            <a href="/admin/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
@@ -59,7 +59,7 @@ if(!isset($_SESSION['admin_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/admin/password-change" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-key" aria-hidden="true"></i>
                                 </span>
@@ -111,7 +111,7 @@ if(!isset($_SESSION['admin_id'])) {
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-6">
-                            <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                            <form action="/pages/admin-doctor/php/password-change.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="old_password">
                                         පැරණි මුරපදය
@@ -156,7 +156,7 @@ if(!isset($_SESSION['admin_id'])) {
     include('../../inc/basic/include-dashboard-js.php');
     ?>
     
-    <script type="text/javascript" src="./js/pwd-validation-script.js"> </script>
+    <script type="text/javascript" src="/pages/admin-doctor/js/pwd-validation-script.js"> </script>
 
     <!-- writed scripts -->    
     <script>

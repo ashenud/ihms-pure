@@ -17,14 +17,14 @@ $sql2="INSERT INTO sister(sister_id,sister_name,sister_division)
 if(mysqli_query($conn,$sql1)){
 
     if(mysqli_query($conn,$sql2)){
-        header("Location:../doc-add-sisters.php?success=1");
+        header("Location:/admin/add-sisters?success=1");
     }
     else {
-        header("Location:../doc-add-sisters.php?error=1");
+        header("Location:/admin/add-sisters?error=1");
     }
 }
 else{
-    header("Location:../doc-add-sisters.php?error=2");
+    header("Location:/admin/add-sisters?error=2");
 }
 
 

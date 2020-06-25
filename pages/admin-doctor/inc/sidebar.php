@@ -2,14 +2,14 @@
     <div class="inner-sidebar-menu">
 
         <div class="user-area pb-2 mb-3">
-            <img src="./img/doctor.png" width="50" class="rounded-circle">
+            <img src="/pages/admin-doctor/img/doctor.png" width="50" class="rounded-circle">
             <a href="#" class="text-uppercase"> <?php echo($_SESSION['admin_id']); ?> </a>
         </div>
 
         <!--sidebar items-->
         <ul>
             <li>
-                <a href="./admin-doc-dashboard.php" class="text-uppercase a-dash">
+                <a href="/admin/dashboard" class="text-uppercase a-dash">
                     <span class="icon">
                         <i class="fas fa-chart-pie" aria-hidden="true"></i>
                     </span>
@@ -26,7 +26,7 @@
             </li>
             <div class="collapse collapse-manage" id="manage">
                 <li>
-                    <a href="./admin-doc-add-sisters.php" class="text-uppercase drop a-add">
+                    <a href="/admin/add-sisters" class="text-uppercase drop a-add">
                         <span class="icon">
                             <i class="fas fa-user-plus" aria-hidden="true"></i>
                         </span>
@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./admin-doc-view-sisters.php" class="text-uppercase drop a-views">
+                    <a href="/admin/view-sisters" class="text-uppercase drop a-views">
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -42,7 +42,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./admin-doc-view-babies.php" class="text-uppercase drop a-viewb">
+                    <a href="/admin/view-babies" class="text-uppercase drop a-viewb">
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
@@ -51,7 +51,7 @@
                 </li>
             </div>
             <li>
-                <a href="./admin-doc-table.php" class="text-uppercase a-table">
+                <a href="/admin/table" class="text-uppercase a-table">
                     <span class="icon">
                         <i class="fas fa-table" aria-hidden="true"></i>
                     </span>
@@ -59,7 +59,7 @@
                 </a>
             </li>
             <li>
-                <a href="./admin-doc-inbox.php" class="text-uppercase a-inbox">
+                <a href="/admin/inbox" class="text-uppercase a-inbox">
                     <span class="icon">
                         <i class="fas fa-inbox" aria-hidden="true"></i>
                     </span>
@@ -67,7 +67,7 @@
                 </a>
             </li>
             <li>
-                <a href="./admin-doc-send-messages.php" class="text-uppercase a-send">
+                <a href="/admin/send-messages" class="text-uppercase a-send">
                     <span class="icon">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                     </span>

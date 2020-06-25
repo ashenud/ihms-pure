@@ -22,7 +22,7 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/sis-add-midwife-style.css">
+    <link rel="stylesheet" href="/pages/sister/css/sis-add-midwife-style.css">
     
     <style>
         .collapse-manage {
@@ -69,7 +69,7 @@ if(!isset($_SESSION['sister_id'])) {
                                         ?>
                                     </p>
                                     <div class="registration">
-                                        <form action="./php/add-midwife-action.php" method="POST">
+                                        <form action="/pages/sister/php/add-midwife-action.php" method="POST">
                                             <div class="container mt-4">
                                                 <div class="form-group row" >
                                                     <label class="col-md-4 col-form-label text-md-right">Midwife ID</label>

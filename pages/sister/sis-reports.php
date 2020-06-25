@@ -239,7 +239,7 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/sis-reports-style.css">
+    <link rel="stylesheet" href="/pages/sister/css/sis-reports-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -715,8 +715,8 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-js.php');
     ?>
     
-    <script type="text/javascript" src="../../assets/js/charts/Chart.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/jspdf.min.js"></script>
+    <script type="text/javascript" src="/assets/js/charts/Chart.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jspdf.min.js"></script>
 
     <!-- writed scripts -->
     <script>

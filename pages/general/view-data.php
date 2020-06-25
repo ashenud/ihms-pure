@@ -59,7 +59,7 @@
     include('../../inc/basic/include-dashboard-table-css.php');
     ?>
     
-    <link rel="stylesheet" href="./css/view-data-style.css">
+    <link rel="stylesheet" href="/pages/general/css/view-data-style.css">
 
     <title>Infant Health Management System</title>
 
@@ -78,7 +78,7 @@ $gender=$data3['baby_gender'];
 if($gender=='M') {
 ?>
 
-    <div class="background-area pt-1 pb-4" style="background-image:  url('./img/backgroud-boy.jpg');">
+    <div class="background-area pt-1 pb-4" style="background-image:  url('/pages/general/img/backgroud-boy.jpg');">
         <div class="container mt-3">
 
             <div class="card" style="background: rgba(227, 242, 253, 0.5);">
@@ -213,7 +213,7 @@ if($gender=='M') {
                                 <?php 
                                     if(isset($_SESSION['doctor_id'])) {
                                 ?>
-                                    <a href="../doctor/doc-view-babies.php">
+                                    <a href="/doctor/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -224,7 +224,7 @@ if($gender=='M') {
                                     }
                                     else if(isset($_SESSION['sister_id'])) {
                                 ?>
-                                    <a href="../sister/sis-view-babies.php">
+                                    <a href="/sister/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -235,7 +235,7 @@ if($gender=='M') {
                                     }
                                     else if(isset($_SESSION['midwife_id'])) {
                                 ?>
-                                    <a href="../midwife/mid-view-babies.php">
+                                    <a href="/midwife/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -260,7 +260,7 @@ if($gender=='M') {
 else {
 ?>    
  
-    <div class="background-area pt-1 pb-4" style="background-image: url('./img/backgroud-girl.jpg');">
+    <div class="background-area pt-1 pb-4" style="background-image: url('/pages/general/img/backgroud-girl.jpg');">
         <div class="container mt-3">
 
             <div class="card" style="background: rgba(248,187,208, 0.5);">
@@ -395,7 +395,7 @@ else {
                                 <?php 
                                     if(isset($_SESSION['doctor_id'])) {
                                 ?>
-                                    <a href="../doctor/doc-view-babies.php">
+                                    <a href="/doctor/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -406,7 +406,7 @@ else {
                                     }
                                     else if(isset($_SESSION['sister_id'])) {
                                 ?>
-                                    <a href="../sister/sis-view-babies.php">
+                                    <a href="/sister/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -417,7 +417,7 @@ else {
                                     }
                                     else if(isset($_SESSION['midwife_id'])) {
                                 ?>
-                                    <a href="../midwife/mid-view-babies.php">
+                                    <a href="/midwife/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
