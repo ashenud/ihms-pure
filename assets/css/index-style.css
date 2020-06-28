@@ -3,7 +3,7 @@ body, html {
   margin: 0;
   background: #e8edf5;
   scroll-behavior: smooth;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'abhaya', sans-serif;
 }
 
 
@@ -392,7 +392,6 @@ button {
 /*header with carousel*/
 .header {
     background: #e8edf5;
-    font-family: 'Merienda One', cursive;
 }
 
 .carousel-caption {
@@ -418,7 +417,7 @@ button {
 
 .jumbotron {
     background: linear-gradient(to right, #89cff0 0%, #b0e2e1 60%, #c1e0df 100%);
-    font-family: sans-serif;
+    font-family: 'abhaya', cursive;
     box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 1;
@@ -443,8 +442,8 @@ button {
 }
 
 .jumbotron .btn-lg {
-    font-family: sans-serif;
-    font-size: 13px;
+    font-family: 'abhaya';
+    font-size: 15px;
     text-transform: uppercase;
     background: #f3758a;
     border-radius: 50px;
@@ -482,12 +481,13 @@ button {
 
 
 h1 {
-    font-family: 'Vidaloka';
+    font-family: 'yaldevicolombo';
     font-weight: bold;
+    font-size: 4rem;
 }
 
 h4,h6 {
-    font-family: 'Playfair';
+    font-family: 'abhaya';
 }
 
 
@@ -502,15 +502,19 @@ h4,h6 {
     margin-top: 5px;
 }
 
+.about-system h1 {
+    font-family: 'yaldevicolombo';
+}
+
 .about h3 {
-    font-family: 'Vidaloka';
+    font-family: 'yaldevicolombo';
     font-weight: bold;
+    font-size: 2.1rem;
 }
 
 .about p {
-    font-family: 'Playfair';
     text-align: justify;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .about .about-pic {
@@ -535,12 +539,12 @@ h4,h6 {
 }
 
 .our-services p {
-    font-family: 'Playfair';
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .our-services .card {
     margin: 0;
+    height: 100%;
     background: #F5F5F6;
     -webkit-transition: all 0.25s ease-in-out;
     -moz-transition: all 0.25s ease-in-out;
@@ -568,18 +572,17 @@ h4,h6 {
 
 .our-services .card-title {
     margin-top: -10px;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .our-services .card-text {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     margin-bottom: 2px;
 }
 
 .our-services .btn {
-    font-family: sans-serif;
-    font-size: 11px;
+    font-size: 15px;
     text-transform: uppercase;
     background: #f27285;
     color: #000;
@@ -598,8 +601,7 @@ h4,h6 {
 }
 
 .our-facilities p {
-    font-family: 'Playfair';
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .facility-icon i {
@@ -626,8 +628,13 @@ h4,h6 {
     margin: 5px 0 5px 0;
 }
 
+.facilities .facility-body h6 {
+    font-size: 1.1rem;
+    text-align: start;
+}
+
 .facilities .facility-body p {
-    font-size: 12px;
+    font-size: 16px;
 }
 /* end of our facilities */
 
@@ -642,8 +649,8 @@ h4,h6 {
 }
 
 .contact-us p {
-    font-family: 'Playfair';
-    font-size: 1rem;
+    font-family: 'abhaya';
+    font-size: 1.5rem;
 }
 
 .contact .row {
@@ -655,6 +662,9 @@ h4,h6 {
     font-size: 40px;
 }
 .contact .btn {
+    font-family: 'abhaya';
+    font-size: 1.1rem;
+    min-width: 170px;
     padding: 10px 25px 10px 25px;
     margin: 5px;
     color: #000;
@@ -686,6 +696,7 @@ h4,h6 {
 /* footer */
 
 .footer {
+    font-family: 'Playfair';
     background-image: linear-gradient(#f9dbe1,#ffbac9);
     color: #000;
     padding-bottom: 0;

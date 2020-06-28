@@ -297,9 +297,9 @@
                     <h1>ළමා සෞඛ්‍ය කළමනාකරණ පද්ධතිය</h1>
                     <p class="lead">ඔබගේ දරුවා නීරෝගීව තබා ගැනීමට උපකාරී වීම අපගේ ඒකායන අභිමතාර්ථයයි.</p>
                     <hr class="my-2">
-                    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                    <p>මවගේ හා පවුල් සෞඛ්‍ය නිලධාරිණිගේ කටයුතු පහසු ඉතා පහසු කරගැනීමට මෙම පද්ධතිය භාවිතා කල හැක.</p>
                     <p class="lead">
-                        <a class="btn btn-info btn-lg" href="#!" role="button">Learn more</a>
+                        <a class="btn btn-info btn-lg" href="#!" role="button">වැඩිදුර තොරතුරු</a>
                     </p>
                 </div>
             </div>
@@ -328,14 +328,14 @@
                     <img src="./assets/img/index/about.png" class="about-pic img-fluid" alt="Responsive image">
                 </div>
                 <div class="about-system col-md-9 mt-2 colum-about wow fadeInRight">
-                    <h1 class="text-uppercase mb-3">about the system</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores temporibus, recusandae nesciunt et laborum, dolorum? Tempora iste repudiandae dolore libero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci iusto numquam architecto. Pariatur aut, voluptatum voluptas veniam, architecto, nobis hic libero harum provident mollitia beatae cupiditate rem rerum ipsum ex. Repudiandae tenetur aut nihil obcaecati nobis magni accusamus </p>
+                    <h1 class="text-uppercase mb-3">පද්ධතිය ගැන</h1>
+                    <p>පවුල් සෞඛ්‍යය නිලධාරිනියන්ට වෛද්‍ය වරුන්ට හෙදියන්ට හා මව් වරුන්ට මෙමෙ පද්ධතියට හරහා තම කටයුතු පහසු කරගත හැක. ඒ සඳහා ඔවුන්ට අවශ්‍ය කාර්යයන් ඇතුළත් වෙන වෙනම පරිශීලක අතුරුමුහුණත් ලබා දෙමින් ඔවුන්ගේ අවශ්‍යතා සපුරාලීමට අපි උපරිම උත්සාහයක් ගෙන ඇත. කාලය ඉතිරි කර ගැනීම සඳහා දත්ත සෘජුවම දත්ත සමුදාය(database) සමඟ හුවමාරු වන අතර අදාළ ප්‍රතිදානය ලබා දෙනු ලැබේ. වෙනම පරිශීලක පිවිසුම් භාවිතයෙන් දත්ත වල ආරක්ෂාව සපයනු ලබන අතර පද්ධතියේ ලියාපදිංචි වී ඇති පරිශීලකයින්ට විශේෂ වරප්‍රසාද ලැබේ.</p>
                 </div> <!--about system-->
             </div>
             <div class="row mt-5">
                 <div class="about-objective col-md-7 wow fadeInLeft">
-                    <h3 class="text-uppercase mb-3">General Objective</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores temporibus, recusandae nesciunt et laborum, dolorum? Tempora iste repudiandae dolore libero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci iusto numquam architecto. Pariatur aut, voluptatum voluptas veniam, architecto, nobis hic libero harum provident mollitia beatae cupiditate rem rerum ipsum ex. Repudiandae tenetur aut nihil obcaecati nobis magni accusamus </p>
+                    <h3 class="text-uppercase mb-3">අපගේ පරමාර්ථය</h3>
+                    <p>පරිගණක පද්ධතියක් මගින්  MOH කාර්යාලයට අවශ්‍ය ළදරුවන්ගේ තොරතුරු සටහන් කර ගෙන ඉතා ආරක්ෂාකාරීව, පැහැදිලිව හා පහසුවෙන් ඉදිරිපත් කිරීම හා පවුල් සෞඛ්‍යය නිලධාරිනියන් යටතේ සිටින සියලුම මව්වරුන්ට පණිවිඩ ලබා දීම සඳහා කාර්යක්ෂම හා පහසු ක්‍රමයක් සැකසීම අපගේ අරමුණකි. තවද මව්වරුන්ට තම ළදරුවන්ගේ වැදගත් සෞඛ්‍ය තොරතුරු ඕනෑම මොහොතක බැලීමට හා  තේරුම් ගැනීමට හැකි පහසු ක්‍රමවේදයක් ලබා දීම හා ළදරුවන් පරීක්ෂා කිරීම සඳහා මවගේ නිවෙස්වලට යන පවුල් සෞඛ්‍යය නිලධාරිනියන් මුහුණ දෙන අපහසුතාවන්ගෙන් මිදී අවශ්‍ය නිවාසවල පිහිටීම සොයා ගැනීමට අවශ්‍ය මග පෙන්වීම් ලබා දීමද අපගේ අරමුණකි.</p>
                 </div>
                 <div class="col-md-5 text-center wow fadeInRight">
                     <img src="./assets/img/index/objective.png" class="object-pic img-fluid" alt="Responsive image">
@@ -347,9 +347,8 @@
         <!--our service-->
         <div class="container our-services mt-5" id="our-services">
            
-            <h1 class="text-center text-uppercase mb-3">our Offerd Services</h1>
-            <p class="text-center mt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing s orem ipsum.</p>
+            <h1 class="text-center text-uppercase mb-3">අපගේ සේවාවන්</h1>
+            <p class="text-center mt-1">අප පද්ධතිය භාවිතයෙන් ලබා ගත හැකි සේවාවන් කිහිපයක් පහත දැක්වේ.</p>
             
             <div class="service-cards">
                 <div class="row">
@@ -357,12 +356,12 @@
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
-                                    <i class="fas fa-baby" aria-hidden="true"></i>
+                                    <i class="fas fa-user-friends" aria-hidden="true"></i>
                                 </span>
                                 <div class="card-body">
-                                    <h4 class="card-title text-uppercase">service one</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#!" class="btn btn-primary">lern More</a>
+                                    <h4 class="card-title text-uppercase">පරිශීලක කළමනාකරණය</h4>
+                                    <p class="card-text">කාණ්ඩ 4ක් යටතේ පරිශීලකයින් පද්ධතියට එක්කල හැක.</p>
+                                    <a href="#!" class="btn btn-primary">වැඩිදුර තොරතුරු</a>
                                 </div>
                             </div>
                         </div>
@@ -371,12 +370,12 @@
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
-                                    <i class="fas fa-baby-carriage" aria-hidden="true"></i>
+                                    <i class="fas fa-chart-line" aria-hidden="true"></i>
                                 </span>
                                 <div class="card-body">
-                                    <h4 class="card-title text-uppercase">service two</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#!" class="btn btn-primary">lern More</a>
+                                    <h4 class="card-title text-uppercase">දත්ත විශ්ලේෂණය</h4>
+                                    <p class="card-text">දත්ත කළමනාකරණය කරමින් පරිශීලකයට පහසුවන අයුරින් ඉදිරිපත් කිරීම.</p>
+                                    <a href="#!" class="btn btn-primary">වැඩිදුර තොරතුරු</a>
                                 </div>
                             </div>
                         </div>
@@ -385,12 +384,12 @@
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
-                                    <i class="fas fa-user-nurse" aria-hidden="true"></i>
+                                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                                 </span>
                                 <div class="card-body">
-                                    <h4 class="card-title text-uppercase">service three</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#!" class="btn btn-primary">lern More</a>
+                                    <h4 class="card-title text-uppercase">ස්ථාන සේවා</h4>
+                                    <p class="card-text">සිතියම්(map) භාවිතයෙන් පරිශීලකයින්ගේ ස්ථාන(locations) පෙන්වීම.</p>
+                                    <a href="#!" class="btn btn-primary">වැඩිදුර තොරතුරු</a>
                                 </div>
                             </div>
                         </div>
@@ -399,12 +398,12 @@
                         <div class="card text-center wow zoomIn">
                             <div class="service-icon">
                                 <span class="icon">
-                                    <i class="fas fa-notes-medical" aria-hidden="true"></i>
+                                    <i class="fas fa-comment-dots" aria-hidden="true"></i>
                                 </span>
                                 <div class="card-body">
-                                    <h4 class="card-title text-uppercase">service four</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#!" class="btn btn-primary">lern More</a>
+                                    <h4 class="card-title text-uppercase">පණිවිඩ සේවා</h4>
+                                    <p class="card-text">පරිශීලකයින් අතර ක්ෂණික පණිවිඩ යැවීම ඊ මේල් පණිවිඩ යැවීම.</p>
+                                    <a href="#!" class="btn btn-primary">වැඩිදුර තොරතුරු</a>
                                 </div>
                             </div>
                         </div>
@@ -419,29 +418,28 @@
         <!-- our facilities -->
         <div class="container our-facilities mt-5" id="our-facilities">
            
-            <h1 class="text-center text-uppercase mb-3">our offerd facilities</h1>
-            <p class="text-center mt-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit.<br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing s orem ipsum.</p>
+            <h1 class="text-center text-uppercase mb-3">අප ලබා දෙන පහසුකම්</h1>
+            <p class="text-center mt-1">අප පද්ධතිය භාවිතයෙන් ලබා ගත හැකි පහසුකම් කිහිපයක් පහත දැක්වේ.</p>
             
             <div class="facilities mb-5">
                 <div class="row">
                     <div class="col-md-1  wow fadeInLeft"></div>
                     <div class="c1 col-md-5 mt-4 text-center  wow fadeInLeft">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-chart-area" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">ළදරු වර්ධන සටහන්</h6>
+                            <p class="facility-text">ළදරුවාගේ උස, බර හා bmi සටහන්(chart) ආකාරයෙන් ඉදිරිපත් කිරීම.</p>
                         </div>
                     </div>
                     <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-syringe" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">එන්නත් කිරීම කළමනාකරණය</h6>
+                            <p class="facility-text">ළදරුවාට එන්නත් ලබාදීමේදී අදාළ තොරතුරු ලබාගෙන පහසුවෙන් ඉදිරිපත් කිරීම.</p>
                         </div>
                     </div>
                     <div class="col-md-1 wow fadeInRight"></div>
@@ -450,20 +448,20 @@
                     <div class="col-md-1 wow fadeInLeft"></div>
                     <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-cookie-bite" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">ත්‍රිපෝෂ ලබාදීම කළමනාකරණය</h6>
+                            <p class="facility-text">ත්‍රිපෝෂ ලබාදීම සටහන්කර අදාළ ත්‍රිපෝෂ අතිරික්ත ඉදිරිපත් කිරීම.</p>
                         </div>
                     </div>
                     <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-comment-dots" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">ක්ෂණික පණිවිඩ</h6>
+                            <p class="facility-text">පරිශීලකයන් අතර ඉක්මනින්  හා ඉතා පහසුවෙන් පණිවිඩ හුවමාරු කරගත හැකි මුහුණතක් ඇත.</p>
                         </div>
                     </div>
                     <div class="col-md-1 wow fadeInRight"></div>
@@ -472,20 +470,20 @@
                     <div class="col-md-1 wow fadeInLeft"></div>
                     <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-bell" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">සිහසිහි කැදවීම්</h6>
+                            <p class="facility-text">පරිශීලකයින්ට අවශ්‍ය වැඩසටහන් හෝ ක්‍රියාවන් සිහි කැදවීම්(reminders) ලෙස තබා ගැනීමේ හැකියාව.</p>
                         </div>
                     </div>
                     <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-at" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">ඊ මේල් සහසුකම</h6>
+                            <p class="facility-text">මව්වරුන්ට ලබා දියයුතු දැනුවත් කිරීම් එකවර ඊ මේල් පණිවිඩයක් ලෙස ලබාදිය හැක.</p>
                         </div>
                     </div>
                     <div class="col-md-1 wow fadeInRight"></div>
@@ -494,42 +492,20 @@
                     <div class="col-md-1 wow fadeInLeft"></div>
                     <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-copy" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">වාර්තාවන්</h6>
+                            <p class="facility-text">පරිශීලකයින්ට අදාළ වාර්තාවන් නිර්මාණය කිරීම හා pdf ගොනු ලෙස බාගත ලක හැක.</p>
                         </div>
                     </div>
                     <div class="c2 col-md-5 mt-4 wow fadeInRight">
                         <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </span>
                         <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-1 wow fadeInRight"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1 wow fadeInLeft"></div>
-                    <div class="c1 col-md-5 mt-4 text-center wow fadeInLeft">
-                        <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
-                        </span>
-                        <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                    <div class="c2 col-md-5 mt-4 wow fadeInRight">
-                        <span class="facility-icon">
-                                <i class="fas fa-baby" aria-hidden="true"></i>
-                        </span>
-                        <div class="facility-body text-justify mx-4">
-                            <h6 class="facility-title text-uppercase mt-0 mb-0">Managing users</h6>
-                            <p class="facility-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <h6 class="facility-title text-uppercase mt-0 mb-0">ස්ථාන පහසුකම්</h6>
+                            <p class="facility-text">පවුල් සෞඛ්‍ය නිලධාරිනියට මවගේ නිවස ඇති ස්ථානය සිතියම මගින් පෙන්වීම අදාළ මාර්ගය(direction) ලබාගත හැක.</p>
                         </div>
                     </div>
                     <div class="col-md-1 wow fadeInRight"></div>
@@ -542,9 +518,8 @@
         
         <!--contact-->
         <div class="contact-us pb-5" id="contact">
-            <h1 class="text-center text-uppercase">Contact us</h1>
-            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br>
-            Lorem ipsum dolor sit amet, consectetur adipisicing s orem ipsum.</p>
+            <h1 class="text-center text-uppercase">අපව සම්බන්ඳ කරගන්න</h1>
+            <p class="text-center">වැඩිදුර තොරතුරු සදහා පහත ආකාර ඔස්සේ අපව සම්බන්ඳ කර ගත හැක.</p>
             
             <div class="container contact text-center">
                 <div class="row">
@@ -562,8 +537,8 @@
                     </div>
                 </div> <!--Contac info-->
                 
-                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>Document</button>
-                <button type="button" class="btn btn-primary"><i class="fa fa-rocket"></i>Hire US</button>
+                <button type="button" class="btn btn-primary"><i class="fa fa-download"></i>බාගත කරන්න</button>
+                <button type="button" class="btn btn-primary"><i class="fa fa-rocket"></i>පණිවිඩ</button>
             </div>            
         </div>
         <!--end of contact-->
@@ -574,13 +549,13 @@
                 <div class="row">
                     <div class="col-md-3">
                         <img src="./assets/img/icon-black.png" class="footer-logo">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi esse nostrum rem obcaecati neque doloribus </p>
+                        <p>Our sole purpose is to help you to keep your child healthy.</p>
                     </div>
                     <div class="col-md-3">
                         <h4>Features</h4>
-                        <p>Deals and Offers</p>
-                        <p>Customer Reviews</p>
-                        <p>Canceation Policy</p>
+                        <p>User Management</p>
+                        <p>Instant Messaging</p>
+                        <p>Location Service</p>
                     </div>
                     <div class="col-md-3">
                         <h4>Quick Contact</h4>
@@ -589,7 +564,7 @@
                         <p><i class="fa fa-home"></i> Medical Officer of Health (MOH) Office - Narammala</p>
                     </div>
                     <div class="col-md-3">
-                        <h4>Folloe us on</h4>
+                        <h4>Follow us on</h4>
                         <p><i class="fab fa-facebook"></i> Facebook</p>
                         <p><i class="fab fa-youtube"></i> Youtube</p>
                         <p><i class="fab fa-twitter"></i> Twitter</p>
