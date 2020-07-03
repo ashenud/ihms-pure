@@ -48,14 +48,6 @@
                 </li>
             </div>
             <li>
-                <a href="/doctor/table" class="text-uppercase dd-table">
-                    <span class="icon">
-                        <i class="fas fa-table" aria-hidden="true"></i>
-                    </span>
-                    <span class="list">දත්ත වගු</span>
-                </a>
-            </li>
-            <li>
                 <a href="/doctor/inbox" class="text-uppercase d-inbox">
                     <span class="icon">
                         <i class="fas fa-inbox" aria-hidden="true"></i>

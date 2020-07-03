@@ -66,7 +66,11 @@ if(!isset($_SESSION['doctor_id'])) {
                         
                                         <?php
                                         
-                                        $query1 = "SELECT sister_id, sister_name, sister_moh_division FROM sister";
+                                        $query01="SELECT doctor_moh_division FROM doctor WHERE doctor_id='".$_SESSION['doctor_id']."'";
+                                        $result01=mysqli_query($conn,$query01);
+                                        $row01=mysqli_fetch_assoc($result01);
+                                        
+                                        $query1 = "SELECT sister_id, sister_name, sister_moh_division FROM sister WHERE sister_moh_division='".$row01['doctor_moh_division']."'";
                                         $result1= mysqli_query($conn,$query1);
 
                                         ?>
@@ -92,10 +96,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                                     <td><?php echo $row['sister_name']; ?></td>
                                                     <td><?php echo $row['sister_moh_division']; ?></td>
                                                     <td>
-                                                        <form action="!#" method="POST">
-                                                            <input type="hidden" name="send-msg" value="<?php echo $row['sister_id']; ?>">
-                                                            <button type="submit" name="send-btn" class="btn send-btn"><i class="fa fa-comment-dots" aria-hidden="true"></i></button>
-                                                        </form>
+                                                        <a href="/pages/doctor/doc-send-messages.php" type="button" name="send-btn" class="btn send-btn"><i class="fa fa-comment-dots" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                         <?php

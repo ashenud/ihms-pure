@@ -150,7 +150,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <input type="submit" value="SEARCH" class="btn btn-sm text-light" name="searchBabyUsingMnic">
+                                        <input type="submit" value="සොයන්න" class="btn btn-sm text-light" name="searchBabyUsingMnic">
                                     </div>
                                 </form>
                             </div>
