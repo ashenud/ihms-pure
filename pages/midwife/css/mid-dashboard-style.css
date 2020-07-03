@@ -232,14 +232,18 @@
 
 .card-stats .title .card-title {
     text-align: start;
+    font-family: 'yaldevicolombo';
 }
 
 .card-stats .title span {
     color: #000;
+    font-family: 'yaldevicolombo';
 }
 
 .card-stats .card-body p span {
     color: #000;
+    font-family: 'abhaya';
+    font-size: 14px;
 }
 
 .card-stats .card-icon {
@@ -306,7 +310,7 @@
 .view-vaccine .card-header h6,
 .view-reminders .card-header h6,
 .search-babies .card-header h6 {
-    font-family: 'Poppins';
+    font-family: 'yaldevicolombo';
     font-size: 20px;
     margin-bottom: 0;
 }
@@ -333,6 +337,7 @@
 .compose-mail .form-control::placeholder,
 .search-babies .form-control::placeholder {
     font-size: 13px;
+    font-family: 'abhaya';
 }
 
 .compose-mail .card-footer,
@@ -351,6 +356,8 @@
     border-radius: 0;
     line-height: normal;
     min-height: 38px;
+    font-family: 'abhaya';
+    font-size: 17px;
 }
 
 .compose-mail table {
@@ -359,7 +366,7 @@
 }
 
 .compose-mail .card-body table .table-data {
-    font-family: 'Poppins';
+    font-family: 'abhaya';
     font-size: 14px;
     font-weight: bold;
 }
@@ -371,6 +378,7 @@
 }
 
 .view-vaccine .thead-theme th {
+    font-family: 'abhaya';
     border-top: 0 !important;
     border-bottom: 2px solid #2a94c3 !important;
     text-transform: uppercase;

@@ -56,7 +56,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -64,7 +64,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 <span class="icon">
                                     <i class="fas fa-file-signature" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Contact Staff</span>
+                                <span class="list">කාර්ය මණ්ඩලය</span>
                             </a>
                         </li>
                     </ul>

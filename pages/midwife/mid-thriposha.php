@@ -57,7 +57,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -65,7 +65,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                 <span class="icon">
                                     <i class="fas fa-cookie-bite" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Thriposha</span>
+                                <span class="list">ත්‍රිපෝෂ</span>
                             </a>
                         </li>
                     </ul>

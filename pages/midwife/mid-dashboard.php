@@ -77,8 +77,8 @@ if(!isset($_SESSION['midwife_id'])) {
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Add</h5>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">Reminder</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">සිහි කැඳවීම්</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">එක් කරන්න</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="card-icon icon-color">
@@ -94,7 +94,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                 $num_rows1=mysqli_num_rows($result1);
 
                                             ?>
-                                            <span class="text-nowrap">You have <?php echo $num_rows1; ?> reminders</span>
+                                            <span class="text-nowrap">දැනට ඇති සිහි කැඳවීම් ගනණ <?php echo $num_rows1; ?>කි.</span>
                                         </p>
 
                                     </div>
@@ -110,8 +110,8 @@ if(!isset($_SESSION['midwife_id'])) {
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Registerd</h5>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">Babies</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">ලියාපදිංචි</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">ළදරුවන්</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="card-icon icon-color">
@@ -127,7 +127,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                 $num_rows3=mysqli_num_rows($result3);
 
                                             ?>
-                                            <span class="text-nowrap"><?php echo $num_rows3; ?> babies have registrated</span>
+                                            <span class="text-nowrap">දැනට ලියාපදිංචි ළදරුවන් ගනණ <?php echo $num_rows3; ?>කි.</span>
                                         </p>
 
                                     </div>
@@ -143,8 +143,8 @@ if(!isset($_SESSION['midwife_id'])) {
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h6 class="card-title text-uppercase text-muted mb-0">distributing</h6>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">thriposha</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">ත්‍රිපෝෂ</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">බෙදාහැරීම</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="card-icon icon-color">
@@ -162,7 +162,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                 $reminder=$row4['available_qty']-$row4['MAX(distributed_qty)'];
                                                 
                                             ?>
-                                            <span class="text-nowrap"><?php echo $reminder; ?> packets are remain</span>
+                                            <span class="text-nowrap">දැනට ඇති පැකට් ප්‍රමාණය <?php echo $reminder; ?> කි.</span>
                                         </p>
 
                                     </div>
@@ -178,8 +178,8 @@ if(!isset($_SESSION['midwife_id'])) {
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Contact</h5>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">staff</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">කාර්ය මණ්ඩලය</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">සම්බන්ඳ කරගන්න</span>
                                             </div>
                                             <div class="col-auto">
                                                 <div class="card-icon icon-color">
@@ -188,7 +188,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-sm">
-                                            <span class="text-nowrap">Send short messages</span>
+                                            <span class="text-nowrap">ක්ෂණික පණිවිඩයක් යවන්න.</span>
                                         </p>
 
                                     </div>
@@ -239,15 +239,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             <div class="card search-babies">
                                 <form method="POST" action="/pages/midwife/php/mid-search-baby-by-mNIC.php">
                                     <div class="card-header">
-                                        <h6 class="font-weight-bold">Search Mother</h6>
+                                        <h6 class="font-weight-bold">ළදරුවන් නිරීක්ෂණය කිරීම</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="search-input">
-                                            <input type="text" name="searchUser" class="form-control" placeholder="enter mother nic for search..." required>
+                                            <input type="text" name="searchUser" class="form-control" placeholder="සෙවීම සඳහා මවගේ හැඳුනුම් අංකය ඇතුළත් කරන්න..." required>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <input type="submit" value="SEARCH" class="btn btn-sm text-light" name="searchBabyUsingMnic">
+                                        <input type="submit" value="සොයන්න" class="btn btn-sm text-light" name="searchBabyUsingMnic">
                                     </div>
                                 </form>
                             </div>
@@ -258,13 +258,13 @@ if(!isset($_SESSION['midwife_id'])) {
                             <div class="card compose-mail">
                                 <form method="POST" action="/pages/midwife/php/send-mail-action.php">
                                     <div class="card-header">
-                                        <h6 class="font-weight-bold">Send message to all mothers via email</h6>
+                                        <h6 class="font-weight-bold">සියලුම මව්වරුන්ට එකවර ඊ මේල් පණිවිඩයක් යවන්න</h6>
                                     </div>
                                     <div class="card-body">
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <label class="table-data">Subject</label>
+                                                    <label class="table-data">මාතෘකාව</label>
                                                 </td>
                                                 <td>
                                                     <input type="text" name="subject" class="form-control form-control-sm" required>
@@ -272,7 +272,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label class="table-data">Message</label>
+                                                    <label class="table-data">පණිවිඩය</label>
                                                 </td>
                                                 <td>
                                                     <textarea rows="2" cols="50" name="message" class="form-control form-control-sm" required></textarea>
@@ -281,7 +281,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                         </table>
                                     </div>
                                     <div class="card-footer">
-                                        <input type="submit" value="SEND" class="btn btn-sm text-light" name="submit2">
+                                        <input type="submit" value="යවන්න" class="btn btn-sm text-light" name="submit2">
                                     </div>
                                 </form>
                             </div>
@@ -295,16 +295,16 @@ if(!isset($_SESSION['midwife_id'])) {
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card view-vaccine">
                                 <div class="card-header">
-                                    <h6 class="font-weight-bold">Vaccination Date</h6>
+                                    <h6 class="font-weight-bold">එන්නත් ලබාදිය යුතු දිනයන්</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="b_table" id="newDiv">
                                         <table class="table table-responsive-xl">
                                             <thead class="thead-theme">
                                                 <tr class="b_text5">
-                                                    <th>Baby Id</th>
-                                                    <th>Vaccine</th>
-                                                    <th>Date</th>
+                                                    <th>ළදරු ලියාපදිංචි අංකය</th>
+                                                    <th>එන්නත</th>
+                                                    <th>දිනය</th>
                                                 </tr>
                                             </thead>
                                             
@@ -340,7 +340,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card view-reminders">
                                 <div class="card-header">
-                                    <h6 class="font-weight-bold">Reminders</h6>
+                                    <h6 class="font-weight-bold">සිහි කැඳවීම්(Reminders)</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-container">
