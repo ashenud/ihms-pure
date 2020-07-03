@@ -471,6 +471,12 @@ button {
     border-radius: 15px;
 }
 
+.alert-section .alert strong {
+    font-family: 'abhaya';
+    font-size: 15px;
+    vertical-align: middle;
+}
+
 .alert-section .alert button {
     margin-right: 2px;
     margin-top: 12px;
@@ -847,10 +853,9 @@ h4,h6 {
         font-size: 1.3rem
     }
     .alert-section .alert strong {
-        font-size: 6px;
+        font-size: 6.5px;
     }
     .hero-section .jumbotron {
-        margin-top: -35px;
     }   
     .hero-section .jumbotron h1 {
         font-size: 23px;
