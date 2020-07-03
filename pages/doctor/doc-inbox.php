@@ -186,8 +186,10 @@ if(!isset($_SESSION['doctor_id'])) {
                                                         <div class='modal-body'>
                                                             <form method='POST' action='/pages/doctor/php/doc-read-msg-action.php'>
                                                                 <div class=row>
+                                                                   <div class="col-12">
+                                                                        <textarea name='msg_area' id='msg_area2' class='form-control' readonly></textarea>
+                                                                    </div>
                                                                     <div class='col-12'>
-                                                                        <input type='hidden' name='msg_area' id='msg_area2'>
                                                                         <input type='hidden' name='msg_date' id='msg_date2'>
                                                                         <input type='hidden' name='msg_time' id='msg_time2'>
                                                                     </div>

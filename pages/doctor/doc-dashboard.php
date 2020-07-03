@@ -49,6 +49,20 @@ if(!isset($_SESSION['doctor_id'])) {
             
             <!-- content -->
             <div class="content">
+              
+                <!-- alert section -->
+                <div class="alert-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <?php include('./inc/alert-mother-not-found.php'); ?>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of alert section -->
                
                 <div class="container">
                     <div class="row mt-4 mb-5">
