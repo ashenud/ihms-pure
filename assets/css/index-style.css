@@ -50,6 +50,10 @@ body, html {
     width: 23px;
 }
 
+.tooltip {
+  font-family: 'abhaya';
+}
+
 /*.nav-item .nav-link:hover {
     color: #f3758a;
 }*/
