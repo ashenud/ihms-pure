@@ -102,7 +102,6 @@ if(!isset($_SESSION['sister_id'])) {
                                                     <th>Name</th>
                                                     <th>Age</th>
                                                     <th>View</th>
-                                                    <th>Remove</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -121,12 +120,6 @@ if(!isset($_SESSION['sister_id'])) {
                                                         <form action="/general/view-data" method="POST">
                                                             <input type="hidden" name="view-id" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                                                        </form>
-                                                    </td>
-                                                    <td>
-                                                        <form action="#" method="POST">
-                                                            <input type="hidden" name="remove-id" value="<?php echo $row['baby_id']; ?>">
-                                                            <button type="submit" name="remove-btn" class="btn remove-btn"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>

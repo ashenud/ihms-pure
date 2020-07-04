@@ -35,7 +35,7 @@
                         <span class="icon-active">
                             <i class="fas fa-user-plus" aria-hidden="true"></i>
                         </span>
-                        <span class="list">වින්නඹුවන් එක් කරන්න</span>
+                        <span class="list add-midwife-bar">වින්නඹුවන්<span class="text-english">(Midwife)</span> එක් කරන්න</span>
                     </a>
                 </li>
                 <li>
@@ -43,7 +43,7 @@
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        <span class="list">වින්නඹුවන්ගේ තොරතුරු බලන්න</span>
+                        <span class="list add-midwife-bar">වින්නඹුවන්ගේ තොරතුරු බලන්න</span>
                     </a>
                 </li>
                 <li>
@@ -51,7 +51,7 @@
                         <span class="icon">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </span>
-                        <span class="list">ළමුන්ගේ තොරතුරු බලන්න</span>
+                        <span class="list add-midwife-bar">ළමුන්ගේ තොරතුරු බලන්න</span>
                     </a>
                 </li>
             </div>
