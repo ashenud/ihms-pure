@@ -858,17 +858,24 @@ h4,h6 {
     .hero-section .jumbotron {
     }   
     .hero-section .jumbotron h1 {
-        font-size: 23px;
+        font-size: 45px;
+        margin-bottom: 0 !important;
     }
     .hero-section .jumbotron p {
         font-size: 10px;
+        display: none;
     }
     .hero-section .jumbotron p.lead {
         font-size: 14px;
+        display: none;
     }
     .hero-section .jumbotron .btn-lg {
         font-size: 7px;
         padding: 6px 8px;
+        display: none;
+    }
+    .hero-section .jumbotron hr {
+        display: none;
     }
     .about {
         padding-top: 1px;
