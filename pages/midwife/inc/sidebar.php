@@ -88,7 +88,7 @@
                     <span class="icon">
                         <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                     </span>
-                    <span class="list">සිතියම්</span>
+                    <span class="list map-bar">සිතියම් <span class="text-english">(Map)</span></span>
                 </a>
             </li>
             <div class="collapse collapse-location" id="location">
@@ -97,7 +97,7 @@
                         <span class="icon">
                             <i class="fas fa-map-pin" aria-hidden="true"></i>
                         </span>
-                        <span class="list">අදට නියමිත ස්ථාන</span>
+                        <span class="list map-drop-bar">අදට නියමිත ස්ථාන</span>
                     </a>
                 </li>
                 <li>
@@ -105,7 +105,7 @@
                         <span class="icon">
                             <i class="fas fa-map-signs" aria-hidden="true"></i>
                         </span>
-                        <span class="list">දිශාව දැක්වීම</span>
+                        <span class="list map-drop-bar">දිශාව දැක්වීම <span class="text-english">(Directions)</span></span>
                     </a>
                 </li>
                 <li>
@@ -113,7 +113,7 @@
                         <span class="icon">
                             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </span>
-                        <span class="list">සියලුම ස්ථාන</span>
+                        <span class="list map-drop-bar">සියලුම ස්ථාන</span>
                     </a>
                 </li>
             </div>

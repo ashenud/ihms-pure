@@ -96,7 +96,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                                     <td><?php echo $row['sister_name']; ?></td>
                                                     <td><?php echo $row['sister_moh_division']; ?></td>
                                                     <td>
-                                                        <a href="/pages/doctor/doc-send-messages.php" type="button" name="send-btn" class="btn send-btn"><i class="fa fa-comment-dots" aria-hidden="true"></i></a>
+                                                        <a href="/doctor/send-messages" type="button" name="send-btn" class="btn send-btn"><i class="fa fa-comment-dots" aria-hidden="true"></i></a>
                                                     </td>
                                                 </tr>
                                         <?php

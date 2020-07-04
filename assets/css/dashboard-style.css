@@ -266,6 +266,12 @@ body {
 .inner-sidebar-menu ul li a .add-midwife-bar .text-english {
     font-size: 10px;
 }
+.inner-sidebar-menu ul li a .map-bar .text-english {
+    font-size: 12px;
+}
+.inner-sidebar-menu ul li a .map-drop-bar .text-english {
+    font-size: 10px;
+}
 /*-- end of english in sidebar --*/
 
 
@@ -479,6 +485,12 @@ body {
     }
     .inner-sidebar-menu ul li a .add-midwife-bar .text-english {
         font-size: 6px;
+    }
+    .inner-sidebar-menu ul li a .map-drop-bar {
+        font-size: 9px;
+    }
+    .inner-sidebar-menu ul li a .map-drop-bar .text-english {
+        font-size: 7px;
     }
     /*-- end of english in sidebar --*/
     .mob-inner-hamburger {
