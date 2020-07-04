@@ -302,12 +302,12 @@ if(!isset($_SESSION['midwife_id'])) {
                 <div class="alert-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
                                 <?php include('./inc/alert-vac-mark-success.php'); ?>
                                 <?php include('./inc/alert-vac-set-date-success.php'); ?>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-3"></div>
                         </div>
                     </div>
                 </div>

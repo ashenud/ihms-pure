@@ -1,6 +1,5 @@
 /* alert section */
 .alert-section {
-    font-family: sans-serif;
     position: fixed;
     z-index: 2;
     width: calc(100% - 250px);
@@ -9,16 +8,6 @@
 .wrapper.active .alert-section{
     width: calc(100% - 80px);
     margin-left: 80px;
-}
-
-@media screen and (max-width:768px) {
-    .wrapper .content .alert-section {
-        width: calc(100% - 80px);
-    }
-    
-    .wrapper.mob-active .content .alert-section {
-        width: calc(100% - 250px);
-    }
 }
 
 .alert-section label {
@@ -30,9 +19,23 @@
     border-radius: 15px;
 }
 
+.alert-section .alert strong {
+    font-family: 'abhaya';
+}
+
 .alert-section .alert button {
     margin-right: 2px;
     outline: none;
+}
+
+@media screen and (max-width:768px) {
+    .wrapper .content .alert-section {
+        width: calc(100% - 80px);
+    }
+    
+    .wrapper.mob-active .content .alert-section {
+        width: calc(100% - 250px);
+    }
 }
 /* end of alert section */
 
