@@ -6,6 +6,44 @@ if(!isset($_SESSION['doctor_id'])) {
 }
 ?>
 
+<?php
+                                    
+    $age_count = '';
+
+    $query1 = "CREATE TEMPORARY TABLE IF NOT EXISTS ages AS (SELECT FLOOR(DATEDIFF(CURDATE(),baby_dob)/30) AS age 
+               FROM baby_register WHERE status='active')";
+    $result1= mysqli_query($conn,$query1);
+
+        if($result1) {
+            $query2 = "SELECT IF(rng='1-6','0-6',rng) 'range', IFNULL(B.rngcount,0) 'count' 
+                       FROM (
+                            SELECT '1 - 6' rng UNION
+                            SELECT '7 - 12' UNION
+                            SELECT '13 - 18' UNION
+                            SELECT '18 - 24' UNION
+                            SELECT '25 - 30' UNION
+                            SELECT '31 - 36' ) 
+                       A LEFT JOIN (
+                            SELECT CONCAT(FLOOR(age/6)*6+1,' - ',FLOOR(age/6)*6+6) rng, COUNT(1) rngcount 
+                            FROM ages GROUP BY rng) 
+                       B USING (rng)";
+
+            $result2= mysqli_query($conn,$query2);
+
+            while ($row1 = mysqli_fetch_assoc($result2)) {
+                $age_count = $age_count . '"'. $row1['count'].'",';
+            }
+
+            $age_count = trim($age_count,",");
+        }
+
+
+    $query3= "DROP TEMPORARY TABLE IF EXISTS ages";
+    $result3= mysqli_query($conn,$query3);
+
+?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -26,6 +64,10 @@ if(!isset($_SESSION['doctor_id'])) {
     
     <link rel="stylesheet" href="/assets/css/calendar/calendar.css">
     <link rel="stylesheet" href="/pages/doctor/css/doc-dashboard-style.css">
+    
+    <script>
+        var age_count = [<?php echo $age_count; ?>];
+    </script>
 
     <title>Infant Health Management System</title>
     
@@ -172,46 +214,7 @@ if(!isset($_SESSION['doctor_id'])) {
                        
                         <div class="col-lg-6 mb-2">
                             <div class="card card-chart">
-                                <div class="card-header chart-header">
-                                    
-                                    <?php
-                                    
-                                        $age_count = '';
-
-                                        $query1 = "CREATE TEMPORARY TABLE IF NOT EXISTS ages AS (SELECT FLOOR(DATEDIFF(CURDATE(),baby_dob)/30) AS age 
-                                                   FROM baby_register WHERE status='active')";
-                                        $result1= mysqli_query($conn,$query1);
-                                    
-                                            if($result1) {
-                                                $query2 = "SELECT IF(rng='1-6','0-6',rng) 'range', IFNULL(B.rngcount,0) 'count' 
-                                                           FROM (
-                                                                SELECT '1 - 6' rng UNION
-                                                                SELECT '7 - 12' UNION
-                                                                SELECT '13 - 18' UNION
-                                                                SELECT '18 - 24' UNION
-                                                                SELECT '25 - 30' UNION
-                                                                SELECT '31 - 36' ) 
-                                                           A LEFT JOIN (
-                                                                SELECT CONCAT(FLOOR(age/6)*6+1,' - ',FLOOR(age/6)*6+6) rng, COUNT(1) rngcount 
-                                                                FROM ages GROUP BY rng) 
-                                                           B USING (rng)";
-                                                
-                                                $result2= mysqli_query($conn,$query2);
-                                                
-                                                while ($row1 = mysqli_fetch_assoc($result2)) {
-                                                    $age_count = $age_count . '"'. $row1['count'].'",';
-                                                }
-                                                
-                                                $age_count = trim($age_count,",");
-                                            }
-                                    
-                                    
-                                        $query3= "DROP TEMPORARY TABLE IF EXISTS ages";
-                                        $result3= mysqli_query($conn,$query3);
-                                    
-                                    
-                                    ?>
-                                    
+                                <div class="card-header chart-header">                                    
                                     <canvas id="chart-age" class="line-chart"></canvas>
                                 </div>
                                 <div class="card-body chart-body">
@@ -295,7 +298,7 @@ if(!isset($_SESSION['doctor_id'])) {
                     labels: ['0-6', '7-12', '13-18', '19-24', '25-30', '31-36'],
                     datasets: [{
                         label: 'Number of Babies',
-                        data: [<?php echo $age_count; ?>],
+                        data: age_count,
                         backgroundColor: '#ffa7ba',
                         borderColor: '#ffa7ba',
                         borderWidth: 1,
