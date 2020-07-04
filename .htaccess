@@ -71,3 +71,9 @@ RewriteRule ^admin/password-change?$ /pages/admin-doctor/admin-doc-password-chan
 #general
 
 RewriteRule ^general/view-data?$ /pages/general/view-data.php [L]
+
+
+#password reset
+
+RewriteRule ^confirm-details?$ /froget-password/froget-password.php [L]
+RewriteRule ^change-password?$ /froget-password/new-password.php [L]

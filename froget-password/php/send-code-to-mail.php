@@ -29,24 +29,24 @@ if(isset($_POST['submit'])) {
         try {
             //Server settings
             $mail->isSMTP(); 
-            $mail->Host       = 'smtp.gmail.com';
+            $mail->Host       = 'smtp.mailtrap.io';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'ihmsuor@gmail.com'; 
-            $mail->Password   = 'ihmsuordwp';
+            $mail->Username   = '0d00ff8663ddda'; 
+            $mail->Password   = '53c84ccce6b45e';
             $mail->SMTPKeepAlive = true; 
             $mail->Mailer = 'smtp';
             $mail->SMTPSecure = 'tls';
-            $mail->Port       = 587;
+            $mail->Port       = 2525;
             $mail->CharSet = 'utf-8';  
             $mail->SMTPDebug  = 0; 
 
             //Recipients
-            $mail->setFrom('ihmsuor@gmail.com', 'ihms');
+            $mail->setFrom('privacy@ihms.com', 'ihms');
             $mail->addAddress($reset_email);
             $mail->addReplyTo('no-reply@ihms.com');
 
             // Content
-            $url="http://".$_SERVER["HTTP_HOST"].dirname($_SERVER["PHP_SELF"])."/../new-password.php?code=$reset_code";
+            $url="http://".$_SERVER["HTTP_HOST"]."../../../change-password?code=$reset_code";
             $mail->isHTML(true);
             $mail->Subject = 'Your Password Reset Link';
             $mail->Body    = "<h3>Your requested a password reset link</h3> </br>
@@ -64,7 +64,7 @@ if(isset($_POST['submit'])) {
     }
     
     else {
-        header('location:../froget-password.php?error=1');
+        header('location:/confirm-details?error=1');
     }
         
 }

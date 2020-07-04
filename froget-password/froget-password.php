@@ -7,18 +7,18 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
 
     <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 
     <!--fonts and icons-->    
-    <link rel="stylesheet" href="../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../assets/css/unicode-fonts.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome/css/all.css">
+    <link rel="stylesheet" href="/assets/css/unicode-fonts.css">
 
     <!--css files-->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
     
-    <link rel="stylesheet" href="./css/froget-password-style.css">
+    <link rel="stylesheet" href="/froget-password/css/froget-password-style.css">
     
 
     <title>Froget Password</title>
@@ -43,7 +43,7 @@
                                 <div class="error-alert">
                                     <?php include('./inc/alert-froget-pass-error.php'); ?>
                                 </div>                                
-	                            <form action="./php/send-code-to-mail.php" id="froget-password" role="form" autocomplete="off" class="form" method="POST">
+	                            <form action="/froget-password/php/send-code-to-mail.php" id="froget-password" role="form" autocomplete="off" class="form" method="POST">
                                     
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="user_id" placeholder="පරිශීලක නම ඇතුළත් කරන්න">
@@ -74,9 +74,9 @@
     
 
     <!--core js files-->
-    <script type="text/javascript" src="../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../assets/js/core/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/core/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/core/popper.min.js"></script>
+    <script type="text/javascript" src="/assets/js/core/bootstrap.min.js"></script>
 
     <!--end ofcore js files-->
     

@@ -199,7 +199,7 @@
                         </div>
                         
                         <div class="froget-password text-center mt-1">
-                            <a href="./froget-password/froget-password.php"> මුරපදය අමතකද? </a>
+                            <a href="/confirm-details"> මුරපදය අමතකද? </a>
                         </div>
 
                         <div class="text-center">
