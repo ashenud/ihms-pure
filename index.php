@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/animate.css">
     <link rel="stylesheet" href="./assets/css/now-ui-kit.css?v=1.3.0">
+    <link rel="stylesheet" href="./assets/css/loader-style.css">
     
     <link rel="stylesheet" href="./assets/css/index-style.css">
 
@@ -33,6 +34,10 @@
 </head>
 
 <body class="index-page sidebar-collapse">
+   
+    <!-- loader erea -->
+    <?php include('./inc/include-loader.php'); ?>
+    <!-- end of loader erea -->
     
     <!--navbar-->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="70">
@@ -591,18 +596,18 @@
     <script type="text/javascript" src="./assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="./assets/js/core/bootstrap.min.js"></script>
     <script type="text/javascript" src="./assets/js/wow.min.js"></script>
-
-    <script type="text/javascript" src="./assets/js/now-ui-kit.js?v=1.3.0"></script>
+    <script type="text/javascript" src="./assets/js/now-ui-kit.js"></script>
+    <script type="text/javascript" src="./assets/js/loader.js"></script>
     <!--end ofcore js files-->
     
-    <!-----------------Smooth scroll----------------->
+    <!-- Smooth scroll -->
 	<script type="text/javascript">
 	    $('.js-scroll-trigger').click(function() {
 	        $('.navbar-collapse').collapse('hide');
 	    });
 	</script>
    
-   <!--- password show hide ------>
+   <!-- password show hide -->
    <script>
         $(".password-icon").click(function () {
 
@@ -628,7 +633,7 @@
       new WOW().init();
     </script>
     
-    <!-- back to to activate when scrolling-->
+    <!-- back to to activate when scrolling -->
     <script>
         $(document).scroll(function () {
             var y = $(this).scrollTop();
