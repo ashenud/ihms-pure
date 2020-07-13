@@ -35,7 +35,7 @@
                         <span class="icon">
                             <i class="fas fa-user-plus" aria-hidden="true"></i>
                         </span>
-                        <span class="list">ළමුන් ඇතුලත් කිරීම</span>
+                        <span class="list">ළමුන්ගේ තොරතුරු ඇතුලත් කිරීම</span>
                     </a>
                 </li>
                 <li>
