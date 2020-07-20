@@ -1,10 +1,9 @@
-<?php session_start();
-?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['admin_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['admin_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -16,21 +15,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" type="text/css" href="./css/admin-doc-add-sisters-style.css">
+    <link rel="stylesheet" type="text/css" href="pages/admin-doctor/css/admin-doc-add-sisters-style.css">
 
     <style>
         .collapse-manage {
@@ -60,7 +52,7 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" width="50" class="rounded-circle">
+                        <img src="/pages/admin-doctor/img/doctor.png" width="50" class="rounded-circle">
                         <a href="#" class="text-uppercase"> <?php echo $_SESSION['admin_id']; ?> </a>
                     </div>
 
@@ -186,7 +178,6 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
     <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
@@ -211,129 +202,117 @@
         });
     </script>
     
-    <script>
-        $('#manage-users').on('click', function () {
-            $('#manage').toggleClass('collapse-manage d-none');
-        });
-    </script>
-    
     <!-- end of writed scripts -->
 
 
-
-             <!---------------------------------------------validation--------------------------------------------------------------->
+ <!--- validation --->
 
 <script >
-  function validation()
-      {
-          
-          var bfName = document.getElementById('bfName').value;
-          var blName = document.getElementById('blName').value;
-          
-          var tp = document.getElementById('tp').value;
-          var mName = document.getElementById('mName').value;
-          var mAge = document.getElementById('mAge').value;
-          var email = document.getElementById('email').value;
-          var pwd = document.getElementById('pwd').value;
+    
+    function validation() {
 
-          var letters = /^[A-Za-z]+$/;
-         
-          
-          if(bfName==""){
-              document.getElementById('1').innerHTML="*please fill the  First name ";
-              return false;
-              }
-          else if(bfName.match(letters)){
-              if((bfName.length<3)||(bfName.length>20)){
-                  document.getElementById('1').innerHTML="*please fill the  First name between 3 and 20";
-                  return false;
-                  }
-          }
-              if(!isNaN(bfName)){
-              document.getElementById('1').innerHTML="*please enter character";
-                  return false;
-              
-              }   
- 
-              if(blName==""){
-              document.getElementById('1').innerHTML="*please fill the  First name ";
-              return false;
-              }
-          else if(blName.match(letters)){
-              if((blName.length<3)||(blName.length>30)){
-                  document.getElementById('1').innerHTML="*please fill the  Last name between 3 and 30";
-                  return false;
-                  }
-          }
-              if(!isNaN(blName)){
-              document.getElementById('1').innerHTML="*please enter character";
-                  return false;
-              
-              }   
-         
+        var bfName = document.getElementById('bfName').value;
+        var blName = document.getElementById('blName').value;
 
-          if(tp.length<10 || tp.length >10){
+        var tp = document.getElementById('tp').value;
+        var mName = document.getElementById('mName').value;
+        var mAge = document.getElementById('mAge').value;
+        var email = document.getElementById('email').value;
+        var pwd = document.getElementById('pwd').value;
 
-            document.getElementById('2').innerHTML="please enter valid phone number";
+        var letters = /^[A-Za-z]+$/;
+
+
+        if (bfName == "") {
+            document.getElementById('1').innerHTML = "*please fill the  First name ";
+            return false;
+        } else if (bfName.match(letters)) {
+            if ((bfName.length < 3) || (bfName.length > 20)) {
+                document.getElementById('1').innerHTML = "*please fill the  First name between 3 and 20";
+                return false;
+            }
+        }
+        if (!isNaN(bfName)) {
+            document.getElementById('1').innerHTML = "*please enter character";
             return false;
 
-          }    
-              
+        }
 
-          if(mName==""){
-              document.getElementById('3').innerHTML="*please fill the  First name ";
-              return false;
-              }
-
-          else if(mName.match(letters)){
-              if((mName.length<3)||(mName.length>20)){
-                  document.getElementById('3').innerHTML="*please fill the  First name between 3 and 20";
-                  return false;
-                  }
-          }
-              if(!isNaN(mName)){
-              document.getElementById('3').innerHTML="*please enter character";
-                  return false;
-              
-              }   
-
-
-          if(mAge < 18){
-            document.getElementById('4').innerHTML="*please enter valid Age";
+        if (blName == "") {
+            document.getElementById('1').innerHTML = "*please fill the  First name ";
             return false;
-          }
+        } else if (blName.match(letters)) {
+            if ((blName.length < 3) || (blName.length > 30)) {
+                document.getElementById('1').innerHTML = "*please fill the  Last name between 3 and 30";
+                return false;
+            }
+        }
+        if (!isNaN(blName)) {
+            document.getElementById('1').innerHTML = "*please enter character";
+            return false;
+
+        }
 
 
-          if(email==""){
-              document.getElementById('5').innerHTML="*plesae fill the Email address";
-              return false;
-              }
-              
-              if(email.indexOf('@')<=0){
-              document.getElementById('5').innerHTML="*plesae fill the Email address in proper format @";
-              return false;
-              }
-              
-              
-              if((email.charAt(email.length-4)!='.')&&(email.charAt(email.length-3)!='.')){
-              document.getElementById('5').innerHTML="*plesae fill the Email address in proper format .";
-              return false;
-              }
-              
+        if (tp.length < 10 || tp.length > 10) {
 
-          if(pwd==""){
-              document.getElementById('6').innerHTML="*please fill the Password";
-              return false;
-              }
-          if((pwd.length<5)||(pwd.length>20)){
-                  document.getElementById('6').innerHTML="*please fill the  password between 5 and 20";
-                  return false;
-                  }  
-      
-      }
+            document.getElementById('2').innerHTML = "please enter valid phone number";
+            return false;
+
+        }
+
+
+        if (mName == "") {
+            document.getElementById('3').innerHTML = "*please fill the  First name ";
+            return false;
+        } else if (mName.match(letters)) {
+            if ((mName.length < 3) || (mName.length > 20)) {
+                document.getElementById('3').innerHTML = "*please fill the  First name between 3 and 20";
+                return false;
+            }
+        }
+        if (!isNaN(mName)) {
+            document.getElementById('3').innerHTML = "*please enter character";
+            return false;
+
+        }
+
+
+        if (mAge < 18) {
+            document.getElementById('4').innerHTML = "*please enter valid Age";
+            return false;
+        }
+
+
+        if (email == "") {
+            document.getElementById('5').innerHTML = "*plesae fill the Email address";
+            return false;
+        }
+
+        if (email.indexOf('@') <= 0) {
+            document.getElementById('5').innerHTML = "*plesae fill the Email address in proper format @";
+            return false;
+        }
+
+
+        if ((email.charAt(email.length - 4) != '.') && (email.charAt(email.length - 3) != '.')) {
+            document.getElementById('5').innerHTML = "*plesae fill the Email address in proper format .";
+            return false;
+        }
+
+
+        if (pwd == "") {
+            document.getElementById('6').innerHTML = "*please fill the Password";
+            return false;
+        }
+        if ((pwd.length < 5) || (pwd.length > 20)) {
+            document.getElementById('6').innerHTML = "*please fill the  password between 5 and 20";
+            return false;
+        }
+
+    }
           
 </script>
-
 
 </body>
 

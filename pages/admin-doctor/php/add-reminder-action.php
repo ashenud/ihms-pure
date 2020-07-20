@@ -13,13 +13,13 @@ if (isset($_POST['submitReminder'])) {
     if(mysqli_query($conn,$sql)){
 
         echo "data inserted.<br>";
-        header("Location:../admin-doc-dashboard.php?Resuccess=1");
+        header("Location:/admin/dashboard?Resuccess=1");
     }
     
     else{
     
         echo "data not insert.<br>";
-        header("Location:../admin-doc-dashboard.php?Reerror=1");
+        header("Location:/admin/dashboard?Reerror=1");
     }
     
     mysqli_close($conn);

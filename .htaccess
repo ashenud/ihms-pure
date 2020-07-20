@@ -65,6 +65,7 @@ RewriteRule ^admin/view-babies?$ /pages/admin-doctor/admin-doc-view-babies.php [
 RewriteRule ^admin/table?$ /pages/admin-doctor/admin-doc-table.php [L]
 RewriteRule ^admin/inbox?$ /pages/admin-doctor/admin-doc-inbox.php [L]
 RewriteRule ^admin/send-messages?$ /pages/admin-doctor/admin-doc-send-messages.php [L]
+RewriteRule ^admin/schedule?$ /pages/admin-doctor/admin-doc-add-schedule.php [L]
 RewriteRule ^admin/password-change?$ /pages/admin-doctor/admin-doc-password-change.php [L]
 
 

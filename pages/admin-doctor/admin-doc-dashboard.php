@@ -212,7 +212,7 @@ if(!isset($_SESSION['admin_id'])) {
                                     <p>Monthly Schedule</p>
                                 </div>
                                 <div class="card-body text-center">
-                                    <a href="/pages/admin-doctor/admin-doc-add-schedule.php" class="btn btn-primary">Update</a>
+                                    <a href="/admin/schedule" class="btn btn-primary">Update</a>
                                 </div>
                             </div>
                         </div>

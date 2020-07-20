@@ -83,7 +83,7 @@
                         if(isset($_SESSION['admin_id'])) {                            
                         ?>  
                         
-                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/admin-doctor/admin-doc-dashboard.php';">
+                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='/admin/dashboard';">
 					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                        
@@ -92,7 +92,7 @@
                         else if(isset($_SESSION['midwife_id'])) {
                         ?>  
                         
-                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/midwife/mid-dashboard.php';">
+                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='/midwife/dashboard';">
 					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                        
@@ -101,7 +101,7 @@
                         else if(isset($_SESSION['sister_id'])) {
                         ?>
                         
-                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/sister/sis-dashboard.php';">
+                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='/sister/dashboard';">
 					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                       
@@ -110,7 +110,7 @@
                         else if(isset($_SESSION['doctor_id'])) {
                         ?>
                         
-                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/doctor/doc-dashboard.php';">
+                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='/doctor/dashboard';">
 					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                       
@@ -119,7 +119,7 @@
                         else if(isset($_SESSION['mother_id'])) {
                         ?>
                         
-                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='./pages/baby/baby-select.php';">
+                        <button type="button" class="nav-link btn btn-neutral btn-round" onclick="window.location.href ='/baby/select';">
 					        <i class="now-ui-icons users_circle-08 lgn-icn login-icon"></i> <p>දත්ත පුවරුව</p>
 				        </button>
                       
