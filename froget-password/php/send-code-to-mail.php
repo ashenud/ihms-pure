@@ -24,21 +24,20 @@ if(isset($_POST['submit'])) {
             exit("error");
         }
         
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer;
 
         try {
             //Server settings
-            $mail->isSMTP(); 
-            $mail->Host       = 'smtp.mailtrap.io';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = '0d00ff8663ddda'; 
-            $mail->Password   = '53c84ccce6b45e';
-            $mail->SMTPKeepAlive = true; 
-            $mail->Mailer = 'smtp';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port       = 2525;
-            $mail->CharSet = 'utf-8';  
-            $mail->SMTPDebug  = 0; 
+            
+
+            $mail->SMTPDebug = 0;                       // Enable verbose debug output
+            $mail->isSMTP();                            // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                     // Enable SMTP authentication
+            $mail->Username = 'cs2019g6@gmail.com';     // SMTP username
+            $mail->Password = 'cs2019g6dwp';            // SMTP password
+            $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                          // TCP port to connect to
 
             //Recipients
             $mail->setFrom('privacy@ihms.com', 'ihms');
@@ -46,7 +45,7 @@ if(isset($_POST['submit'])) {
             $mail->addReplyTo('no-reply@ihms.com');
 
             // Content
-            $url="http://".$_SERVER["HTTP_HOST"]."../../../change-password?code=$reset_code";
+            $url="http://".$_SERVER["HTTP_HOST"]."/change-password?code=$reset_code";
             $mail->isHTML(true);
             $mail->Subject = 'Your Password Reset Link';
             $mail->Body    = "<h3>Your requested a password reset link</h3> </br>
