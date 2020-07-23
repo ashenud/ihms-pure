@@ -22,6 +22,7 @@ if(!isset($_SESSION['admin_id'])) {
     include('../../inc/basic/include-dashboard-css.php');
     ?>
     
+    <link rel="stylesheet" href="/assets/css/calendar/calendar.css">
     <link rel="stylesheet" href="/pages/admin-doctor/css/admin-doc-dashboard-style.css">
 
     <title>Infant Health Management System</title>
@@ -96,10 +97,11 @@ if(!isset($_SESSION['admin_id'])) {
                             <div class="card card-stats">
                                 <div class="card-header stat-header">
                                     <div class="card-icon icon-color text-center">
-                                        <p class="card-category"><i class="fas fa-eye"></i> Vision</p>
+                                        <i class="fas fa-eye"></i>
                                     </div>
+                                    <p class="admin-category">Vision</p>
                                     
-                                    <p class="card-text text-center">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="admin-text text-center">With supporting text below as a natural lead-in to additional content.</p>
                                 </div>
                             </div>
                         </div>
@@ -108,18 +110,34 @@ if(!isset($_SESSION['admin_id'])) {
                             <div class="card card-stats">
                                 <div class="card-header stat-header">
                                     <div class="card-icon icon-color text-center">
-                                        <p class="card-category"><i class="fas fa-globe"></i> Mission</p>
+                                        <i class="fas fa-globe"></i>
                                     </div>
+                                    <p class="admin-category">Mission</p>
                                     
-                                    <p class="card-text text-center">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="admin-text text-center">With supporting text below as a natural lead-in to additional content.</p>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-cal" style="height: 100%;width:100%;">
+                                <div class="calendar calendar-first" id="calendar_first">
+                                    <div class="calendar_header">
+                                        <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                                        <h2></h2>
+                                        <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="calendar_weekdays"></div>
+                                    <div class="calendar_content"></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="row mt-4 mb-5">
+                    <div class="row mt-4 mb-5 parent">
                         <div class="col-md-6">
-                            <div class="card">
+                            <div class="card card-reminders">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -207,7 +225,7 @@ if(!isset($_SESSION['admin_id'])) {
                         <!-- model end -->
 
                         <div class="col-md-4">
-                            <div class="card">
+                            <div class="card card-schedule">
                                 <div class="card-header text-center">
                                     <p>Monthly Schedule</p>
                                 </div>
@@ -233,6 +251,10 @@ if(!isset($_SESSION['admin_id'])) {
     //js
     include('../../inc/basic/include-dashboard-js.php');
     ?>
+
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/assets/css/calendar/calendar.js"></script>
 
     <!-- writed scripts -->
     <script>
