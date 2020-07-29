@@ -24,7 +24,12 @@ if(!isset($_SESSION['midwife_id'])) {
     
     <!--for charts-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
+    <!-- jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
+    <!-- jQuary -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Infant Health Management System</title>
     
@@ -47,7 +52,12 @@ if(!isset($_SESSION['midwife_id'])) {
 
                     <div class="user-area pb-2 mb-3">
                         <img src="/pages/midwife/img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
+                        <?php
+                        $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                        $result1= mysqli_query($conn,$query1);
+                        $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -61,7 +71,7 @@ if(!isset($_SESSION['midwife_id'])) {
                             </a>
                         </li>
                         <li>
-                            <a href="/midwife/thriposha" class="text-uppercase active">
+                            <a href="#" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-cookie-bite" aria-hidden="true"></i>
                                 </span>
@@ -99,11 +109,14 @@ if(!isset($_SESSION['midwife_id'])) {
                 <div class="container">
  
                     <div class="row d-flex justify-content-between">
-                        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                            <label style="color:rgb(255, 166, 0);font-size: 4vw;">Thriposha</label><br>
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                            <label style="color:rgb(243, 117, 138,1);font-size: 4vw;">ත්‍රිපෝෂ</label><br>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                            <label style="outline-style:groove; outline-color: rgb(24, 23, 23);color:blue;font-size: 35px;">
+                        <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                            <label style="color:rgb(243, 117, 138,1);font-size:1.3vw;">දැනට ඇති පැකට් ගණන</label><br>
+                        </div>
+                        <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                            <label style="color:blue;font-size: 35px;">
                                 <?php
                                     include "php/selectdb.php";
                                     $currentYMonth=date("Y-m");
@@ -116,11 +129,12 @@ if(!isset($_SESSION['midwife_id'])) {
                                 ?>
                             </label>
                         </div>
-                    </div>            
+                    </div>  
+                    <br>          
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-                            <div class="card bg-secondary">
-                                <div class="card-header" style="font-size:22px;color:rgb(255, 255, 255);">Update Form
+                            <div class="card bg-light border-primary mb-3">
+                                <div class="card-header" style="font-size:22px;color:rgb(0, 0, 0);">Update Form
                                 </div>
                                 <div class="card-body">
                                     <div class="card">
@@ -128,13 +142,17 @@ if(!isset($_SESSION['midwife_id'])) {
                                             <form method="POST" action="/pages/midwife/php/update-thriposha-action.php">
                                                 <div class="form-row d-flex justify-content-center">
                                                     <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
-                                                        <p style="color:green;">
+                                                        
                                                             <?php
                                                                 if(isset($_GET['success'])){
-                                                                echo 'Updated';
-                                                }
+                                                                echo '<span style="background-color:rgb(49,247,31); color:white;">Updated</span><br>';
+                                                                }
+                                                                if(isset($_GET['fail'])){
+                                                                    echo '<span style="background-color:rgb(250, 57, 50);color: white;">Fail to update</span><br>';
+                                                                }
+                                                            
                                                             ?>
-                                                        </p>
+                                                        
                                                         <label>midwife ID</label>
                                                         <input type="text" class="form-control" value="<?php echo $_SESSION['midwife_id'];?>" style="color:blue;" disabled>
                                                     </div>
@@ -142,7 +160,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                                 <div class="form-row d-flex justify-content-center">
                                                     <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                         <label>Available Quantity</label>
-                                                        <input type="number" name="availableQty" class="form-control" placeholder="include earlier month thiposha balance">
+                                                        <input type="number" name="availableQty" class="form-control" placeholder="thiposha Qty">
                                                     </div>
                                                 </div>
                                                 <div class="form-row d-flex justify-content-center">
@@ -177,15 +195,23 @@ if(!isset($_SESSION['midwife_id'])) {
                         </div>
                     </div>
                     <br><br>
+                
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                             <div class="card bg-warning">
                                 <div class="card-body">
-                                    <div id="chart_div3"></div>
+                                    <div id="chart_div3">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div><br>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" id="down3">Download</button>
+                    </div>
+                
+                    <br>
+                
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                             <div class="card bg-secondary">
@@ -195,6 +221,9 @@ if(!isset($_SESSION['midwife_id'])) {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" id="down2">Download</button>
                     </div>
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
@@ -206,6 +235,10 @@ if(!isset($_SESSION['midwife_id'])) {
                             </div>
                         </div>
                     </div>
+                    <div class="row d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" id="down1">Download</button>
+                    </div>
+                
                 
                 </div> 
             </div>
@@ -347,7 +380,18 @@ if(!isset($_SESSION['midwife_id'])) {
             };
 
             var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+            var btnSave1 = document.getElementById('down1');
+            google.visualization.events.addListener(chart1, 'ready', function () {
+            });
+
+            btnSave1.addEventListener('click', function () {
+                var doc = new jsPDF();
+                doc.addImage(chart1.getImageURI(), 0, 0);
+                doc.save('chart1.pdf');
+            }, false);
+
             chart1.draw(data1, options1);
+
         }
 
         function drawLineColors2() {
@@ -445,6 +489,17 @@ if(!isset($_SESSION['midwife_id'])) {
             };
 
             var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+            var btnSave2 = document.getElementById('down2');
+
+            google.visualization.events.addListener(chart2, 'ready', function () {
+            });
+
+            btnSave2.addEventListener('click', function () {
+                var doc = new jsPDF();
+                doc.addImage(chart2.getImageURI(), 0, 0);
+                doc.save('chart2.pdf');
+            }, false);
+
             chart2.draw(data2, options2);
         }
 
@@ -544,11 +599,22 @@ if(!isset($_SESSION['midwife_id'])) {
             };
 
             var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
+            var btnSave3 = document.getElementById('down3');
+
+            google.visualization.events.addListener(chart3, 'ready', function () {
+            });
+
+            btnSave3.addEventListener('click', function () {
+                var doc = new jsPDF();
+                doc.addImage(chart3.getImageURI(), 0, 0);
+                doc.save('chart3.pdf');
+            }, false);
+
             chart3.draw(data3, options3);
         }
     </script>
 
-
+   
 
 </body>
 

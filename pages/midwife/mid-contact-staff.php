@@ -46,7 +46,12 @@ if(!isset($_SESSION['midwife_id'])) {
 
                     <div class="user-area pb-2 mb-3">
                         <img src="/pages/midwife/img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
+                        <?php
+                        $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                        $result1= mysqli_query($conn,$query1);
+                        $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -125,7 +130,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                         <table class="table" >
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Send sms</th>
+                                                <th>Send message</th>
                                             </tr>
                                             
                                                 
@@ -220,7 +225,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                         <table class="table" >
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Send sms</th>
+                                                <th>Send message</th>
                                             </tr>
                                             
                                                 
@@ -316,7 +321,7 @@ if(!isset($_SESSION['midwife_id'])) {
                                         <table class="table" >
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Send sms</th>
+                                                <th>Send message</th>
                                             </tr>
                                             
                                                 

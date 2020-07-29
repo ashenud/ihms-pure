@@ -8,7 +8,7 @@ $mid=$_SESSION['midwife_id'];
 
 
         $currentMonth=date("Y-m");
-        $sql09="SELECT updated_date FROM thriposha_storage WHERE updated_date LIKE '%$currentMonth%'";
+        $sql09="SELECT updated_date,available_qty FROM thriposha_storage WHERE updated_date LIKE '%$currentMonth%'";
         $result09=mysqli_query($conn,$sql09);
         $value09=mysqli_fetch_assoc($result09);
 
@@ -17,11 +17,19 @@ $mid=$_SESSION['midwife_id'];
             if($result08=mysqli_query($conn,$sql08)){
                 header("Location:/midwife/thriposha?success=1");
             }
+            else {
+                header("Location:/midwife/thriposha?fail=1");
+            }
         }
         else {
-            $sql07="UPDATE thriposha_storage SET available_qty='".$availableQty."' WHERE updated_date LIKE '%$currentMonth%'";
+            $pastQty = $value09['available_qty'];
+            $newQty= $availableQty + $pastQty;
+            $sql07="UPDATE thriposha_storage SET available_qty='".$newQty."' WHERE updated_date LIKE '%$currentMonth%'";
             if($result07=mysqli_query($conn,$sql07)){
                 header("Location:/midwife/thriposha?success=1");
+            }
+            else {
+                header("Location:/midwife/thriposha?fail=1");
             }
         }
 
