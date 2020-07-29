@@ -56,6 +56,21 @@
             <!-- content -->
             <div class="content">
 
+                    <!-- alert section -->
+                <div class="alert-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <?php include('./inc/alert-baby-editable.php'); ?>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of alert section -->
+
+
                 <div class="container">
                     
                         <?php
@@ -581,8 +596,12 @@
                             extract($_POST);
 
                             $sql01="UPDATE baby_register SET baby_first_name='".$bFn."',baby_last_name='".$bLn."',baby_dob='".$bDob."',baby_gender='".$bGen."',mother_age='".$mAge."' WHERE baby_id='".$bId."'";
-                            mysqli_query($conn,$sql01);
-                            echo '<meta http-equiv="refresh" content="0">'; 
+                            if(mysqli_query($conn,$sql01)){
+                            echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                            }
                         }
                         
                         if(isset($_POST['UpdateMother'])){
@@ -591,16 +610,24 @@
                             $sql02="UPDATE mother SET mother_name='".$mName."',telephone='".$mTel."',address='".$mAddr."',email='".$mEmail."' WHERE mother_nic='".$row2['mother_nic']."'";
                             mysqli_query($conn,$sql02);
                             $sql03="UPDATE user SET email='".$mEmail."' WHERE user_id='".$row2['mother_nic']."'";
-                            mysqli_query($conn,$sql03);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql03)){
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                            }
                         }
 
                         if(isset($_POST['UpdateBirth'])){
                             extract($_POST);
 
                             $sql04="UPDATE birth_details SET birth_weight='".$bWeight."',birth_length='".$bLength."',apgar1='".$bAp1."',apgar2='".$bAp2."',apgar3='".$bAp3."',circumference_of_head='".$bHead."',vitamin_K_status='".$bK."',eye_contact='".$bEye."',milk_position='".$bMilk."' WHERE baby_id='".$bId."'";
-                            mysqli_query($conn,$sql04);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql04)){
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                            }
                         }
 
                         if(isset($_POST['UpdateWeightHeight'])){
@@ -613,13 +640,21 @@
 
                             if($check4>0){
                                 $sql06="UPDATE growth SET weight='".$bWeight."',height='".$bHeight."',baby_age_in_months='".$bAge."' WHERE baby_id='".$bId."' AND baby_age_in_months='".$bAge."'";
-                                mysqli_query($conn,$sql06);
-                                echo '<meta http-equiv="refresh" content="0">';
+                                if(mysqli_query($conn,$sql06)){
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                                }
+                                else {
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                                }
                             }
                             else{
                                 $sql07="INSERT INTO growth(baby_id,midwife_id,weight,height,baby_age_in_months) VALUES('$bId','$mId','$bWeight','$bHeight','$bAge')";
-                                mysqli_query($conn,$sql07);
-                                echo '<meta http-equiv="refresh" content="0">';
+                                if(mysqli_query($conn,$sql07)){
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                                }
+                                else {
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                                }
                             }
                         }
 
@@ -644,8 +679,12 @@
                             $num=$row4['qty'];
 
                             $sql12="UPDATE thriposha_storage SET distributed_qty='".$num."' WHERE midwife_id='".$mId."' AND updated_date LIKE '%$currentMonth%'";
-                            mysqli_query($conn,$sql12);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql12)){
+                            echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0; URL=/baby/editable-page?error=1">';
+                            }
                             }
                             else{
                             $currentMonth=date("Y-m");
@@ -657,8 +696,12 @@
                             $sql10="INSERT INTO thriposha_distribution(baby_id,midwife_id,date_given,quantity) VALUES('$bId','$mId','$tDate','$tQty')";
                             mysqli_query($conn,$sql10);
                             $sql12="UPDATE thriposha_storage SET distributed_qty='".$num."' WHERE midwife_id='".$mId."' AND updated_date LIKE '%$currentMonth%'";
-                            mysqli_query($conn,$sql12);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql12)){
+                            echo '<meta http-equiv="refresh" content="0; URL=/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0; URL=/baby/editable-page?error=1">';
+                            }
                             }
                         }
                     ?>
