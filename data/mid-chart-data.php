@@ -1,64 +1,20 @@
 <?php 
 session_start();
-include('../../php/basic/connection.php');
+include('../php/basic/connection.php');
 if(!isset($_SESSION['midwife_id'])) {	
 	header('location:/?noPermission=1');
 }
 ?>
 
-
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-    
-    <?php 
-    //favicons
-    include('../../inc/basic/include-dashboard-fav.php');
-    //css
-    include('../../inc/basic/include-dashboard-css.php');
-    ?>
-
-    <!--chart-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <link rel="stylesheet" href="/pages/midwife/css/mid-reports-style.css">
-
-    <title>Infant Health Management System</title>
-    
-</head>
-
-<body>
-
-    <div class="wrapper">
-       
-        <!--top navbar-->
-        <?php include('inc/top-navbar.php'); ?>
-        <!--end of top navbar-->
-
-        <!-- main body (sidebar and content) -->
-        <div class="main-body">
-
-            <!-- sidebar menu -->
-            <?php include('inc/sidebar.php'); ?>
-            <!-- end of sidebar menu -->
-            
-            <!-- content -->
-            <div class="content">
-               
-                <!-- data-container -->
-                <div class="container">
-				
-                    <!-- baby data card -->
-					<div class="card card-baby-data" id="pdf-area1">
 					
-					<?php
+				<?php
 
-                    $month=date('m');
-                    $year=date('Y');
+
+                $weight_count=array();
+
+                for ($i = 0; $i <= 5; $i++) {
+                    $month = date("m", strtotime( date( 'Y-m' )." -$i months"));
+                    $year = date("Y", strtotime( date( 'Y-m' )." -$i months"));
 
                     //to change month to sinhala
                     if($month==1) {
@@ -96,19 +52,14 @@ if(!isset($_SESSION['midwife_id'])) {
                     }
                     else {
                         $month_si="දෙසැම්බර්";
-                    }
+                    }                
                         
-                    echo "<div class='card-header'>"; // card-header
-                    echo    "<h2>" .$year." ".$month_si. " මාසයට අදාළ දරුවන්ගේ උස හා බර වාර්තාව</h2>" ;
-                    echo  "</div>"; // end of card-header
-                        
-                        
-                    echo "<div class='card-body'>";	// card-body				
-
+                                      
                     $query1 = "SELECT * FROM growth WHERE MONTH(date)=$month AND YEAR(date)=$year";
                     $result1= mysqli_query($conn,$query1);
-                    $row=mysqli_fetch_assoc($result1); 
-
+                    $row=mysqli_fetch_assoc($result1);
+                    
+                
                     //male weight category
                     $a=0;
                     $b=0;
@@ -131,18 +82,7 @@ if(!isset($_SESSION['midwife_id'])) {
                     $hcc=0;
                     
                     
-                    echo "<table class='table table-responsive-sm'>"; // start of table-0
-                    echo    "<thead>"; // start of table heddigs
-                    echo        "<tr>";
-                    echo            "<th scope='col'>දරුවාගේ නම</th>";
-                    echo            "<th scope='col'>ස්ත්‍රී පුරුෂභාවය</th>";
-                    echo            "<th scope='col'>වයස(මාස)</th>";
-                    echo            "<th scope='col'>බර(KG) හා අදියර</th>";
-                    echo            "<th scope='col'>උස(CM) හා අදියර</th>";
-                    echo        "</tr>";
-                    echo    "</thead>"; // end of table heddigs
-                    echo    "<tbody>"; // start of table body
-                    
+      
 
 
                     while ($row = mysqli_fetch_assoc($result1)) {
@@ -154,32 +94,18 @@ if(!isset($_SESSION['midwife_id'])) {
                         $row2=mysqli_fetch_assoc($result2); 
                         $gender = $row2["baby_gender"];
                         
-                        if($gender=='M') {
-                            $gender_si="පුරුෂ";
-                        }
-                        else {
-                            $gender_si="ස්ත්‍රී";
-                        }
+                      
                         
                         $firstname= $row2["baby_first_name"];
                         $lastname=$row2["baby_last_name"];
                         $age = $row["baby_age_in_months"];
                         
-                        if($age==0) {
-                            $baby_age='උපන් මස';
-                        }
-                        else {
-                            $baby_age=$age.' යී';
-                        }
+                   
                         
                         $weight = $row["weight"];
                         $height = $row["height"];
                         
-                        echo    "<tr>"; //start of table data row
-                        echo        "<td scope='row'>".$firstname." ".$lastname."</td>";
-                        echo        "<td>".$gender_si."</td>";
-                        echo        "<td>".$baby_age."</td>";
-                        echo        "<td>".$row['weight']." | "; // weight category will print in below if-else statements
+
 
                         //Weight
 
@@ -192,28 +118,23 @@ if(!isset($_SESSION['midwife_id'])) {
 
                                 if($weight<=2.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=2.5)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=2.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=4.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }  
                             }
@@ -222,28 +143,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             else {
                                 if($weight<=2.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=2.5)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=2.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=4.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
 
@@ -257,28 +173,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=2.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=3.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=3.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=5.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
 
@@ -299,17 +210,14 @@ if(!isset($_SESSION['midwife_id'])) {
                                 }
                                 else if($weight<=3.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=5.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
 
@@ -325,13 +233,11 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=3.7)
                             {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                             }
                             else if($weight<=4.2)
                             {
-                                    echo 'අඩු බර';
                                     $b++;
                             }
                             else if($weight<=4.9) 
@@ -356,28 +262,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=3.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=4.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=4.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=7.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
 
@@ -393,28 +294,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=3.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=4.2)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=4.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=7.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
 
@@ -424,28 +320,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=3.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=4.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=4.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=7.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -458,28 +349,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=4.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=5.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=5.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=9.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -488,28 +374,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=4.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=5.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=5.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=9.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -522,28 +403,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=5.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=6.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=6.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=9.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -552,28 +428,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=5.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=6.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=6.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=9.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -586,28 +457,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=5.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=6.7)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=7.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=9.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -616,28 +482,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=5.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=6.7)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=7.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=9.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -650,28 +511,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=6.9)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=7.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=10.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -680,28 +536,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=6.9)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=7.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=10.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -714,28 +565,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=7.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=7.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=10.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -744,28 +590,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=7.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=7.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=10.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -778,28 +619,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=7.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=8.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=11.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -808,28 +644,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=7.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=8.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=11.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -842,28 +673,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=7.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=8.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=11.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -872,28 +698,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=7.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=8.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=11.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -906,28 +727,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=7.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=8.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=11.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -936,28 +752,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=6.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=7.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=8.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=11.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -970,28 +781,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=7.9)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=8.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=12.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1000,28 +806,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=7.9)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=8.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=12.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1034,28 +835,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.15)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=8.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=8.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=12.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1064,28 +860,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.15)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=8.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=8.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=12.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1098,28 +889,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=8.3)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=9.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=12.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1128,28 +914,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=8.3)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=9.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=12.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1162,28 +943,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.45)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=8.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=9.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=12.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1192,28 +968,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.45)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=8.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=9.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=12.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1226,28 +997,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=8.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=9.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=13.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1256,28 +1022,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=8.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=9.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=13.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1290,28 +1051,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=8.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=9.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=13.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1320,28 +1076,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=8.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=9.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=13.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1354,28 +1105,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.85)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=8.9)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=9.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=13.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1384,28 +1130,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=7.85)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=8.9)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=9.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=13.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1418,28 +1159,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=9.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=10.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=13.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1448,28 +1184,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=9.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=10.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=13.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1482,28 +1213,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=9.2)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=10.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=14.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1512,28 +1238,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=9.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=10.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=14.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1546,28 +1267,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.25)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=9.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=10.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=14.5) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1576,28 +1292,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.25)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=9.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=10.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=14.5) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1610,28 +1321,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=9.5)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=10.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=14.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1640,28 +1346,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=9.5)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=10.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=14.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1674,28 +1375,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=9.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=10.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=15.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1704,28 +1400,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=9.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=10.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=15.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1738,28 +1429,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=9.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=10.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=15.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1768,28 +1454,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=9.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=10.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=15.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1802,28 +1483,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=11.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=15.5) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1832,28 +1508,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=11.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=15.5) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1866,28 +1537,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=11.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=15.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1896,28 +1562,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=8.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=11.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=15.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1930,28 +1591,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.2)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=11.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=16.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -1960,28 +1616,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=11.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=16.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -1994,28 +1645,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=11.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=16.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2024,28 +1670,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=11.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=16.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2058,28 +1699,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.5)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=11.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=16.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2088,28 +1724,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.5)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=11.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=16.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2122,28 +1753,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=11.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=16.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2152,28 +1778,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=11.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=16.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2186,28 +1807,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=17.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2216,28 +1832,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=17.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2250,28 +1861,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=10.9)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=17.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2280,28 +1886,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=10.9)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=17.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2314,28 +1915,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=17.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2344,28 +1940,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=17.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2378,28 +1969,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=17.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2408,28 +1994,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=17.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2442,28 +2023,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.2)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=18.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2472,28 +2048,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=9.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=18.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2506,28 +2077,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.3)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=18.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2536,28 +2102,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.3)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=18.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2570,28 +2131,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=12.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=18.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2600,28 +2156,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=12.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=18.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2634,28 +2185,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.5)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=18.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2664,28 +2210,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.5)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=18.8) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2698,28 +2239,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=19.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2728,28 +2264,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=19.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2762,28 +2293,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.7)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=19.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2792,28 +2318,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.7)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=19.3) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2826,28 +2347,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=11.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=19.5) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2856,28 +2372,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=11.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=19.5) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2890,28 +2401,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=19.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2920,28 +2426,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=19.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -2954,28 +2455,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=20.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -2984,28 +2480,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=20.0) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3018,28 +2509,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.2)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=13.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=20.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3048,28 +2534,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=13.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=20.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3082,28 +2563,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.3)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=20.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3112,28 +2588,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=10.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.3)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.0) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=20.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3146,28 +2617,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=20.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3176,28 +2642,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=20.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3210,28 +2671,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=20.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3240,28 +2696,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=20.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3274,28 +2725,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.7)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=21.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3304,28 +2750,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.7)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.4) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=21.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3338,28 +2779,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=21.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3368,28 +2804,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=21.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3402,28 +2833,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=12.9)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=21.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3432,28 +2858,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=12.9)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=21.7) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3466,28 +2887,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=21.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3496,28 +2912,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.5)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.8) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=21.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3530,28 +2941,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.1)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=14.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=22.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3560,28 +2966,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.6)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.1)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=14.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=22.2) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3594,28 +2995,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.2)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=22.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3624,28 +3020,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.7)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.2)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=22.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3658,28 +3049,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.3)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=22.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3688,28 +3074,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.8)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.3)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.2) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=22.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3722,28 +3103,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.4)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=22.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3752,28 +3128,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=11.9)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.4)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.3) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=22.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3786,28 +3157,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.6)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=23.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3816,28 +3182,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.0)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.6)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.5) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=23.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3850,28 +3211,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.7)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=23.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3880,28 +3236,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.1)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.7)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.6) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=23.4) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3914,28 +3265,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.8)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=23.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -3944,28 +3290,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.2)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.8)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.7) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=23.6) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -3978,28 +3319,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=13.9)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=15.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=23.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -4008,28 +3344,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.3)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=13.9)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=15.9) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=23.9) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -4042,28 +3373,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $a++;
 
                                 }
                                 else if($weight<=14.0)
                                 {
-                                    echo 'අඩු බර';
                                     $b++;
                                 }
                                 else if($weight<=16.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $c++;
                                 }
                                 else if($weight<=24.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $d++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $e++;
                                 }
                             }
@@ -4072,28 +3398,23 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=12.4)
                                 {
-                                    echo 'උග්‍ර අඩු බර';
                                     $aa++;
 
                                 }
                                 else if($weight<=14.0)
                                 {
-                                    echo 'අඩු බර';
                                     $bb++;
                                 }
                                 else if($weight<=16.1) 
                                 {
-                                    echo 'මද බර අඩු';
                                     $cc++;
                                 }
                                 else if($weight<=24.1) 
                                 {
-                                    echo 'නියමිත බර';
                                     $dd++;
                                 }
                                 else
                                 {
-                                    echo 'අධිබර';
                                     $ee++;
                                 }
                             }
@@ -4104,9 +3425,6 @@ if(!isset($_SESSION['midwife_id'])) {
                             echo 'error';
 
                         }
-                        
-                        echo        '</td>'; // end of weight catogory
-                        echo        "<td>".$row['weight']." | "; // height category will print in below if-else statements
                             
 
                         //height
@@ -4120,17 +3438,14 @@ if(!isset($_SESSION['midwife_id'])) {
 
                                 if($height<=46)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;										
                                 }
                                 else if($height<=48.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }  
                             }
@@ -4140,18 +3455,15 @@ if(!isset($_SESSION['midwife_id'])) {
                                 {
                                 if($height<=46)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=48.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
 
@@ -4166,18 +3478,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=50.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=53.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4187,18 +3496,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=50.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=53.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4212,18 +3518,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=54.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=56.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4233,18 +3536,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=54.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=56.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4257,18 +3557,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=57.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=59.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4278,18 +3575,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=57.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=59.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4302,18 +3596,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=59.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=61.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4323,18 +3614,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=59.)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=61.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4347,18 +3635,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=61.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=63.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4368,18 +3653,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=61.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=63.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4392,18 +3674,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=63.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=65.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4413,18 +3692,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=63.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=65.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4437,18 +3713,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=64.7)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=66.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4458,18 +3731,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=64.7)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=66.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4482,18 +3752,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=66.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=68.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4503,18 +3770,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=66.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=68.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4527,18 +3791,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=67.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=69.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4548,18 +3809,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=67.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=69.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4572,18 +3830,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=68.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=71.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4593,18 +3848,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=68.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=71.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4617,18 +3869,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=70.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=72.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4638,18 +3887,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=70.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=72.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4662,18 +3908,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=71.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=73.4)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4683,18 +3926,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=71.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=73.4)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4707,18 +3947,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=72.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=74.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4728,18 +3965,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=72.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=74.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4752,18 +3986,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=73.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=75.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4773,18 +4004,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=73.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=75.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4797,18 +4025,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=74.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=76.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4818,18 +4043,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=74.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=76.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4842,18 +4064,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=75)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=77.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4863,18 +4082,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=75.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=77.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4887,18 +4103,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=76.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=78.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4908,18 +4121,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=76.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=78.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4932,18 +4142,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=77.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=79.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4953,18 +4160,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=77.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=79.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -4977,18 +4181,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=77.9)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=80.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -4998,18 +4199,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=77.9)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=80.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5022,18 +4220,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=78.6)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=81.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5043,18 +4238,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=78.6)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=81.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5067,18 +4259,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=79.4)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=82.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5088,18 +4277,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=79.4)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=82.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5112,18 +4298,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=80.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=83.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5133,18 +4316,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=80.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=83.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5157,18 +4337,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=80.8)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=83.9)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5178,18 +4355,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=80.8)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=83.9)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5202,18 +4376,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=81.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=84.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5223,18 +4394,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=81.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=84.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5247,18 +4415,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=82.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=85.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5268,18 +4433,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=82.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=85.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5292,18 +4454,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=82.3)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=85.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5313,18 +4472,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=82.3)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=85.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5337,18 +4493,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=82.9)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=86.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5358,18 +4511,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=82.9)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=86.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5382,18 +4532,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=83.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=86.7)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5403,18 +4550,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=83.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=86.7)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5427,18 +4571,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=84.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=87.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5448,18 +4589,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=84.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=87.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5472,18 +4610,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=84.8)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=87.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5493,18 +4628,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=84.8)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=88.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5517,18 +4649,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=85.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=89.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5538,18 +4667,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=85.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=89.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5562,18 +4688,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=86.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=89.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5583,18 +4706,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=86.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=89.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5607,18 +4727,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=86.7)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=90.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5628,18 +4745,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=86.7)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=90.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5652,18 +4766,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=87.4)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=91.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5673,18 +4784,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=87.4)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=91.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5697,18 +4805,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=88.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=91.6)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5718,18 +4823,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=88.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=91.6)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5742,18 +4844,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=88.6)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=92.4)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5763,18 +4862,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=88.6)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=92.4)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5787,18 +4883,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=89.2)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=93.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5808,18 +4901,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=89.2)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=93.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5832,18 +4922,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=89.7)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=93.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5853,18 +4940,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=89.7)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=93.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5877,18 +4961,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=90.2)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=94.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5898,18 +4979,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=90.2)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=94.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5922,18 +5000,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=90.8)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=94.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5943,18 +5018,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=90.2)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=94.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -5967,18 +5039,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=91.3)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=95.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -5988,18 +5057,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=91.3)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=95.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6012,18 +5078,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=91.9)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=95.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6033,18 +5096,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=91.9)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=95.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6057,18 +5117,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=92.3)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=96.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6078,18 +5135,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=92.3)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=96.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6102,18 +5156,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=92.8)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=97.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6123,18 +5174,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=92.8)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=97.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6147,18 +5195,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=93.4)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=97.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6168,18 +5213,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=93.4)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=97.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6192,18 +5234,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=94.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=98.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6213,18 +5252,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=94.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=98.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6237,18 +5273,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=94.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=98.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6258,18 +5291,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=94.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=98.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6282,18 +5312,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=95.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=99.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6303,18 +5330,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=95.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=99.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6327,18 +5351,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=95.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=99.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6348,18 +5369,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=95.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=99.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6372,18 +5390,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=96.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=100.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6393,18 +5408,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=96.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=100.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6417,18 +5429,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=96.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=100.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6438,18 +5447,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=96.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=100.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6462,18 +5468,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=97.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=101.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6483,18 +5486,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=97.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=101.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6507,18 +5507,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=97.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=101.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6528,18 +5525,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=97.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=101.5)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6552,18 +5546,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=98.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=102.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6573,18 +5564,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=98.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=102.0)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6597,18 +5585,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=98.5)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=102.6)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6618,18 +5603,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=98.5)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=102.6)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6642,18 +5624,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=99.0)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=103.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6663,18 +5642,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=99.0)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=103.2)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6687,18 +5663,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=99.4)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=103.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6708,18 +5681,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=99.4)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=103.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6732,18 +5702,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=99.9)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=104.4)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6753,18 +5720,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=99.9)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=104.4)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6777,18 +5741,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=100.2)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=104.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6798,18 +5759,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=100.2)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=104.8)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6822,18 +5780,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=100.6)
                                 {
-                                    echo 'මිටි බව';
                                     $ha++;
 
                                 }
                                 else if($height<=105.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hb++;
                                 }
                                 else 
                                 {
-                                    echo 'නියමිත උස';
                                     $hc++;
                                 }
 
@@ -6843,18 +5798,15 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($height<=100.6)
                                 {
-                                    echo 'මිටි බව';
                                     $haa++;
 
                                 }
                                 else if($height<=105.3)
                                 {
-                                    echo 'මිටි බවට අවදානම';
                                     $hbb++;
                                 }
                                 else
                                 {
-                                    echo 'නියමිත උස';
                                     $hcc++;
                                 }
                             }
@@ -6864,438 +5816,52 @@ if(!isset($_SESSION['midwife_id'])) {
                             echo "error";
                         }
                         
-                        echo        "</td>";// end of weight catogory
-                        echo    "</tr>"; // end of table data row
+ 
                     }
                     
+
+                    $taa=$a+$aa;
+                    $tbb=$b+$bb;
+                    $tcc=$c+$cc;
+                    $tdd=$d+$dd;
+                    $tee=$e+$ee;
+
+                    $thaa=$ha+$haa;
+                    $thbb=$hb+$hbb;
+                    $thcc=$hc+$hcc;
+
+                    array_push($weight_count,$month_si);
+                    array_push($weight_count,$taa);
+                    array_push($weight_count,$tbb);
+                    array_push($weight_count,$tcc);
+                    array_push($weight_count,$tdd);
+                    array_push($weight_count,$tee);
+
+                    //array_push($height_count_haa,$thaa);
+                    //array_push($height_count_hbb,$thbb);
+                    //array_push($height_count_hcc,$thcc);
+                
                     
-                    echo    "</tbody>"; //end of table body
-                    echo "</table>"; //end of table-0
-                        
-                    echo "</div>"; // end of card-body
-                    
-                    ?>
-                    
-                    </div> 
-					<!-- end of baby data card -->
-					
-				    <div class="row">
-				        <div class="col">
-				            <button type="button" class="btn change-btn btn-sm download float-md-right" id="download1"><b>බාගත කරන්න</b></button>
-                        </div>
-					</div>
-					
-					<div class="row" id="pdf-area2">
-                        
-                            <!-- 1st card column-->
-							<div class="col-md-6 col-lg-3">
-                                <div class="card card-baby-data2">
-                                    <div class="card-header"> <h5>බර | පුරුෂ</h5></div>
-                                    <div class="card-body">
-                                        <table class="table"> <!-- start of 1st table-->
-                                            <tbody>
-                                               
-                                    <?php
-                                    if ($a>0) { // check is there is any value for උග්‍ර අඩු බර range 
-                                        echo    "<tr class='danger-value'>"; // if exist add danger-value class
-                                        echo        "<td scope='row'>උග්‍ර අඩු බර</td>";
-                                        echo        "<td>".$a."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>"; // else not add a class
-                                        echo        "<td scope='row'>උග්‍ර අඩු බර</td>";
-                                        echo        "<td>".$a."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>   
-                                    
-                                    <?php
-                                    if ($b>0) { // check is there is any value for අඩු බර range
-                                        echo    "<tr class='danger-value'>"; // if exist add danger-value or any other color class
-                                        echo        "<td scope='row'>අඩු බර</td>";
-                                        echo        "<td>".$b."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>"; // else not add a class
-                                        echo        "<td scope='row'>අඩු බර</td>";
-                                        echo        "<td>".$b."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?> 
-                                                 
-                                                <tr> <!-- not add a color to මද බර අඩු range -->
-                                                    <td scope="row">මද බර අඩු</td>
-                                                    <td><?php echo $c; ?></td>
-                                                </tr>   
-                                    
-                                    <?php
-                                    if ($d>0) { // check is there is any value for නියමිත බර range
-                                        echo    "<tr class='normal-value'>"; // if exist add normal-value class
-                                        echo        "<td scope='row'>නියමිත බර</td>";
-                                        echo        "<td>".$d."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>"; // else not add a class
-                                        echo        "<td scope='row'>නියමිත බර</td>";
-                                        echo        "<td>".$d."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                    <?php
-                                    if ($e>0) { // check is there is any value for අධිබර range
-                                        echo    "<tr class='danger-value'>"; // if exist add danger-value or any other color class
-                                        echo        "<td scope='row'>අධිබර</td>";
-                                        echo        "<td>".$e."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>"; // else not add a class
-                                        echo        "<td scope='row'>අධිබර</td>";
-                                        echo        "<td>".$e."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                            </tbody>
-                                        </table>
-                                    </div>  
-                                </div>
-							</div>
-					
-					        <!-- 2nd card column-->
-							<div class="col-md-6 col-lg-3">
-                                <div class="card card-baby-data2">
-                                    <div class="card-header"> <h5>බර | ගැහැණු</h5></div>
-                                    <div class="card-body">
-                                        <table class="table">
-                                            <tbody>
-                                               
-                                    <?php
-                                    if ($aa>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>උග්‍ර අඩු බර</td>";
-                                        echo        "<td>".$aa."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>උග්‍ර අඩු බර</td>";
-                                        echo        "<td>".$aa."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>   
-                                    
-                                    <?php
-                                    if ($bb>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>අඩු බර</td>";
-                                        echo        "<td>".$bb."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>අඩු බර</td>";
-                                        echo        "<td>".$bb."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?> 
-                                                 
-                                                <tr>
-                                                    <td scope="row">මද බර අඩු</td>
-                                                    <td><?php echo $cc; ?></td>
-                                                </tr>   
-                                    
-                                    <?php
-                                    if ($dd>0) {
-                                        echo    "<tr class='normal-value'>";
-                                        echo        "<td scope='row'>නියමිත බර</td>";
-                                        echo        "<td>".$dd."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>නියමිත බර</td>";
-                                        echo        "<td>".$dd."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                    <?php
-                                    if ($ee>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>අධිබර</td>";
-                                        echo        "<td>".$ee."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>අධිබර</td>";
-                                        echo        "<td>".$ee."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                            </tbody>
-                                        </table>
-                                    </div>  
-                                </div>
-							</div>
-	                        
-	                        <!-- 3rd card column-->
-							<div class="col-md-6 col-lg-3">
-                                <div class="card card-baby-data2">
-                                    <div class="card-header"> <h5>උස | පිරිමි</h5></div>
-                                    <div class="card-body">
-                                        <table class="table">
-                                            <tbody>
-                                    
-                                    <?php
-                                    if ($ha>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>මිටි බව</td>";
-                                        echo        "<td>".$ha."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>මිටි බව</td>";
-                                        echo        "<td>".$ha."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                    <?php
-                                    if ($hb>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>මිටි බවට අවදානම</td>";
-                                        echo        "<td>".$hb."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>මිටි බවට අවදානම</td>";
-                                        echo        "<td>".$hb."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                    <?php
-                                    if ($hc>0) {
-                                        echo    "<tr class='normal-value'>";
-                                        echo        "<td scope='row'>නියමිත උස</td>";
-                                        echo        "<td>".$hc."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>නියමිත උස</td>";
-                                        echo        "<td>".$hc."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>  
-                                </div>
-                            </div>
-                            
-                            <!-- 4th card column-->
-                            <div class="col-md-6 col-lg-3">
-                                <div class="card card-baby-data2">
-                                    <div class="card-header"> <h5>උස | ගැහැණු</h5></div>
-                                    <div class="card-body">
-                                        <table class="table">
-                                            <tbody>
-                                    
-                                    <?php
-                                    if ($haa>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>මිටි බව</td>";
-                                        echo        "<td>".$haa."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>මිටි බව</td>";
-                                        echo        "<td>".$haa."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                    <?php
-                                    if ($hbb>0) {
-                                        echo    "<tr class='danger-value'>";
-                                        echo        "<td scope='row'>මිටි බවට අවදානම</td>";
-                                        echo        "<td>".$hbb."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>මිටි බවට අවදානම</td>";
-                                        echo        "<td>".$hbb."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                    
-                                    <?php
-                                    if ($hcc>0) {
-                                        echo    "<tr class='normal-value'>";
-                                        echo        "<td scope='row'>නියමිත උස</td>";
-                                        echo        "<td>".$hcc."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    else {
-                                        echo    "<tr>";
-                                        echo        "<td scope='row'>නියමිත උස</td>";
-                                        echo        "<td>".$hcc."</td>";
-                                        echo    "</tr>";
-                                    }
-                                    ?>
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>  
-                                </div>
-                            </div>
-				
-					</div>
-				    <!--end row-->
-                    
-                    <button type="button" class="btn change-btn btn-sm download float-md-right mb-5" id="download2"><b>බාගත කරන්න</b></button>
-
-                    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-
-        
-                    <div class="mb-5" id="chart_div"></div>
-
-                </div>
-				<!-- end of data-container -->
-
-            </div>
-            <!-- end of content -->
-
-        </div>
-        <!-- end of main body (sidebar and content) -->
-
-    </div>
-
-
-    <!-- optional JavaScript -->
-    <?php
-    //js
-    include('../../inc/basic/include-dashboard-js.php');
-    ?>
-
-    <script type="text/javascript" src="/assets/js/html2canvas.min.js"></script>
-    <script type="text/javascript" src="/assets/js/jspdf.min.js"></script>
-    
-    <!-- writed scripts -->
-    <script>
-        $(function() {
-            $('.inner-sidebar-menu ul li a.mm-chart').addClass('active');
-        }); 
-    </script>
-        
-    <script>
-        $(document).ready(function() {
-            $(".hamburger").click(function() {
-                $(".wrapper").toggleClass("active");
-            });
-            
-            $(".mob-hamburger").click(function() {
-                $(".wrapper").toggleClass("mob-active");
-            });
-        });
-
-        $.ajax({
-            url: '/data/mid-chart-data.php',
-            method: "GET",
-        }).done(function (data) {
-
-            chartData=JSON.parse(data);
-            //console.log(chartData);
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawVisualization);
-
-            function drawVisualization() {
-                // Some raw data (not necessarily accurate)
-                var data = google.visualization.arrayToDataTable([
-                ['Month', 'උග්‍ර අඩු බර', 'අඩු බර','මද බර අඩු','නියමිත බර','අධිබර'],
-                chartData.data.one,
-                chartData.data.two,
-                chartData.data.three,
-                chartData.data.four,
-                chartData.data.five,
-                chartData.data.six,
-                ]);
-
-                var options = {
-                title : 'මාස 6කට අදාලව දරුවන්ග‌ේ බර ප්‍රස්ථාරය',
-                vAxis: {title: 'දරුවන් ගණන'},
-                hAxis: {title: 'මාසය'},
-                seriesType: 'bars',
-                series: {5: {type: 'line'}}        };
-
-                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
                 }
 
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            console.error("data Failed");
-        });
+                   //print_r($weight_count);
 
+                   //$jsonData = json_encode($weight_count, true);
 
-    </script>
-    
-    <!-- canvas to pdf -->
-    <script>
-        
-        $("#download1").click(function() {
-            
-            html2canvas(document.getElementById('pdf-area1')).then(function (canvas) {
-                var img = canvas.toDataURL("image/png");
-                var doc = new jsPDF({
-                    orientation: 'landscape'
-                });
-                
-                var width = (canvas.width * 30) / 240;
-                var height = (canvas.height * 30) / 240;
-                
-                doc.addImage(img, 'JPEG', 5, 5, width, height);
-                //doc.output('dataurlnewwindow');     //opens the data uri in new window
-                doc.save('test.pdf');        
-            });
-  
-        });
-        
-        $("#download2").click(function() {
-            
-            html2canvas(document.getElementById('pdf-area2')).then(function (canvas) {
-                var img = canvas.toDataURL("image/png");
-                var doc = new jsPDF({
-                    orientation: 'landscape'
-                });
-                
-                var width = (canvas.width * 30) / 240;
-                var height = (canvas.height * 30) / 240;
-                
-                doc.addImage(img, 'JPEG', 5, 5, width, height);
-                //doc.output('dataurlnewwindow');     //opens the data uri in new window
-                doc.save('test2.pdf');        
-            });
-  
-        });
-    
-    </script>
+                $jsonData='  {
+                                    "status":"success",
+                                    "data":{   
+                                        "one": ["'.$weight_count[0].'",'.$weight_count[1].','.$weight_count[2].','.$weight_count[3].','.$weight_count[4].','.$weight_count[5].'],
+                                        "two": ["'.$weight_count[6].'",'.$weight_count[7].','.$weight_count[8].','.$weight_count[9].','.$weight_count[10].','.$weight_count[11].'],
+                                        "three": ["'.$weight_count[12].'",'.$weight_count[13].','.$weight_count[14].','.$weight_count[15].','.$weight_count[16].','.$weight_count[17].'],
+                                        "four": ["'.$weight_count[18].'",'.$weight_count[19].','.$weight_count[20].','.$weight_count[21].','.$weight_count[22].','.$weight_count[23].'],
+                                        "five": ["'.$weight_count[24].'",'.$weight_count[25].','.$weight_count[26].','.$weight_count[27].','.$weight_count[28].','.$weight_count[29].'],
+                                        "six": ["'.$weight_count[30].'",'.$weight_count[31].','.$weight_count[32].','.$weight_count[33].','.$weight_count[34].','.$weight_count[35].']
+                                    }
+                                }';
 
-</body>
+                   echo($jsonData);
 
-</html>
-
-
-<?php mysqli_close($conn); ?>
+                ?>
+                    
+       

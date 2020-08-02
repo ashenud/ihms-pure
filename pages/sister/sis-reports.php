@@ -6,19 +6,7 @@ if(!isset($_SESSION['sister_id'])) {
 }
 ?>
 
-
 <?php
-        
-    $month_lable = '';
-    $vac_value = '';
-
-    //for ($i = $length; $i >= 0; $i--) {
-    //    $timeline_date = $timeline_date.'"'.substr($json_array2['data']['timeline'][$i]['date'],-5).'",' ;
-       // $new_confirmed = $new_confirmed.$json_array2['data']['timeline'][$i]['new_confirmed'].',' ;
-    //} 
-
-    //$new_confirmed = trim($new_confirmed,",");
-    //$timeline_date = trim($timeline_date,",");
 
     $month=date('m');
     $year=date('Y');
@@ -61,167 +49,7 @@ if(!isset($_SESSION['sister_id'])) {
         $month_si="දෙසැම්බර්";
     }
 
-
-    if (isset($_POST['vac-select'])) {
-    
-        $vac_id=$_POST['vac-select'];
-        
-        if($vac_id==1) {
-            $vac_group='vac_birth';
-            $vac_name='B.C.G.';
-        }
-        
-        if($vac_id==2) {
-            $vac_group='vac_birth';
-            $vac_name='B.C.G. 2nd dose';
-        }
-        
-        if($vac_id==3) {
-            $vac_group='vac_2months';
-            $vac_name='Pentavalent 1';
-        }
-        
-        if($vac_id==4) {
-            $vac_group='vac_2months';
-            $vac_name='OPV 1';
-        }
-        
-        if($vac_id==5) {
-            $vac_group='vac_2months';
-            $vac_name='fIPV 1';
-        }
-        
-        if($vac_id==6) {
-            $vac_group='vac_4months';
-            $vac_name='Pentavalent 2';
-        }
-        
-        if($vac_id==7) {
-            $vac_group='vac_4months';
-            $vac_name='OPV 2';
-        }
-        
-        if($vac_id==8) {
-            $vac_group='vac_4months';
-            $vac_name='fIPV 2';
-        }
-        
-        if($vac_id==9) {
-            $vac_group='vac_6months';
-            $vac_name='Pentavalent 3';
-        }
-        
-        if($vac_id==10) {
-            $vac_group='vac_6months';
-            $vac_name='OPV 3';
-        }
-        
-        if($vac_id==11) {
-            $vac_group='vac_9months';
-            $vac_name='MMR 1';
-        }
-        
-        if($vac_id==12) {
-            $vac_group='vac_12months';
-            $vac_name='Live JE';
-        }
-        
-        if($vac_id==13) {
-            $vac_group='vac_18months';
-            $vac_name='DPT';
-        }
-        
-        if($vac_id==14) {
-            $vac_group='vac_18months';
-            $vac_name='OPV 4';
-        }
-        
-        if($vac_id==15) {
-            $vac_group='vac_3years';
-            $vac_name='MMR 2';
-        }
-        
-        if($vac_id==16) {
-            $vac_group='vac_5years';
-            $vac_name='D.T';
-        }
-        
-        if($vac_id==17) {
-            $vac_group='vac_5years';
-            $vac_name='OPV 5';
-        }
-        
-        if($vac_id==18) {
-            $vac_group='vac_10years';
-            $vac_name='HPV Vaccine 1';
-        }
-        
-        if($vac_id==19) {
-            $vac_group='vac_10years';
-            $vac_name='HPV Vaccine 2';
-        }
-        
-        if($vac_id==20) {
-            $vac_group='vac_11years';
-            $vac_name='aTd';
-        }
-        
-        $query01="SELECT vac_name,MONTH(date_given),COUNT(*)
-                  FROM $vac_group
-                  WHERE vac_id=$vac_id AND YEAR(date_given)=$year     
-                  GROUP BY MONTH(date_given)";
-        $result01=mysqli_query($conn,$query01);
-        
-        while ($row01 = mysqli_fetch_array($result01)) {
-
-            if($row01['MONTH(date_given)']==1) {
-                $month_si="ජනවාරි";
-            }            
-            else if($row01['MONTH(date_given)']==2) {
-                $month_si="පෙබරවාරි";
-            }
-            else if($row01['MONTH(date_given)']==3) {
-                $month_si="මාර්තු";
-            }
-            else if($row01['MONTH(date_given)']==4) {
-                $month_si="අප්‍රේල්";
-            }
-            else if($row01['MONTH(date_given)']==5) {
-                $month_si="මැයි";
-            }
-            else if($row01['MONTH(date_given)']==6) {
-                $month_si="ජූනි";
-            }
-            else if($row01['MONTH(date_given)']==7) {
-                $month_si="ජූලි";
-            }
-            else if($row01['MONTH(date_given)']==8) {
-                $month_si="අගෝස්තු";
-            }
-            else if($row01['MONTH(date_given)']==9) {
-                $month_si="සැප්තැම්බර්";
-            }
-            else if($row01['MONTH(date_given)']==10) {
-                $month_si="ඔක්තෝබර්";
-            }
-            else if($row01['MONTH(date_given)']==11) {
-                $month_si="නොවැම්බර්";
-            }
-            else if($row01['MONTH(date_given)']==12) {
-                $month_si="දෙසැම්බර්";
-            }
-            
-            $month_lable = $month_lable . '"'.$month_si.'",';
-            $vac_value = $vac_value . '"'. $row01['COUNT(*)'] .'",';
-        }
-        
-        $month_lable = trim($month_lable,",");
-        $vac_value = trim($vac_value,",");
-        
-	}
-
 ?>
-
 
 
 <!doctype html>
@@ -238,7 +66,8 @@ if(!isset($_SESSION['sister_id'])) {
     //css
     include('../../inc/basic/include-dashboard-css.php');
     ?>
-    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css">
     <link rel="stylesheet" href="/pages/sister/css/sis-reports-style.css">
 
     <title>Infant Health Management System</title>
@@ -652,8 +481,8 @@ if(!isset($_SESSION['sister_id'])) {
                                         <div class="col-md-6">
                                             <div class="select-area">
                                                 <div class="select-vac">
-                                                    <form action="" method="POST">
-                                                        <select class="form-control" id="vac-select" name="vac-select" onchange="this.form.submit()">
+                                                    <form id="vac-form" action="" method="POST">
+                                                        <select class="form-control" id="vac-select" name="vac-select">
                                                             <option value="" disabled selected>එන්නත් වර්ගය තෝරන්න</option>
                                                             <option value="1">B.C.G.</option>
                                                             <option value="2">B.C.G. 2nd dose</option>
@@ -715,6 +544,7 @@ if(!isset($_SESSION['sister_id'])) {
     include('../../inc/basic/include-dashboard-js.php');
     ?>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"></script>
     <script type="text/javascript" src="/assets/js/charts/Chart.min.js"></script>
     <script type="text/javascript" src="/assets/js/jspdf.min.js"></script>
 
@@ -733,7 +563,88 @@ if(!isset($_SESSION['sister_id'])) {
             
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
-            });         
+            });
+
+            $('select').selectize({
+                sortField: 'text'
+            });
+            
+            $("#vac-select").change(function() {
+                var data = $('#vac-form').serialize();
+                //console.log(data);
+                if ( $("#vac-select").val().length !== 0 ){
+                
+                    $.ajax({
+                    type: 'POST',
+                    url: '/data/sis-chart-data.php',
+                    //dataType: "json",
+                    data: data,
+                    cache: false,
+                    success: function(data) {
+                        chartData=JSON.parse(data);
+                        //console.log(chartData);
+
+                        Chart.defaults.global.defaultFontFamily = 'abhaya';
+                        var ChartTimeline = {
+                                type: 'line',
+                                data: {
+                                    labels: chartData.data.months,
+                                    datasets: [{
+                                        label: chartData.data.type,
+                                        data: chartData.data.count,
+                                        //backgroundColor: '#ffa7ba',
+                                        borderColor: '#ffa7ba',
+                                        borderWidth: 3,
+                                        lineTension:0,
+                                    }]
+                                },
+                                options: {
+                                    legend: {
+                                        display: true,labels: {
+                                            fontColor: '#fff',
+                                        }
+                                    },
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true,
+                                                stepSize: 1,
+                                                max: 5,
+                                                fontColor: '#fff',
+                                                fontSize: 9,
+                                                padding: 10,
+                                            },
+                                            gridLines: {
+                                                color: '#fff',
+                                                borderDash: [3, 2],
+                                                zeroLineColor: '#fff'
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            ticks: {
+                                                fontColor: '#fff',
+                                                fontSize: 10,
+                                            },
+                                            gridLines: {
+                                                color: '#fff',
+                                                borderDash: [3, 2],
+                                                zeroLineColor: '#fff'
+                                            }
+                                        }]
+                                    }
+                                }
+                            }
+                        
+                        var ctxTimeline = document.getElementById('chart-vaccine').getContext('2d');
+                        new Chart(ctxTimeline, ChartTimeline);
+
+                        }
+                    });
+
+                }
+                
+            });
+
         });
     </script>
     <!-- end of writed scripts -->
@@ -741,58 +652,7 @@ if(!isset($_SESSION['sister_id'])) {
     <!-- chart --> 
     <script>        
             
-        Chart.defaults.global.defaultFontFamily = 'abhaya';
-        var ChartTimeline = {
-                type: 'bar',
-                data: {
-                    labels: [<?php echo $month_lable; ?>],
-                    datasets: [{
-                        label: '<?php echo $vac_name; ?> එන්නත් ප්‍රමාණය',
-                        data: [<?php echo $vac_value; ?>],
-                        backgroundColor: '#ffa7ba',
-                        borderColor: '#ffa7ba',
-                        borderWidth: 1,
-                        barPercentage: 0.4,
-                    }]
-                },
-                options: {
-                    legend: {
-                        display: true,labels: {
-                            fontColor: '#000',
-                        }
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
-                                fontColor: '#000',
-                                fontSize: 9,
-                                padding: 10,
-                            },
-                            gridLines: {
-                                color: 'rgba(255, 167, 186, 1)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#ffa7ba'
-                            }
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                fontColor: '#000',
-                                fontSize: 10,
-                            },
-                            gridLines: {
-                                color: 'rgba(255, 167, 186, 0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#ffa7ba'
-                            }
-                        }]
-                    }
-                }
-            }
-        
-        var ctxTimeline = document.getElementById('chart-vaccine').getContext('2d');
-        new Chart(ctxTimeline, ChartTimeline);        
+                
         
     </script>
 
