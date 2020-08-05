@@ -122,7 +122,7 @@ if(!isset($_SESSION['admin_id'])) {
                                         ?>
                                     </p>
                                     <div class="registration">
-                                        <form name="my-form" action="./php/add-schedule-action.php" method="POST" onsubmit="return validation()">
+                                        <form name="my-form" action="/pages/admin-doctor/php/add-schedule-action.php" method="POST" onsubmit="return validation()">
                                         
                                             <div class="container mt-4">
 

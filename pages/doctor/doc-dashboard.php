@@ -159,8 +159,15 @@ if(!isset($_SESSION['doctor_id'])) {
                                     <div class="card-icon icon-color">
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
-                                    <p class="card-category">පැවරී ඇති රාජකාරි</p>
-                                    <h3 class="card-title"><span class="counter">5</span></h3>
+                                    <p class="card-category">සිහි කැඳවීම්</p>
+                                    <?php 
+
+                                        $query1="SELECT * FROM doctor_reminder WHERE doctor_id='".$_SESSION['doctor_id']."'";
+                                        $result1=mysqli_query($conn, $query1);
+                                        $num_rows1=mysqli_num_rows($result1);
+
+                                    ?>
+                                    <h3 class="card-title"><span class="counter"><?php echo $num_rows1; ?></span></h3>
                                 </div>
                             </div>
                         </div>
@@ -212,6 +219,95 @@ if(!isset($_SESSION['doctor_id'])) {
                             </div>
                         </div>
                        
+                        <!-- reminder table section -->
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
+                            <div class="card view-reminders">
+                                <div class="card-header">
+                                    <h6 class="font-weight-bold float-left">සිහි කැඳවීම්(Reminders)</h6>
+                                    <button data-toggle="modal" href="#reminderModal" class="float-right btn btn-sm text-light">එක් කරන්න</button>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-container">
+                                        <table class="table table-reminder table-responsive-xl">
+
+                                        <?php
+                                        
+                                        $mid_id=$_SESSION["doctor_id"];
+                                        $query2="SELECT * FROM doctor_reminder WHERE doctor_id='".$mid_id."' order by date_time DESC ";
+                                        $result2=mysqli_query($conn,$query2);
+
+                                        while ($row2=mysqli_fetch_assoc($result2)) {
+                                    
+                                        ?>
+                                           
+                                            <form method='POST' action="/pages/doctor/php/delete-reminder-action.php">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <img class="media-photo" src="/pages/doctor/img/reminder-icon.webp">
+                                                        </td>
+                                                        <td>
+                                                            <span class="discription"><?php echo $row2['doctor_reminder']; ?></span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="date pull-right"><?php echo $row2['date_time']; ?></span>
+                                                        </td>
+                                                        <td>
+                                                            <input type='hidden' name='date_time' value='<?php echo $row2['date_time']; ?>'>
+                                                            <input type='submit' name='submit3' class='btn text-light' value='Delete'>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </form>
+
+                                        <?php
+                                             }
+                                        ?>
+                                        
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal for add Reminders -->
+                        <div id="reminderModal" class="modal fade">
+                            <div class="modal-dialog modal-reminder">
+                                <div class="modal-content card card-image">
+                                    <form action="/pages/doctor/php/add-reminder-action.php" method="POST">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-uppercase">Add Reminder</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <i class="far fa-window-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="text-uppercase">discription</label>
+                                                <input type="text" name="reminder" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="clearfix">
+                                                    <label class="text-uppercase">date and time</label>
+                                                    <input type="datetime-local" name="dateTime" class="form-control" required>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="submit" name="submitReminder" class="btn btn-primary pull-right" value="Save">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- model end -->
+                        
+                    </div> 
+                    
+                    <div class="row mb-5">
+                       
                         <div class="col-lg-6 mb-2">
                             <div class="card card-chart">
                                 <div class="card-header chart-header">                                    
@@ -223,23 +319,21 @@ if(!isset($_SESSION['doctor_id'])) {
                                 </div>
                             </div>
                         </div>
-                        
-                    </div> 
-                    <div class="row mb-5">
-                       
-                        <div class="col-md-6 mt-5 mb-2">
+
+                        <div class="col-md-3 mt-5 mb-2">
                                                       
                             <?php //include('inc/low-high-weight-table.php'); ?>
                             
                         </div>
                         
-                        <div class="col-md-6 mt-5">
+                        <div class="col-md-3 mt-5">
                                                       
                             <?php //include('inc/low-high-height-table.php'); ?>
                             
                         </div>
                         
-                    </div>                   
+                    </div> 
+                    
                 </div>
 
             </div>
