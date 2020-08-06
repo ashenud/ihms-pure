@@ -292,3 +292,19 @@ $(".password-icon").click(function () {
         input.attr("type", "password");
     }
 });
+
+function check_babyId() {
+    $('#baby-id-error').load("/pages/midwife/php/validation/baby-id-validation.php", {'baby_id': $('#bId').val(), 'type': 'add'});
+}
+
+function check_mNic() {
+    $('#m-nic-error').load("/pages/midwife/php/validation/m-nic-validation.php", {'m_nic': $('#mNic').val(), 'type': 'add'});
+}
+
+function check_tpNbr() {
+    $('#tpnbr-error').load("/pages/midwife/php/validation/tpnbr-validation.php", {'tp_no': $('#tp').val(), 'type': 'add'});
+}
+
+function check_email() {
+    $('#email-error').load("/pages/midwife/php/validation/email-validation.php", {'email': $('#email').val(), 'type': 'add'});
+}
