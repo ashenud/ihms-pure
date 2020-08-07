@@ -108,17 +108,22 @@
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Weight</b>(kg)</label>
-                                                    <input type="text" class="form-control" name="bWeight" placeholder="in (kg)" required>
+                                                    <input type="number" min="0" class="form-control" name="bWeight" placeholder="in (kg)" required>
                                             </div>
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Height</b>(cm)</label>
-                                                    <input type="text" class="form-control" name="bHeight" placeholder="in (cm)" required>
+                                                    <input type="number" min="0" class="form-control" name="bHeight" placeholder="in (cm)" required>
                                             </div>
                                         </div>
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <label><b>Age</b>(months)</label>
-                                                <input type="text" class="form-control" name="bAge" placeholder="in (months)" required>
+                                                <?php
+                                                    $query01="SELECT MAX(baby_age_in_months) FROM growth WHERE baby_id='".$_SESSION['baby_id']."'";
+                                                    $result01=mysqli_query($conn,$query01) ;
+                                                    $row01 = mysqli_fetch_assoc($result01) ;
+                                                ?>
+                                                <input type="number" min="<?php echo $row01["MAX(baby_age_in_months)"]+1; ?>" class="form-control" name="bAge" placeholder="<?php echo $row01["MAX(baby_age_in_months)"]+1; ?>" required>
                                             </div>
                                         </div>
 

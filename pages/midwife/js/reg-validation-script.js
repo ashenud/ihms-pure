@@ -293,6 +293,10 @@ $(".password-icon").click(function () {
     }
 });
 
+$("#bId").focusout(function(){
+    check_babyId();
+});
+
 function check_babyId() {
     $('#baby-id-error').load("/pages/midwife/php/validation/baby-id-validation.php", {'baby_id': $('#bId').val(), 'type': 'add'});
 }

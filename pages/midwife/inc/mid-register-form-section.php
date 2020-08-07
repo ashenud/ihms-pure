@@ -268,11 +268,11 @@
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                         <label>Baby ID:</label>
                                         <input type="text" name="bId" class="form-control" id="bId" onkeyup="check_babyId();"
-                                        value="<?php
+                                        placeholder="<?php
                                             $query1="SELECT MAX(baby_id) FROM baby_register WHERE baby_id LIKE'%".$_SESSION['GnDivision']."'";
                                             $result1=mysqli_query($conn,$query1) ;
                                             $row1 = mysqli_fetch_assoc($result1) ;
-                                            echo "last_id:".$row1["MAX(baby_id)"];
+                                            echo "last_id : ".$row1["MAX(baby_id)"];
                                         ?>">
                                         <div id="baby-id-error" style="color: red; font-size: 9px; margin-top: -14px; z-index: 10; position: absolute;"></div>
                                         <span id="input6" class="error-tooltip tp-error">

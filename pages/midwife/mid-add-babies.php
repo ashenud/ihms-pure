@@ -141,6 +141,17 @@ if(!isset($_SESSION['midwife_id'])) {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        <?php
+            $query1="SELECT MAX(baby_id) FROM baby_register WHERE baby_id LIKE'%".$_SESSION['GnDivision']."'";
+            $result1=mysqli_query($conn,$query1) ;
+            $row1 = mysqli_fetch_assoc($result1) ;
+            
+        ?>
+
+        $("#bId").focus(function(event) { 
+            $('#bId').val("<?php echo $row1["MAX(baby_id)"];?>"); 
+        });
     </script>
     <!-- end of tooltip scripts -->
 
