@@ -227,44 +227,8 @@ if(!isset($_SESSION['doctor_id'])) {
                                     <button data-toggle="modal" href="#reminderModal" class="float-right btn btn-sm text-light">එක් කරන්න</button>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-container">
-                                        <table class="table table-reminder table-responsive-xl">
-
-                                        <?php
+                                    <div id="table-container" class="table-container">
                                         
-                                        $mid_id=$_SESSION["doctor_id"];
-                                        $query2="SELECT * FROM doctor_reminder WHERE doctor_id='".$mid_id."' order by date_time DESC ";
-                                        $result2=mysqli_query($conn,$query2);
-
-                                        while ($row2=mysqli_fetch_assoc($result2)) {
-                                    
-                                        ?>
-                                           
-                                            <form method='POST' action="/pages/doctor/php/delete-reminder-action.php">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <img class="media-photo" src="/pages/doctor/img/reminder-icon.webp">
-                                                        </td>
-                                                        <td>
-                                                            <span class="discription"><?php echo $row2['doctor_reminder']; ?></span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="date pull-right"><?php echo $row2['date_time']; ?></span>
-                                                        </td>
-                                                        <td>
-                                                            <input type='hidden' name='date_time' value='<?php echo $row2['date_time']; ?>'>
-                                                            <input type='submit' name='submit3' class='btn text-light' value='Delete'>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </form>
-
-                                        <?php
-                                             }
-                                        ?>
-                                        
-                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -274,7 +238,7 @@ if(!isset($_SESSION['doctor_id'])) {
                         <div id="reminderModal" class="modal fade">
                             <div class="modal-dialog modal-reminder">
                                 <div class="modal-content card card-image">
-                                    <form action="/pages/doctor/php/add-reminder-action.php" method="POST">
+                                    <form id="reminder-form" method="POST">
                                         <div class="modal-header">
                                             <h4 class="modal-title text-uppercase">Add Reminder</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -284,19 +248,19 @@ if(!isset($_SESSION['doctor_id'])) {
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label class="text-uppercase">discription</label>
-                                                <input type="text" name="reminder" class="form-control" required>
+                                                <input type="text" id="reminder" name="reminder" class="form-control" required>
                                             </div>
                                             <div class="form-group">
 
                                                 <div class="clearfix">
                                                     <label class="text-uppercase">date and time</label>
-                                                    <input type="datetime-local" name="dateTime" class="form-control" required>
+                                                    <input type="datetime-local" id="dateTime" name="dateTime" class="form-control" required>
                                                 </div>
 
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <input type="submit" name="submitReminder" class="btn btn-primary pull-right" value="Save">
+                                            <a id="submit-reminder" name="submitReminder" class="btn btn-primary pull-right">Save</a>
                                         </div>
                                     </form>
                                 </div>
@@ -382,6 +346,72 @@ if(!isset($_SESSION['doctor_id'])) {
                 time: 1000
             });
         });
+    </script>
+
+    <script>
+    
+    loadReminders();
+    deleteReminders()
+
+    function loadReminders() {
+        $('#table-container').load("/pages/doctor/php/loaders/load-reminder.php");
+    }
+
+    $("#submit-reminder").click(function(e) {
+        e.preventDefault();
+        
+        if ( $("#reminder").val().length !== 0 && $("#dateTime").val().length !== 0 ){
+
+            $('#reminderModal').modal('hide');
+
+            var data = $('#reminder-form').serialize();
+            //console.log(data);    
+        
+            $.ajax({
+            type: 'POST',
+            url: '/data/doc-add-reminder.php',
+            //dataType: "json",
+            data: data,
+            cache: false,
+            success: function(data) {
+                chartData=JSON.parse(data);
+                //console.log(chartData);
+
+                loadReminders();
+
+                }
+            });
+
+        }
+        else {
+            alert("dapan data");
+        }
+        
+    });
+
+    function deleteReminders() {
+       $(document).on("click", ".del-btn", function (e) {
+            e.preventDefault();
+            var data = $(this).data('reminder_id');
+
+            $.ajax({
+            type: 'POST',
+            url: '/data/doc-delete-reminder.php',
+            //dataType: "json",
+            data: {'reminder_id' : data},
+            cache: false,
+            success: function(data) {
+                chartData=JSON.parse(data);
+                //console.log(chartData);
+
+                loadReminders();
+
+                }
+            });
+           //console.log(reminderId);
+        });
+    }
+
     </script>
     
     <!-- chart --> 

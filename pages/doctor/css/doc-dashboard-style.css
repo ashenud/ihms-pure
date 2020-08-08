@@ -212,7 +212,8 @@
 
 .view-reminders .table-reminder {
 	background-color: #fff;
-	border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    height: 150px;
 }
 
 .view-reminders .table-reminder tbody tr:hover {
