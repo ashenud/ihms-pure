@@ -1,6 +1,7 @@
 <!--fonts and icons-->
 <link rel="stylesheet" href="/assets/css/fontawesome/css/all.css">
 <link rel="stylesheet" href="/assets/css/unicode-fonts.css">
+<link rel="stylesheet" href="/assets/css/english-fonts.css">
 <link rel="stylesheet" href="/assets/css/material-design-iconic-font.min.css">
 
 <!--css files-->

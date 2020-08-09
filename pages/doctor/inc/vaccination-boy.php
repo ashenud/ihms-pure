@@ -1445,7 +1445,7 @@
                             <table>
                                 <tr>
                                     <td><label>සායනයට පැමිණි දිනය:</label></td>
-                                    <td><input class="form-control" type="date" id="date_came" name="date_came" required></td>
+                                    <td><input class="form-control" type="date" max="<?php echo date('Y-m-d'); ?>" id="date_came" name="date_came" required></td>
                                 </tr>
                                 <tr>
                                     <td><label>ඇසේ ප්‍රමාණය:</label></td>

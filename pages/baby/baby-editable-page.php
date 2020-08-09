@@ -199,7 +199,7 @@
                                                         <div class="form-row d-flex justify-content-center">
                                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                                 <label>නව දිනයක් තෝරන්න</label>
-                                                                <input type="date" class="form-control" name="vacDate" required>
+                                                                <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control" name="vacDate" required>
                                                                 <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
                                                             </div>
                                                         </div>
@@ -290,7 +290,7 @@
                                                         <div class="form-row d-flex justify-content-center">
                                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                                 <label>ලබා දුන් දිනය</label>
-                                                                <input type="date" class="form-control" name="date_given" required>
+                                                                <input type="date" max="<?php echo date('Y-m-d'); ?>" class="form-control" name="date_given" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-row d-flex justify-content-around">

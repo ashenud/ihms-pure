@@ -68,7 +68,7 @@ if(!isset($_SESSION['doctor_id'])) {
                         <div class="col-md-8">
                             <div class="card card-send-msg">
                                 <div class="card-header">
-                                    <h3>හෙදියක් හට පණිවිඩයක් යවන්න</h3>
+                                    <h3>හෙදියක්(Sister) හට පණිවිඩයක් යවන්න</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="container">
@@ -159,7 +159,7 @@ if(!isset($_SESSION['doctor_id'])) {
                         <div class="col-md-8">
                             <div class="card card-send-msg">
                                 <div class="card-header">
-                                    <h3>වින්නඹුවක් හට පණිවිඩයක් යවන්න</h3>
+                                    <h3>වින්නඹුවක්(Midwife) හට පණිවිඩයක් යවන්න</h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="container">

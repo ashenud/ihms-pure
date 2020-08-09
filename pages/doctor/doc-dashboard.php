@@ -99,6 +99,8 @@ if(!isset($_SESSION['doctor_id'])) {
                             <div class="col-md-3"></div>
                             <div class="col-md-6">
                                 <?php include('./inc/alert-mother-not-found.php'); ?>
+                                <?php include('./inc/alert-reminder-success.php'); ?>
+                                <?php include('./inc/alert-reminder-delete-success.php'); ?>
                             </div>
                             <div class="col-md-3"></div>
                         </div>
@@ -160,14 +162,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
                                     <p class="card-category">සිහි කැඳවීම්</p>
-                                    <?php 
-
-                                        $query1="SELECT * FROM doctor_reminder WHERE doctor_id='".$_SESSION['doctor_id']."'";
-                                        $result1=mysqli_query($conn, $query1);
-                                        $num_rows1=mysqli_num_rows($result1);
-
-                                    ?>
-                                    <h3 class="card-title"><span class="counter"><?php echo $num_rows1; ?></span></h3>
+                                    <h3 class="card-title"><span id="reminder-count" class="counter"></span></h3>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +215,7 @@ if(!isset($_SESSION['doctor_id'])) {
                         </div>
                        
                         <!-- reminder table section -->
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
+                        <div class="col-lg-6 mb-2">
                             <div class="card view-reminders">
                                 <div class="card-header">
                                     <h6 class="font-weight-bold float-left">සිහි කැඳවීම්(Reminders)</h6>
@@ -240,27 +235,27 @@ if(!isset($_SESSION['doctor_id'])) {
                                 <div class="modal-content card card-image">
                                     <form id="reminder-form" method="POST">
                                         <div class="modal-header">
-                                            <h4 class="modal-title text-uppercase">Add Reminder</h4>
+                                            <h4 class="modal-title text-uppercase">සිහිකැඳවීම් එක් කරන්න</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                                 <i class="far fa-window-close"></i>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label class="text-uppercase">discription</label>
-                                                <input type="text" id="reminder" name="reminder" class="form-control" required>
+                                                <label class="text-uppercase">විස්තරය</label>
+                                                <input type="text" id="reminder" name="reminder" class="form-control" placeholder="කෙටි විස්තරයක් ඇතුල් කරන්න" required>
                                             </div>
                                             <div class="form-group">
 
                                                 <div class="clearfix">
-                                                    <label class="text-uppercase">date and time</label>
-                                                    <input type="datetime-local" id="dateTime" name="dateTime" class="form-control" required>
+                                                    <label class="text-uppercase">දිනය සහ වෙලාව</label>
+                                                    <input type="datetime-local" id="dateTime" min="<?php echo date('Y-m-d').'T'.date("H:i"); ?>" placeholder="දිනය සහ වෙලාව ඇතුල් කරන්න" name="dateTime" class="form-control" required>
                                                 </div>
 
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <a id="submit-reminder" name="submitReminder" class="btn btn-primary pull-right">Save</a>
+                                            <a id="submit-reminder" name="submitReminder" class="btn btn-primary pull-right">එක් කරන්න</a>
                                         </div>
                                     </form>
                                 </div>
@@ -350,11 +345,16 @@ if(!isset($_SESSION['doctor_id'])) {
 
     <script>
     
+    loadReminderCount()
     loadReminders();
     deleteReminders()
 
     function loadReminders() {
         $('#table-container').load("/pages/doctor/php/loaders/load-reminder.php");
+    }
+
+    function loadReminderCount() {
+        $('#reminder-count').load("/pages/doctor/php/loaders/load-reminder-count.php");
     }
 
     $("#submit-reminder").click(function(e) {
@@ -368,23 +368,34 @@ if(!isset($_SESSION['doctor_id'])) {
             //console.log(data);    
         
             $.ajax({
-            type: 'POST',
-            url: '/data/doc-add-reminder.php',
-            //dataType: "json",
-            data: data,
-            cache: false,
-            success: function(data) {
-                chartData=JSON.parse(data);
-                //console.log(chartData);
-
-                loadReminders();
-
+                type: 'POST',
+                url: '/data/doc-add-reminder.php',
+                //dataType: "json",
+                data: data,
+                cache: false,
+                success: function(data) {
+                    var returnData=JSON.parse(data);
+                    if(returnData.status == 'success'){
+                        //console.log(returnData.data.alert);
+                        loadReminderCount()
+                        loadReminders();
+                        $('.success-alert').find('strong').html(returnData.data.alert);
+                        $('.success-alert').hide();
+                        $('.delete-alert').hide();
+                        $('.success-alert').show();
+                    }
+                    else if(returnData.status == 'fail') {
+                        loadReminderCount()
+                        loadReminders();
+                        $('.error-alert').find('strong').html(returnData.data.alert);
+                        $('.error-alert').show();
+                    }
                 }
             });
 
         }
         else {
-            alert("dapan data");
+            alert("දත්ත ඇතුලත් කරන්න");
         }
         
     });
@@ -395,20 +406,30 @@ if(!isset($_SESSION['doctor_id'])) {
             var data = $(this).data('reminder_id');
 
             $.ajax({
-            type: 'POST',
-            url: '/data/doc-delete-reminder.php',
-            //dataType: "json",
-            data: {'reminder_id' : data},
-            cache: false,
-            success: function(data) {
-                chartData=JSON.parse(data);
-                //console.log(chartData);
-
-                loadReminders();
-
+                type: 'POST',
+                url: '/data/doc-delete-reminder.php',
+                //dataType: "json",
+                data: {'reminder_id' : data},
+                cache: false,
+                success: function(data) {
+                    var returnData=JSON.parse(data);
+                    if(returnData.status == 'success'){
+                        //console.log(returnData.data.alert);
+                        loadReminderCount()
+                        loadReminders();
+                        $('.delete-alert').find('strong').html(returnData.data.alert);
+                        $('.delete-alert').hide();
+                        $('.success-alert').hide();
+                        $('.delete-alert').show();
+                    }
+                    else if(returnData.status == 'fail') {
+                        loadReminderCount()
+                        loadReminders();
+                        $('.error-alert').find('strong').html(returnData.data.alert);
+                        $('.error-alert').show();
+                    }
                 }
             });
-           //console.log(reminderId);
         });
     }
 
