@@ -43,57 +43,161 @@ if(!isset($_SESSION['sister_id'])) {
             
             <!-- content -->
             <div class="content">
-               
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container">
 
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+                <div class="row d-flex justify-content-center">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <h4>&nbsp;Unread Messages</h4>  
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="b_table">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Message</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <?php
+                                                    
+                                                        $sql00="SELECT * FROM sister_message WHERE sister_id='".$_SESSION['sister_id']."' AND status='unread'";
+                                                        $take00=mysqli_query($conn,$sql00);
+                                                        while($row00=mysqli_fetch_assoc($take00)){
+                                                            $dMsg=$row00['sister_message'];
+                                                            $dDate=$row00['date'];
+                                                            $dTime=$row00['time'];
+                                                            
+                                                            echo  "<tr>";
+                                                            echo  "<td>New Message</td>";
+                                                            echo  "<td>";
+                                                            echo  "<input type='button' name='readMidwife' class='btn btn-warning btn-sm' id='readMidwife' data-toggle='modal' href='#readSMS' data-msgid='".$dMsg."' data-dateid='".$dDate."' data-timeid='".$dTime."' value='Read'>";
+                                                        
+                                                            
+                                                    //--------------------------------This is modal------------------------------------------  
+                                                    echo "<div class='modal fade' id='readSMS'>";
+                                                    echo "<div class='modal-dialog modal-dialog-centered' role='document'>";
+                                                    echo "<div class='modal-content'>";
+                                                    echo "<div class='modal-header'>";
+                                                    echo "<h5 class='modal-title' id='ModalTitleMidwife'>Message</h5>";
+                                                    echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+                                                    echo "<span aria-hidden='true'>&times;</span>";
+                                                    echo "</button>";
+                                                    echo "</div>";
+                                                    echo "<div class='modal-body'>";
+                                                    echo "<form method='POST' action='/pages/sister/php/sis-read-msg-action.php'>";
+                                                    echo "<div class=row>";
+                                                    echo "<textarea name='messageArea' id='messageArea' class='form-control' readonly style='color:blue;'></textarea>";
+                                                    echo "</div>";
+                                                    echo "<div class=row d-flex justify-content-center>";
+                                                    echo "<div class='col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>";
+                                                    echo "<input type='text' class='form-control' name='date' id='date' readonly>";
+                                                    echo "</div>";
+                                                    echo "<div class='col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>";
+                                                    echo "<input type='text' class='form-control' name='time' id='time' readonly>";
+                                                    echo "</div>";
+                                                    echo "</div>";
+                                                    echo "<div class='modal-footer'>";
+                                                    echo "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>";
+                                                    echo "<input type='submit' name='readSubmit' class='btn btn-primary' value='Mark as Read'>";
+                                                    echo "</div>";
+                                                    echo "</form>";
+                                                    echo "</div>";
+                                                    echo "</div>";
+                                                    echo "</div>";
+                                                    echo  "</td>";
+                                                    echo  "</tr>";
+
+                                                        }
+                                                    ?>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <h4>&nbsp;&nbsp;Read Messages</h4>  
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="b_table">
+                                    <table class="table">
+                                        <tr>
+                                            <th>Message</th>
+                                            <th>View</th>
+                                        </tr>
+                                        <?php
 
+                                            $sql1="SELECT * FROM sister_message WHERE sister_id='".$_SESSION['sister_id']."' AND status='read'";
+                                                        $take1=mysqli_query($conn,$sql1);
+                                                        while($row1=mysqli_fetch_assoc($take1)){
+                                                            $dMsg=$row1['sister_message'];
+                                                            $dDate=$row1['date'];
+                                                            $dTime=$row1['time'];
+                                                            
+                                                            echo  "<tr>";
+                                                            echo  "<td>New Message</td>";
+                                                            echo  "<td>";
+                                                            echo  "<input type='button' name='viewMidwife' class='btn btn-success btn-sm' id='viewMidwife' data-toggle='modal' href='#viewSMS' data-msgid='".$dMsg."' data-dateid='".$dDate."' data-timeid='".$dTime."' value='View'>";
+                                                        
+                                                       
+                                                            //--------------------------------This is readSMS modal------------------------------------------  
+                                                            echo "<div class='modal fade' id='viewSMS'>";
+                                                            echo "<div class='modal-dialog modal-dialog-centered' role='document'>";
+                                                            echo "<div class='modal-content'>";
+                                                            echo "<div class='modal-header'>";
+                                                            echo "<h5 class='modal-title' id='ModalTitleMidwife'>Message</h5>";
+                                                            echo "<button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+                                                            echo "<span aria-hidden='true'>&times;</span>";
+                                                            echo "</button>";
+                                                            echo "</div>";
+                                                            echo "<div class='modal-body'>";
+                                                            echo "<form method='POST' action='/pages/sister/php/sis-read-msg-action.php'>";
+                                                            echo "<div class=row>";
+                                                            echo "<textarea name='messageArea' id='messageAreaView' class='form-control' readonly style='color:blue;'></textarea>";
+                                                            echo "</div>";
+                                                            echo "<div class=row d-flex justify-content-center>";
+                                                            echo "<div class='col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>";
+                                                            echo "<input type='text' class='form-control' name='date' id='dateView' readonly>";
+                                                            echo "</div>";
+                                                            echo "<div class='col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6'>";
+                                                            echo "<input type='text' class='form-control' name='time' id='timeView' readonly>";
+                                                            echo "</div>";
+                                                            echo "</div>";
+                                                            echo "<div class='modal-footer'>";
+                                                            echo "<button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>";
+                                                            echo "<input type='submit' name='deleteSubmit' class='btn btn-danger' value='Delete'>";
+                                                            echo "</div>";
+                                                            echo "</form>";
+                                                            echo "</div>";
+                                                            echo "</div>";
+                                                            echo "</div>";
+                                                            echo  "</td>";
+                                                            echo  "</tr>";
+
+                                                        }
+        
+                                            
+                                        
+                                        ?>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                      
+                </div>
             </div>
             <!-- end of content -->
 
@@ -129,7 +233,30 @@ if(!isset($_SESSION['sister_id'])) {
     </script>
     <!-- end of writed scripts -->
 
+    <script type="text/javascript">
 
+        $(document).on("click", "#readMidwife", function () {
+        var dId = $(this).data('msgid');
+        var getDate= $(this).data('dateid');
+        var getTime= $(this).data('timeid');
+        $("#date").val(getDate);
+        $("#time").val(getTime);
+        $("#messageArea").val( dId );
+
+        });
+
+        $(document).on("click", "#viewMidwife", function () {
+        var dId = $(this).data('msgid');
+        var getDate= $(this).data('dateid');
+        var getTime= $(this).data('timeid');
+        $("#dateView").val(getDate);
+        $("#timeView").val(getTime);
+        $("#messageAreaView").val( dId );
+
+        });
+
+        
+    </script>
 
 </body>
 

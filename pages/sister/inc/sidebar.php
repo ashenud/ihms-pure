@@ -67,6 +67,24 @@
                 <a href="/sister/inbox" class="text-uppercase ss-inbox">
                     <span class="icon">
                         <i class="fas fa-inbox" aria-hidden="true"></i>
+
+                        <?php
+                            $sql001="SELECT COUNT(status) AS unreadSMS FROM sister_message WHERE status='unread' AND sister_id='".$_SESSION['sister_id']."'";
+                            $run001=mysqli_query($conn,$sql001);
+                            $row001=mysqli_fetch_assoc($run001);
+                            $count=$row001['unreadSMS'];
+
+                            if(0<$count && $count<=9) {
+                                echo "<span class='badge badge-danger'>";
+                                echo $count;
+                                echo "</span>";
+                            }
+                            else if($count>9) {
+                                echo "<span class='badge badge-danger'>";
+                                echo "9+";
+                                echo "</span>";
+                            }
+                        ?>
                     </span>
                     <span class="list">එන පණිවිඩ</span>
                 </a>

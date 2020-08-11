@@ -1,10 +1,8 @@
 <?php
-    if(!isset($_SESSION['serch_baby_using_nic'])) {	
-        header('location:/?noPermission=1');
-    }
-
-    if(!isset($_SESSION['baby_id'])) {	
-       header('location:/baby/select');
+    session_start();
+    if(isset($_SESSION['serch_baby_using_nic'])){}
+    else{	
+    header('/?noPermission=1');
     }
     include "php/conn.php";
     include "php/selectdb.php";
@@ -58,7 +56,7 @@
             <!-- content -->
             <div class="content">
 
-                    <!-- alert section -->
+                <!-- alert section -->
                 <div class="alert-section">
                     <div class="container">
                         <div class="row">
@@ -526,7 +524,7 @@
                             </div>
                         </div>
 
-                    <!--------------------------------------------------------------------------------------->
+                        <!--------------------------------------------------------------------------------------->
                         <div class="form-row d-flex justify-content-center">
                             <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                 <div class="
@@ -594,6 +592,455 @@
                             </div>
                         </div>
 
+                        <!--------------------------------------------------------------------------------------->
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                <div class="
+                                <?php if($gen=="M"){
+                                        echo "card color-1";}
+                                        else{ echo "card color-2";
+                                        }
+                                    ?> ">
+                                    <div class="card-body">
+                                    <lable style="color: rgb(0, 0, 0);font-size: 25px;">Details recorded in home visits</lable>
+                            
+                                    <div class="registration">
+                                        <form name="my-form" action="./php/add-home-visit-action.php" method="POST" onsubmit="return validation()">
+
+                                            <div class="container mt-4">
+
+                                                <div class="form-group row">
+                                                    <label for="mother_id" class="col-md-4 col-form-label text-md-right">Baby ID</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" id="mNic" class="form-control" name="mNic">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="midwife_id" class="col-md-4 col-form-label text-md-right">Midwife ID</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" id="midwife_id" class="form-control" name="midwife_id">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 01 -->
+                                                <h5 class="card-title text-uppercase">Day 01</h5>
+
+                                                <div class="form-group row">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 02 -->
+                                                <h5 class="card-title text-uppercase">Day 02</h5>
+
+                                                <div class="form-group row" class="form-control">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 03 -->
+                                                <h5 class="card-title text-uppercase">Day 03</h5>
+
+                                                <div class="form-group row">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 04 -->
+                                                <h5 class="card-title text-uppercase">Day 04</h5>
+
+                                                <div class="form-group row">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 offset-md-8">
+                                                    <button type="submit" class="btn btn-primary" name="submit">
+                                                        Enter
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
                     
 
                     <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Form Action @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->

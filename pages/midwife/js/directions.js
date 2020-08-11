@@ -16,7 +16,7 @@ function initMap() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: new google.maps.LatLng(7.873, 80.771),
+    center: new google.maps.LatLng(7.433, 80.241),
     zoom: 12
 });
     var infoWindow = new google.maps.InfoWindow;

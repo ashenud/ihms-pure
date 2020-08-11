@@ -31,7 +31,17 @@ if(!isset($_SESSION['midwife_id'])) {
         .collapse-location{
             display: block !important;
         }
-        
+
+        #floating-panel {
+            position: absolute;
+            z-index: 1;
+            margin-left: 275px;
+        }
+
+        #start {
+        margin-right: 10px;
+        }
+
     </style>
 
     <title>Infant Health Management System</title>
