@@ -52,19 +52,27 @@ if(!isset($_SESSION['sister_id'])) {
             <!-- content -->
             <div class="content">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <div class="card">
+                    
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-10">
+                            <div class="card card-insert-user">
+                                <div class="card-header">
+                                    <h3 class="text-uppercase">Midwife Registration</h3>
+                                </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-uppercase">Midwife Registration</h5>
                                     <p>
                                         <?php
                                         if(isset($_GET['success'])){
-                                            echo  " <i style='color :green;'>* User Added. </i>";
+                                            echo  " <i style='color :green; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* User Added. </i>";
                                         }
                                         elseif (isset($_GET['error'])){
-                                            echo " <i style='color :red;'>* Invalid Fields </i>";
+                                            echo " <i style='color :red; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* Invalid Fields </i>";
+                                        }
+                                        elseif (isset($_GET['userIdError'])){
+                                            echo " <i style='color :red; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* Midwife ID you have entered is already existed </i>";
                                         }
                                         ?>
                                     </p>
@@ -74,20 +82,31 @@ if(!isset($_SESSION['sister_id'])) {
                                                 <div class="form-group row" >
                                                     <label class="col-md-4 col-form-label text-md-right">Midwife ID</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="id" class="form-control" placeholder=" ID" required>
+                                                        <input type="text" name="midwife_id" class="form-control" placeholder=" ID" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" align="left">
                                                     <label class="col-md-4 col-form-label text-md-right">Midwife Name</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="mname" class="form-control" placeholder=" Name" required>
+                                                        <input type="text" name="midwife_name" class="form-control" placeholder=" Name" required>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                                    $query10="SELECT * FROM sister WHERE sister_id='".$_SESSION['sister_id']."' LIMIT 1";
+                                                    $result10=mysqli_query($conn,$query10);
+                                                    $row10=mysqli_fetch_assoc($result10);
+                                                ?>
+                                                <div class="form-group row" align="left">
+                                                    <label class="col-md-4 col-form-label text-md-right">Midwife Area</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="midwife_area" value="<?php echo $row10['sister_division'];?>" class="form-control" placeholder=" Area" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row" align="left">
-                                                    <label class="col-md-4 col-form-label text-md-right">Midwife Area</label>
+                                                    <label class="col-md-4 col-form-label text-md-right">Midwife MOH Division</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="area" class="form-control" placeholder=" Area" required>
+                                                        <input type="number" min="0" name="midwife_moh_division" value="<?php echo $row10['sister_moh_division'];?>" class="form-control" placeholder="MOH Division"  required>
                                                     </div>
                                                 </div>
 
@@ -106,7 +125,7 @@ if(!isset($_SESSION['sister_id'])) {
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 offset-md-8">
-                                                    <button class="btn btn-primary" name="insert">Register</button>
+                                                    <button class="btn submit-btn btn-primary" name="insert">Register</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -114,7 +133,6 @@ if(!isset($_SESSION['sister_id'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>

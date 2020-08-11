@@ -1,8 +1,10 @@
 <?php
-    session_start();
-    if(isset($_SESSION['serch_baby_using_nic'])){}
-    else{	
-    header('/?noPermission=1');
+    if(!isset($_SESSION['serch_baby_using_nic'])) {	
+        header('location:/?noPermission=1');
+    }
+
+    if(!isset($_SESSION['baby_id'])) {	
+       header('location:/baby/select');
     }
     include "php/conn.php";
     include "php/selectdb.php";

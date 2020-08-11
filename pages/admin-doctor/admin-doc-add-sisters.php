@@ -56,19 +56,26 @@ if(!isset($_SESSION['admin_id'])) {
             <div class="content">
                 
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <div class="card">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-10">
+                            <div class="card card-insert-user">
+                                <div class="card-header">
+                                    <h3 class="text-uppercase">Sister Registration</h3>
+                                </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-uppercase">Sister Registration</h5>
                                     <p>
                                         <?php
                                         if(isset($_GET['success'])){
-                                            echo  " <i style='color :green;'>* User Added. </i>";
+                                            echo  " <i style='color :green; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* User Added. </i>";
                                         }
                                         elseif (isset($_GET['error'])){
-                                            echo " <i style='color :red;'>* Invalid Fields </i>";
+                                            echo " <i style='color :red; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* Invalid Fields </i>";
+                                        }
+                                        elseif (isset($_GET['userIdError'])){
+                                            echo " <i style='color :red; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* Sister ID you have entered is already existed </i>";
                                         }
                                         ?>
                                     </p>
@@ -80,40 +87,47 @@ if(!isset($_SESSION['admin_id'])) {
                                                 <div class="form-group row">
                                                     <label for="user_id" class="col-md-4 col-form-label text-md-right">User ID</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" id="user_id" class="form-control" name="user_id">
+                                                        <input type="text" id="user_id" class="form-control" name="user_id" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="sister_name" class="col-md-4 col-form-label text-md-right">Full Name</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" id="sister_name" class="form-control" name="sister_name">
+                                                        <input type="text" id="sister_name" class="form-control" name="sister_name" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
                                                     <div class="col-md-6">
-                                                        <input type="email" id="email" class="form-control" name="email">
+                                                        <input type="email" id="email" class="form-control" name="email" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                                     <div class="col-md-6">
-                                                        <input type="password" id="password" class="form-control" name="password">
+                                                        <input type="password" id="password" class="form-control" name="password" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <label for="sister_division" class="col-md-4 col-form-label text-md-right">Sister Division</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" id="sister_division" class="form-control" name="sister_division">
+                                                        <input type="text" id="sister_division" class="form-control" name="sister_division" required>
                                                     </div>
                                                 </div>
-                                                                                       
+
+                                                <div class="form-group row">
+                                                    <label for="sister_moh_division" class="col-md-4 col-form-label text-md-right">Sister MOH Division</label>
+                                                    <div class="col-md-6">
+                                                        <input type="number" min="0" id="sister_moh_division" class="form-control" name="sister_moh_division" required>
+                                                    </div>
+                                                </div>
+                                                                                        
                                                 <div class="col-md-4 offset-md-8">
-                                                    <button type="submit" class="btn btn-primary" name="submit">
+                                                    <button type="submit" class="btn submit-btn btn-primary" name="submit">
                                                     Register
                                                     </button>
                                                 </div>
@@ -124,11 +138,8 @@ if(!isset($_SESSION['admin_id'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
                     </div>
-                    
                 </div> 
-
             </div>
             <!-- end of content -->
 
@@ -173,121 +184,6 @@ if(!isset($_SESSION['admin_id'])) {
     </script>
     
     <!-- end of writed scripts -->
-
-
-
-             <!---------------------------------------------validation--------------------------------------------------------------->
-
-<script >
-  function validation()
-      {
-          
-          var bfName = document.getElementById('bfName').value;
-          var blName = document.getElementById('blName').value;
-          
-          var tp = document.getElementById('tp').value;
-          var mName = document.getElementById('mName').value;
-          var mAge = document.getElementById('mAge').value;
-          var email = document.getElementById('email').value;
-          var pwd = document.getElementById('pwd').value;
-
-          var letters = /^[A-Za-z]+$/;
-         
-          
-          if(bfName==""){
-              document.getElementById('1').innerHTML="*please fill the  First name ";
-              return false;
-              }
-          else if(bfName.match(letters)){
-              if((bfName.length<3)||(bfName.length>20)){
-                  document.getElementById('1').innerHTML="*please fill the  First name between 3 and 20";
-                  return false;
-                  }
-          }
-              if(!isNaN(bfName)){
-              document.getElementById('1').innerHTML="*please enter character";
-                  return false;
-              
-              }   
- 
-              if(blName==""){
-              document.getElementById('1').innerHTML="*please fill the  First name ";
-              return false;
-              }
-          else if(blName.match(letters)){
-              if((blName.length<3)||(blName.length>30)){
-                  document.getElementById('1').innerHTML="*please fill the  Last name between 3 and 30";
-                  return false;
-                  }
-          }
-              if(!isNaN(blName)){
-              document.getElementById('1').innerHTML="*please enter character";
-                  return false;
-              
-              }   
-         
-
-          if(tp.length<10 || tp.length >10){
-
-            document.getElementById('2').innerHTML="please enter valid phone number";
-            return false;
-
-          }    
-              
-
-          if(mName==""){
-              document.getElementById('3').innerHTML="*please fill the  First name ";
-              return false;
-              }
-
-          else if(mName.match(letters)){
-              if((mName.length<3)||(mName.length>20)){
-                  document.getElementById('3').innerHTML="*please fill the  First name between 3 and 20";
-                  return false;
-                  }
-          }
-              if(!isNaN(mName)){
-              document.getElementById('3').innerHTML="*please enter character";
-                  return false;
-              
-              }   
-
-
-          if(mAge < 18){
-            document.getElementById('4').innerHTML="*please enter valid Age";
-            return false;
-          }
-
-
-          if(email==""){
-              document.getElementById('5').innerHTML="*plesae fill the Email address";
-              return false;
-              }
-              
-              if(email.indexOf('@')<=0){
-              document.getElementById('5').innerHTML="*plesae fill the Email address in proper format @";
-              return false;
-              }
-              
-              
-              if((email.charAt(email.length-4)!='.')&&(email.charAt(email.length-3)!='.')){
-              document.getElementById('5').innerHTML="*plesae fill the Email address in proper format .";
-              return false;
-              }
-              
-
-          if(pwd==""){
-              document.getElementById('6').innerHTML="*please fill the Password";
-              return false;
-              }
-          if((pwd.length<5)||(pwd.length>20)){
-                  document.getElementById('6').innerHTML="*please fill the  password between 5 and 20";
-                  return false;
-                  }  
-      
-      }
-          
-</script>
 
 
 </body>

@@ -55,9 +55,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <?php
+                            $query10="SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."' LIMIT 1";
+                            $result10=mysqli_query($conn,$query10);
+                            $row10=mysqli_fetch_assoc($result10);
+                        ?>
                         <div class="form-group">
                             <label class="text-uppercase">GD number</label>
-                            <input type="text" name="GnDNo" class="form-control" required>
+                            <input type="text" name="GnDNo" value="<?php echo $row10['midwife_moh_division'];?>" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">
