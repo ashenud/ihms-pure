@@ -2,7 +2,7 @@
 session_start();
 include('../../php/basic/connection.php');
 if(!isset($_SESSION['sister_id'])) {	
-	header('location:/?noPermission=1');
+	header('location:../../index.php?noPermission=1');
 }
 ?>
 
@@ -14,14 +14,19 @@ if(!isset($_SESSION['sister_id'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-    
+
     <?php 
     //favicons
     include('../../inc/basic/include-dashboard-fav.php');
     //css
     include('../../inc/basic/include-dashboard-css.php');
     ?>
+
+    <link rel="stylesheet" href="/assets/css/calendar/calendar.css">
     
+    <link rel="stylesheet" href="/pages/sister/css/sis-dashboard-style.css">
+
+
     <title>Infant Health Management System</title>
     
 </head>
@@ -45,54 +50,124 @@ if(!isset($_SESSION['sister_id'])) {
             <!-- content -->
             <div class="content">
                
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="container">
+                
+                 <div class="row mt-4 mb-5">
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header header-warning">
+				                    <div class="card-icon icon-color">
+                                        <i class="fas fa-baby"></i>
+                                    </div>
+                                    <p class="card-category">ක්‍රියාකාරී ළදරුවන්</p>
+                                    
+                                    <?php 
+                                    
+                                        mysqli_select_db($conn, 'cs2019g6');
+                                        $query1="SELECT * FROM baby_register";
+                                        $result1=mysqli_query($conn, $query1);
+                                        $num_rows=mysqli_num_rows($result1);
+                                        
+                                    ?>
+                                                                        
+                                    <h3 class="card-title counter"><?php echo $num_rows; ?></h3>
                                 </div>
-                                <div class="card-footer text-muted">2 days ago</div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <i class="fas fa-baby-carriage"></i>
+                                        <a href="/sister/view-babies">ළමුන්ගේ තොරතුරු බලන්න...</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="card-icon icon-color">
+                                        <i class="far fa-envelope"></i>
+                                    </div>
+                                    <p class="card-category">ලැබුනු පණිවුඩ</p>
+                                    
+                                    <?php 
+                                        mysqli_select_db($conn,'cs2019g6');
+                                        $query4="SELECT COUNT(status) AS unreadSMS FROM sister_message WHERE status='unread' AND sister_id='".$_SESSION['sister_id']."'";
+                                        $result4=mysqli_query($conn,$query4);
+                                        $row4=mysqli_fetch_assoc($result4);
+                                    ?>
+                                    
+                                    <h3 class="card-title counter"><?php echo $row4['unreadSMS']; ?></h3>
+                                </div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <i class="fas fa-tasks"></i> 
+                                        <a href="/sister/inbox">පණිවුඩ බලන්න...</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="card-icon icon-color">
+                                        <i class="fas fa-user-nurse"></i>
+                                    </div>
+                                    <p class="card-category">වින්නඹුවන් (Midwife) ලියාපදිංචිය</p>
+                                    <h3 class="card-title"><span class="counter"> </span></h3>
+                                </div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <i class="fas fa-user-plus"></i> 
+                                        <a href="/sister/add-midwife">වින්නඹුවන්(Midwife) ලියාප්දිංචි කිරීම...</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+                    
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="card-icon icon-color">
+                                        <i class="fas fa-user-nurse"></i>
+                                    </div>
+                                    <p class="card-category">ක්‍රියාකාරී වින්නඹුවන් (Midwife)</p>
+                                    <?php 
+                                    
+                                    mysqli_select_db($conn, 'cs2019g6');
+                                    $query1="SELECT * FROM midwife";
+                                    $result1=mysqli_query($conn, $query1);
+                                    $num_rows=mysqli_num_rows($result1);
+                                    
+                                    ?>
+
+                                <h3 class="card-title"><span class="counter">1</span></h3>
+                                </div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <i class="fas fa-tasks"></i> 
+                                        <a href="/sister/view-midwife">වින්නඹුවන්ගේ (Midwife) තොරතුරු බලන්න...</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-cal" style="height: 100%;width:100%;">
+                                <div class="calendar calendar-first" id="calendar_first">
+                                    <div class="calendar_header">
+                                        <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                                        <h2></h2>
+                                        <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="calendar_weekdays"></div>
+                                    <div class="calendar_content"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
+                                   
                 </div>
 
             </div>
@@ -104,11 +179,15 @@ if(!isset($_SESSION['sister_id'])) {
     </div>
 
 
-    <!-- optional JavaScript -->
     <?php
     //js
     include('../../inc/basic/include-dashboard-js.php');
     ?>
+
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/assets/css/calendar/calendar.js"></script>
+    <script type="text/javascript" src="/assets/js/charts/Chart.min.js"></script>
 
     <!-- writed scripts -->
     <script>
@@ -116,22 +195,34 @@ if(!isset($_SESSION['sister_id'])) {
             $('.inner-sidebar-menu ul li a.ss-dash').addClass('active');
         }); 
     </script>
-        
+    
+    <!-- show hide sidebar -->
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-            
-            $(".mob-hamburger").click(function() {
-                $(".wrapper").toggleClass("mob-active");
-            });         
         });
     </script>
-    <!-- end of writed scripts -->
 
-
-
+    <script>
+        $(document).ready(function() {
+            $(".mob-hamburger").click(function() {
+                $(".wrapper").toggleClass("mob-active");
+            });
+        });
+    </script>
+    
+    <!-- counting up -->
+    <script>
+        jQuery(document).ready(function() {
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
