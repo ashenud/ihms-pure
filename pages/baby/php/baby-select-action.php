@@ -3,17 +3,18 @@
    
 
 <?php
+    $b_id=$_POST['b_id'];
     if(isset($_SESSION['serch_baby_using_nic'])) { 
-        $_SESSION['baby_id']=$_POST['baby_id'];
+        $_SESSION['baby_id']=$b_id;
         header('location:/baby/editable-page');
     }
     
     elseif($_SESSION['doc_serch_baby_using_nic']) { 
-        $_SESSION['baby_id']=$_POST['baby_id'];
+        $_SESSION['baby_id']=$b_id;
         header('location:/doctor/vac-permission');
     }
     elseif(isset($_SESSION['mother_id'])) {
-        $_SESSION['baby_id']=$_POST['baby_id'];
+        $_SESSION['baby_id']=$b_id;
         header('location:/baby/dashboard');
     }
     else {
