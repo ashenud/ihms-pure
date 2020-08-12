@@ -18,6 +18,7 @@
     $mother_name=$data['mother_name'];
     $mother_age=$data1['mother_age'];
     $address=$data['address'];
+    $email=$data['email'];
         
     $baby_first_name=$data1['baby_first_name'];
     $baby_last_name=$data1['baby_last_name'];
@@ -110,6 +111,10 @@ if($gender=='M') {
                                                 <tr>
                                                     <th>Address</th>
                                                     <td><?php echo $address; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email</th>
+                                                    <td><?php echo $email; ?></td>
                                                 </tr>
                                             </table>
                                         </div>
