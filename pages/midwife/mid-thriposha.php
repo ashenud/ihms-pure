@@ -385,8 +385,17 @@ if(!isset($_SESSION['midwife_id'])) {
             });
 
             btnSave1.addEventListener('click', function () {
+                        
+                var today = new Date();
+                var yyy = today.getFullYear();
+                var mid_id = "<?php 
+                                echo $_SESSION['midwife_id'];
+                            ?>";
+
+                
                 var doc = new jsPDF();
-                doc.addImage(chart1.getImageURI(), 0, 0);
+                doc.addImage(chart1.getImageURI(), 30, 30);
+                doc.text(10,10, yyy-2 +' Thriposha Distribution of midwife ' + mid_id);
                 doc.save('chart1.pdf');
             }, false);
 
@@ -495,8 +504,17 @@ if(!isset($_SESSION['midwife_id'])) {
             });
 
             btnSave2.addEventListener('click', function () {
+
+                var today = new Date();
+                var yyy = today.getFullYear();
+                var mid_id = "<?php 
+                                echo $_SESSION['midwife_id'];
+                            ?>";
+
+                
                 var doc = new jsPDF();
-                doc.addImage(chart2.getImageURI(), 0, 0);
+                doc.addImage(chart2.getImageURI(), 30, 30);
+                doc.text(10,10, yyy-1 +' Thriposha Distribution of midwife ' + mid_id);
                 doc.save('chart2.pdf');
             }, false);
 
@@ -605,8 +623,17 @@ if(!isset($_SESSION['midwife_id'])) {
             });
 
             btnSave3.addEventListener('click', function () {
+
+                var today = new Date();
+                var yyy = today.getFullYear();
+                var mid_id = "<?php 
+                                echo $_SESSION['midwife_id'];
+                            ?>";
+
+                
                 var doc = new jsPDF();
-                doc.addImage(chart3.getImageURI(), 0, 0);
+                doc.addImage(chart3.getImageURI(), 30, 30);
+                doc.text(10,10, yyy +' Thriposha Distribution of midwife ' + mid_id);
                 doc.save('chart3.pdf');
             }, false);
 

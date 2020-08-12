@@ -4,7 +4,7 @@
         send();
     }
     else {
-        header("Location:mid-inbox.php");
+        header("Location:/midwife/mid-dashboard");
     }
 
     function send() {
@@ -13,7 +13,9 @@
 
         include "selectdb.php";
 
-        if($subject==""){}
+        if($subject==""){
+            header("Location:/midwife/mid-dashboard");
+        }
         
         else {
             

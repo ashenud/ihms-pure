@@ -26,6 +26,7 @@ if(!isset($_SESSION['baby_id'])) {
     ?>
     
     <link rel="stylesheet" href="/pages/baby/css/baby-dashboard-style.css">
+    <link rel="stylesheet" href="/assets/css/calendar/calendar.css">
 
     <title>Infant Health Management System</title>
     
@@ -50,55 +51,116 @@ if(!isset($_SESSION['baby_id'])) {
             <!-- content -->
             <div class="content">
                
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="container">
+                
+                <div class="row mt-4 mb-5">
+                    <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                        <div class="card card-stats">
+                            <div class="card-header header-warning">
+                                <div class="card-icon icon-color">
+                                    <i class="fas fa-syringe"></i>
                                 </div>
-                                <div class="card-footer text-muted">2 days ago</div>
+                                <h6 class="card-title text-muted font-weight-bold mb-0">මීළඟ එන්නත</h6>
+                                
+                                <?php 
+                                    $query1="SELECT MAX(giving_date) AS max_date FROM vaccine_date WHERE baby_id='".$_SESSION['baby_id']."'";
+                                    $result1=mysqli_query($conn, $query1);
+                                    $date_given=mysqli_fetch_assoc($result1);
+                                    
+                                ?>
+                                  <br>                                  
+                                <h6 class="card-title counter"><?php echo $date_given['max_date']; ?></h6>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
+                            <div class="card-footer item-footer">
+                            <hr style="background-color: black;">
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+                    <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="card-icon icon-color">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <h6 class="card-title text-muted font-weight-bold mb-0">දැනට පවතින බර</h6>
+                                
+                                <?php 
+                                    $query11="SELECT MAX(date) AS max_date FROM growth WHERE baby_id='".$_SESSION['baby_id']."'";
+                                    $result111=mysqli_query($conn,$query11);
+                                    $row80=mysqli_fetch_assoc($result111);
+                                    $query4="SELECT * FROM growth WHERE baby_id='".$_SESSION['baby_id']."' AND date='".$row80['max_date']."'";
+                                    $result4=mysqli_query($conn,$query4);
+                                    $row4=mysqli_fetch_assoc($result4);
+                                ?>
+                                <br>
+                                <h5 class="card-title counter"><?php echo $row4['weight']; ?></h5>
+                            </div>
+                            <div class="card-footer item-footer">
+                                <hr style="background-color: black;">
+                            </div>
                         </div>
                     </div>
+                
+                    <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="card-icon icon-color">
+                                    <i class="fas fa-user-nurse"></i>
+                                </div>
+                                <h6 class="card-title text-muted font-weight-bold mb-0">දැනට පවතින උස</h6>
+
+                                <?php 
+                                    $query11="SELECT MAX(date) AS max_date FROM growth WHERE baby_id='".$_SESSION['baby_id']."'";
+                                    $result111=mysqli_query($conn,$query11);
+                                    $row80=mysqli_fetch_assoc($result111);
+                                    $query4="SELECT * FROM growth WHERE baby_id='".$_SESSION['baby_id']."' AND date='".$row80['max_date']."'";
+                                    $result4=mysqli_query($conn,$query4);
+                                    $row4=mysqli_fetch_assoc($result4);
+                                ?>
+                                <br>
+                            <h5 class="card-title"><span class="counter"><?php echo $row4['height']; ?></span></h5>
+                            </div>
+                            <div class="card-footer item-footer">
+                            <hr style="background-color: black;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                        <div class="card card-stats">
+                            <div class="card-header">
+                                <div class="card-icon icon-color">
+                                    <i class="fas fa-user-nurse"></i>
+                                </div>
+                                <p class="card-category">වින්නඹුවන් (Midwife) ලියාපදිංචිය</p>
+                                <h3 class="card-title"><span class="counter"> </span></h3>
+                            </div>
+                            <div class="card-footer item-footer">
+                                <div class="stats">
+                                    <a href="/sister/add-midwife">වින්නඹුවන්(Midwife) ලියාප්දිංචි කිරීම...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-2">
+                        <div class="card card-cal" style="height: 100%;width:100%;">
+                            <div class="calendar calendar-first" id="calendar_first">
+                                <div class="calendar_header">
+                                    <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                                    <h2></h2>
+                                    <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar_weekdays"></div>
+                                <div class="calendar_content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
+                               
+            </div>
 
             </div>
             <!-- end of content -->
@@ -114,6 +176,10 @@ if(!isset($_SESSION['baby_id'])) {
     //js
     include('../../inc/basic/include-dashboard-js.php');
     ?>
+
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/assets/css/calendar/calendar.js"></script>
 
     <!-- writed scripts -->
     <script>
