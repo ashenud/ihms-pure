@@ -108,11 +108,11 @@
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Weight</b>(kg)</label>
-                                                    <input type="number" min="0" class="form-control" name="bWeight" placeholder="in (kg)" required>
+                                                    <input type="number" min="0" step="0.01" class="form-control" name="bWeight" placeholder="in (kg)" required>
                                             </div>
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Height</b>(cm)</label>
-                                                    <input type="number" min="0" class="form-control" name="bHeight" placeholder="in (cm)" required>
+                                                    <input type="number" min="0" step="0.01" class="form-control" name="bHeight" placeholder="in (cm)" required>
                                             </div>
                                         </div>
                                         <div class="form-row d-flex justify-content-center">

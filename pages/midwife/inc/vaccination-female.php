@@ -1999,7 +1999,7 @@
                             <table>
                                 <tr>
                                     <td><label>ලබා දුන් දිනය:</label></td>
-                                    <td><input class="form-control" type="date" id="date_given" name="date_given" required></td>
+                                    <td><input class="form-control" max="<?php echo date('Y-m-d'); ?>" type="date" id="date_given" name="date_given" required></td>
                                 </tr>
                                 <tr>
                                     <td><label>කාණ්ඩ අංකය:</label></td>
@@ -2032,7 +2032,7 @@
                             <table>
                                 <tr>
                                     <td><label>දිනයක් තෝරන්න:</label></td>
-                                    <td><input class="form-control" type="date" id="giving_date" name="giving_date" required> <br></td>
+                                    <td><input class="form-control" min="<?php echo date('Y-m-d'); ?>" type="date" id="giving_date" name="giving_date" required> <br></td>
                                 </tr>
                             </table>
                         </div>

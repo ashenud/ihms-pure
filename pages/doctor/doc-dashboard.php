@@ -174,7 +174,7 @@ if(!isset($_SESSION['doctor_id'])) {
                                         <i class="fas fa-handshake"></i>
                                     </div>
                                     <p class="card-category">රැස්වීම්</p>
-                                    <h3 class="card-title"><span class="counter">4</span></h3>
+                                    <h3 class="card-title"><span class="counter">0</span></h3>
                                 </div>
                             </div>
                         </div>
