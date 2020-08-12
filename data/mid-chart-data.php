@@ -199,13 +199,13 @@ if(!isset($_SESSION['midwife_id'])) {
                             {
                                 if($weight<=2.9)
                                 {
-                                        echo 'උග්‍ර අඩු බර';
+                                       // echo 'උග්‍ර අඩු බර';
                                         $aa++;
 
                                 }
                                 else if($weight<=3.4)
                                 {
-                                        echo 'අඩු බර';
+                                       // echo 'අඩු බර';
                                         $bb++;
                                 }
                                 else if($weight<=3.9) 
@@ -242,17 +242,17 @@ if(!isset($_SESSION['midwife_id'])) {
                             }
                             else if($weight<=4.9) 
                             {
-                                echo 'මද බර අඩු';
+                                //echo 'මද බර අඩු';
                                 $c++;
                             }
                             else if($weight<=7.0) 
                             {
-                                echo 'නියමිත බර';
+                                //echo 'නියමිත බර';
                                 $d++;
                             }
                             else
                             {
-                                echo 'අධිබර';
+                               // echo 'අධිබර';
                                 $e++;
                             }
 
@@ -3422,7 +3422,7 @@ if(!isset($_SESSION['midwife_id'])) {
 
                         else
                         {
-                            echo 'error';
+                            //echo 'error';
 
                         }
                             
@@ -5813,7 +5813,7 @@ if(!isset($_SESSION['midwife_id'])) {
                         }
                         else
                         {
-                            echo "error";
+                            //echo "error";
                         }
                         
  
