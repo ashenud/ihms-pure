@@ -14,5 +14,5 @@ mysqli_query($conn,$sql3);
 mysqli_query($conn,$sql4);
 mysqli_query($conn,$sql5);
 mysqli_close($conn);
-header("Location:../mid-view-babies.php");
+header("Location:/midwife/view-babies");
 ?>

@@ -1,9 +1,9 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['admin_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['admin_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -14,21 +14,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
     <title>Infant Health Management System</title>
     
@@ -46,176 +38,50 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['admin_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="admin-doc-dashboard.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="admin-doc-add-sisters.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">add sisters</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="admin-doc-view-sisters.php" class="text-uppercase drop">
-                                    <span class="icon-active">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view sisters</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="admin-doc-view-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="admin-doc-vaccinations.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-syringe" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Vaccinations</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="admin-doc-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-uppercase active">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin-doc-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="admin-doc-send-messages.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Send Messages</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
             
             <!-- content -->
             <div class="content">
                
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
+                <div class="container">
+                    <form id="" name="" method="post" action="/pages/admin-doctor/php/add-doc-thriposa.php" class="bg-white p-4">
+                        <div class="form-group">
+                            <label for="inputAddress">Remaining Amount (until last month)</label>
+                            <input type="text" class="form-control" id="remain-amount" name="remain-amount"
+                                placeholder="Remaining Amount (until last month)">
                         </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Required Amount for this month</label>
+                            <input type="text" class="form-control" id="required-amount" name="required-amount"
+                                placeholder="Required Amount for this month">
                         </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Expired Amount</label>
+                            <input type="text" class="form-control" id="expired-amount" name="expired-amount"
+                                placeholder="Expired Amount">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Nested Amount (Amount can be distribute )</label>
+                            <input type="text" class="form-control" id="nested-amount" name="nested-amount"
+                                placeholder="Nested Amount (Amount can be distribute )">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Month</label>
+                            <input type="date" class="form-control" id="month" name="month"
+                                placeholder="Nested Amount (Amount can be distribute )">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-primary" value="save" name="save" ">
+                        </div>
+                        
+                    </form>
+                    <div class="row mt-5">
+                            <div class="col-md-8">
+                                <canvas id="myChart" width="100" height="100"></canvas>
+                            </div>
 
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
                         </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
-                        </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -228,31 +94,109 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
+    <script type="text/javascript" src="/assets/js/charts/Chart.js"></script>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.a-table').addClass('active');
+        });
+    </script>
+    
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
-            });
+            });        
         });
     </script>
     <!-- end of writed scripts -->
+
+    <?php
+    
+        $querychart = " SELECT * FROM (
+                SELECT YEAR(`updated_date`) AS y, MONTH(`updated_date`) AS m, SUM(`distributed_qty`) AS total, SUM(`available_qty`) AS save, SUM(`distributed_qty`) - SUM(`available_qty`) AS cost,MONTHNAME(`updated_date`) month,`updated_date`
+                FROM thriposha_storage GROUP BY YEAR(`updated_date`), MONTH(`updated_date`) ORDER BY `updated_date` DESC LIMIT 12
+            ) usages ORDER BY `updated_date` ASC";
+
+        $result1= mysqli_query($conn,$querychart);
+        $monthly_chart = array();
+        if ($result1) {
+            while ($row = mysqli_fetch_assoc($result1)) {
+                $monthly_chart[] = $row;
+            }
+        }
+                                  
+    ?>
+
+    <script>
+        var data = <?php echo json_encode($monthly_chart)  ?>;
+        console.log(data);
+        var label = [
+                data[0].month+ "-" +data[0].y, data[1].month+ "-" +data[1].y, data[2].month+ "-" +data[2].y, data[3].month+ "-" +data[3].y, data[4].month+ "-" +data[4].y, data[5].month+ "-" +data[5].y, data[6].month+ "-" +data[6].y, data[7].month+ "-" +data[7].y, data[8].month+ "-" +data[8].y, data[9].month+ "-" +data[9].y, data[10].month+ "-" +data[10].y, data[11].month+ "-" +data[11].y
+            ];
+        var datasets = [
+            data[0].cost, data[1].cost, data[2].cost, data[3].cost, data[4].cost, data[5].cost, data[6].cost, data[7].cost, data[8].cost, data[9].cost, data[10].cost, data[11].cost
+            ];
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'Usage of thriposa',
+                    data: datasets,
+                    backgroundColor: [ 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                         
+                    ],
+                    borderColor: [ 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        } 
+                    }]
+                } 
+            }
+        });
+    </script>
 
 
 

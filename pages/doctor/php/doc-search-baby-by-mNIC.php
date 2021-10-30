@@ -4,8 +4,7 @@
 <?php
 
 if(isset($_POST['searchBabyUsingMnic'])){
-
-    mysqli_select_db($conn,'cs2019g6');
+    
     extract($_POST);
 
     $query1="SELECT * FROM mother WHERE mother_nic='{$searchUser}' AND status='active' LIMIT 1";
@@ -14,11 +13,11 @@ if(isset($_POST['searchBabyUsingMnic'])){
         
         $_SESSION['mother_id']=$searchUser;
         $_SESSION['doc_serch_baby_using_nic']="Somthing";
-        header("Location:../../baby/baby-select.php");
+        header("Location:/baby/select");
         
     }
     else {
-        header("Location:../doc-dashboard.php?motherNotFound=1");
+        header("Location:/doctor/dashboard?motherNotFound=1");
     }
 }
 

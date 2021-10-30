@@ -1,10 +1,11 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['midwife_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['midwife_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -13,25 +14,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
     
     <!--for charts-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
+
+    <!-- jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
+    <!-- jQuary -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Infant Health Management System</title>
     
@@ -53,18 +51,23 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
+                        <img src="/pages/midwife/img/midwife.png" width="50" class="rounded-circle">
+                        <?php
+                        $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                        $result1= mysqli_query($conn,$query1);
+                        $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                         <li>
-                            <a href="mid-dashboard.php" class="text-uppercase">
+                            <a href="/midwife/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
@@ -72,7 +75,7 @@
                                 <span class="icon">
                                     <i class="fas fa-cookie-bite" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Thriposha</span>
+                                <span class="list">ත්‍රිපෝෂ</span>
                             </a>
                         </li>
                     </ul>
@@ -106,11 +109,14 @@
                 <div class="container">
  
                     <div class="row d-flex justify-content-between">
-                        <div class="col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                            <label style="color:rgb(255, 166, 0);font-size: 4vw;">Thriposha</label><br>
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                            <label style="color:rgb(243, 117, 138,1);font-size: 4vw;">ත්‍රිපෝෂ</label><br>
                         </div>
-                        <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">
-                            <label style="outline-style:groove; outline-color: rgb(24, 23, 23);color:blue;font-size: 35px;">
+                        <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                            <label style="color:rgb(243, 117, 138,1);font-size:1.3vw;">දැනට ඇති පැකට් ගණන</label><br>
+                        </div>
+                        <div class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                            <label style="color:blue;font-size: 35px;">
                                 <?php
                                     include "php/selectdb.php";
                                     $currentYMonth=date("Y-m");
@@ -123,25 +129,30 @@
                                 ?>
                             </label>
                         </div>
-                    </div>            
+                    </div>  
+                    <br>          
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">
-                            <div class="card bg-secondary">
-                                <div class="card-header" style="font-size:22px;color:rgb(255, 255, 255);">Update Form
+                            <div class="card bg-light border-primary mb-3">
+                                <div class="card-header" style="font-size:22px;color:rgb(0, 0, 0);">Update Form
                                 </div>
                                 <div class="card-body">
                                     <div class="card">
                                         <div class="class-body">
-                                            <form method="POST" action="php/update-thriposha-action.php">
+                                            <form method="POST" action="/pages/midwife/php/update-thriposha-action.php">
                                                 <div class="form-row d-flex justify-content-center">
                                                     <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
-                                                        <p style="color:green;">
+                                                        
                                                             <?php
                                                                 if(isset($_GET['success'])){
-                                                                echo 'Updated';
-                                                }
+                                                                echo '<span style="background-color:rgb(49,247,31); color:white;">Updated</span><br>';
+                                                                }
+                                                                if(isset($_GET['fail'])){
+                                                                    echo '<span style="background-color:rgb(250, 57, 50);color: white;">Fail to update</span><br>';
+                                                                }
+                                                            
                                                             ?>
-                                                        </p>
+                                                        
                                                         <label>midwife ID</label>
                                                         <input type="text" class="form-control" value="<?php echo $_SESSION['midwife_id'];?>" style="color:blue;" disabled>
                                                     </div>
@@ -149,7 +160,7 @@
                                                 <div class="form-row d-flex justify-content-center">
                                                     <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                         <label>Available Quantity</label>
-                                                        <input type="number" name="availableQty" class="form-control" placeholder="include earlier month thiposha balance">
+                                                        <input type="number" name="availableQty" class="form-control" placeholder="thiposha Qty">
                                                     </div>
                                                 </div>
                                                 <div class="form-row d-flex justify-content-center">
@@ -184,15 +195,23 @@
                         </div>
                     </div>
                     <br><br>
+                
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                             <div class="card bg-warning">
                                 <div class="card-body">
-                                    <div id="chart_div3"></div>
+                                    <div id="chart_div3">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div><br>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" id="down3">Download</button>
+                    </div>
+                
+                    <br>
+                
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
                             <div class="card bg-secondary">
@@ -202,6 +221,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" id="down2">Download</button>
                     </div>
                     <div class="row d-flex justify-content-center">
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
@@ -213,6 +235,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary" id="down1">Download</button>
+                    </div>
+                
                 
                 </div> 
             </div>
@@ -225,13 +251,10 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
     <!-- writed scripts -->
     <script>
@@ -239,11 +262,7 @@
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
@@ -361,7 +380,27 @@
             };
 
             var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+            var btnSave1 = document.getElementById('down1');
+            google.visualization.events.addListener(chart1, 'ready', function () {
+            });
+
+            btnSave1.addEventListener('click', function () {
+                        
+                var today = new Date();
+                var yyy = today.getFullYear();
+                var mid_id = "<?php 
+                                echo $_SESSION['midwife_id'];
+                            ?>";
+
+                
+                var doc = new jsPDF();
+                doc.addImage(chart1.getImageURI(), 30, 30);
+                doc.text(10,10, yyy-2 +' Thriposha Distribution of midwife ' + mid_id);
+                doc.save('chart1.pdf');
+            }, false);
+
             chart1.draw(data1, options1);
+
         }
 
         function drawLineColors2() {
@@ -459,6 +498,26 @@
             };
 
             var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
+            var btnSave2 = document.getElementById('down2');
+
+            google.visualization.events.addListener(chart2, 'ready', function () {
+            });
+
+            btnSave2.addEventListener('click', function () {
+
+                var today = new Date();
+                var yyy = today.getFullYear();
+                var mid_id = "<?php 
+                                echo $_SESSION['midwife_id'];
+                            ?>";
+
+                
+                var doc = new jsPDF();
+                doc.addImage(chart2.getImageURI(), 30, 30);
+                doc.text(10,10, yyy-1 +' Thriposha Distribution of midwife ' + mid_id);
+                doc.save('chart2.pdf');
+            }, false);
+
             chart2.draw(data2, options2);
         }
 
@@ -558,11 +617,31 @@
             };
 
             var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
+            var btnSave3 = document.getElementById('down3');
+
+            google.visualization.events.addListener(chart3, 'ready', function () {
+            });
+
+            btnSave3.addEventListener('click', function () {
+
+                var today = new Date();
+                var yyy = today.getFullYear();
+                var mid_id = "<?php 
+                                echo $_SESSION['midwife_id'];
+                            ?>";
+
+                
+                var doc = new jsPDF();
+                doc.addImage(chart3.getImageURI(), 30, 30);
+                doc.text(10,10, yyy +' Thriposha Distribution of midwife ' + mid_id);
+                doc.save('chart3.pdf');
+            }, false);
+
             chart3.draw(data3, options3);
         }
     </script>
 
-
+   
 
 </body>
 

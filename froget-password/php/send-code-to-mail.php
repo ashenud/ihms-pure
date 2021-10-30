@@ -10,7 +10,6 @@ if(isset($_POST['submit'])) {
     $reset_email=mysqli_real_escape_string($conn, $_POST['email']);
     $user_id=mysqli_real_escape_string($conn, $_POST['user_id']);
     
-    mysqli_select_db($conn, 'cs2019g6');
     $query1="SELECT * FROM user WHERE user_id='{$user_id}' AND email='{$reset_email}' LIMIT 1";
 
     $result1=mysqli_query($conn, $query1);
@@ -25,29 +24,28 @@ if(isset($_POST['submit'])) {
             exit("error");
         }
         
-        $mail = new PHPMailer(true);
+        $mail = new PHPMailer;
 
         try {
             //Server settings
-            $mail->isSMTP(); 
-            $mail->Host       = 'smtp.gmail.com';
-            $mail->SMTPAuth   = true;
-            $mail->Username   = 'ihmsuor@gmail.com'; 
-            $mail->Password   = 'ihmsuordwp';
-            $mail->SMTPKeepAlive = true; 
-            $mail->Mailer = 'smtp';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port       = 587;
-            $mail->CharSet = 'utf-8';  
-            $mail->SMTPDebug  = 0; 
+            
+
+            $mail->SMTPDebug = 0;                       // Enable verbose debug output
+            $mail->isSMTP();                            // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                     // Enable SMTP authentication
+            $mail->Username = 'cs2019g6@gmail.com';     // SMTP username
+            $mail->Password = 'cs2019g6dwp';            // SMTP password
+            $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                          // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('ihmsuor@gmail.com', 'ihms');
+            $mail->setFrom('privacy@ihms.com', 'ihms');
             $mail->addAddress($reset_email);
             $mail->addReplyTo('no-reply@ihms.com');
 
             // Content
-            $url="http://".$_SERVER["HTTP_HOST"].dirname($_SERVER["PHP_SELF"])."/../new-password.php?code=$reset_code";
+            $url="http://".$_SERVER["HTTP_HOST"]."/change-password?code=$reset_code";
             $mail->isHTML(true);
             $mail->Subject = 'Your Password Reset Link';
             $mail->Body    = "<h3>Your requested a password reset link</h3> </br>
@@ -55,7 +53,7 @@ if(isset($_POST['submit'])) {
             $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
             $mail->send();
-            header('location:../../index.php?mailSuccess=1');
+            header('location:/?mailSuccess=1');
         } 
 
         catch (Exception $e) {
@@ -65,7 +63,7 @@ if(isset($_POST['submit'])) {
     }
     
     else {
-        header('location:../froget-password.php?error=1');
+        header('location:/confirm-details?error=1');
     }
         
 }

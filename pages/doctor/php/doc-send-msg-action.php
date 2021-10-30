@@ -3,8 +3,6 @@ include('../../../php/basic/connection.php');
 
 extract($_POST);
 
-mysqli_select_db($conn,'cs2019g6');
-
     if(isset($_POST['submit-to-mid'])){
 
         $new_status="unread";
@@ -13,7 +11,7 @@ mysqli_select_db($conn,'cs2019g6');
             if(mysqli_query($conn,$query2)){
 
             echo "it works";
-            header("Location:../doc-send-messages.php?send2MidSuccess=1");
+            header("Location:/doctor/send-messages?send2MidSuccess=1");
         }
         
     }
@@ -27,7 +25,7 @@ mysqli_select_db($conn,'cs2019g6');
             if(mysqli_query($conn,$query2)){
 
             echo "it works";
-            header("Location:../doc-send-messages.php?send2SisSuccess=1");
+            header("Location:/doctor/send-messages?send2SisSuccess=1");
         }
         
     }

@@ -2,41 +2,41 @@
 
    include ('../../../php/basic/connection.php' ); 
 
-   if(!$conn)
-   {
-        echo 'Not connected To Server';
+   extract($_POST);
 
+   $role="midwife";
+   $role_id="3";
+   $status="active";
+   $pwd=md5($password);
+   
+   $query1="SELECT * FROM midwife WHERE midwife_id='$midwife_id'";
+   $result1=mysqli_query($conn,$query1);
+   $check1=mysqli_num_rows($result1);
+   
+   if($check1>0) {
+       header("Location:/sister/add-midwife?userIdError=1");
    }
-   if(!mysqli_select_db($conn,'cs2019g6'))
-   {
-        echo 'Database Not Selected';
-
+   else {
+   
+       $sql1="INSERT INTO user(user_id,role,role_id,password,email,status)
+                               VALUES('$midwife_id','$role','$role_id','$pwd','$email','$status')";
+   
+       $sql2="INSERT INTO midwife(midwife_id,midwife_name,midwife_area,midwife_moh_division)
+                               VALUES('$midwife_id','$midwife_name','$midwife_area','$midwife_moh_division')";
+   
+       if(mysqli_query($conn,$sql1)){
+   
+           if(mysqli_query($conn,$sql2)){
+               header("Location:/sister/add-midwife?success=1");
+           }
+           else {
+               header("Location:/sister/add-midwife?error=1");
+           }
+       }
+       else{
+           header("Location:/sister/add-midwife?error=2");
+       }
+   
    }
-
-        $role='midwife';
-        $role_id=3;
-        $Midwife_id=$_POST['id'];
-        $Midwife_name=$_POST['mname'];
-        $Midwife_area=$_POST['area'];
-        $Midwife_email=$_POST['email'];
-        $Midwife_password=md5($_POST['password']);
-    
-    $sql1="INSERT INTO user(user_id, password, role, role_id,email) values('{$Midwife_id}','{$Midwife_password}','{$role}','{$role_id}','{$Midwife_email}')";
-
-    $sql2="INSERT INTO midwife(midwife_id,midwife_name,midwife_area) VALUES ('{$Midwife_id}','{$Midwife_name}','{$Midwife_area}')";
- 
-    if(mysqli_query($conn,$sql1)) {
-        
-        if(mysqli_query($conn,$sql2)) {
-            header("Location:../sis-add-midwife.php?success=1");
-        }
-        else {
-            header("Location:../sis-add-midwife.php?error=2");
-        }
-        
-    }
-    else {
-        header("Location:../sis-add-midwife.php?error=1");     
-    }
 
 ?>

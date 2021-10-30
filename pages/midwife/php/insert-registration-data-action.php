@@ -32,7 +32,7 @@ if (!isset($_SESSION['mNic'])) {
         unset($_SESSION['GnDivision']);
         unset($_SESSION['latInput']);
         unset($_SESSION['longInput']);
-        header("Location:../mid-add-babies.php?mNicError=1");
+        header("Location:/midwife/add-babies?mNicError=1");
     } 
     else if($check2>0) {
         unset($_SESSION['mName']);
@@ -43,7 +43,7 @@ if (!isset($_SESSION['mNic'])) {
         unset($_SESSION['GnDivision']);
         unset($_SESSION['latInput']);
         unset($_SESSION['longInput']);
-        header("Location:../mid-add-babies.php?tpError=1");
+        header("Location:/midwife/add-babies?tpError=1");
     }
     else if($check3>0) {
         unset($_SESSION['mName']);
@@ -54,7 +54,7 @@ if (!isset($_SESSION['mNic'])) {
         unset($_SESSION['GnDivision']);
         unset($_SESSION['latInput']);
         unset($_SESSION['longInput']);
-        header("Location:../mid-add-babies.php?emailError=1");
+        header("Location:/midwife/add-babies?emailError=1");
     }
     else if($check4>0) {
         unset($_SESSION['mName']);
@@ -65,7 +65,7 @@ if (!isset($_SESSION['mNic'])) {
         unset($_SESSION['GnDivision']);
         unset($_SESSION['latInput']);
         unset($_SESSION['longInput']);
-        header("Location:../mid-add-babies.php?bIdError=1");
+        header("Location:/midwife/add-babies?bIdError=1");
     }
     else {
         
@@ -113,7 +113,7 @@ if (!isset($_SESSION['mNic'])) {
                                 unset($_SESSION['GnDivision']);
                                 unset($_SESSION['latInput']);
                                 unset($_SESSION['longInput']);
-                                header("Location:../mid-add-babies.php?success=1");
+                                header("Location:/midwife/add-babies?success=1");
 
                             }
                             else {
@@ -146,7 +146,7 @@ if (!isset($_SESSION['mNic'])) {
             unset($_SESSION['GnDivision']);
             unset($_SESSION['latInput']);
             unset($_SESSION['longInput']);
-            header("Location:../mid-add-babies.php?error=1");
+            header("Location:/midwife/add-babies?error=1");
         }    
 
     }
@@ -167,7 +167,7 @@ else {
         unset($_SESSION['GnDivision']);
         unset($_SESSION['latInput']);
         unset($_SESSION['longInput']);
-        header("Location:../mid-add-babies.php?bIdError=1");
+        header("Location:/midwife/add-babies?bIdError=1");
     }
     else {
 
@@ -199,7 +199,7 @@ else {
                     unset($_SESSION['latInput']);
                     unset($_SESSION['longInput']);
 
-                    header("Location:../mid-add-babies.php?success=1");
+                    header("Location:/midwife/add-babies?success=1");
 
                 }
                 else {
@@ -222,7 +222,7 @@ else {
             unset($_SESSION['latInput']);
             unset($_SESSION['longInput']);
 
-            header("Location:../mid-add-babies.php?error=1");
+            header("Location:/midwife/add-babies?error=1");
         }
 
     }

@@ -1,10 +1,14 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['mother_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['mother_id'])) {	
+	header('location:/?noPermission=1');
+}
+if(!isset($_SESSION['baby_id'])) {	
+   header('location:/baby/select');
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -14,20 +18,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
     <title>Infant Health Management System</title>
     
@@ -45,97 +41,7 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/baby.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['baby_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="baby-dashboard.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-vaccinations.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-syringe" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Vaccinations</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="baby-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-uppercase active">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-send-messages.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Send Messages</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-select.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-baby" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Select Baby</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
             
             <!-- content -->
@@ -201,28 +107,27 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.b-inbox').addClass('active');
+        }); 
+    </script>
+        
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
-            });
+            });         
         });
     </script>
     <!-- end of writed scripts -->

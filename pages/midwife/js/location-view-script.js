@@ -13,13 +13,13 @@ var customLabel = {
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(7.873, 80.771),
+        center: new google.maps.LatLng(7.433, 80.241),
         zoom: 12
     });
     var infoWindow = new google.maps.InfoWindow;
 
     // including locations in database to the map
-    downloadUrl('./php/location-add-action.php', function (data) {
+    downloadUrl('/pages/midwife/php/location-add-action.php', function (data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('locations');
         Array.prototype.forEach.call(markers, function (markerElem) {
@@ -41,7 +41,7 @@ function initMap() {
                 text.textContent = address
                 infowincontent.appendChild(text);
                 let icon = {
-                    url: './img/home-map.png',
+                    url: '/pages/midwife/img/home-map.png',
                     scaledSize: {
                         width: 26,
                         height: 43,
@@ -77,7 +77,7 @@ function initMap() {
                             });
 
                             marker2.addListener('click', function () {
-                                infoWindow.setContent("MY LOCATION");
+                                infoWindow.setContent("ඔබ සිටින්නේ මෙතනයි");
                                 infoWindow.open(map, marker2);
 
                             });

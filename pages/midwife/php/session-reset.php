@@ -8,7 +8,7 @@ unset($_SESSION['tel']);
 unset($_SESSION['email']);
 unset($_SESSION['GnDivision']);
 unset($_SESSION['mNic']);
-header("Location:../mid-add-babies.php");
+header("Location:/midwife/add-babies");
 }
 
 ?>

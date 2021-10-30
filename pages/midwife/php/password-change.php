@@ -1,7 +1,7 @@
 <?php include('../../../php/basic/connection.php'); ?>
 
 <?php if(!isset($_SESSION['midwife_id'])) {	
-	header('location:../../index.php?noPermission=1');
+	header('location:/?noPermission=1');
 	}
 ?>
 
@@ -22,9 +22,6 @@
 
             $confirm_pwd=mysqli_real_escape_string($conn, $_POST['confirm_password']);
             $hsd_confirm_pwd=md5($confirm_pwd);
-        
-            //connect to database
-            mysqli_select_db($conn, 'cs2019g6');
         
             $query1="SELECT password FROM user WHERE user_id='{$user}'";
             $result1=mysqli_query($conn, $query1);
@@ -48,16 +45,16 @@
                     $query3="UPDATE user SET update_date=NOW() WHERE user_id='{$user}' LIMIT 1";
                     $result3=mysqli_query($conn,$query3);
 
-                    header('location:../../../index.php?passChanged=1');
+                    header('location:/?passChanged=1');
                     session_destroy();
 
                 }
                 else {
-                    header('location:../mid-password-change.php?errorNewPass=1');
+                    header('location:/midwife/password-change?errorNewPass=1');
                 }
             }
             else {
-                header('location:../mid-password-change.php?errorOldPass=1');
+                header('location:/midwife/password-change?errorOldPass=1');
             }
 
         }

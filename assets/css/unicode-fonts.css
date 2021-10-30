@@ -9,6 +9,12 @@
 }
 
 @font-face {
+  font-family: abhaya;
+  src: url(../fonts/uni-fonts/AbhayaLibre-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
   font-family: gemunu;
   src: url(../fonts/uni-fonts/GemunuLibre-Regular.ttf);
 }
@@ -41,6 +47,18 @@
 @font-face {
   font-family: yaldevicolombo;
   src: url(../fonts/uni-fonts/YaldeviColombo-Regular.ttf);
+}
+
+@font-face {
+  font-family: yaldevicolombo;
+  src: url(../fonts/uni-fonts/YaldeviColombo-Bold.ttf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: yaldevicolombo;
+  src: url(../fonts/uni-fonts/YaldeviColombo-SemiBold.ttf);
+  font-weight: bold;
 }
 
 @font-face {

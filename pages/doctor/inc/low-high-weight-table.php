@@ -1174,7 +1174,7 @@
                     <td><?php echo $row4['baby_id']; ?></td>
                     <td><span class="badge badge-under">underweight</span></td>
                     <td>
-                        <form action="../general/view-data.php" method="POST">
+                        <form action="/general/view-data" method="POST">
                             <input type="hidden" name="view-id" value="<?php echo $row4['baby_id']; ?>">
                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
                         </form>
@@ -1208,7 +1208,7 @@
                     <td><?php echo $row5['baby_id']; ?></td>
                     <td><span class="badge badge-over">overweight</span></td>
                     <td>
-                        <form action="../general/view-data.php" method="POST">
+                        <form action="/general/view-data" method="POST">
                             <input type="hidden" name="view-id" value="<?php echo $row5['baby_id']; ?>">
                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
                         </form>

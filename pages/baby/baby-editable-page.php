@@ -1,36 +1,30 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+    if(isset($_SESSION['serch_baby_using_nic'])){}
+    else{	
+    header('/?noPermission=1');
+    }
+    include "php/conn.php";
+    include "php/selectdb.php";
+?>
+
+
+<!doctype html>
 <html lang="en">
-    <?php
-                        session_start();
-                        if(isset($_SESSION['serch_baby_using_nic'])){}
-                        else{	
-                        header('location:../../index.php?noPermission=1');
-                        }
-                        include "php/conn.php";
-                        include "php/selectdb.php";
-    ?>
 <head>
     <!-- required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-select-style.css">
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
+    
+    <link rel="stylesheet" href="/pages/baby/css/baby-editable-style.css">
 
     
     <title>Infant Health Management System</title>
@@ -56,114 +50,26 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/mother.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['mother_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <?php
-                                if(isset($_SESSION['doctor_id'])){
-                                    echo '<a href="../doctor/doc-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Doctor</span>';
-                                    echo '</a>';
-                                }
-                                if(isset($_SESSION['sister_id'])){
-                                    echo '<a href="../sister/sis-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Sister</span>';
-                                    echo '</a>';
-                                }
-                                if(isset($_SESSION['midwife_id'])){
-                                    echo '<a href="../midwife/mid-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Midwife</span>';
-                                    echo '</a>';
-                                }
-                                if(isset($_SESSION['admin_id'])){
-                                    echo '<a href="../admin-doctor/admin-doc-dashboard.php" class="text-uppercase">';
-                                    echo '<span class="icon">';
-                                    echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
-                                    echo '</span>';
-                                    echo '<span class="list">Admin Doctor</span>';
-                                    echo '</a>';
-                                }
-
-                            ?> 
-                        </li>
-                        <li>
-                            <a href="../midwife/mid-vaccine-mark.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-syringe" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Vaccinations</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-charts.php" class="text-uppercase ">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="text-uppercase active">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">edit Data</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="baby-select.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-baby" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Select Baby</span>
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
 
             <!-- content -->
             <div class="content">
+
+                <!-- alert section -->
+                <div class="alert-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <?php include('./inc/alert-baby-editable.php'); ?>
+                            </div>
+                            <div class="col-lg-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of alert section -->
+
 
                 <div class="container">
                     
@@ -202,17 +108,22 @@
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Weight</b>(kg)</label>
-                                                    <input type="text" class="form-control" name="bWeight" placeholder="in (kg)">
+                                                    <input type="number" min="0" step="0.01" class="form-control" name="bWeight" placeholder="in (kg)" required>
                                             </div>
                                             <div class="form-group col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3">
                                                     <label><b>Height</b>(cm)</label>
-                                                    <input type="text" class="form-control" name="bHeight" placeholder="in (cm)">
+                                                    <input type="number" min="0" step="0.01" class="form-control" name="bHeight" placeholder="in (cm)" required>
                                             </div>
                                         </div>
                                         <div class="form-row d-flex justify-content-center">
                                             <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
                                                 <label><b>Age</b>(months)</label>
-                                                <input type="text" class="form-control" name="bAge" placeholder="in (months)">
+                                                <?php
+                                                    $query01="SELECT MAX(baby_age_in_months) FROM growth WHERE baby_id='".$_SESSION['baby_id']."'";
+                                                    $result01=mysqli_query($conn,$query01) ;
+                                                    $row01 = mysqli_fetch_assoc($result01) ;
+                                                ?>
+                                                <input type="number" min="<?php echo $row01["MAX(baby_age_in_months)"]+1; ?>" class="form-control" name="bAge" placeholder="<?php echo $row01["MAX(baby_age_in_months)"]+1; ?>" required>
                                             </div>
                                         </div>
 
@@ -228,6 +139,198 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                    <!--------------------------------------------------------------------------------------->
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                <div class="
+                                <?php if($gen=="M"){
+                                        echo "card color-1";}
+                                        else{ echo "card color-2";
+                                        }
+                                    ?> ">
+                                    <div class="card-body">
+                                        <lable style="color: rgb(0, 0, 0);font-size: 25px;">එන්නත් කිරීමේ විස්තර</lable>
+                            
+                                        <div class="row">
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="edit-vac">
+                                                    <h5>එන්නත් කිරීමේ දිනය වෙනස් කිරීම</h5>
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>එන්නත තෝරන්න</label>
+                                                                <select class="form-control" name="vacName" id="vacName" required>
+                                                                    <option value="">------</option>
+                                                                    <option value="2">BCG-2</option>
+                                                                    <option value="3">Pentavalent-1</option>
+                                                                    <option value="4">OPV-1</option>
+                                                                    <option value="5">fIPV-1</option>
+                                                                    <option value="6">Pentavalent-2</option>
+                                                                    <option value="7">OPV-2</option>
+                                                                    <option value="8">fIPV-2</option>
+                                                                    <option value="9">Pentavalent-3</option>
+                                                                    <option value="10">OPV-3</option>
+                                                                    <option value="11">MMR-1</option>
+                                                                    <option value="12">Live JE</option>
+                                                                    <option value="13">DPT</option>
+                                                                    <option value="14">OPV-4</option>
+                                                                    <option value="15">MMR-2</option>
+                                                                    <option value="16">D.T</option>
+                                                                    <option value="17">OPV-5</option>
+                                                                <?php 
+                                                                if($gen=="M") {
+                                                                ?>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                else {
+                                                                ?>
+                                                                    <option value="18">HPV-1</option>
+                                                                    <option value="19">HPV-2</option>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>නව දිනයක් තෝරන්න</label>
+                                                                <input type="date" min="<?php echo date('Y-m-d'); ?>" class="form-control" name="vacDate" required>
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="submit" name="UpdateVacDate" class="btn btn-outline-dark btn-md" value="වෙනස් කරන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="edit-vac">
+                                                    <h5>එන්නත් කිරීමෙන් පසු අතුරු අබාධ ඇත්නම්</h5>
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>එන්නත තෝරන්න</label>
+                                                                <select class="form-control" name="vaccine" id="vaccine" required>
+                                                                    <option value="">------</option>
+                                                                    <option value="1">BCG-1</option>
+                                                                    <option value="2">BCG-2</option>
+                                                                    <option value="3">Pentavalent-1</option>
+                                                                    <option value="4">OPV-1</option>
+                                                                    <option value="5">fIPV-1</option>
+                                                                    <option value="6">Pentavalent-2</option>
+                                                                    <option value="7">OPV-2</option>
+                                                                    <option value="8">fIPV-2</option>
+                                                                    <option value="9">Pentavalent-3</option>
+                                                                    <option value="10">OPV-3</option>
+                                                                    <option value="11">MMR-1</option>
+                                                                    <option value="12">Live JE</option>
+                                                                    <option value="13">DPT</option>
+                                                                    <option value="14">OPV-4</option>
+                                                                    <option value="15">MMR-2</option>
+                                                                    <option value="16">D.T</option>
+                                                                    <option value="17">OPV-5</option>
+                                                                <?php 
+                                                                if($gen=="M") {
+                                                                ?>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                else {
+                                                                ?>
+                                                                    <option value="18">HPV-1</option>
+                                                                    <option value="19">HPV-2</option>
+                                                                    <option value="20">aTd</option>
+                                                                <?php
+                                                                }
+                                                                ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>සටහනක් තබන්න</label>
+                                                                <textarea class="form-control" name="vacSideEffNote" required></textarea>
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="submit" name="VacSideEff" class="btn btn-outline-dark btn-md" value="සටහන තබන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="other-vac">
+                                                    <h5>වෙනත් එන්නත් ලබා දුන්නේ නම්</h5>
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>එන්නතේ නම</label>
+                                                                <input type="text" class="form-control" name="vac_name" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>කාණ්ඩ අංකය</label>
+                                                                <input type="text" class="form-control" name="batch_no" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <label>ලබා දුන් දිනය</label>
+                                                                <input type="date" max="<?php echo date('Y-m-d'); ?>" class="form-control" name="date_given" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                                <input type="submit" name="otherVacc" class="btn btn-outline-dark btn-md" value="සටහන් කරන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                <div class="bcg-scar">
+                                                    <h5>බී.සී.ජී. කැළැල ඇත්නම්(පමණක්)</h5>
+                                                    <form method="POST" action="/pages/baby/php/baby-editable-action.php">                                                    
+                                                        <div class="form-row d-flex justify-content-center">
+                                                            <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                                                <input class="form-check-input" type="checkbox" value="1" name="scar" id="scar" required>
+                                                                <label class="form-check-label" for="scar">
+                                                                    කැළැල ඇත
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row d-flex justify-content-around">
+                                                            <div class="form-group col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                                                <input type="hidden" name="baby_id" value="<?php echo $_SESSION['baby_id']?>">
+                                                                <input type="submit" name="bcgScar" class="btn btn-outline-dark btn-md" value="ලකුණු කරන්න">
+                                                            </div>
+                                                        </div>   
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
                     <!--------------------------------------------------------------------------------------->
                     <div class="form-row d-flex justify-content-center">
                         <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
@@ -421,7 +524,7 @@
                             </div>
                         </div>
 
-                    <!--------------------------------------------------------------------------------------->
+                        <!--------------------------------------------------------------------------------------->
                         <div class="form-row d-flex justify-content-center">
                             <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                 <div class="
@@ -489,6 +592,457 @@
                             </div>
                         </div>
 
+                        <!--------------------------------------------------------------------------------------->
+                        <div class="form-row d-flex justify-content-center">
+                            <div class="form-group col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                <div class="
+                                <?php if($gen=="M"){
+                                        echo "card color-1";}
+                                        else{ echo "card color-2";
+                                        }
+                                    ?> ">
+                                    <div class="card-body">
+                                    <lable style="color: rgb(0, 0, 0);font-size: 25px;">Details recorded in home visits</lable>
+                            
+                                    <div class="registration">
+                                        <form name="my-form" action="./php/add-home-visit-action.php" method="POST" onsubmit="return validation()">
+
+                                            <div class="container mt-4">
+
+                                                <div class="form-group row">
+                                                    <label for="mother_id" class="col-md-4 col-form-label text-md-right">Baby ID</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" id="mNic" class="form-control" name="mNic">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="midwife_id" class="col-md-4 col-form-label text-md-right">Midwife ID</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" id="midwife_id" class="form-control" name="midwife_id">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 01 -->
+                                                <h5 class="card-title text-uppercase">Day 01</h5>
+
+                                                <div class="form-group row">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 02 -->
+                                                <h5 class="card-title text-uppercase">Day 02</h5>
+
+                                                <div class="form-group row" class="form-control">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 03 -->
+                                                <h5 class="card-title text-uppercase">Day 03</h5>
+
+                                                <div class="form-group row">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <!-- Day 04 -->
+                                                <h5 class="card-title text-uppercase">Day 04</h5>
+
+                                                <div class="form-group row">
+                                                    <label for="month" class="col-md-4 col-form-label text-md-right">Date</label>
+                                                    <div class="col-md-6">
+                                                        <input type="date" id="date" class="form-control" name="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="skin_colour" class="col-md-4 col-form-label text-md-right">Skin Colour</label>
+                                                    <div class="col-md-6">
+                                                       <select id="scolour" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Pale Yellow">Pale Yellow</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="scolour"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="height" class="col-md-4 col-form-label text-md-right">Eyes</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Nature of the umbilicus</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">Weak</option>
+                                                        <option value="Yellow">Yellow</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Temperature</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Giving only mother's milk</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="day4" class="col-md-4 col-form-label text-md-right">Colour of faeces matter</label>
+                                                    <div class="col-md-6">
+                                                    <select id="eyes" class="form-control">
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Weak">High</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="eyes"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label for="Other allergies" class="col-md-4 col-form-label text-md-right">Other allergies</label>
+                                                    <div class="col-md-6">
+                                                    <select id="allergies" class="form-control">
+                                                        <option value="yes">Yes</option>
+                                                        <option value="no">No</option>
+                                                        <option value="Yellow">Low</option>
+                                                        <option value="d">dd</option>
+                                                        </select>
+                                                    <class="form-control" name="allergies"> 
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 offset-md-8">
+                                                    <button type="submit" class="btn btn-primary" name="submit">
+                                                        Enter
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+
                     <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ Form Action @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
                      
                     <?php
@@ -496,8 +1050,12 @@
                             extract($_POST);
 
                             $sql01="UPDATE baby_register SET baby_first_name='".$bFn."',baby_last_name='".$bLn."',baby_dob='".$bDob."',baby_gender='".$bGen."',mother_age='".$mAge."' WHERE baby_id='".$bId."'";
-                            mysqli_query($conn,$sql01);
-                            echo '<meta http-equiv="refresh" content="0">'; 
+                            if(mysqli_query($conn,$sql01)){
+                            echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                            }
                         }
                         
                         if(isset($_POST['UpdateMother'])){
@@ -506,16 +1064,24 @@
                             $sql02="UPDATE mother SET mother_name='".$mName."',telephone='".$mTel."',address='".$mAddr."',email='".$mEmail."' WHERE mother_nic='".$row2['mother_nic']."'";
                             mysqli_query($conn,$sql02);
                             $sql03="UPDATE user SET email='".$mEmail."' WHERE user_id='".$row2['mother_nic']."'";
-                            mysqli_query($conn,$sql03);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql03)){
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                            }
                         }
 
                         if(isset($_POST['UpdateBirth'])){
                             extract($_POST);
 
                             $sql04="UPDATE birth_details SET birth_weight='".$bWeight."',birth_length='".$bLength."',apgar1='".$bAp1."',apgar2='".$bAp2."',apgar3='".$bAp3."',circumference_of_head='".$bHead."',vitamin_K_status='".$bK."',eye_contact='".$bEye."',milk_position='".$bMilk."' WHERE baby_id='".$bId."'";
-                            mysqli_query($conn,$sql04);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql04)){
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                            }
                         }
 
                         if(isset($_POST['UpdateWeightHeight'])){
@@ -528,13 +1094,21 @@
 
                             if($check4>0){
                                 $sql06="UPDATE growth SET weight='".$bWeight."',height='".$bHeight."',baby_age_in_months='".$bAge."' WHERE baby_id='".$bId."' AND baby_age_in_months='".$bAge."'";
-                                mysqli_query($conn,$sql06);
-                                echo '<meta http-equiv="refresh" content="0">';
+                                if(mysqli_query($conn,$sql06)){
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                                }
+                                else {
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                                }
                             }
                             else{
                                 $sql07="INSERT INTO growth(baby_id,midwife_id,weight,height,baby_age_in_months) VALUES('$bId','$mId','$bWeight','$bHeight','$bAge')";
-                                mysqli_query($conn,$sql07);
-                                echo '<meta http-equiv="refresh" content="0">';
+                                if(mysqli_query($conn,$sql07)){
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                                }
+                                else {
+                                    echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?error=1">';
+                                }
                             }
                         }
 
@@ -559,8 +1133,12 @@
                             $num=$row4['qty'];
 
                             $sql12="UPDATE thriposha_storage SET distributed_qty='".$num."' WHERE midwife_id='".$mId."' AND updated_date LIKE '%$currentMonth%'";
-                            mysqli_query($conn,$sql12);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql12)){
+                            echo '<meta http-equiv="refresh" content="0;URL =/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0; URL=/baby/editable-page?error=1">';
+                            }
                             }
                             else{
                             $currentMonth=date("Y-m");
@@ -572,8 +1150,12 @@
                             $sql10="INSERT INTO thriposha_distribution(baby_id,midwife_id,date_given,quantity) VALUES('$bId','$mId','$tDate','$tQty')";
                             mysqli_query($conn,$sql10);
                             $sql12="UPDATE thriposha_storage SET distributed_qty='".$num."' WHERE midwife_id='".$mId."' AND updated_date LIKE '%$currentMonth%'";
-                            mysqli_query($conn,$sql12);
-                            echo '<meta http-equiv="refresh" content="0">';
+                            if(mysqli_query($conn,$sql12)){
+                            echo '<meta http-equiv="refresh" content="0; URL=/baby/editable-page?success=1">';
+                            }
+                            else {
+                                echo '<meta http-equiv="refresh" content="0; URL=/baby/editable-page?error=1">';
+                            }
                             }
                         }
                     ?>
@@ -588,28 +1170,27 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?> 
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.b-edit').addClass('active');
+        }); 
+    </script>
+        
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
-            });
+            });         
         });
     </script>
     <!-- end of writed scripts -->

@@ -2,7 +2,7 @@
 function initMap() {
     
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(7.873, 80.771),
+        center: new google.maps.LatLng(7.433, 80.241),
         zoom: 12
     });
     var infoWindow = new google.maps.InfoWindow;   
@@ -25,7 +25,7 @@ function initMap() {
                 });
 
                 marker2.addListener('click', function () {
-                    infoWindow.setContent("CURRENT LOCATION");
+                    infoWindow.setContent("ඔබ සිටින්නේ මෙතනයි");
                     infoWindow.open(map, marker2);
 
                 });
@@ -60,7 +60,7 @@ function initMap() {
 
         // Dynamic to set marker based on click event
         let icon = {
-            url: './img/home-map.png',
+            url: '/pages/midwife/img/home-map.png',
             scaledSize: {
                 width: 26,
                 height: 43,

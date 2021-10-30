@@ -10,19 +10,18 @@ if(isset($_POST['mark_vac'])) {
     $batch_no=($_POST['batch_no']);
     $date_given=($_POST['date_given']);
     $midwife_id=$_SESSION['midwife_id'];
-
-    mysqli_select_db($conn, 'cs2019g6');
     
     if($vaccine==1) {
         
+        $vac_name='BCG-1';
         $vac_id=1;
         $new_status=1;
         
-        $query1="UPDATE vac_birth SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="INSERT INTO vac_birth(baby_id,vac_name,vac_id,date_given,batch_no,midwife_id,status) VALUES('$baby_id','$vac_name','$vac_id','$date_given','$batch_no','$midwife_id','$new_status')";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }
     }
     elseif($vaccine==2) {
@@ -34,7 +33,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }  
     }
     elseif($vaccine==3) {
@@ -46,7 +45,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==4) {
@@ -58,7 +57,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==5) {
@@ -70,7 +69,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==6) {
@@ -82,7 +81,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==7) {
@@ -94,7 +93,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==8) {
@@ -106,7 +105,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==9) {
@@ -118,7 +117,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==10) {
@@ -130,7 +129,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==11) {
@@ -138,11 +137,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=11;
         $new_status=1;
         
-        $query1="UPDATE vac_6months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_9months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==12) {
@@ -150,11 +149,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=12;
         $new_status=1;
         
-        $query1="UPDATE vac_9months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_12months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==13) {
@@ -162,11 +161,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=13;
         $new_status=1;
         
-        $query1="UPDATE vac_9months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_18months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==14) {
@@ -178,7 +177,7 @@ if(isset($_POST['mark_vac'])) {
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==15) {
@@ -186,11 +185,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=15;
         $new_status=1;
         
-        $query1="UPDATE vac_18months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_3years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==16) {
@@ -198,11 +197,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=16;
         $new_status=1;
         
-        $query1="UPDATE vac_18months SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_5years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==17) {
@@ -210,11 +209,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=17;
         $new_status=1;
         
-        $query1="UPDATE vac_3years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_5years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==18) {
@@ -222,11 +221,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=18;
         $new_status=1;
         
-        $query1="UPDATE vac_3years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_10years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==19) {
@@ -234,11 +233,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=19;
         $new_status=1;
         
-        $query1="UPDATE vac_5years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_10years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
     elseif($vaccine==20) {
@@ -246,83 +245,11 @@ if(isset($_POST['mark_vac'])) {
         $vac_id=20;
         $new_status=1;
         
-        $query1="UPDATE vac_5years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
+        $query1="UPDATE vac_11years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
         $result1=mysqli_query($conn,$query1);
         
         if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
-        }   
-    }
-    elseif($vaccine==21) {
-        
-        $vac_id=21;
-        $new_status=1;
-        
-        $query1="UPDATE vac_10_14years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
-        }   
-    }
-    elseif($vaccine==22) {
-        
-        $vac_id=22;
-        $new_status=1;
-        
-        $query1="UPDATE vac_10_14years SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
-        }   
-    }
-    elseif($vaccine==23) {
-        
-        $vac_id=23;
-        $new_status=1;
-        
-        $query1="UPDATE vac_japanese_encephalities SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
-        }   
-    }
-    elseif($vaccine==24) {
-        
-        $vac_id=24;
-        $new_status=1;
-        
-        $query1="UPDATE vac_japanese_encephalities SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
-        }   
-    }
-    elseif($vaccine==25) {
-        
-        $vac_id=25;
-        $new_status=1;
-        
-        $query1="UPDATE vac_japanese_encephalities SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
-        }   
-    }
-    elseif($vaccine==26) {
-        
-        $vac_id=26;
-        $new_status=1;
-        
-        $query1="UPDATE vac_japanese_encephalities SET date_given='{$date_given}', batch_no='{$batch_no}', status='{$new_status}' WHERE baby_id='{$baby_id}' AND vac_id='{$vac_id}'";
-        $result1=mysqli_query($conn,$query1);
-        
-        if($result1) {
-            header("Location:../mid-vaccine-mark.php?vacMarkSuccess=1");
+            header("Location:/midwife/vaccine-mark?vacMarkSuccess=1");
         }   
     }
 }

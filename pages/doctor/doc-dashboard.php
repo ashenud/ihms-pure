@@ -1,10 +1,48 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['doctor_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['doctor_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
+
+<?php
+                                    
+    $age_count = '';
+
+    $query1 = "CREATE TEMPORARY TABLE IF NOT EXISTS ages AS (SELECT FLOOR(DATEDIFF(CURDATE(),baby_dob)/30) AS age 
+               FROM baby_register WHERE status='active')";
+    $result1= mysqli_query($conn,$query1);
+
+        if($result1) {
+            $query2 = "SELECT IF(rng='1-6','0-6',rng) 'range', IFNULL(B.rngcount,0) 'count' 
+                       FROM (
+                            SELECT '1 - 6' rng UNION
+                            SELECT '7 - 12' UNION
+                            SELECT '13 - 18' UNION
+                            SELECT '18 - 24' UNION
+                            SELECT '25 - 30' UNION
+                            SELECT '31 - 36' ) 
+                       A LEFT JOIN (
+                            SELECT CONCAT(FLOOR(age/6)*6+1,' - ',FLOOR(age/6)*6+6) rng, COUNT(1) rngcount 
+                            FROM ages GROUP BY rng) 
+                       B USING (rng)";
+
+            $result2= mysqli_query($conn,$query2);
+
+            while ($row1 = mysqli_fetch_assoc($result2)) {
+                $age_count = $age_count . '"'. $row1['count'].'",';
+            }
+
+            $age_count = trim($age_count,",");
+        }
+
+
+    $query3= "DROP TEMPORARY TABLE IF EXISTS ages";
+    $result3= mysqli_query($conn,$query3);
+
+?>
+
 
 
 <!doctype html>
@@ -14,29 +52,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/english-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
     
-    <!-- for datatable -->
-    <link rel="stylesheet" href="../../assets/css/material.min.css">
-    <link rel="stylesheet" href="../../assets/css/custom-table-style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-    <link rel="stylesheet" href="../../assets/css/calendar/calendar.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/doc-dashboard-style.css">
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    //table css
+    include('../../inc/basic/include-dashboard-table-css.php');
+    ?>
+    
+    <link rel="stylesheet" href="/assets/css/calendar/calendar.css">
+    <link rel="stylesheet" href="/pages/doctor/css/doc-dashboard-style.css">
+    
+    <script>
+        var age_count = [<?php echo $age_count; ?>];
+    </script>
 
     <title>Infant Health Management System</title>
     
@@ -54,221 +85,96 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['doctor_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="#" class="text-uppercase active">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="doc-view-sisters.php" class="text-uppercase drop">
-                                    <span class="icon-active">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view sisters</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="doc-view-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="doc-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                    
-                                    <?php 
-                                        mysqli_select_db($conn, 'cs2019g6');
-                                        $sql001="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
-                                        $run001=mysqli_query($conn,$sql001);
-                                        $row001=mysqli_fetch_assoc($run001);
-                                        $count=$row001['unreadSMS'];
-
-                                        if(0<$count && $count<=9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo $count;
-                                            echo "</span>";
-                                        }
-                                        else if($count>9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo "9+";
-                                            echo "</span>";
-                                        }
-                                    ?>
-                                    
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-send-messages.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Send Messages</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
 
             
             <!-- content -->
             <div class="content">
+              
+                <!-- alert section -->
+                <div class="alert-section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <?php include('./inc/alert-mother-not-found.php'); ?>
+                                <?php include('./inc/alert-reminder-success.php'); ?>
+                                <?php include('./inc/alert-reminder-delete-success.php'); ?>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end of alert section -->
                
                 <div class="container">
                     <div class="row mt-4 mb-5">
                        
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
-                            <div class="card card-stats">
-                                <div class="card-header header-warning">
-                                    <div class="card-icon one">
-                                        <i class="fas fa-baby"></i>
-                                    </div>
-                                    <p class="card-category">Active Babies</p>
-                                    
-                                    <?php 
-                                    
-                                        mysqli_select_db($conn, 'cs2019g6');
-                                        $query1="SELECT * FROM baby_register";
-                                        $result1=mysqli_query($conn, $query1);
-                                        $num_rows=mysqli_num_rows($result1);
-                                        
-                                    ?>
-                                                                        
-                                    <h3 class="card-title counter"><?php echo $num_rows; ?></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-baby-carriage"></i>
-                                        <a href="./doc-view-babies.php">View all Babies...</a>
+                            <a class="text-decoration-none" href="/doctor/view-babies">
+                                <div class="card card-stats">
+                                    <div class="card-header stat-header">
+                                        <div class="card-icon icon-color">
+                                            <i class="fas fa-baby"></i>
+                                        </div>
+                                        <p class="card-category">ක්‍රියාකාරී ළදරුවන්</p>
+
+                                        <?php 
+
+                                            $query1="SELECT * FROM baby_register WHERE status='active'";
+                                            $result1=mysqli_query($conn, $query1);
+                                            $num_rows=mysqli_num_rows($result1);
+
+                                        ?>
+
+                                        <h3 class="card-title counter"><?php echo $num_rows; ?></h3>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <a class="text-decoration-none" href="/doctor/inbox">
+                                <div class="card card-stats">
+                                    <div class="card-header stat-header">
+                                        <div class="card-icon icon-color">
+                                            <i class="far fa-envelope"></i>
+                                        </div>
+                                        <p class="card-category">එන පණිවිඩ</p>
+
+                                        <?php
+                                            $query4="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
+                                            $result4=mysqli_query($conn,$query4);
+                                            $row4=mysqli_fetch_assoc($result4);
+                                        ?>
+
+                                        <h3 class="card-title counter"><?php echo $row4['unreadSMS']; ?></h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
 
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
                             <div class="card card-stats">
-                                <div class="card-header">
-                                    <div class="card-icon two">
-                                        <i class="far fa-envelope"></i>
-                                    </div>
-                                    <p class="card-category">received message</p>
-                                    
-                                    <?php 
-                                        mysqli_select_db($conn,'cs2019g6');
-                                        $query4="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
-                                        $result4=mysqli_query($conn,$query4);
-                                        $row4=mysqli_fetch_assoc($result4);
-                                    ?>
-                                    
-                                    <h3 class="card-title counter"><?php echo $row4['unreadSMS']; ?></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-tasks"></i> 
-                                        <a href="./doc-inbox.php">View all Messages...</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
-                            <div class="card card-stats">
-                                <div class="card-header">
-                                    <div class="card-icon three">
+                                <div class="card-header stat-header">
+                                    <div class="card-icon icon-color">
                                         <i class="fas fa-stethoscope"></i>
                                     </div>
-                                    <p class="card-category">work to do</p>
-                                    <h3 class="card-title"><span class="counter">5</span></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-briefcase"></i> 
-                                        <a href="./doc-inbox.php">View all Works...</a>
-                                    </div>
+                                    <p class="card-category">සිහි කැඳවීම්</p>
+                                    <h3 class="card-title"><span id="reminder-count" class="counter"></span></h3>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
                             <div class="card card-stats">
-                                <div class="card-header">
-                                    <div class="card-icon four">
+                                <div class="card-header stat-header">
+                                    <div class="card-icon icon-color">
                                         <i class="fas fa-handshake"></i>
                                     </div>
-                                    <p class="card-category">meetings</p>
-                                    <h3 class="card-title"><span class="counter">4</span></h3>
-                                </div>
-                                <div class="card-footer item-footer">
-                                    <div class="stats">
-                                        <i class="fas fa-clipboard-list"></i> 
-                                        <a href="./doc-inbox.php">Meeting List...</a>
-                                    </div>
+                                    <p class="card-category">රැස්වීම්</p>
+                                    <h3 class="card-title"><span class="counter">0</span></h3>
                                 </div>
                             </div>
                         </div>
@@ -288,118 +194,105 @@
                         </div>
                         
                     </div>
-                    <div class="row mb-5">
+                    <div class="row mb-5 parent">
                       
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5 mb-2">
+                        <div class="col-lg-6 mb-2">
                             <div class="card search-babies">
-                                <form method="POST" action="./php/doc-search-baby-by-mNIC.php">
+                                <form method="POST" action="/pages/doctor/php/doc-search-baby-by-mNIC.php">
                                     <div class="card-header">
-                                        <h6 class="font-weight-bold">Search Mother</h6>
+                                        <h6 class="font-weight-bold">ළදරුවන් නිරීක්ෂණය කිරීම</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="search-input">
-                                            <input type="text" name="searchUser" class="form-control" placeholder="enter mother nic for search..." required>
+                                            <input type="text" name="searchUser" class="form-control" placeholder="සෙවීම සඳහා මවගේ හැඳුනුම් අංකය ඇතුළත් කරන්න..." required>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <input type="submit" value="SEARCH" class="btn btn-sm text-light" name="searchBabyUsingMnic">
+                                        <input type="submit" value="සොයන්න" class="btn btn-sm text-light" name="searchBabyUsingMnic">
                                     </div>
                                 </form>
                             </div>
                         </div>
                        
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5 mb-2">
-                            <div class="card card-chart">
-                                <div class="card-header chart-header">
-                                    
-                                    <?php
-                                        mysqli_select_db($conn, 'cs2019g6');
-                                    
-                                        $age_count = '';
-
-                                        $query1 = "CREATE TEMPORARY TABLE IF NOT EXISTS ages AS (SELECT FLOOR(DATEDIFF(CURDATE(),baby_dob)/30) AS age 
-                                                   FROM baby_register)";
-                                        $result1= mysqli_query($conn,$query1);
-                                    
-                                            if($result1) {
-                                                $query2 = "SELECT IF(rng='1-6','0-6',rng) 'range', IFNULL(B.rngcount,0) 'count' 
-                                                           FROM (
-                                                                SELECT '1 - 6' rng UNION
-                                                                SELECT '7 - 12' UNION
-                                                                SELECT '13 - 18' UNION
-                                                                SELECT '18 - 24' UNION
-                                                                SELECT '25 - 30' UNION
-                                                                SELECT '31 - 36' ) 
-                                                           A LEFT JOIN (
-                                                                SELECT CONCAT(FLOOR(age/6)*6+1,' - ',FLOOR(age/6)*6+6) rng, COUNT(1) rngcount 
-                                                                FROM ages GROUP BY rng) 
-                                                           B USING (rng)";
-                                                
-                                                $result2= mysqli_query($conn,$query2);
-                                                
-                                                while ($row1 = mysqli_fetch_assoc($result2)) {
-                                                    $age_count = $age_count . '"'. $row1['count'].'",';
-                                                }
-                                                
-                                                $age_count = trim($age_count,",");
-                                            }
-                                    
-                                    
-                                        $query3= "DROP TEMPORARY TABLE IF EXISTS ages";
-                                        $result3= mysqli_query($conn,$query3);
-                                    
-                                    
-                                    ?>
-                                    
-                                    <canvas id="chart-age" class="line-chart"></canvas>
+                        <!-- reminder table section -->
+                        <div class="col-lg-6 mb-2">
+                            <div class="card view-reminders">
+                                <div class="card-header">
+                                    <h6 class="font-weight-bold float-left">සිහි කැඳවීම්(Reminders)</h6>
+                                    <button data-toggle="modal" href="#reminderModal" class="float-right btn btn-sm text-light">එක් කරන්න</button>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title">Babies</h4>
-                                    <p class="card-category">number of babies to age in monts</p>
+                                    <div id="table-container" class="table-container">
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5 mb-2">
-                            <div class="card card-chart">
-                                <div class="card-header chart-header">                                    
-                                    <canvas id="chart-vac" class="line-chart"></canvas>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Babies</h4>
-                                    <p class="card-category">number of babies to age in monts</p>
+
+                        <!-- Modal for add Reminders -->
+                        <div id="reminderModal" class="modal fade">
+                            <div class="modal-dialog modal-reminder">
+                                <div class="modal-content card card-image">
+                                    <form id="reminder-form" method="POST">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title text-uppercase">සිහිකැඳවීම් එක් කරන්න</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                <i class="far fa-window-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label class="text-uppercase">විස්තරය</label>
+                                                <input type="text" id="reminder" name="reminder" class="form-control" placeholder="කෙටි විස්තරයක් ඇතුල් කරන්න" required>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="clearfix">
+                                                    <label class="text-uppercase">දිනය සහ වෙලාව</label>
+                                                    <input type="datetime-local" id="dateTime" min="<?php echo date('Y-m-d').'T'.date("H:i"); ?>" placeholder="දිනය සහ වෙලාව ඇතුල් කරන්න" name="dateTime" class="form-control" required>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a id="submit-reminder" name="submitReminder" class="btn btn-primary pull-right">එක් කරන්න</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+                        <!-- model end -->
                         
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-xs-6 mt-5">
+                    </div> 
+                    
+                    <div class="row mb-5">
+                       
+                        <div class="col-lg-6 mb-2">
                             <div class="card card-chart">
                                 <div class="card-header chart-header">                                    
-                                    <canvas id="chart-weight" class="line-chart"></canvas>
+                                    <canvas id="chart-age" class="line-chart"></canvas>
                                 </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Babies</h4>
-                                    <p class="card-category">number of babies to age in monts</p>
+                                <div class="card-body chart-body">
+                                    <h3 class="chart-title">ළදරුවන්</h3>
+                                    <p class="chart-category">එක් එක් වයස්(මාස) කාණ්ඩයේ සිටින ළදරුවන් සංඛ්‍යාව</p>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-md-3 mt-5 mb-2">
+                                                      
+                            <?php //include('inc/low-high-weight-table.php'); ?>
+                            
+                        </div>
+                        
+                        <div class="col-md-3 mt-5">
+                                                      
+                            <?php //include('inc/low-high-height-table.php'); ?>
+                            
                         </div>
                         
                     </div> 
-                    <div class="row mb-5">
-                       
-                        <div class="col-md-6 mt-5 mb-2">
-                                                      
-                            <?php include('inc/low-high-weight-table.php'); ?>
-                            
-                        </div>
-                        
-                        <div class="col-md-6 mt-5">
-                                                      
-                            <?php include('inc/low-high-height-table.php'); ?>
-                            
-                        </div>
-                        
-                    </div>                   
+                    
                 </div>
 
             </div>
@@ -412,48 +305,134 @@
 
 
     <!-- optional JavaScript -->
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/charts/Chart.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/jquery.waypoints.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/jquery.counterup.min.js"></script>
-    <script type="text/javascript" src="../../assets/css/calendar/calendar.js"></script>
-         <!-- for data table -->
-    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="./js/normal-table-script.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
-
-    <!-- writed scripts -->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    //table js
+    include('../../inc/basic/include-dashboard-table-js.php');
+    ?>
     
-    <!-- show hide sidebar -->
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/assets/css/calendar/calendar.js"></script>
+    <script type="text/javascript" src="/assets/js/charts/Chart.min.js"></script>
+
+   
+    <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.d-dash').addClass('active');
+        }); 
+    </script>
+        
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
-        });
-    </script>
-    
-    <!-- counting up -->
-    <script>
-        jQuery(document).ready(function() {
+            
+            //counting up
             $('.counter').counterUp({
                 delay: 10,
                 time: 1000
             });
         });
+    </script>
+
+    <script>
+    
+    loadReminderCount()
+    loadReminders();
+    deleteReminders()
+
+    function loadReminders() {
+        $('#table-container').load("/pages/doctor/php/loaders/load-reminder.php");
+    }
+
+    function loadReminderCount() {
+        $('#reminder-count').load("/pages/doctor/php/loaders/load-reminder-count.php");
+    }
+
+    $("#submit-reminder").click(function(e) {
+        e.preventDefault();
+        
+        if ( $("#reminder").val().length !== 0 && $("#dateTime").val().length !== 0 ){
+
+            $('#reminderModal').modal('hide');
+
+            var data = $('#reminder-form').serialize();
+            //console.log(data);    
+        
+            $.ajax({
+                type: 'POST',
+                url: '/data/doc-add-reminder.php',
+                //dataType: "json",
+                data: data,
+                cache: false,
+                success: function(data) {
+                    var returnData=JSON.parse(data);
+                    if(returnData.status == 'success'){
+                        //console.log(returnData.data.alert);
+                        loadReminderCount()
+                        loadReminders();
+                        $('.success-alert').find('strong').html(returnData.data.alert);
+                        $('.success-alert').hide();
+                        $('.delete-alert').hide();
+                        $('.success-alert').show();
+                    }
+                    else if(returnData.status == 'fail') {
+                        loadReminderCount()
+                        loadReminders();
+                        $('.error-alert').find('strong').html(returnData.data.alert);
+                        $('.error-alert').show();
+                    }
+                }
+            });
+
+        }
+        else {
+            alert("දත්ත ඇතුලත් කරන්න");
+        }
+        
+    });
+
+    function deleteReminders() {
+       $(document).on("click", ".del-btn", function (e) {
+            e.preventDefault();
+            var data = $(this).data('reminder_id');
+
+            $.ajax({
+                type: 'POST',
+                url: '/data/doc-delete-reminder.php',
+                //dataType: "json",
+                data: {'reminder_id' : data},
+                cache: false,
+                success: function(data) {
+                    var returnData=JSON.parse(data);
+                    if(returnData.status == 'success'){
+                        //console.log(returnData.data.alert);
+                        loadReminderCount()
+                        loadReminders();
+                        $('.delete-alert').find('strong').html(returnData.data.alert);
+                        $('.delete-alert').hide();
+                        $('.success-alert').hide();
+                        $('.delete-alert').show();
+                    }
+                    else if(returnData.status == 'fail') {
+                        loadReminderCount()
+                        loadReminders();
+                        $('.error-alert').find('strong').html(returnData.data.alert);
+                        $('.error-alert').show();
+                    }
+                }
+            });
+        });
+    }
+
     </script>
     
     <!-- chart --> 
@@ -464,10 +443,11 @@
                     labels: ['0-6', '7-12', '13-18', '19-24', '25-30', '31-36'],
                     datasets: [{
                         label: 'Number of Babies',
-                        data: [<?php echo $age_count; ?>],
-                        backgroundColor: '#fff',
-                        borderColor: '#fff',
-                        borderWidth: 1
+                        data: age_count,
+                        backgroundColor: '#ffa7ba',
+                        borderColor: '#ffa7ba',
+                        borderWidth: 1,
+                        barPercentage: 0.8,
                     }]
                 },
                 options: {
@@ -480,109 +460,25 @@
                                 beginAtZero: true,
                                 stepSize: 1,
                                 fontColor: '#fff',
+                                fontSize: 9,
+                                padding: 10,
                             },
                             gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
+                                color: 'rgba(255, 167, 186, 1)',
                                 borderDash: [3, 2],
-                                zeroLineColor: '#fff'
+                                zeroLineColor: '#ffa7ba'
                             }
 
                         }],
                         xAxes: [{
-                            barPercentage: 0.6,
                             ticks: {
-                                fontColor: '#fff'
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-                        }]
-                    }
-                }
-            }
-
-        var ChartVac = {
-                type: 'line',
-                data: {
-                    labels: ["Green", "Purple", "Orange"],
-                    datasets: [{
-                        label: 'Colors Two',
-                        data: [8, 3, 7],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
                                 fontColor: '#fff',
+                                fontSize: 9,
                             },
                             gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
+                                color: 'rgba(255, 167, 186, 0.5)',
                                 borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-
-                        }],
-                        xAxes: [{
-                            barPercentage: 0.6,
-                            ticks: {
-                                fontColor: '#fff'
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-                        }]
-                    }
-                }
-            }
-
-        var ChartWeight = {
-                type: 'line',
-                data: {
-                    labels: ["Green", "Purple", "Orange"],
-                    datasets: [{
-                        label: 'Colors Two',
-                        data: [8, 3, 7],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    legend: {
-                        display: false
-                    },
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                stepSize: 1,
-                                fontColor: '#fff',
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
-                            }
-
-                        }],
-                        xAxes: [{
-                            barPercentage: 0.6,
-                            ticks: {
-                                fontColor: '#fff'
-                            },
-                            gridLines: {
-                                color: 'rgba(255,255,255,0.5)',
-                                borderDash: [3, 2],
-                                zeroLineColor: '#fff'
+                                zeroLineColor: '#ffa7ba'
                             }
                         }]
                     }
@@ -591,12 +487,7 @@
 
         var ctxAge = document.getElementById('chart-age').getContext('2d');
         new Chart(ctxAge, ChartAge);
-
-        var ctxVac = document.getElementById('chart-vac').getContext('2d');
-        new Chart(ctxVac, ChartVac);
         
-        var ctxWeight = document.getElementById('chart-weight').getContext('2d');
-        new Chart(ctxWeight, ChartWeight);
     </script> 
     
     <!-- end of writed scripts -->

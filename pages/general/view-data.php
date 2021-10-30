@@ -1,14 +1,10 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-   
-
 <?php 
 
+    session_start();
+    include('../../php/basic/connection.php');
  
     $_SESSION['view_id']=$_POST['view-id'];
     $view_id=$_SESSION['view_id'];
-
-    mysqli_select_db($conn,'cs2019g6');
     
     $query1="SELECT * FROM baby_register WHERE baby_id='$view_id'";
     $result1=mysqli_query($conn,$query1);    
@@ -22,6 +18,7 @@
     $mother_name=$data['mother_name'];
     $mother_age=$data1['mother_age'];
     $address=$data['address'];
+    $email=$data['email'];
         
     $baby_first_name=$data1['baby_first_name'];
     $baby_last_name=$data1['baby_last_name'];
@@ -46,35 +43,24 @@
 ?>
 
 
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-
+    <!-- required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-        <!-- for datatable -->
-    <link rel="stylesheet" href="../../assets/css/material.min.css">
-    <link rel="stylesheet" href="../../assets/css/custom-table-style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css">
-
-    <link rel="stylesheet" href="./css/view-data-style.css">
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    //table css
+    include('../../inc/basic/include-dashboard-table-css.php');
+    ?>
+    
+    <link rel="stylesheet" href="/pages/general/css/view-data-style.css">
 
     <title>Infant Health Management System</title>
 
@@ -93,7 +79,7 @@ $gender=$data3['baby_gender'];
 if($gender=='M') {
 ?>
 
-    <div class="background-area pt-1 pb-4" style="background-image:  url('./img/backgroud-boy.jpg');">
+    <div class="background-area pt-1 pb-4" style="background-image:  url('/pages/general/img/backgroud-boy.jpg');">
         <div class="container mt-3">
 
             <div class="card" style="background: rgba(227, 242, 253, 0.5);">
@@ -125,6 +111,10 @@ if($gender=='M') {
                                                 <tr>
                                                     <th>Address</th>
                                                     <td><?php echo $address; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email</th>
+                                                    <td><?php echo $email; ?></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -228,7 +218,7 @@ if($gender=='M') {
                                 <?php 
                                     if(isset($_SESSION['doctor_id'])) {
                                 ?>
-                                    <a href="../doctor/doc-view-babies.php">
+                                    <a href="/doctor/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -239,7 +229,7 @@ if($gender=='M') {
                                     }
                                     else if(isset($_SESSION['sister_id'])) {
                                 ?>
-                                    <a href="../sister/sis-view-babies.php">
+                                    <a href="/sister/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -250,7 +240,7 @@ if($gender=='M') {
                                     }
                                     else if(isset($_SESSION['midwife_id'])) {
                                 ?>
-                                    <a href="../midwife/mid-view-babies.php">
+                                    <a href="/midwife/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -275,7 +265,7 @@ if($gender=='M') {
 else {
 ?>    
  
-    <div class="background-area pt-1 pb-4" style="background-image: url('./img/backgroud-girl.jpg');">
+    <div class="background-area pt-1 pb-4" style="background-image: url('/pages/general/img/backgroud-girl.jpg');">
         <div class="container mt-3">
 
             <div class="card" style="background: rgba(248,187,208, 0.5);">
@@ -410,7 +400,7 @@ else {
                                 <?php 
                                     if(isset($_SESSION['doctor_id'])) {
                                 ?>
-                                    <a href="../doctor/doc-view-babies.php">
+                                    <a href="/doctor/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -421,7 +411,7 @@ else {
                                     }
                                     else if(isset($_SESSION['sister_id'])) {
                                 ?>
-                                    <a href="../sister/sis-view-babies.php">
+                                    <a href="/sister/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -432,7 +422,7 @@ else {
                                     }
                                     else if(isset($_SESSION['midwife_id'])) {
                                 ?>
-                                    <a href="../midwife/mid-view-babies.php">
+                                    <a href="/midwife/view-babies">
                                         <div class="card" style="background: rgba(227, 242, 253, 0.1);">
                                             <div class="card-body">
                                                 <i class="fas fa-list"></i>
@@ -455,24 +445,14 @@ else {
 <?php   
 } 
 ?>
-   
     
-    
-    
-       
-    
-    <!--core js files-->
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-        <!-- for data table -->
-    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/custom-table-script.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
-
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end ofcore js files-->
+    <!-- optional JavaScript -->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    //table js
+    include('../../inc/basic/include-dashboard-table-js.php');
+    ?>
     
 </body>
 

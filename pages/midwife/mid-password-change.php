@@ -1,9 +1,9 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['midwife_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['midwife_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -14,22 +14,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/mid-password-change-style.css">
+    <link rel="stylesheet" href="/pages/midwife/css/mid-password-change-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -51,26 +44,31 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
+                        <img src="/pages/midwife/img/midwife.png" class="rounded-circle">
+                        <?php
+                            $query00 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                            $result00= mysqli_query($conn,$query00);
+                            $row00=mysqli_fetch_assoc($result00);
+                        ?>
+                        <a href="#"> <span><?php echo $row00['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                        <li>
-                            <a href="./mid-dashboard.php" class="text-uppercase">
+                            <a href="/midwife/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/miwife/password-change" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-key" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Change Password</span>
+                                <span class="list">මුරපදය වෙනස් කරන්න</span>
                             </a>
                         </li>
                     </ul>
@@ -109,7 +107,7 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <div class="menu">
-                                <h4 class="text-uppercase font-weight-bold mb-4">Change Password</h4>
+                                <h4 class="text-uppercase font-weight-bold mb-4">මුරපදය වෙනස් කරන්න</h4>
                             </div>
                         </div>
                         <div class="col-md-2"></div>
@@ -118,27 +116,27 @@
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-6">
-                            <form action="./php/password-change.php" method="post" enctype="multipart/form-data">
+                            <form action="/pages/midwife/php/password-change.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="old_password">
-                                        Old Password
+                                        පැරණි මුරපදය
                                         <?php include('inc/alert-old-pass.php'); ?>                                    
                                     </label>
-                                    <input type="password" class="form-control" name="old_password" placeholder="Enter old password" required>
+                                    <input type="password" class="form-control" name="old_password" placeholder="පැරණි මුරපදය ඇතුළත් කරන්න" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="new_password">
-                                        New Password
+                                        නව මුරපදය
                                         <?php include('inc/alert-new-pass.php'); ?>
                                     </label>
-                                    <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter new password" required>
+                                    <input type="password" class="form-control" id="new_password" name="new_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="නව මුරපදය ඇතුළත් කරන්න" required>
                                     <span toggle="#new_password" class="far fa-fw fa-eye password-icon"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirm_password">Confirm Password</label>
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="Re-type new password" required>
+                                    <label for="confirm_password">මුරපදය තහවුරු කරන්න</label>
+                                    <input type="password" class="form-control" name="confirm_password" placeholder="නව මුරපදය නැවත ඇතුළත් කරන්න" required>
                                 </div>
-                                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="submit" class="btn btn-primary">ඉදිරිපත් කරන්න</button>
                             </form>
                         </div>
                         <div class="col-md-4 pwd-validate">
@@ -158,14 +156,12 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <script type="text/javascript" src="./js/pwd-validation-script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
+    
+    <script type="text/javascript" src="/pages/midwife/js/pwd-validation-script.js"> </script>
 
     <!-- writed scripts -->
     <script>
@@ -173,11 +169,7 @@
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
@@ -197,7 +189,6 @@
             }
         });
     </script>
-    
     <!-- end of writed scripts -->
 
 

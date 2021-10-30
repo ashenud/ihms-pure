@@ -1,7 +1,5 @@
 <?php
 	include('connection.php');
-
-	mysqli_select_db($conn, 'cs2019g6');
 	
     //table baby
     $query2="CREATE TABLE baby(baby_id VARCHAR(100) PRIMARY KEY,baby_name VARCHAR(200),date_of_birth DATE,baby_address VARCHAR(200),baby_messages VARCHAR(200),baby_password VARCHAR(30))";

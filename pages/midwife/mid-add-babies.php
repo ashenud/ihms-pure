@@ -1,10 +1,9 @@
-<?php session_start();
-?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['midwife_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['midwife_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -15,23 +14,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/mid-inbox-style.css">
-    <link rel="stylesheet" href="./css/mid-add-babies-style.css">
+    <link rel="stylesheet" href="/pages/midwife/css/mid-add-babies-style.css">
 
     <style>
         #map {
@@ -42,6 +33,7 @@
         .collapse-manage {
             display: block !important;
         }
+        
     </style>
 
     <title>Baby Registration</title>
@@ -61,118 +53,7 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo $_SESSION["midwife_id"]; ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="mid-dashboard.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" style="cursor:default">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="#" class="text-uppercase drop-active">
-                                    <span class="icon-active">
-                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">add babies</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mid-view-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="mid-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mid-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                    
-                                    <?php 
-                                        include "php/selectdb.php";
-                                        $sql001="SELECT COUNT(status) AS unreadSMS FROM midwife_message WHERE status='unread' AND midwife_id='".$_SESSION['midwife_id']."'";
-                                        $run001=mysqli_query($conn,$sql001);
-                                        $row001=mysqli_fetch_assoc($run001);
-                                        $count=$row001['unreadSMS'];
-
-                                        if(0<$count && $count<=9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo $count;
-                                            echo "</span>";
-                                        }
-                                        else if($count>9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo "9+";
-                                            echo "</span>";
-                                        }
-                                    ?>
-                                    
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mid-location.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Locations</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
             
             <!-- content -->
@@ -182,8 +63,8 @@
                 <div class="alert-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
+                            <div class="col-md-2 col-lg-3"></div>
+                            <div class="col-md-8 col-lg-6">
                                 <?php include('./inc/alert-continue-registration.php'); ?>
                                 <?php include('./inc/alert-mother-not-found.php'); ?>
                                 <?php include('./inc/alert-registration-success.php'); ?>
@@ -193,7 +74,7 @@
                                 <?php include('./inc/alert-email-exists-error.php'); ?>
                                 <?php include('./inc/alert-bId-exists-error.php'); ?>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-2 col-lg-3"></div>
                         </div>
                     </div>
                 </div>
@@ -221,30 +102,36 @@
     </div>
     
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtlwcov50Y0-MKAlkWmzx5sdYJY2HeFh4&callback=initMap"></script>
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
     
-    <script type="text/javascript" src="./js/reg-validation-script.js"></script>
-    <script type="text/javascript" src="./js/register-location-script.js"> </script>
-    <!--end core js files-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtlwcov50Y0-MKAlkWmzx5sdYJY2HeFh4&callback=initMap"></script>
+    <script type="text/javascript" src="/pages/midwife/js/reg-validation-script.js"></script>
+    <script type="text/javascript" src="/pages/midwife/js/register-location-script.js"> </script>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.mm-add').addClass('drop-active');
+        });
+    </script> 
+    
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+            
+            $('#manage-users').on('click', function () {
+                $('#manage-users').toggleClass('active');
+                $('#manage').toggleClass('collapse-manage d-none');
+            });          
         });
     </script>
     <!-- end of writed scripts -->
@@ -254,6 +141,17 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        <?php
+            $query1="SELECT MAX(baby_id) FROM baby_register WHERE baby_id LIKE'%".$_SESSION['GnDivision']."'";
+            $result1=mysqli_query($conn,$query1) ;
+            $row1 = mysqli_fetch_assoc($result1) ;
+            
+        ?>
+
+        $("#bId").focus(function(event) { 
+            $('#bId').val("<?php echo $row1["MAX(baby_id)"];?>"); 
+        });
     </script>
     <!-- end of tooltip scripts -->
 

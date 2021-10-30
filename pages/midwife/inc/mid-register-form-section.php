@@ -1,5 +1,5 @@
 <div class="container" id="formContainer">
-    <form id="regForm" action="./php/insert-registration-data-action.php" method="POST">
+    <form id="regForm" action="/pages/midwife/php/insert-registration-data-action.php" method="POST">
 
         <!-- One "tab" for each step in the form: -->
         <div class="card registration-form"> 
@@ -40,11 +40,11 @@
 
                     <div class="form-row">
 
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img1.png" alt="">
+                        <div class="form-group text-center col-lg-3">
+                            <img src="/pages/midwife/img/wizard-img1.png" alt="">
                         </div>
 
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-12">
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                         <label>Mother's Age:</label>
-                                        <input type="number" name="mAge" class="form-control" id="mAge" placeholder="age">
+                                        <input type="number" name="mAge" class="form-control" id="mAge" min="0" placeholder="age">
                                         <span id="input2" class="error-tooltip mAge-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -114,7 +114,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-12">
                                         <label>Mother NIC:</label>
-                                        <input type="text" name="mNic" class="form-control" id="mNic" placeholder="nic here"
+                                        <input type="text" name="mNic" class="form-control" id="mNic" placeholder="nic here" onkeyup="check_mNic();"
                                         style="<?php 
                                             if(isset($_SESSION['mNic'])){
                                                 echo "color:blue";
@@ -130,6 +130,7 @@
                                                 echo 'readonly';
                                         }
                                         ?>>
+                                        <div id="m-nic-error" style="color: red; font-size: 9px; margin-top: -14px; z-index: 10; position: absolute;"></div>
                                         <span id="input3" class="error-tooltip mNic-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -223,11 +224,11 @@
 
                     <div class="form-row">
 
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img2.png" alt="">
+                        <div class="form-group text-center col-lg-3">
+                            <img src="/pages/midwife/img/wizard-img2.png" alt="">
                         </div>
 
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6">
@@ -266,14 +267,14 @@
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                         <label>Baby ID:</label>
-                                        <input type="text" name="bId" class="form-control" id="bId" 
+                                        <input type="text" name="bId" class="form-control" id="bId" onkeyup="check_babyId();"
                                         placeholder="<?php
-                                            mysqli_select_db($conn,'cs2019g6');
                                             $query1="SELECT MAX(baby_id) FROM baby_register WHERE baby_id LIKE'%".$_SESSION['GnDivision']."'";
                                             $result1=mysqli_query($conn,$query1) ;
                                             $row1 = mysqli_fetch_assoc($result1) ;
-                                            echo "last_id:".$row1["MAX(baby_id)"];
+                                            echo "last_id : ".$row1["MAX(baby_id)"];
                                         ?>">
+                                        <div id="baby-id-error" style="color: red; font-size: 9px; margin-top: -14px; z-index: 10; position: absolute;"></div>
                                         <span id="input6" class="error-tooltip tp-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -313,7 +314,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                         <label>Date of Birth:</label>
-                                        <input type="date" name="dob" class="form-control" placeholder="Date of Birth" id="dob">
+                                        <input type="date" name="dob" max="<?php echo date("Y-m-d"); ?>" class="form-control" placeholder="Date of Birth" id="dob">
                                         <span id="input8" style="color:red;"></span>
                                     </div>
                                     <div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3">
@@ -335,7 +336,7 @@
                                     </div>
                                     <div class="form-group col-sm-12 col-md-5 col-lg-5 col-xl-5">
                                         <label>Telephone:</label>
-                                        <input type="number" name="tp" class="form-control" id="tp" placeholder="telephone number"
+                                        <input type="number" name="tp" min="0" class="form-control" id="tp" placeholder="telephone number"  onkeyup="check_tpNbr();"
                                         value="<?php 
                                             if(isset($_SESSION['tel'])){
                                             echo $_SESSION['tel'];
@@ -351,6 +352,7 @@
                                                 echo 'readonly';
                                             }
                                         ?>>
+                                        <div id="tpnbr-error" style="color: red; font-size: 9px; margin-top: -14px; z-index: 10; position: absolute;"></div>
                                         <span id="input9" class="error-tooltip tp-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -436,11 +438,11 @@
 
                     <div class="form-row">
 
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img3.png" alt="">
+                        <div class="form-group text-center col-lg-3">
+                            <img src="/pages/midwife/img/wizard-img3.png" alt="">
                         </div>
 
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
@@ -460,7 +462,7 @@
                                         </select>
                                         <!-- for get tab view -->
                                         <label>Birth Weight: (in KG)</label>
-                                        <input type="number" step="0.01" name="bWeight" class="form-control" id="bWeight" placeholder="birth weight">
+                                        <input type="number" step="0.01" min="0" name="bWeight" class="form-control" id="bWeight" placeholder="birth weight">
                                         <span id="input10" class="error-tooltip bWeight-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -473,7 +475,7 @@
                                     </div>
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                         <label>Birth Length: (in CM)</label>
-                                        <input type="number" step="0.01" name="bLength" class="form-control" id="bLength" placeholder="birth length">
+                                        <input type="number" step="0.01" min="0" name="bLength" class="form-control" id="bLength" placeholder="birth length">
                                         <span id="input11" class="error-tooltip bLength-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -486,7 +488,7 @@
                                     </div>
                                     <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                         <label>Circumference of Head: (in CM)</label>
-                                        <input type="number" step="0.01" name="circumHead" class="form-control" id="circumHead" 
+                                        <input type="number" step="0.01" min="0" name="circumHead" class="form-control" id="circumHead" 
                                         placeholder="circumference of head">
                                         <span id="input12" class="error-tooltip circumHead-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
@@ -679,10 +681,10 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img4.png" alt="">
+                        <div class="form-group text-center col-lg-3">
+                            <img src="/pages/midwife/img/wizard-img4.png" alt="">
                         </div>
-                        <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                        <div class="form-group col-lg-9">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-12">
@@ -702,7 +704,7 @@
                                         <input type="hidden" value="11"> 
                                         <!-- end of for get tab view -->           
                                         <label>Email:</label>
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="enter email"
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="enter email"  onkeyup="check_email();"
                                         value="<?php 
                                             if(isset($_SESSION['email'])){
                                             echo $_SESSION['email'];
@@ -718,6 +720,8 @@
                                                 echo 'readonly';
                                             }
                                         ?>>
+                                        
+                                        <div id="email-error" style="color: red; font-size: 9px; margin-top: -14px; z-index: 10; position: absolute;"></div>
                                         <span id="input13" class="error-tooltip email-error">
                                             <i class="fas fa-exclamation-circle" data-toggle="tooltip" data-placement="top" data-html="true" 
                                                title='<div class="card">
@@ -848,10 +852,10 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img5.png" alt="">
+                        <div class="form-group text-center col-lg-3">
+                            <img src="/pages/midwife/img/wizard-img5.png" alt="">
                         </div>
-                        <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="form-group col-lg-6 mb-2">
                             <div class="container map-area"
                             <?php
                             if(isset($_SESSION['mNic'])){
@@ -861,7 +865,7 @@
                                 <div id="map"></div>
                             </div>
                         </div>
-                        <div class="form-group col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                        <div class="form-group col-lg-3">
                             <div class="container-fluid">
                                 <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -998,13 +1002,13 @@
 
                     <div class="form-row d-flex justify-content-start">
                         <div class="form-group col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
-                            <h5 class="card-title">Register Now:</h5>
+                            <h5 class="card-title">Click Submit to Register:</h5>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group text-center col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                            <img src="./img/wizard-img6.png" alt="">
+                            <img src="/pages/midwife/img/wizard-img6.png" alt="">
                         </div>
                         <div class="form-group col-sm-12 col-md-9 col-lg-9 col-xl-9">
                             <!-- for get tab view -->
@@ -1063,7 +1067,7 @@
                 <!-- Button which the steps of the form: -->
                 <div style="overflow:auto;">
                     <div style="float:right;">
-                        <a href="php/session-reset.php?sessionReset=1" class="btn" type="button" id="clearBtn">Clear</a>
+                        <a href="/pages/midwife/php/session-reset.php?sessionReset=1" class="btn" type="button" id="clearBtn">Clear</a>
                         <button class="btn" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
                         <button class="btn" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>

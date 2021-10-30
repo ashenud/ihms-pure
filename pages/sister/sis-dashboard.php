@@ -1,9 +1,9 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['sister_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['sister_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -14,22 +14,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-
+    <link rel="stylesheet" href="/assets/css/calendar/calendar.css"> 
+    <link rel="stylesheet" href="/pages/sister/css/sis-dashboard-style.css">
+    
     <title>Infant Health Management System</title>
     
 </head>
@@ -46,177 +41,121 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/sister.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['sister_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="#" class="text-uppercase active">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="sis-add-midwife.php" class="text-uppercase drop">
-                                    <span class="icon-active">
-                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">add midwife</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sis-view-midwife.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view midwife</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sis-view-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="sis-vaccinations.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-syringe" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Vaccinations</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="sis-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="sis-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="sis-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="sis-send-messages.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Send Messages</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
 
             
             <!-- content -->
             <div class="content">
                
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="container">
+                
+                    <div class="row mt-4 mb-5">
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header header-warning">
+				                    <div class="card-icon icon-color">
+                                        <i class="fas fa-baby"></i>
+                                    </div>
+                                    <p class="card-category">ක්‍රියාකාරී ළදරුවන්</p>
+                                    
+                                    <?php 
+                                        $query1="SELECT * FROM baby_register";
+                                        $result1=mysqli_query($conn, $query1);
+                                        $num_rows1=mysqli_num_rows($result1);
+                                    ?>
+                                                                        
+                                    <h3 class="card-title counter"><?php echo $num_rows1; ?></h3>
                                 </div>
-                                <div class="card-footer text-muted">2 days ago</div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <a href="/sister/view-babies">ළමුන්ගේ තොරතුරු බලන්න</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card text-center">
-                                <div class="card-header">Featured</div>
-                                <div class="card-body">
-                                    <h4 class="card-title">Special title treatment</h4>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">2 days ago</div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="card-icon icon-color">
+                                        <i class="far fa-envelope"></i>
+                                    </div>
+                                    <p class="card-category">ලැබුනු පණිවුඩ</p>
+                                    
+                                    <?php 
+                                        $query4="SELECT COUNT(status) AS unreadSMS FROM sister_message WHERE status='unread' AND sister_id='".$_SESSION['sister_id']."'";
+                                        $result4=mysqli_query($conn,$query4);
+                                        $row4=mysqli_fetch_assoc($result4);
+                                    ?>
+                                    
+                                    <h3 class="card-title counter"><?php echo $row4['unreadSMS']; ?></h3>
+                                </div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <a href="/sister/inbox">පණිවුඩ බලන්න</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+                    
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="card-icon icon-color">
+                                        <i class="fas fa-user-nurse"></i>
+                                    </div>
+                                    <p class="card-category">ක්‍රියාකාරී වින්නඹුවන් (Midwife)</p>
+                                    <?php 
+                                    
+                                    $query1="SELECT * FROM midwife";
+                                    $result1=mysqli_query($conn, $query1);
+                                    $num_rows2=mysqli_num_rows($result1);
+                                    
+                                    ?>
+                                <h3 class="card-title"><span class="counter"><?php echo $num_rows2; ?></span></h3>
+                                </div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <a href="/sister/view-midwife">වින්නඹුවන්ගේ (Midwife) තොරතුරු බලන්න</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-4 mt-4">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum consectetur possimus neque quia debitis illo asperiores nisi velit excepturi esse ipsa culpa, suscipit maiores deleniti hic magni commodi aliquam sequi. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde suscipit nostrum velit fuga, voluptate adipisci debitis praesentium voluptates dolorem maxime vitae, saepe numquam soluta ducimus voluptas deserunt? Labore consequuntur, veritatis.
+
+                        <div class="col-xl-2 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-stats">
+                                <div class="card-header">
+                                    <div class="card-icon icon-color">
+                                        <i class="fas fa-user-nurse"></i>
+                                    </div>
+                                    <p class="card-category">වින්නඹුවන් (Midwife) ලියාපදිංචිය</p>
+                                    <h3 class="card-title"><span class="counter"> </span></h3>
+                                </div>
+                                <div class="card-footer item-footer">
+                                    <div class="stats">
+                                        <a href="/sister/add-midwife">වින්නඹුවන්(Midwife) ලියාප්දිංචි කිරීම...</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <div class="col-xl-4 col-lg-4 col-md-6 mb-2">
+                            <div class="card card-cal" style="height: 100%;width:100%;">
+                                <div class="calendar calendar-first" id="calendar_first">
+                                    <div class="calendar_header">
+                                        <button class="switch-month switch-left"> <i class="fa fa-chevron-left"></i></button>
+                                        <h2></h2>
+                                        <button class="switch-month switch-right"> <i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="calendar_weekdays"></div>
+                                    <div class="calendar_content"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
+                                   
                 </div>
 
             </div>
@@ -229,28 +168,31 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <script type="text/javascript" src="/assets/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/assets/css/calendar/calendar.js"></script>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.ss-dash').addClass('active');
+        }); 
+    </script>
+        
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
-            });
+            });         
         });
     </script>
     <!-- end of writed scripts -->

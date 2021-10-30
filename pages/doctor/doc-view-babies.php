@@ -1,10 +1,11 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['doctor_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['doctor_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -13,26 +14,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-        <!-- for datatable -->
-    <link rel="stylesheet" href="../../assets/css/material.min.css">
-    <link rel="stylesheet" href="../../assets/css/custom-table-style.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/doc-view-babies-style.css">
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    //table css
+    include('../../inc/basic/include-dashboard-table-css.php');
+    ?>
+    
+    <link rel="stylesheet" href="/pages/doctor/css/doc-view-babies-style.css">
     
     <style>
         .collapse-manage {
@@ -56,128 +48,7 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/doctor.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['doctor_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="doc-dashboard.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" style="cursor:default">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="doc-view-sisters.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view sisters</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-uppercase drop-active">
-                                    <span class="icon-active">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="doc-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                    
-                                    <?php 
-                                        mysqli_select_db($conn, 'cs2019g6');
-                                        $sql001="SELECT COUNT(status) AS unreadSMS FROM doctor_message WHERE status='unread' AND doctor_id='".$_SESSION['doctor_id']."'";
-                                        $run001=mysqli_query($conn,$sql001);
-                                        $row001=mysqli_fetch_assoc($run001);
-                                        $count=$row001['unreadSMS'];
-
-                                        if(0<$count && $count<=9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo $count;
-                                            echo "</span>";
-                                        }
-                                        else if($count>9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo "9+";
-                                            echo "</span>";
-                                        }
-                                    ?>
-                                    
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="doc-send-messages.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Send Messages</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-                                  
-                   
-                    <!--normal and mobile hamburgers-->
-
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
             
             <!-- content -->
@@ -190,12 +61,11 @@
                         <div class="col-md-10">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title text-uppercase">view babies</h5>
+                                    <h5 class="card-title text-uppercase">සියලුම ළදරුවන්</h5>
                                     
                                     <div class="table-for-data" style="margin-top: 30px">
                         
                                         <?php
-                                        mysqli_select_db($conn, 'cs2019g6');
 
                                         $query1 = "SELECT 
                                                        mother_nic, 
@@ -220,12 +90,12 @@
                                                             FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) months,
                                                             
                                                             CEILING((((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12) - FLOOR((DATEDIFF(CURDATE(),baby_dob)/365 - FLOOR(DATEDIFF(CURDATE(),baby_dob)/365))* 12))* 30) days
-                                                          FROM baby_register) x";
+                                                          FROM baby_register WHERE status='active') x";
                                         $result1= mysqli_query($conn,$query1);
 
                                         ?>
 
-                                        <table class="mdl-data-table table-responsive-md bordered" id="datatable">
+                                        <table class="mdl-data-table table-responsive-xl bordered" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>Mother NIC</th>
@@ -248,7 +118,7 @@
                                                     <td><?php echo $row['baby_first_name']." ".$row['baby_last_name']; ?></td>
                                                     <td><?php echo $row['age']; ?></td>
                                                     <td>
-                                                        <form action="../general/view-data.php" method="POST">
+                                                        <form action="/general/view-data" method="POST">
                                                             <input type="hidden" name="view-id" value="<?php echo $row['baby_id']; ?>">
                                                             <button type="submit" name="view-btn" class="btn view-btn"><i class="fa fa-eye" aria-hidden="true"></i></button>
                                                         </form>
@@ -280,35 +150,36 @@
 
 
     <!-- optional JavaScript -->
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-        <!-- for data table -->
-    <script type="text/javascript" src="../../assets/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/custom-table-script.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"></script>
-
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    //table js
+    include('../../inc/basic/include-dashboard-table-js.php');
+    ?>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.d-baby').addClass('drop-active');
+        });
+    </script> 
+    
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+            
+            $('#manage-users').on('click', function () {
+                $('#manage-users').toggleClass('active');
+                $('#manage').toggleClass('collapse-manage d-none');
+            });          
         });
     </script>
-    
     <!-- end of writed scripts -->
 
 

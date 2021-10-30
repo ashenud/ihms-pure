@@ -1,11 +1,11 @@
-<?php session_start();
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['midwife_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
-<?php include('../../php/basic/connection.php'); ?>
 
-<?php if(!isset($_SESSION['midwife_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
-?>
 
 <!doctype html>
 <html lang="en">
@@ -14,22 +14,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/english-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
     
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/mid-dashboard-style.css">
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
+
+    <link rel="stylesheet" href="/pages/midwife/css/mid-dashboard-style.css">
 
     <title>Midwife Home</title>
     
@@ -47,118 +40,7 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"><?php echo $_SESSION["midwife_id"];?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="mid-dashboard.php" class="text-uppercase active">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="mid-add-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">add babies</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="mid-view-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="mid-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mid-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                    
-                                    <?php 
-                                        include "php/selectdb.php";
-                                        $sql001="SELECT COUNT(status) AS unreadSMS FROM midwife_message WHERE status='unread' AND midwife_id='".$_SESSION['midwife_id']."'";
-                                        $run001=mysqli_query($conn,$sql001);
-                                        $row001=mysqli_fetch_assoc($run001);
-                                        $count=$row001['unreadSMS'];
-
-                                        if(0<$count && $count<=9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo $count;
-                                            echo "</span>";
-                                        }
-                                        else if($count>9) {
-                                            echo "<span class='badge badge-danger'>";
-                                            echo "9+";
-                                            echo "</span>";
-                                        }
-                                    ?>
-                                    
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mid-location.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Locations</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end of normal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
             
             <!-- content -->
@@ -168,8 +50,8 @@
                 <div class="alert-section">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
                                 <?php include('./inc/alert-reminder-success.php'); ?>
                                 <?php include('./inc/alert-reminder-error.php'); ?>
                                 <?php include('./inc/alert-email-send-success.php'); ?>
@@ -177,7 +59,7 @@
                                 <?php include('./inc/alert-reminder-delete-success.php'); ?>
                                 <?php include('./inc/alert-reminder-delete-error.php'); ?>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-lg-4"></div>
                         </div>
                     </div>
                 </div>
@@ -187,7 +69,7 @@
                     
                     <div class="row mt-4 mb-5">
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
                             <a data-toggle="modal" href="#reminderModal" class="text-decoration-none">
                                 <div class="card card-stats">
                                     <!-- Card body -->
@@ -195,25 +77,24 @@
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Add</h5>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">Reminder</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">සිහි කැඳවීම්</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">එක් කරන්න</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon one">
+                                                <div class="card-icon icon-color">
                                                     <i class="far fa-clipboard"></i>
                                                 </div>
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-sm">
                                             <?php 
-                                    
-                                                mysqli_select_db($conn, 'cs2019g6');
+
                                                 $query1="SELECT * FROM midwife_reminder WHERE midwife_id='".$_SESSION['midwife_id']."'";
                                                 $result1=mysqli_query($conn, $query1);
                                                 $num_rows1=mysqli_num_rows($result1);
 
                                             ?>
-                                            <span class="text-nowrap">You have <?php echo $num_rows1; ?> reminders</span>
+                                            <span class="text-nowrap">දැනට ඇති සිහි කැඳවීම් ගනණ <?php echo $num_rows1; ?>කි.</span>
                                         </p>
 
                                     </div>
@@ -221,19 +102,19 @@
                             </a>
                         </div>
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
-                            <a class="text-decoration-none" href="./mid-view-babies.php">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
+                            <a class="text-decoration-none" href="/midwife/view-babies">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body">
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Registerd</h5>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">Babies</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">ලියාපදිංචි</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">ළදරුවන්</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon two">
+                                                <div class="card-icon icon-color">
                                                     <i class="fas fa-baby"></i>
                                                 </div>
                                             </div>
@@ -246,7 +127,7 @@
                                                 $num_rows3=mysqli_num_rows($result3);
 
                                             ?>
-                                            <span class="text-nowrap"><?php echo $num_rows3; ?> babies have registrated</span>
+                                            <span class="text-nowrap">දැනට ලියාපදිංචි ළදරුවන් ගනණ <?php echo $num_rows3; ?>කි.</span>
                                         </p>
 
                                     </div>
@@ -254,19 +135,19 @@
                             </a>
                         </div>
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
-                            <a class="text-decoration-none" href="./mid-thriposha.php">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
+                            <a class="text-decoration-none" href="/midwife/thriposha">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body">
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h6 class="card-title text-uppercase text-muted mb-0">distributing</h6>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">thriposha</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">ත්‍රිපෝෂ</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">බෙදාහැරීම</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon three">
+                                                <div class="card-icon icon-color">
                                                     <i class="fas fa-cookie-bite"></i>
                                                 </div>
                                             </div>
@@ -281,7 +162,7 @@
                                                 $reminder=$row4['available_qty']-$row4['MAX(distributed_qty)'];
                                                 
                                             ?>
-                                            <span class="text-nowrap"><?php echo $reminder; ?> packets are remain</span>
+                                            <span class="text-nowrap">දැනට ඇති පැකට් ප්‍රමාණය <?php echo $reminder; ?> කි.</span>
                                         </p>
 
                                     </div>
@@ -289,25 +170,25 @@
                             </a>
                         </div>
                         
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-2">
-                            <a class="text-decoration-none" href="./mid-contact-staff.php">
+                        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-2">
+                            <a class="text-decoration-none" href="/midwife/contact-staff">
                                 <div class="card card-stats">
                                     <!-- Card body -->
                                     <div class="card-body">
 
                                         <div class="row">
                                             <div class="col title">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">Contact</h5>
-                                                <span class="h5 text-uppercase font-weight-bold mb-0">staff</span>
+                                                <h5 class="card-title text-uppercase text-muted mb-0">කාර්ය මණ්ඩලය</h5>
+                                                <span class="h5 text-uppercase font-weight-bold mb-0">සම්බන්ඳ කරගන්න</span>
                                             </div>
                                             <div class="col-auto">
-                                                <div class="card-icon four">
+                                                <div class="card-icon icon-color">
                                                     <i class="fas fa-address-book"></i>
                                                 </div>
                                             </div>
                                         </div>
                                         <p class="mt-3 mb-0 text-sm">
-                                            <span class="text-nowrap">Send short messages</span>
+                                            <span class="text-nowrap">ක්ෂණික පණිවිඩයක් යවන්න.</span>
                                         </p>
 
                                     </div>
@@ -319,7 +200,7 @@
                         <div id="reminderModal" class="modal fade">
                             <div class="modal-dialog modal-reminder">
                                 <div class="modal-content card card-image">
-                                    <form action="./php/add-reminder-action.php" method="POST">
+                                    <form action="/pages/midwife/php/add-reminder-action.php" method="POST">
                                         <div class="modal-header">
                                             <h4 class="modal-title text-uppercase">Add Reminder</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -354,36 +235,36 @@
                     <div class="row mt-4 mb-5">
 
                         <!-- search baby section -->
-                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card search-babies">
-                                <form method="POST" action="php/mid-search-baby-by-mNIC.php">
+                                <form method="POST" action="/pages/midwife/php/mid-search-baby-by-mNIC.php">
                                     <div class="card-header">
-                                        <h6 class="font-weight-bold">Search Mother</h6>
+                                        <h6 class="font-weight-bold">ළදරුවන් නිරීක්ෂණය කිරීම</h6>
                                     </div>
                                     <div class="card-body">
                                         <div class="search-input">
-                                            <input type="text" name="searchUser" class="form-control" placeholder="enter mother nic for search..." required>
+                                            <input type="text" name="searchUser" class="form-control" placeholder="සෙවීම සඳහා මවගේ හැඳුනුම් අංකය ඇතුළත් කරන්න..." required>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <input type="submit" value="SEARCH" class="btn btn-sm text-light" name="searchBabyUsingMnic">
+                                        <input type="submit" value="සොයන්න" class="btn btn-sm text-light" name="searchBabyUsingMnic">
                                     </div>
                                 </form>
                             </div>
                         </div>
 
                         <!-- message section -->
-                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card compose-mail">
-                                <form method="POST" action="php/send-mail-action.php">
+                                <form method="POST" action="/pages/midwife/php/send-mail-action.php">
                                     <div class="card-header">
-                                        <h6 class="font-weight-bold">Send message to all mothers via email</h6>
+                                        <h6 class="font-weight-bold">සියලුම මව්වරුන්ට එකවර ඊ මේල් පණිවිඩයක් යවන්න</h6>
                                     </div>
                                     <div class="card-body">
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <label class="table-data">Subject</label>
+                                                    <label class="table-data">මාතෘකාව</label>
                                                 </td>
                                                 <td>
                                                     <input type="text" name="subject" class="form-control form-control-sm" required>
@@ -391,7 +272,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label class="table-data">Message</label>
+                                                    <label class="table-data">පණිවිඩය</label>
                                                 </td>
                                                 <td>
                                                     <textarea rows="2" cols="50" name="message" class="form-control form-control-sm" required></textarea>
@@ -400,7 +281,7 @@
                                         </table>
                                     </div>
                                     <div class="card-footer">
-                                        <input type="submit" value="SEND" class="btn btn-sm text-light" name="submit2">
+                                        <input type="submit" value="යවන්න" class="btn btn-sm text-light" name="submit2">
                                     </div>
                                 </form>
                             </div>
@@ -411,19 +292,19 @@
                     <div class="row mt-4 mb-5">
 
                         <!-- vaccination table section -->
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card view-vaccine">
                                 <div class="card-header">
-                                    <h6 class="font-weight-bold">Vaccination Date</h6>
+                                    <h6 class="font-weight-bold">එන්නත් ලබාදිය යුතු දිනයන්</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="b_table" id="newDiv">
-                                        <table class="table">
-                                            <thead class="thead-dark">
+                                        <table class="table table-responsive-xl">
+                                            <thead class="thead-theme">
                                                 <tr class="b_text5">
-                                                    <th>Baby Id</th>
-                                                    <th>Vaccine</th>
-                                                    <th>Date</th>
+                                                    <th>ළදරු ලියාපදිංචි අංකය</th>
+                                                    <th>එන්නත</th>
+                                                    <th>දිනය</th>
                                                 </tr>
                                             </thead>
                                             
@@ -432,18 +313,18 @@
 
                                                 $mid=$_SESSION["midwife_id"];
                                                 $currentDate= date("Y-m-d");
-                                                $expireDate = date("d") -14;
+                                                $expireDate = date('Y-m-d', strtotime("+5 days"));
 
-                                                $sqlDel="DELETE FROM vaccine_date WHERE giving_date < DATE_SUB(curdate(), INTERVAL 7 DAY)";
-                                                mysqli_query($conn,$sqlDel);
+                                                //$sqlDel="DELETE FROM vaccine_date WHERE giving_date < DATE_SUB(curdate(), INTERVAL 7 DAY)";
+                                                //mysqli_query($conn,$sqlDel);
 
-                                                $sql5="SELECT * FROM vaccine_date WHERE midwife_id='".$mid."' AND (giving_date >='".$currentDate."') order by giving_date DESC ";
+                                                $sql5="SELECT * FROM vaccine_date WHERE midwife_id='".$mid."' AND (giving_date >='".$currentDate."') AND (giving_date <='".$expireDate."') order by giving_date ASC ";
                                                 $data=mysqli_query($conn,$sql5);
                                             
                                                 while ($result=mysqli_fetch_assoc($data)) {
                                                     echo  "<tr class='b_text3' style='color:black'>";
                                                     echo  "<td>".$result['baby_id']."</td>";
-                                                    echo  "<td>".$result['vaccine_name']."</td>";
+                                                    echo  "<td>".$result['vac_name']."</td>";
                                                     echo  "<td>".$result['giving_date']."</td>";
                                                     echo  "</tr>";
                                                 }
@@ -456,14 +337,14 @@
                         </div>
 
                         <!-- reminder table section -->
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-3">
                             <div class="card view-reminders">
                                 <div class="card-header">
-                                    <h6 class="font-weight-bold">Reminders</h6>
+                                    <h6 class="font-weight-bold">සිහි කැඳවීම්(Reminders)</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-container">
-                                        <table class="table table-reminder">
+                                        <table class="table table-reminder table-responsive-xl">
 
                                         <?php
                                         
@@ -475,11 +356,11 @@
                                     
                                         ?>
                                            
-                                            <form method='POST' action="./php/delete-reminder-action.php">
+                                            <form method='POST' action="/pages/midwife/php/delete-reminder-action.php">
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <img class="media-photo" src="./img/reminder-icon.webp">
+                                                            <img class="media-photo" src="/pages/midwife/img/reminder-icon.webp">
                                                         </td>
                                                         <td>
                                                             <span class="discription"><?php echo $row2['midwife_reminder']; ?></span>
@@ -496,7 +377,7 @@
                                             </form>
 
                                         <?php
-                                            }
+                                             }
                                         ?>
                                         
                                         </table>
@@ -519,31 +400,29 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.mm-dash').addClass('active');
+        }); 
+    </script>
+        
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
         });
     </script>
-    <!-- end of writed scripts -->
 
 
 </body>

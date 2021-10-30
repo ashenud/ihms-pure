@@ -1,7 +1,7 @@
 <div class="container-fluid" id=selectContainer>
     <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-12"></div>
-        <div class="col-xl-6 col-lg-4 col-md-12">
+        <div class="col-xl-3 col-lg-2 col-md-1"></div>
+        <div class="col-xl-6 col-lg-8 col-md-10">
             <div class="card select-reg">
                 <div class="card-header text-center">
                     <h4 class="card-title text-uppercase">mother Already Registerd ?</h4>
@@ -14,14 +14,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-4 col-md-12"></div>
+        <div class="col-xl-3 col-lg-2 col-md-1"></div>
     </div>
 
     <!-- model for search mother -->
     <div id="motherId" class="modal fade">
         <div class="modal-dialog modal-mgsearch">
             <div class="modal-content card card-image">
-                <form action="./php/search-mother-and-gd-action.php" method="GET">
+                <form action="/pages/midwife/php/search-mother-and-gd-action.php" method="GET">
                     <div class="modal-header">
                         <h4 class="modal-title text-uppercase">Search Mother</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -47,7 +47,7 @@
     <div id="GramaDivision" class="modal fade">
         <div class="modal-dialog modal-mgsearch">
             <div class="modal-content card card-image">
-                <form action="./php/search-mother-and-gd-action.php" method="GET">
+                <form action="/pages/midwife/php/search-mother-and-gd-action.php" method="GET">
                     <div class="modal-header">
                         <h4 class="modal-title text-uppercase">Grama Niladari Division</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -55,9 +55,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <?php
+                            $query10="SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."' LIMIT 1";
+                            $result10=mysqli_query($conn,$query10);
+                            $row10=mysqli_fetch_assoc($result10);
+                        ?>
                         <div class="form-group">
                             <label class="text-uppercase">GD number</label>
-                            <input type="text" name="GnDNo" class="form-control" required>
+                            <input type="text" name="GnDNo" value="<?php echo $row10['midwife_moh_division'];?>" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">

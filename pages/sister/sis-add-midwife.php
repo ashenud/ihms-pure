@@ -1,9 +1,9 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php if(!isset($_SESSION['sister_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['sister_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -14,22 +14,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
-
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="../../pages/sister/css/sis-add-midwife-style.css">
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
+    
+    <link rel="stylesheet" href="/pages/sister/css/sis-add-midwife-style.css">
     
     <style>
         .collapse-manage {
@@ -53,164 +46,67 @@
         <div class="main-body">
 
             <!-- sidebar menu -->
-            <div class="sidebar-menu">
-                <div class="inner-sidebar-menu">
-
-                    <div class="user-area pb-2 mb-3">
-                        <img src="./img/sister.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['sister_id']); ?> </a>
-                    </div>
-
-                    <!--sidebar items-->
-                    <ul>
-                        <li>
-                            <a href="sis-dashboard.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-pie" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-uppercase" data-toggle="collapse" href="#manage" style="cursor:default">
-                                <span class="icon">
-                                    <i class="fas fa-users-cog" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Manage</span>
-                            </a>
-                        </li>
-                        <div class="collapse collapse-manage" id="manage">
-                            <li>
-                                <a href="#" class="text-uppercase drop-active">
-                                    <span class="icon-active">
-                                        <i class="fas fa-user-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">add midwife</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sis-view-midwife.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view midwife</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="sis-view-babies.php" class="text-uppercase drop">
-                                    <span class="icon">
-                                        <i class="fas fa-search" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="list">view babies</span>
-                                </a>
-                            </li>
-                        </div>
-                        <li>
-                            <a href="sis-vaccinations.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-syringe" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Vaccinations</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="sis-charts.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-chart-bar" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="sis-table.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-table" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Tables</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="sis-inbox.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-inbox" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Inbox</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="sis-send-messages.php" class="text-uppercase">
-                                <span class="icon">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                </span>
-                                <span class="list">Send Messages</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!--end of sidebar items-->
-
-                    <!--normal and mobile hamburgers-->
-                    <div class="hamburger">
-                        <div class="inner-hamburger">
-                            <span class="arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true" style="display: none;"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mob-hamburger" style="display: none;">
-                        <div class="mob-inner-hamburger">
-                            <span class="mob-arrow">
-                                <i class="fas fa-long-arrow-alt-left" aria-hidden="true" style="display: none;"></i>
-                                <i class="fas fa-long-arrow-alt-right" aria-hidden="true"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <!--end ofnormal and mobile hamburgers-->
-
-                </div>
-            </div>
+            <?php include('inc/sidebar.php'); ?>
             <!-- end of sidebar menu -->
             
             <!-- content -->
             <div class="content">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
-                            <div class="card">
+                    
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-10">
+                            <div class="card card-insert-user">
+                                <div class="card-header">
+                                    <h3 class="text-uppercase">Midwife Registration</h3>
+                                </div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-uppercase">Midwife Registration</h5>
                                     <p>
                                         <?php
                                         if(isset($_GET['success'])){
-                                            echo  " <i style='color :green;'>* User Added. </i>";
+                                            echo  " <i style='color :green; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* User Added. </i>";
                                         }
                                         elseif (isset($_GET['error'])){
-                                            echo " <i style='color :red;'>* Invalid Fields </i>";
+                                            echo " <i style='color :red; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* Invalid Fields </i>";
+                                        }
+                                        elseif (isset($_GET['userIdError'])){
+                                            echo " <i style='color :red; z-index: 10;
+                                            position: absolute; margin-top: -10px;'>* Midwife ID you have entered is already existed </i>";
                                         }
                                         ?>
                                     </p>
                                     <div class="registration">
-                                        <form action="./php/add-midwife-action.php" method="POST">
+                                        <form action="/pages/sister/php/add-midwife-action.php" method="POST">
                                             <div class="container mt-4">
                                                 <div class="form-group row" >
                                                     <label class="col-md-4 col-form-label text-md-right">Midwife ID</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="id" class="form-control" placeholder=" ID" required>
+                                                        <input type="text" name="midwife_id" class="form-control" placeholder=" ID" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row" align="left">
                                                     <label class="col-md-4 col-form-label text-md-right">Midwife Name</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="mname" class="form-control" placeholder=" Name" required>
+                                                        <input type="text" name="midwife_name" class="form-control" placeholder=" Name" required>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                                    $query10="SELECT * FROM sister WHERE sister_id='".$_SESSION['sister_id']."' LIMIT 1";
+                                                    $result10=mysqli_query($conn,$query10);
+                                                    $row10=mysqli_fetch_assoc($result10);
+                                                ?>
+                                                <div class="form-group row" align="left">
+                                                    <label class="col-md-4 col-form-label text-md-right">Midwife Area</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" name="midwife_area" value="<?php echo $row10['sister_division'];?>" class="form-control" placeholder=" Area" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row" align="left">
-                                                    <label class="col-md-4 col-form-label text-md-right">Midwife Area</label>
+                                                    <label class="col-md-4 col-form-label text-md-right">Midwife MOH Division</label>
                                                     <div class="col-md-6">
-                                                        <input type="text" name="area" class="form-control" placeholder=" Area" required>
+                                                        <input type="number" min="0" name="midwife_moh_division" value="<?php echo $row10['sister_moh_division'];?>" class="form-control" placeholder="MOH Division"  required>
                                                     </div>
                                                 </div>
 
@@ -229,7 +125,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 offset-md-8">
-                                                    <button class="btn btn-primary" name="insert">Register</button>
+                                                    <button class="btn submit-btn btn-primary" name="insert">Register</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -237,7 +133,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2"></div>
                     </div>
                 </div>
             </div>
@@ -251,32 +146,34 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
     <!-- writed scripts -->
+    <script>
+        $(function() {
+            $('.inner-sidebar-menu ul li a.ss-add').addClass('drop-active');
+        });
+    </script>    
+    
     <script>
         $(document).ready(function() {
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
+            
+            $('#manage-users').on('click', function () {
+                $('#manage').toggleClass('collapse-manage d-none');
+            });          
         });
     </script>
     <!-- end of writed scripts -->
-
 
 
 </body>

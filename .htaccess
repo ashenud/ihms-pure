@@ -1,0 +1,80 @@
+ReWriteEngine On
+
+# doctor
+
+RewriteRule ^doctor/dashboard?$ /pages/doctor/doc-dashboard.php [L]
+RewriteRule ^doctor/view-sisters?$ /pages/doctor/doc-view-sisters.php [L]
+RewriteRule ^doctor/view-babies?$ /pages/doctor/doc-view-babies.php [L]
+RewriteRule ^doctor/table?$ /pages/doctor/doc-table.php [L]
+RewriteRule ^doctor/inbox?$ /pages/doctor/doc-inbox.php [L]
+RewriteRule ^doctor/send-messages?$ /pages/doctor/doc-send-messages.php [L]
+RewriteRule ^doctor/vac-permission?$ /pages/doctor/doc-vac-permission.php [L]
+RewriteRule ^doctor/baby-data-page?$ /pages/doctor/doc-baby-data-page.php [L]
+RewriteRule ^doctor/password-change?$ /pages/doctor/doc-password-change.php [L]
+
+
+#miwife
+
+RewriteRule ^midwife/dashboard?$ /pages/midwife/mid-dashboard.php [L]
+RewriteRule ^midwife/add-babies?$ /pages/midwife/mid-add-babies.php [L]
+RewriteRule ^midwife/view-babies?$ /pages/midwife/mid-view-babies.php [L]
+RewriteRule ^midwife/reports?$ /pages/midwife/mid-reports.php [L]
+RewriteRule ^midwife/inbox?$ /pages/midwife/mid-inbox.php [L]
+RewriteRule ^midwife/visit-today?$ /pages/midwife/mid-visit-today.php [L]
+RewriteRule ^midwife/give-directions?$ /pages/midwife/mid-give-directions.php [L]
+RewriteRule ^midwife/show-all-locations?$ /pages/midwife/mid-show-all-locations.php [L]
+RewriteRule ^midwife/visiting-record?$ /pages/midwife/mid-visiting-record.php [L]
+RewriteRule ^midwife/vaccine-mark?$ /pages/midwife/mid-vaccine-mark.php [L]
+RewriteRule ^midwife/contact-staff?$ /pages/midwife/mid-contact-staff.php [L]
+RewriteRule ^midwife/thriposha?$ /pages/midwife/mid-thriposha.php [L]
+RewriteRule ^midwife/password-change?$ /pages/midwife/mid-password-change.php [L]
+
+
+#baby
+
+RewriteRule ^baby/dashboard?$ /pages/baby/baby-dashboard.php [L]
+RewriteRule ^baby/vaccinations?$ /pages/baby/baby-vaccinations.php [L]
+RewriteRule ^baby/charts-weight?$ /pages/baby/baby-charts-weight.php [L]
+RewriteRule ^baby/charts-height?$ /pages/baby/baby-charts-height.php [L]
+RewriteRule ^baby/charts-bmi?$ /pages/baby/baby-charts-bmi.php [L]
+RewriteRule ^baby/editable-page?$ /pages/baby/baby-editable-page.php [L]
+RewriteRule ^baby/inbox?$ /pages/baby/baby-inbox.php [L]
+RewriteRule ^baby/send-messages?$ /pages/baby/baby-send-messages.php [L]
+RewriteRule ^baby/select?$ /pages/baby/baby-select.php [L]
+RewriteRule ^baby/password-change?$ /pages/baby/baby-password-change.php [L]
+
+
+#sister
+
+RewriteRule ^sister/dashboard?$ /pages/sister/sis-dashboard.php [L]
+RewriteRule ^sister/add-midwife?$ /pages/sister/sis-add-midwife.php [L]
+RewriteRule ^sister/view-midwife?$ /pages/sister/sis-view-midwife.php [L]
+RewriteRule ^sister/view-babies?$ /pages/sister/sis-view-babies.php [L]
+RewriteRule ^sister/reports?$ /pages/sister/sis-reports.php [L]
+RewriteRule ^sister/inbox?$ /pages/sister/sis-inbox.php [L]
+RewriteRule ^sister/send-messages?$ /pages/sister/sis-send-messages.php [L]
+RewriteRule ^sister/password-change?$ /pages/sister/sis-password-change.php [L]
+
+
+#admin
+
+RewriteRule ^admin/dashboard?$ /pages/admin-doctor/admin-doc-dashboard.php [L]
+RewriteRule ^admin/add-sisters?$ /pages/admin-doctor/admin-doc-add-sisters.php [L]
+RewriteRule ^admin/view-sisters?$ /pages/admin-doctor/admin-doc-view-sisters.php [L]
+RewriteRule ^admin/view-babies?$ /pages/admin-doctor/admin-doc-view-babies.php [L]
+RewriteRule ^admin/table?$ /pages/admin-doctor/admin-doc-table.php [L]
+RewriteRule ^admin/inbox?$ /pages/admin-doctor/admin-doc-inbox.php [L]
+RewriteRule ^admin/send-messages?$ /pages/admin-doctor/admin-doc-send-messages.php [L]
+RewriteRule ^admin/schedule?$ /pages/admin-doctor/admin-doc-add-schedule.php [L]
+RewriteRule ^admin/password-change?$ /pages/admin-doctor/admin-doc-password-change.php [L]
+
+
+#general
+
+RewriteRule ^general/view-data?$ /pages/general/view-data.php [L]
+
+
+#password reset
+
+RewriteRule ^confirm-details?$ /froget-password/froget-password.php [L]
+RewriteRule ^change-password?$ /froget-password/new-password.php [L]

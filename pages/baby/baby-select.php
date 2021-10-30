@@ -1,10 +1,9 @@
-<?php session_start(); ?>
-<?php include('../../php/basic/connection.php'); ?>
-
-<?php  
-    if(!isset($_SESSION['mother_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['mother_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
 
 
@@ -16,22 +15,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-dashboard-style.css">
-    <link rel="stylesheet" href="./css/baby-select-style.css">
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
+    
+    <link rel="stylesheet" href="/pages/baby/css/baby-select-style.css">
 
     <title>Infant Health Management System</title>
     
@@ -53,8 +44,13 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/mother.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['mother_id']); ?> </a>
+                        <img src="/pages/baby/img/mother.png" width="50" class="rounded-circle">
+                        <?php
+                            $query1 = "SELECT * FROM mother WHERE mother_nic='".$_SESSION['mother_id']."'";
+                            $result1= mysqli_query($conn,$query1);
+                            $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['mother_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
@@ -62,46 +58,46 @@
                         <li>
                             <?php
                                 if(isset($_SESSION['doctor_id'])){
-                                    echo '<a href="../doctor/doc-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/doctor/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Doctor</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['sister_id'])){
-                                    echo '<a href="../sister/sis-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/sister/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Sister</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['midwife_id'])){
-                                    echo '<a href="../midwife/mid-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/midwife/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Midwife</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
                                 if(isset($_SESSION['admin_id'])){
-                                    echo '<a href="../admin-doctor/admin-doc-dashboard.php" class="text-uppercase">';
+                                    echo '<a href="/admin/dashboard" class="text-uppercase">';
                                     echo '<span class="icon">';
                                     echo '<i class="fas fa-chart-pie" aria-hidden="true"></i>';
                                     echo '</span>';
-                                    echo '<span class="list">Admin Doctor</span>';
+                                    echo '<span class="list">තොරතුරු පුවරුව</span>';
                                     echo '</a>';
                                 }
 
                             ?>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/baby/select" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-baby" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Select Baby</span>
+                                <span class="list">දරුවා තෝරන්න</span>
                             </a>
                         </li>
                     </ul>
@@ -137,10 +133,8 @@
                 <div class="container">
                     <div class="row">
                         <?php
-                            mysqli_select_db($conn, 'cs2019g6');    
-                        
                             $mother_nic=$_SESSION['mother_id'];
-                            $query1="SELECT * FROM baby_register WHERE mother_nic='{$mother_nic}'";
+                            $query1="SELECT * FROM baby_register WHERE mother_nic='{$mother_nic}' AND status='active'";
                             $result1=mysqli_query($conn, $query1);
                         
                             while ($row = mysqli_fetch_assoc($result1)) {
@@ -149,18 +143,15 @@
                                 $name = $row["baby_first_name"];
                                 
                                 if($gender=='M') {
-                                    
-                                
-
                         ?>
                             
                                     <div class="col-md-auto">
-                                        <form action="./php/baby-select-action.php" method="POST">
+                                        <form action="/pages/baby/php/baby-select-action.php" method="POST">
                                             <button type="submit" class="btn" name="baby_id" value="<?php echo $baby_id;?>">
                                                 <div class="card card-common">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
-                                                            <i class="fas fa-baby" style="color: #1565c0;"></i>
+                                                            <i class="fas fa-baby" style="color: #2a94c3;"></i>
                                                         </div>
                                                     </div>
                                                     <div class="c-footer py-1 text-center">
@@ -178,12 +169,12 @@
                                 else {
                         ?>
                                     <div class="col-md-auto">
-                                        <form action="./php/baby-select-action.php" method="POST">
+                                        <form action="/pages/baby/php/baby-select-action.php" method="POST">
                                             <button type="submit" class="btn" name="baby_id" value="<?php echo $baby_id;?>">
                                                 <div class="card card-common">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between">
-                                                            <i class="fas fa-baby" style="color: #c2185b;"></i>
+                                                            <i class="fas fa-baby" style="color: #bd445d;"></i>
                                                         </div>
                                                     </div>
                                                     <div class="c-footer py-1 text-center">
@@ -214,13 +205,10 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
     <!-- writed scripts -->
     <script>

@@ -1,7 +1,6 @@
 <?php
 
 include ( '../../../php/basic/connection.php' );
-mysqli_select_db($conn,"cs2019g6");
 
 echo "<style>
 body{

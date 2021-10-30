@@ -1,9 +1,11 @@
-<?php session_start(); ?>
-
-<?php if(!isset($_SESSION['midwife_id'])) {	
-	header('location:../../index.php?noPermission=1');
-	}
+<?php 
+session_start();
+include('../../php/basic/connection.php');
+if(!isset($_SESSION['midwife_id'])) {	
+	header('location:/?noPermission=1');
+}
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -12,22 +14,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'>
+    
+    <?php 
+    //favicons
+    include('../../inc/basic/include-dashboard-fav.php');
+    //css
+    include('../../inc/basic/include-dashboard-css.php');
+    ?>
 
-    <!--favicons-->
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
-
-    <!--fonts and icons-->
-    <link rel="stylesheet" href="../../assets/css/fontawesome/css/all.css">
-    <link rel="stylesheet" href="../../assets/css/unicode-fonts.css">
-    <link rel="stylesheet" href="../../assets/css/material-design-iconic-font.min.css">
-
-    <!--css files-->
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/animate.css">
-
-    <link rel="stylesheet" href="../../assets/css/dashboard-style.css">
-    <link rel="stylesheet" href="css/mid-inbox-style.css">
+    <link rel="stylesheet" href="/pages/midwife/css/mid-inbox-style.css">
     
 
     <title>Infant Health Management System</title>
@@ -50,26 +45,31 @@
                 <div class="inner-sidebar-menu">
 
                     <div class="user-area pb-2 mb-3">
-                        <img src="./img/midwife.png" width="50" class="rounded-circle">
-                        <a href="#" class="text-uppercase"> <?php echo($_SESSION['midwife_id']); ?> </a>
+                        <img src="/pages/midwife/img/midwife.png" width="50" class="rounded-circle">
+                        <?php
+                        $query1 = "SELECT * FROM midwife WHERE midwife_id='".$_SESSION['midwife_id']."'";
+                        $result1= mysqli_query($conn,$query1);
+                        $row=mysqli_fetch_assoc($result1);
+                        ?>
+                        <a href="#"> <span><?php echo $row['midwife_name'];?></span> </a>
                     </div>
 
                     <!--sidebar items-->
                     <ul>
                         <li>
-                            <a href="mid-dashboard.php" class="text-uppercase">
+                            <a href="/midwife/dashboard" class="text-uppercase">
                                 <span class="icon">
                                     <i class="fas fa-chart-pie" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Dashboard</span>
+                                <span class="list">තොරතුරු පුවරුව</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-uppercase active">
+                            <a href="/midwife/contact-staff" class="text-uppercase active">
                                 <span class="icon">
                                     <i class="fas fa-file-signature" aria-hidden="true"></i>
                                 </span>
-                                <span class="list">Contact Staff</span>
+                                <span class="list">කාර්ය මණ්ඩලය</span>
                             </a>
                         </li>
                     </ul>
@@ -112,7 +112,7 @@
                         <div class="col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2">
                         <div class="card">
                         <div class="card-body">
-                            <img src="img/doctor.png" alt="doctor" width="110px" height="115px">
+                            <img src="/pages/midwife/img/doctor.png" alt="doctor" width="110px" height="115px">
                             <figcaption  class=" text-center text-warning">Doctor</figcaption>
                         </div>   
                         </div>
@@ -130,7 +130,7 @@
                                         <table class="table" >
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Send sms</th>
+                                                <th>Send message</th>
                                             </tr>
                                             
                                                 
@@ -160,7 +160,7 @@
                                                     echo "</button>";
                                                     echo "</div>";
                                                     echo "<div class='modal-body'>";
-                                                    echo "<form method='POST' action='php/mid-send-sms-action.php'>";
+                                                    echo "<form method='POST' action='/pages/midwife/php/mid-send-sms-action.php'>";
                                                     echo "<div class='row d-flex justify-content-around'>";
                                                     echo "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>";
                                                     echo "<lable>From:</lable>";
@@ -208,7 +208,7 @@
                         <div class="col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2">
                         <div class="card">
                         <div class="card-body">
-                            <img src="img/sister.png" alt="sister" width="110px" height="115px">
+                            <img src="/pages/midwife/img/sister.png" alt="sister" width="110px" height="115px">
                             <figcaption  class=" text-center text-success">Sister</figcaption>
                         </div>   
                         </div>
@@ -225,7 +225,7 @@
                                         <table class="table" >
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Send sms</th>
+                                                <th>Send message</th>
                                             </tr>
                                             
                                                 
@@ -255,7 +255,7 @@
                                                         echo "</button>";
                                                         echo "</div>";
                                                         echo "<div class='modal-body'>";
-                                                        echo "<form method='POST' action='php/mid-send-sms-action.php'>";
+                                                        echo "<form method='POST' action='/pages/midwife/php/mid-send-sms-action.php'>";
                                                         echo "<div class='row d-flex justify-content-around'>";
                                                         echo "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>";
                                                         echo "<lable>From:</lable>";
@@ -304,7 +304,7 @@
                         <div class="col-8 col-sm-8 col-md-4 col-lg-2 col-xl-2">
                         <div class="card">
                         <div class="card-body">
-                            <img src="img/midwife.png" alt="midwife" width="110px" height="115px">
+                            <img src="/pages/midwife/img/midwife.png" alt="midwife" width="110px" height="115px">
                             <figcaption  class=" text-center text-primary">Midwife</figcaption>
                         </div>   
                         </div>
@@ -321,7 +321,7 @@
                                         <table class="table" >
                                             <tr>
                                                 <th>Name</th>
-                                                <th>Send sms</th>
+                                                <th>Send message</th>
                                             </tr>
                                             
                                                 
@@ -357,7 +357,7 @@
                                                         echo "</button>";
                                                         echo "</div>";
                                                         echo "<div class='modal-body'>";
-                                                        echo "<form method='POST' action='php/mid-send-sms-action.php'>";
+                                                        echo "<form method='POST' action='/pages/midwife/php/mid-send-sms-action.php'>";
                                                         echo "<div class='row d-flex justify-content-around'>";
                                                         echo "<div class='col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>";
                                                         echo "<lable>From:</lable>";
@@ -407,13 +407,10 @@
 
 
     <!-- optional JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/jquery.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/popper.min.js"></script>
-    <script type="text/javascript" src="../../assets/js/core/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="../../assets/js/script.js"> </script>
-    <!--end core js files-->
+    <?php
+    //js
+    include('../../inc/basic/include-dashboard-js.php');
+    ?>
 
     <!-- writed scripts -->
     <script>
@@ -421,17 +418,15 @@
             $(".hamburger").click(function() {
                 $(".wrapper").toggleClass("active");
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
+            
             $(".mob-hamburger").click(function() {
                 $(".wrapper").toggleClass("mob-active");
             });
         });
     </script>
     <!-- end of writed scripts -->
+    
+    
     <script type="text/javascript">
 
         $(document).on("click", "#sendDataDoctor", function () {

@@ -10,7 +10,7 @@ extract($_POST);
             if(mysqli_query($conn,$sql1)){
 
             echo "it works";
-            header("Location:../mid-contact-staff.php");
+            header("Location:/midwife/contact-staff");
         }
         else {
             echo "Error";
@@ -27,7 +27,7 @@ extract($_POST);
             if(mysqli_query($conn,$sql1)){
 
             echo "it works";
-            header("Location:../mid-contact-staff.php");
+            header("Location:/midwife/contact-staff");
         }
         
     }
@@ -41,7 +41,7 @@ extract($_POST);
             if(mysqli_query($conn,$sql1)){
 
             echo "it works";
-            header("Location:../mid-contact-staff.php");
+            header("Location:/midwife/contact-staff");
         }
         
     }
