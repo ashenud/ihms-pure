@@ -6,7 +6,8 @@ Computer Science final group project of University of Ruhuna, Department of Comp
 
 ### Used Technologies
 
-* Pure Php
+* PHP
+* MySql
 * HTML
 * CSS
 * JavaScript
